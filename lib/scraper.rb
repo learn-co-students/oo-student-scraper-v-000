@@ -31,8 +31,8 @@ class Scraper
       elsif link.include?("twitter")
         scraped_student[:twitter] = link 
       elsif link.include?("github")
-        scraped_student[:github] = link 
-      elsif link.include?("rss")
+        scraped_student[:github] = link
+      elsif links.css("img").attribute("src").text.include?("rss")
         scraped_student[:blog] = link
       end 
     end
@@ -40,5 +40,6 @@ class Scraper
     scraped_student[:bio] = html.css(".description-holder p").text
 
     scraped_student
+    binding.pry
   end
 end
