@@ -2,7 +2,6 @@ require 'open-uri'
 require 'pry'
 
 class Scraper
-  
   def self.scrape_index_page(index_url)
     scraped_students = []
 
@@ -22,7 +21,7 @@ class Scraper
     scraped_student = {}
 
     html = Nokogiri::HTML(open(profile_url))
-    html.css("div.social-icon-container a").each do |links|
+    html.css(".social-icon-container a").each do |links|
       link = links.attribute("href").text
       
       if link.include?("linkedin")
