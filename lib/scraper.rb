@@ -24,7 +24,7 @@ class Scraper
     html.css(".social-icon-container a").each do |links|
       link = links.attribute("href").text
       
-      scraped_student[:linkedin] = link  if link.include?("linkedin")
+      scraped_student[:linkedin] = link if link.include?("linkedin")
       scraped_student[:twitter] = link if link.include?("twitter")
       scraped_student[:github] = link if link.include?("github")
       scraped_student[:blog] = link if links.css("img").attribute("src").text.include?("rss")
