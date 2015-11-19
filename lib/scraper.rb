@@ -25,17 +25,24 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
     profile = {}
-      doc.css("div.vitals-container").each do |data| 
-        profile = {
-            :twitter => data.css("div.social-icon-container").children.css("a")[0].attribute("href").value,
-            :linkedin => data.css("div.social-icon-container").children.css("a")[1].attribute("href").value,
-            :github => data.css("div.social-icon-container").children.css("a")[2].attribute("href").value,
-            :profile_quote => data.css("div.vitals-text-container div").text,
-            :bio => doc.css("div.bio-block div.description-holder").text
-        }
-        #not a good solution will need to revisit
-        profile[:blog] = data.css("div.social-icon-container").children.css("a")[3].attribute("href").value if defined?(data.css("div.social-icon-container").children.css("a")[3].attribute("href").value) != nil
-      end
+
+    social = doc.css("div.vitals-container a")
+    #example of social
+    #<a href="https://twitter.com/jmburges"><img class="social-icon" src="../assets/img/twitter-icon.png"></a>
+    #<a href="https://www.linkedin.com/in/jmburges"><img class="social-icon" src="../assets/img/linkedin-icon.png"></a>
+    #<a href="https://github.com/jmburges"><img class="social-icon" src="../assets/img/github-icon.png"></a>
+    #<a href="http://joemburgess.com/"><img class="social-icon" src="../assets/img/rss-icon.png"></a>
+    
+    #adds social to hash if student has one
+    social.each {|x| profile[:twitter] = x.attribute("href").value if x.to_s.match(/twitter/)}
+    social.each {|x| profile[:linkedin] = x.attribute("href").value if x.to_s.match(/linkedin/)}
+    social.each {|x| profile[:github] = x.attribute("href").value if x.to_s.match(/github/)}
+    social.each {|x| profile[:blog] = x.attribute("href").value if x.to_s.match(/rss/)}
+    #adds quote
+    profile[:profile_quote] = doc.css("div.profile-quote").text
+    #adds bio
+    profile[:bio] = doc.css("div.bio-content p").text
+
     profile
   end
 
