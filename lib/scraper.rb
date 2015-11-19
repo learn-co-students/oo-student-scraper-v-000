@@ -40,6 +40,5 @@ class Scraper
     scraped_student[:bio] = html.css(".description-holder p").text
 
     scraped_student
-    binding.pry
   end
 end
