@@ -22,13 +22,21 @@ class Scraper
     social_links = doc.css(".vitals-container .social-icon-container a")
     student_hash = {name: doc.css(".vitals-container .vitals-text-container .profile-name").text,
             quote: doc.css(".vitals-container .vitals-text-container .profile-quote").text,
-            bio: doc.css(".details-container .bio-block .bio-content .description-holder p").text,
-            twitter: social_links[0]["href"],
-            linkedin: social_links[1]["href"],
-            github: social_links[2]["href"],
+            bio: doc.css(".details-container .bio-block .bio-content .description-holder p").text
     }
-    if social_links.length == 4
-      student_hash[:blog] = social_links[3]["href"]
+
+    social_links.each do |link|
+      capture = link["href"].match(/https?:\/{2}w{3}?\.?([a-z]+)/).captures
+      case capture[0]
+      when "github"
+        student_hash[:github] = link["href"]
+      when "linkedin"
+        student_hash[:linkedin] = link["href"]
+      when "twitter"
+        student_hash[:twitter] = link["href"]
+      else
+        student_hash[:blog] = link["href"]
+      end
     end
     student_hash
   end
