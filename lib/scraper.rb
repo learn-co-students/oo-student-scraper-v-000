@@ -1,5 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
+require 'pry'
 
 class Scraper
 
@@ -21,23 +22,26 @@ class Scraper
     doc = Nokogiri::HTML(open("#{profile_url}"))
     social_links = doc.css(".vitals-container .social-icon-container a")
     student_hash = {name: doc.css(".vitals-container .vitals-text-container .profile-name").text,
-            quote: doc.css(".vitals-container .vitals-text-container .profile-quote").text,
+            profile_quote: doc.css(".vitals-container .vitals-text-container .profile-quote").text,
             bio: doc.css(".details-container .bio-block .bio-content .description-holder p").text
     }
 
     social_links.each do |link|
-      capture = link["href"].match(/https?:\/{2}w{3}?\.?([a-z]+)/).captures
-      case capture[0]
-      when "github"
-        student_hash[:github] = link["href"]
-      when "linkedin"
-        student_hash[:linkedin] = link["href"]
-      when "twitter"
-        student_hash[:twitter] = link["href"]
-      else
-        student_hash[:blog] = link["href"]
+      if link["href"] != "#"
+        capture = link["href"].match(/https?:\/{2}w{3}?\.?([a-z]+)/).captures
+        case capture[0]
+        when "github"
+          student_hash[:github] = link["href"]
+        when "linkedin"
+          student_hash[:linkedin] = link["href"]
+        when "twitter"
+          student_hash[:twitter] = link["href"]
+        else
+          student_hash[:blog] = link["href"]
+        end
       end
     end
+    
     student_hash
   end
 end
