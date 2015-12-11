@@ -28,6 +28,7 @@ class Scraper
         profile_info[:github] = link_url
       elsif /linkedin/.match(link_url)
         profile_info[:linkedin] = link_url
+      elsif "#" == link_url
       else
         profile_info[:blog] = link_url
       end
