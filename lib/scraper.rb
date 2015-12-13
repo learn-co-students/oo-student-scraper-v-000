@@ -10,14 +10,13 @@ class Scraper
     index_url = index_url += "/" unless index_url[-1,1] == "/"
    
     student_cards = []
-    doc.css('.student-card').each do |post|
+    doc.css('.student-card').collect do |post|
         student_hash = {}
       student_hash[:name] = post.css('.student-name').text
       student_hash[:location] = post.css('.student-location').text
       student_hash[:profile_url] = index_url + post.css('a').attr('href').value
         student_cards << student_hash
     end 
-     
       student_cards
   end
 
@@ -38,4 +37,4 @@ class Scraper
 
 end
 
-# Scraper.new.scrape_profile_page("http://students.learn.co/students/joe-burgess.html")
+

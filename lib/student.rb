@@ -26,7 +26,6 @@ class Student
     attributes_hash.collect do |key, value| 
     self.send(("#{key}="), value)
     end
-    @@all<<self 
   end
 
   def self.all
