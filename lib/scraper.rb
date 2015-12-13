@@ -21,12 +21,21 @@ class Scraper
       student_cards
   end
 
-  # def scrape_profile_page(profile_url)
-  #   doc = Nokogiri::HTML(open(profile_url))
-  #   # binding.pry
-  #   doc
-  # end
+  def self.scrape_profile_page(profile_url)
+    doc = Nokogiri::HTML(open(profile_url))
+    social = {}
+    doc.css('.social-icon-container').css('a').map do |student|
+        social[:linkedin] = student.attr('href') if student.attr('href').include?('linkedin')
+        social[:twitter] = student.attr('href') if student.attr('href').include?('twitter')
+        social[:github] = student.attr('href') if student.attr('href').include?("github")
+        social[:blog] = student.attr('href')
+    end
+        social[:profile_quote] = doc.css('.vitals-text-container').css('.profile-quote').text.gsub("\"", "")
+        social[:bio] = doc.css('.description-holder').css('p').text.gsub("\"", "")
+    # binding.pry
+    social
+  end
 
 end
 
-# Scraper.new.scrape_index_page("http://students.learn.co")
+# Scraper.new.scrape_profile_page("http://students.learn.co/students/joe-burgess.html")
