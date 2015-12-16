@@ -2,7 +2,7 @@ require_relative "../lib/scraper.rb"
 require_relative "../lib/student.rb"
 require 'nokogiri'
 
-class CommandLineInteface
+class CommandLineInterface
   BASE_URL = "http://students.learn.co"
 
   def run
