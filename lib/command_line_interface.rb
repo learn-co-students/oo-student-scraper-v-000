@@ -1,6 +1,8 @@
 require_relative "../lib/scraper.rb"
 require_relative "../lib/student.rb"
+require 'open-uri'
 require 'nokogiri'
+require 'pry'
 
 class CommandLineInteface
   BASE_URL = "http://students.learn.co"
@@ -18,7 +20,9 @@ class CommandLineInteface
 
   def add_attributes_to_students
     Student.all.each do |student|
+      binding.pry
       attributes = Scraper.scrape_profile_page(student.profile_url)
+      
       student.add_student_attributes(attributes)
     end
   end
