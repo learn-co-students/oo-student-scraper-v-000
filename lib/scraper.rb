@@ -36,7 +36,9 @@ class Scraper
     student = {}
 
     profile_page.css("div.social-icon-container a").each do |element|
-      student[:"#{element.attribute("href").value[/(?<=:\/\/).*(?=\.com)/].gsub("www.","")}"] = element.attribute("href").value
+      if element.attribute("href").value.include?("/")
+        student[:"#{element.attribute("href").value[/(?<=:\/\/).*(?=\.com)/].gsub("www.","")}"] = element.attribute("href").value
+      end
     end
 
     if student.detect {|k,v| k != :twitter && k != :linkedin && k != :github}
@@ -51,7 +53,3 @@ class Scraper
   end
 
 end
-
-# Scraper.scrape_index_page("http://students.learn.co")
-# Scraper.scrape_profile_page("http://students.learn.co/students/joe-burgess.html")
-
