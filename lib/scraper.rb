@@ -21,16 +21,25 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url)) #uses open-uri to open the url, then uses Nokogiri to parse in the html which we will then use to scrape data
+    return_hash = {}
 
-    x={ #returns a hash of student data scraped from Nokogiri based on CSS selectors
-      #twitter: doc.css("").text,
-      #linkedin: doc.css("").text,
-      #github: doc.css("").text,
-      #blog: doc.css("").text,
-      profile_quote: doc.css("div .profile-quote").text,
-      bio: doc.css(".details-container .description-holder p").text
-      }
-    binding.pry
+    links = doc.css("div.social-icon-container a").collect{ |link| link['href'] } #collects all the links in the social-icon-container div
+    links.each do |link| #iterates through the collected links
+      if link.include?("twitter") #checks if the link is twitter
+        return_hash[:twitter] = link
+      elsif link.include?("linkedin") #checks if the link is linkedin
+        return_hash[:linkedin] = link
+      elsif link.include?("github") #checks if the link is github
+        return_hash[:github] = link
+      else #if it's not any of the others, it must be the blog link
+        return_hash[:blog] = link
+      end
+    end
+
+    return_hash[:profile_quote] = doc.css("div .profile-quote").text
+    return_hash[:bio] = doc.css(".details-container .description-holder p").text
+
+    return_hash
   end
 
 end
