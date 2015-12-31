@@ -1,6 +1,7 @@
 require_relative "../lib/scraper.rb"
 require_relative "../lib/student.rb"
 require 'nokogiri'
+require 'pry'
 
 class CommandLineInteface
   BASE_URL = "http://students.learn.co"
@@ -13,6 +14,7 @@ class CommandLineInteface
 
   def make_students
     students_array = Scraper.scrape_index_page(BASE_URL)
+    # binding.pry
     Student.create_from_collection(students_array)
   end
 
