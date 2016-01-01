@@ -18,15 +18,23 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     data = Nokogiri::HTML(open(profile_url))
+
     twitter = data.css(".social-icon-container a[href*='twitter']")
+    twitter.empty? ? twitter = nil : twitter = twitter.attribute("href").value
+
     linkedin = data.css(".social-icon-container a[href*='linkedin']")
+    linkedin.empty? ? linkedin = nil : linkedin = linkedin.attribute("href").value
+    
     github = data.css(".social-icon-container a[href*='github']")
+    
     blog = data.css(".social-icon-container a:nth-child(4)")
+    blog.empty? ? blog = nil : blog = blog.attribute("href").value
+    
     attributes = {
-      twitter: twitter.attribute("href").value ||= nil,
-      linkedin: linkedin.attribute("href").value ||= nil,
-      github: github.attribute("href").value ||= nil,
-      blog: blog.attribute("href").value ||= nil,
+      twitter: twitter,
+      linkedin: linkedin,
+      github: github.attribute("href").value,
+      blog: blog,
       profile_quote: data.css(".profile-quote").text,
       bio: data.css(".bio-content .description-holder p").text
     }
