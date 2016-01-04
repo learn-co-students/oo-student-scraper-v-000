@@ -3,8 +3,8 @@ require_relative "../lib/student.rb"
 require_relative "../config.rb"
 require File.expand_path('./support/vcr_setup', __dir__)
 
-require 'webmock/rspec'  
-WebMock.disable_net_connect!(allow_localhost: true) 
+#require 'webmock/rspec'  
+#WebMock.disable_net_connect!(allow_localhost: true) 
 
 
 
