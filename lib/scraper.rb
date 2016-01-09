@@ -1,13 +1,11 @@
 require 'open-uri'
 require 'pry'
-# require '../spec/vcr/fixtures/index_page.yml'
 
 class Scraper
 
   def self.scrape_index_page(index_url)
     html = open(index_url)
 	students = Nokogiri::HTML(html)
-	students.css("h4.student-name")
 	names = students.css("h4.student-name").map {|f| f.text} #name
 	locations = students.css("p.student-location").map {|f| f.text}
 	links = students.css("div.student-card").map {|f| f.css("a").attribute("href").value}
@@ -22,17 +20,30 @@ class Scraper
 		array_of_students << single_hash
 	end
 
-	array_of_students
-
-	# binding.pry
-	# [{:name=>"Joe Burgess", :location=>"New York, NY", :profile_url=>"http://students.learn.co/students/joe-burgess.html"},
- #     {:name=>"Mathieu Balez", :location=>"New York, NY", :profile_url=>"http://students.learn.co/students/mathieu-balez.html"},
- #     {:name=>"Diane Vu", :location=>"New York, NY", :profile_url=>"http://students.learn.co/students/diane-vu.html"}]
-
+	array_of_students.reverse #refactor so i don't need to reverse
   end
 
   def self.scrape_profile_page(profile_url)
-    
+    html = open(profile_url)
+	profile = Nokogiri::HTML(html)
+
+	twitter = profile.css("div.social-icon-container a")[0].attribute("href").value
+	linkedin = profile.css("div.social-icon-container a")[1].attribute("href").value
+	github = profile.css("div.social-icon-container a")[2].attribute("href").value
+	blog = profile.css("div.social-icon-container a")[3].attribute("href").value
+	profile_quote = profile.css("div.profile-quote").text
+	bio = profile.css("div.description-holder p").text
+
+	single_hash = {}
+
+	single_hash[:twitter] = twitter
+	single_hash[:linkedin] = linkedin
+	single_hash[:github] = github
+	single_hash[:blog] = blog
+	single_hash[:profile_quote] = profile_quote
+	single_hash[:bio] = bio
+
+	single_hash
   end
 
 end
