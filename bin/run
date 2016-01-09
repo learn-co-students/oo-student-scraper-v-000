@@ -5,20 +5,3 @@ require_relative "../lib/command_line_interface.rb"
 
 CommandLineInteface.new.run
 
-# Scraper
-#   #scrape_index_page
-#     is a class method that scrapes the student index page and a returns an array of hashes in which each hash represents one student (FAILED - 1)
-#   #scrape_profile_page
-#     after scrapping a completed student profile page
-#       returns a hash of attributes that describes a student (FAILED - 2)
-#     after scrapping an uncomplete student profile page
-#       can handle incomplete links (FAILED - 3)
-
-# Student
-#   #new
-#     takes in an argument of a hash and sets that new student's attributes using the key/value pairs of that hash. (FAILED - 4)
-#     adds that new student to the Student class' collection of all existing students, stored in the `@@all` class variable. (FAILED - 5)
-#   #create_from_site
-#     uses the Scraper class to create new students with the correct name and location. (FAILED - 6)
-#   #add_student_attributes
-#     uses the Scraper class to get a hash of a given students attributes and uses that hash to set additional attributes for that student. (FAILED - 7)

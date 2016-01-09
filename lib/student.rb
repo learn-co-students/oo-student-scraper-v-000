@@ -6,23 +6,21 @@ class Student
 
   def initialize(student_hash)
     student_hash.each {|key, value| self.send(("#{key}="), value)}
+    @@all << self
   end
 
   def self.create_from_collection(students_array)
-    students_array.each do |f|
-      Student.new([f[:name], f[:location]])
+    students_array.each do |student|
+      Student.new(student)
     end
-
-      # let!(:student) {Student.new({:name=>"Alex Patriquin", :location=>"New York, NY"})}
-    # {:name=>"Joe Burgess", :location=>"New York, NY", :profile_url=>"http://students.learn.co/students/joe-burgess.html"}
   end
 
-  def add_student_attributes(attributes_hash)
-    
+  def add_student_attributes(attributes_hash) #refactor to use the method to set?
+    attributes_hash.each {|key, value| self.send(("#{key}="), value)}
   end
 
   def self.all
-    
+    @@all
   end
 end
 
