@@ -15,12 +15,6 @@ class Student
 
   end
       
-  # def create_from_site
-
-  # end    
-
-
-
   def add_student_attributes(attributes_hash)
     attributes_hash.each{|k, v| self.send(("#{k}="), v)}
     self
