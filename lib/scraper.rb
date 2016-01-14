@@ -7,11 +7,12 @@ class Scraper
   def self.scrape_index_page(index_url)
     index = Nokogiri::HTML(open(index_url))
     students = []
+    
     index.css("div.student-card").each do |student_card|
      students << {
         name: student_card.css("a div.card-text-container h4.student-name").text,
         location: student_card.css("a div.card-text-container p.student-location").text,
-        profile_url: student_card.css("a").attribute("href").value
+        profile_url: ("http://students.learn.co/" << student_card.css("a").attribute("href").value)
       }
     end
     students
@@ -23,28 +24,21 @@ class Scraper
     links = profile.css("div.social-icon-container a")
     profile_attr = {}
     links.each do |link|
-      if link.attribute("href").value.scan(/linkedin/) == ["linkedin"]
-        profile_attr[:linkedin] = link.attribute("href").value
+      if link.attribute("href").value.scan(/twitter/) == ["twitter"]
+        method = 'twitter'
+      elsif link.attribute("href").value.scan(/linkedin/) == ["linkedin"]
+        method = 'linkedin'
       elsif link.attribute("href").value.scan(/github/) == ["github"]
-        profile_attr[:github] = link.attribute("href").value
+        method = 'github'
+      elsif link.css("img").attribute("src").value.scan(/rss-icon/) == ['rss-icon']
+        method = 'blog'
       end
+      profile_attr[method.to_sym] = link.attribute("href").value unless method == nil
     end
+    profile_attr[:profile_quote] = profile.css("div.profile-quote").text.scan(/\b\w+\b/).join" " 
+    profile_attr[:bio] = profile.css("div.description-holder p").text
     profile_attr
   end
-
-
-    # linkedin: =>"https://www.linkedin.com/in/flatironschool",
-    #   :github=>"https://github.com/learn-co,
-    #   :blog=>"http://flatironschool.com",
-    #   :profile_quote=>"\"Forget safety. Live where you fear to live. Destroy your reputation. Be notorious.\" - Rumi",
-    #   :bio=> "I'm a school"
-    #  } 
-    # }
-    
-  
-
-
 end
 
 
-binding.pry
