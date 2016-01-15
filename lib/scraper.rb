@@ -1,6 +1,6 @@
 require 'open-uri'
 require 'pry'
-#require 'nokogiri'
+
 
 class Scraper
 
@@ -19,7 +19,29 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    
+  	profile_page = Nokogiri::HTML(open(profile_url))
+  	profile_hash ={}
+  	profile_hash[:blog] = profile_page.css("div.social-icon-container").css("a")[-1]['href']
+  	
+  	profile_hash[:twitter] = profile_page.css("div.social-icon-container").css("a").map do |a|
+  		a['href'] if a['href'] =~ (/twitter/)
+  	end.compact[0]
+  	
+  	profile_hash[:linkedin] = profile_page.css("div.social-icon-container").css("a").map do |a|
+  		a['href'] if a['href'] =~ (/linkedin/)
+  	end.compact[0]
+
+  	
+  	profile_hash[:github] = profile_page.css("div.social-icon-container").css("a").map do |a|
+  		a['href'] if a['href'] =~ (/github/)
+  	end.compact[0]
+
+  	profile_hash[:bio] = profile_page.css("div.details-container div.description-holder > p").text
+  	profile_hash[:profile_quote] = profile_page.css("div.profile-quote").text
+  	binding.pry
+  	profile_hash
+
+
   end
 
 end
