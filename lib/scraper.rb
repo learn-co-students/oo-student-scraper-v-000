@@ -5,7 +5,8 @@ require 'pry'
 class Scraper
 
   def self.scrape_index_page(index_url)
-  	index_page = Nokogiri::HTML(open(index_url))
+  	index_page = Nokogiri::HTML(open(index_url, "User-Agent" => "Mozilla"))
+    #rescue OpenURI::HTTPError 
   	student_info = index_page.css("div.student-card")
   	student_array =[]
   	student_info.each do |student|
@@ -38,7 +39,6 @@ class Scraper
 
   	profile_hash[:bio] = profile_page.css("div.details-container div.description-holder > p").text
   	profile_hash[:profile_quote] = profile_page.css("div.profile-quote").text
-  	binding.pry
   	profile_hash
 
 
