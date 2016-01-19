@@ -1,4 +1,5 @@
 require "spec_helper"
+require 'pry'
 
 describe "Scraper" do
 
@@ -39,6 +40,7 @@ describe "Scraper" do
         VCR.use_cassette("fixtures/joe-burgess-profile") do
           profile_url = "http://students.learn.co/students/joe-burgess.html"
           scraped_student = Scraper.scrape_profile_page(profile_url)
+          
           expect(scraped_student).to include(:twitter, :linkedin, :github, :blog, :profile_quote, :bio)
           expect(scraped_student[:twitter]).to include("https://twitter.com")
           expect(scraped_student[:linkedin]).to include("https://www.linkedin.com/in/")
