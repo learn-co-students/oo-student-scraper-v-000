@@ -1,12 +1,10 @@
-require_relative "../lib/scraper.rb"
-require_relative "../lib/student.rb"
-require_relative "../config.rb"
+require_relative "../lib/scraper"
+require_relative "../lib/student"
+require_relative "../config"
 require File.expand_path('./support/vcr_setup', __dir__)
 
-require 'webmock/rspec'  
-WebMock.disable_net_connect!(allow_localhost: true) 
-
-
+# require 'webmock/rspec'  
+# WebMock.disable_net_connect!(allow_localhost: true) 
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
