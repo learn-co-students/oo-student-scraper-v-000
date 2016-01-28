@@ -14,7 +14,6 @@ class Scraper
         profile_url: card.css("a").attribute("href").value
       }
     end
-
     # profile_url = page.css(".student-card").first.css("a").attribute("href").value
     # name = page.css(".student-card").first.css(".student-name").text
     # location = page.css(".student-card").first.css(".student-location").text
