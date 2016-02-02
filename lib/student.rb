@@ -5,19 +5,27 @@ class Student
   @@all = []
 
   def initialize(student_hash)
-    
+    student_hash.each do |key, val|
+      self.send "#{key}=", val
+    end
+    @@all << self
   end
 
   def self.create_from_collection(students_array)
-    
+    students_array.each do |student|
+      self.new(student)
+    end
   end
 
   def add_student_attributes(attributes_hash)
-    
+    attributes_hash.each do |key, val|
+      self.send "#{key}=", val
+    end
+    self
   end
 
   def self.all
-    
+    @@all
   end
 end
 
