@@ -5,6 +5,7 @@ require 'colorize'
 
 class CommandLineInteface
   BASE_URL = "http://127.0.0.1:4000/"
+  #BASE_URL = "http://students.learn.co/"
 
   def run
     make_students
