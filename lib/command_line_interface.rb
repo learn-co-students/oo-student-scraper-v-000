@@ -20,7 +20,7 @@ class CommandLineInteface
   def add_attributes_to_students
     Student.all.each do |student|
       attributes = Scraper.scrape_profile_page(student.profile_url)
-      student.add_student_attributes(attributes)
+      student.add_student_attributes(attributes) unless attributes == nil
     end
   end
 
