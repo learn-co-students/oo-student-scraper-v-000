@@ -1,0 +1,20 @@
+
+[1mFrom:[0m /home/nitrous/code/labs/oo-student-scraper-v-000/lib/scraper.rb @ line 11 Scraper.scrape_index_page:
+
+     [1;34m7[0m: [32mdef[0m [1;36mself[0m.[1;34mscrape_index_page[0m(index_url)
+     [1;34m8[0m:   @array_of_student_hashes = []
+     [1;34m9[0m:   html = open([31m[1;31m'[0m[31mhttp://bacitracin-v-000-142249.nitrousapp.com:3000/[1;31m'[0m[31m[0m)
+    [1;34m10[0m:   doc = [1;34;4mNokogiri[0m::HTML(html)
+ => [1;34m11[0m:   binding.pry
+    [1;34m12[0m:  [1;34m# row = doc.css('.student-card').value[0m
+    [1;34m13[0m: [1;34m#  {[0m
+    [1;34m14[0m:  [1;34m#   :name => doc.css('.student-name')[0].text,[0m
+    [1;34m15[0m:  [1;34m#   :location => doc.css('student-location')[0].text,[0m
+    [1;34m16[0m:  [1;34m#   :profile_url => doc.css('.student-card a')[0]['href'][0m
+    [1;34m17[0m:  [1;34m#   }[0m
+    [1;34m18[0m: 
+    [1;34m19[0m:   [1;34m#:name => doc.css('.student-name')[0].text => "Ryan Johnson"[0m
+    [1;34m20[0m:   [1;34m#:location = doc.css('.student-location')[0].text => "New York, NY"[0m
+    [1;34m21[0m:   [1;34m#:profile_url = doc.css('.student-card a')[0]['href'] => "students/ryan-johnson.html"[0m
+    [1;34m22[0m: [32mend[0m
+
