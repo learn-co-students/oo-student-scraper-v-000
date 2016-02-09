@@ -45,6 +45,8 @@ Most of that isn't important. We do want to pay attention to the second to last 
 
 ## Instructions
 
+Run `bundle install` first. 
+
 ### The `Scraper` Class
 
 Let's start with the `Scraper` class in `lib/scraper.rb`. In this class you are responsible for defining two methods. The `#scrape_index_page` method is responsible for scraping the index page that lists all of the students and the `#scrape_profile_page` method is responsible for scraping an individual student's profile page to get further information about that student. 
@@ -123,4 +125,4 @@ We've provided you with all of the code in the `CommandLineInterface` class. Tak
 
 Now run the executable file with `ruby bin/run`. You should see all of the students you scraped and instantiated `puts`-ed out to the terminal. Great job!
 
-<a href='https://learn.co/lessons/oo-student-scraper' data-visibility='hidden'>View this lesson on Learn.co</a>
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/oo-student-scraper' title='Object Oriented Student Scraper'>Object Oriented Student Scraper</a> on Learn.co and start learning to code for free.</p>
