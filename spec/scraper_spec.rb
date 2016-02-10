@@ -48,3 +48,4 @@ describe "Scraper" do
     end
   end
 end
+
