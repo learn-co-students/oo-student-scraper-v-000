@@ -16,35 +16,11 @@ class Student
   end
 
   def add_student_attributes(attributes_hash)
-    attributes_hash.each { |key, value| self.send key, value}
+    attributes_hash.each { |key, value| self.send "#{key}=", value}
     self
   end
 
   def self.all
     @@all
-  end
-
-  def twitter(link = nil)
-    link ? @twitter = link : @twitter
-  end
-
-  def linkedin(link = nil)
-    link ? @linkedin = link : @linkedin
-  end
-
-  def github(link)
-    @github = link
-  end
-
-  def blog(link = nil)
-    link ? @blog = link : @blog
-  end
-
-  def profile_quote(link = nil)
-    link ? @profile_quote = link : @profile_quote
-  end
-
-  def bio(link = nil)
-    link ? @bio = link : @bio
   end
 end
