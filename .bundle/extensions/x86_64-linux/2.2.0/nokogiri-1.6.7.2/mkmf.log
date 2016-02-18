@@ -1,0 +1,13 @@
+"gcc -o conftest -I/home/nitrous/.rvm/rubies/ruby-2.2.3/include/ruby-2.2.0/x86_64-linux -I/home/nitrous/.rvm/rubies/ruby-2.2.3/include/ruby-2.2.0/ruby/backward -I/home/nitrous/.rvm/rubies/ruby-2.2.3/include/ruby-2.2.0 -I.     -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat  -fPIC  conftest.c  -L. -L/home/nitrous/.rvm/rubies/ruby-2.2.3/lib -Wl,-R/home/nitrous/.rvm/rubies/ruby-2.2.3/lib -L. -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-rpath,'/../lib' -Wl,-R'/../lib' -lruby  -lpthread -lgmp -ldl -lcrypt -lm   -lc "
+/usr/bin/ld: cannot find -lgmp
+collect2: error: ld returned 1 exit status
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
