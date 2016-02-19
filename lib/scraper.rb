@@ -19,21 +19,26 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    html = open(profile_url)
-    profile_page = Nokogiri::HTML(html)
-    student = {}
-    profile_page.css(".social-icon-container a").each do |icon| # iterates over elements and evaluates if attribute value includes condition
-        url = icon.attribute("href").value
-      if url.include? "twitter"
-        student[:twitter] = url # assigns value to key: in student {}
-      elsif url.include? "linkedin"
-        student[:linkedin]= url
-      elsif url.include? "github"
-        student[:github] = url
-      else
-        student[:blog] = url
+    scraped_student = {}
+    links = []
+    student = Nokogiri::HTML(open(profile_url))
+    student.css("div.social-icon-container a").each do |link|
+      links << link["href"]
+      links.each do |link| # iterates over elements and evaluates if attribute value includes condition
+        if link.include?("twitter")
+          scraped_student[:twitter] = link
+        elsif link.include?("linkedin")
+          scraped_student[:linkedin] = link
+        elsif link.include?("github")
+          scraped_student[:github] = link
+        else
+          scraped_student[:blog] = link
+        end
       end
     end
+    scraped_student[:profile_quote] = student.css(".profile-quote").text
+    scraped_student[:bio] = student.css("p").text
+    scraped_student
   end
 
 end
