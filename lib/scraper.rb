@@ -24,37 +24,31 @@ class Scraper
   
 
   def self.scrape_profile_page(profile_url)
-    student_hash={:twitter=>"", :linkedin=>"", :github=>"",:blog=>"",:profile_quote=>"", :bio=>""}
+    student_hash={}
   
     doc=Nokogiri::HTML(open(profile_url))
-    
-    student_hash[:twitter]=doc.css(".social-icon-container a").attribute("href").value
-  
-    student_hash[:linkedin]=doc.css(".social-icon-container a:nth-child(2)").attribute("href").value
-    student_hash[:github]=doc.css(".social-icon-container a:nth-child(3)")#.attribute("href").value
-    student_hash[:blog]=doc.css(".social-icon-container a:nth-child(4)").attribute("href").value
-  
-    
-    student_hash[:bio]=doc.css(".description-holder p").text
-    student_hash[:profile_quote]=doc.css(".profile-quote").text
-    student_hash
-   
+      profile_links = doc.css("a").select{|link| link['href']}
+      profile_links.each do |link| 
+        if link['href'].include?("linkedin")
+          student_hash[:linkedin]=link['href']
+        end
+        if link['href'].include?("twitter")
+          student_hash[:twitter]=link['href']
+        end
+        if link['href'].include?("http:")
+           student_hash[:blog]=link['href']
+        end
+       if link['href'].include?("github")
+        student_hash[:github]=link['href']
+        end
+      end
 
-
+     student_hash[:profile_quote]=doc.css(".profile-quote").text
+     student_hash[:bio]=doc.css(".description-holder p").text
+   student_hash
   end
 
-  
-
 end
-
-
-info=Scraper.scrape_index_page("http://127.0.0.1:4000/")
-    puts info
-
-                                      
-# doc=Scraper.scrape_profile_page("http://127.0.0.1:4000/students/david-kim.html")
-#       puts doc
-
 
 
 
