@@ -27,8 +27,6 @@ class Scraper
         profile_hash[:linkedin] = link
       elsif link.include? "github"
         profile_hash[:github] = link
-      elsif link.include? "facebook"
-        profile_hash[:facebook] = link
       else
         profile_hash[:blog] = link
       end
