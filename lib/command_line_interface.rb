@@ -1,6 +1,7 @@
 require_relative "../lib/scraper.rb"
 require_relative "../lib/student.rb"
 require 'nokogiri'
+require 'open-uri'
 require 'colorize'
 
 class CommandLineInteface
@@ -39,3 +40,7 @@ class CommandLineInteface
   end
 
 end
+
+#x = CommandLineInteface.new
+#x.make_students
+#x.add_attributes_to_students
