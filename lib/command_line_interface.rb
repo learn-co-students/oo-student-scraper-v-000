@@ -4,7 +4,7 @@ require 'nokogiri'
 require 'colorize'
 
 class CommandLineInteface
-  BASE_URL = "http://127.0.0.1:4000/"
+  BASE_URL = "http://0.0.0.0:3000/"
 
   def run
     make_students
@@ -19,7 +19,8 @@ class CommandLineInteface
 
   def add_attributes_to_students
     Student.all.each do |student|
-      attributes = Scraper.scrape_profile_page(student.profile_url)
+      full_url = BASE_URL + student.profile_url
+      attributes = Scraper.scrape_profile_page(full_url)
       student.add_student_attributes(attributes)
     end
   end
