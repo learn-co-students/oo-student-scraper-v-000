@@ -2,9 +2,9 @@ require "spec_helper"
 
 describe "Scraper" do
 
-  let!(:student_index_array) {[{:name=>"Joe Burgess", :location=>"New York, NY", :profile_url=>"http://127.0.0.1:4000/students/joe-burgess.html"},
-                               {:name=>"Mathieu Balez", :location=>"New York, NY", :profile_url=>"http://127.0.0.1:4000/students/mathieu-balez.html"},
-                               {:name=>"Diane Vu", :location=>"New York, NY", :profile_url=>"http://127.0.0.1:4000/students/diane-vu.html"}]}
+  let!(:student_index_array) {[{:name=>"Joe Burgess", :location=>"New York, NY", :profile_url=>"http://127.0.0.1:4000/fixtures/student-site/students/joe-burgess.html"},
+                               {:name=>"Mathieu Balez", :location=>"New York, NY", :profile_url=>"http://127.0.0.1:4000/fixtures/student-site/students/mathieu-balez.html"},
+                               {:name=>"Diane Vu", :location=>"New York, NY", :profile_url=>"http://127.0.0.1:4000/fixtures/student-site/students/diane-vu.html"}]}
 
   let!(:student_joe_hash) {{:twitter=>"https://twitter.com/jmburges",
                             :linkedin=>"https://www.linkedin.com/in/jmburges",
@@ -23,7 +23,7 @@ describe "Scraper" do
 
   describe "#scrape_index_page" do 
     it "is a class method that scrapes the student index page and a returns an array of hashes in which each hash represents one student" do 
-      index_url = "http://127.0.0.1:4000/"
+      index_url = "http://127.0.0.1:4000/fixtures/student-site/"
       scraped_students = Scraper.scrape_index_page(index_url)
       expect(scraped_students).to be_a(Array)
       expect(scraped_students.first).to have_key(:location)
