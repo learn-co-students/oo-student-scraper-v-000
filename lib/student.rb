@@ -23,14 +23,11 @@ class Student
 
   def add_student_attributes(attributes_hash)
 
-    @twitter = attributes_hash[:twitter] unless attributes_hash[:twitter] == nil
-    @linkedin = attributes_hash[:linkedin] unless attributes_hash[:linkedin] == nil
-    @github = attributes_hash[:github] unless attributes_hash[:github] == nil
-    @blog = attributes_hash[:blog] unless attributes_hash[:blog] == nil
-    @profile_quote = attributes_hash[:profile_quote] unless attributes_hash[:profile_quote] == nil
-    @bio = attributes_hash[:bio] unless attributes_hash[:bio] == nil
-    @profile_url = attributes_hash[:profile_url] unless attributes_hash[:profile_url] == nil
+    attributes_hash.each do |k,v|
+      send("#{k}=", v) unless v == nil
+    end
     self
+  
   end
 
   def self.all
