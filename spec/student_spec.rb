@@ -1,4 +1,5 @@
 require "spec_helper"
+require "pry"
 
 describe "Student" do 
   let!(:student_index_array) {[{:name=>"Alex Patriquin", :location=>"New York, NY"},
@@ -19,7 +20,7 @@ describe "Student" do
 
 
   let!(:student) {Student.new({:name=>"Alex Patriquin", :location=>"New York, NY"})}
-  
+
   after(:each) do 
     Student.class_variable_set(:@@all, [])
   end
@@ -50,6 +51,27 @@ describe "Student" do
       expect(student.linkedin).to eq("someone@linkedin.com")
       expect(student.profile_quote).to eq("\"Forget safety. Live where you fear to live. Destroy your reputation. Be notorious.\" - Rumi")
       expect(student.twitter).to eq("someone@twitter.com")
+    end
+  end
+
+  describe "#clear" do
+    it "will clear all students ever created" do
+      expect(Student.all.count).to eq(1)
+      Student.clear!
+      expect(Student.all.count).to eq(0)
+    end
+  end
+
+  describe "find_student" do
+    it "finds a student in the collection of students by name" do
+      expect(Student.find_student("Alex Patriquin")).to eq(true) 
+    end
+  end
+
+  describe "#create_from_collection" do
+    it "This method should take in an array of hashes and create a new individual student using each hash." do
+      Student.create_from_collection(student_index_array)
+      expect(Student.all.count).to eq(6)
     end
   end
 end
