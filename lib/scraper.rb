@@ -18,23 +18,23 @@ class Scraper
   def self.scrape_index_page(index_url)
     # to select div id use '#'
     # to select div class use '.'
-    html = open(index_url)
-    doc = Nokogiri::HTML(html)
+    doc = Nokogiri::HTML(open(index_url))
     students = Array.new
   
       doc.css("div.student-card a").each do |info|
-
-      # profile_url = "http://127.0.0.1:4000/#{info.attribute("href").value}"
-      # refactored info.attribute("href").value => info["href"]
+        # profile_url = "http://127.0.0.1:4000/#{info.attribute("href").value}"
+        # refactored info.attribute("href").value => info["href"]
         profile_url = "http://127.0.0.1:4000/#{info["href"]}"
-        students << {:name => info.css("h4.student-name").text, location: info.css("p.student-location").text, profile_url: profile_url}
+        name = info.css("h4.student-name").text
+        location = info.css("p.student-location").text
+
+        students << {:name => name, location: location, profile_url: profile_url}
       end
       students
     end
 
   def self.scrape_profile_page(profile_url)
-    html = open(profile_url)
-    doc = Nokogiri::HTML(html)
+    doc = Nokogiri::HTML(open(profile_url))
     student_info = Hash.new
 
     # need to collect all of the href links from "a" into an array
@@ -58,7 +58,7 @@ class Scraper
       # "https://github.com/jmburges", 
       # "http://joemburgess.com/"]
 
-    twitter = "n/a"
+    twitter = "n/a" # made flags/switch with placeholder value
     linkedin = "n/a"  
     github = "n/a"
     blog = "n/a"
