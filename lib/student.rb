@@ -5,22 +5,14 @@ class Student
   @@all = []
 
   def initialize(student_hash)
-    #should this call on #add_student_attibutes?
-    student_hash.each do |key, value|
-      self.send(("#{key}="), value)
-      #name of the key becomes our setter method
-      #the value becomes the value of the setter method
-      #self.send(key=,value)
-      #same as instance.key= value
-    end
     add_student_attributes(student_hash)
     self.class.all << self
   end
 
   def self.create_from_collection(students_array)
     #is this even part of the test suite?
-    students_array.each do |student|
-      Student.new(student)
+    students_array.each do |student_hash|
+      Student.new(student_hash)
     end
   end
 
