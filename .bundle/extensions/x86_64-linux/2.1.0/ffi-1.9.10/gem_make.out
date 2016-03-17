@@ -1,0 +1,31 @@
+/usr/local/opt/rbenv/versions/2.1.5/bin/ruby -r ./siteconf20160316-24959-r4463w.rb extconf.rb
+checking for ffi_call() in -lffi... yes
+checking for ffi_prep_closure()... yes
+checking for ffi_raw_call()... yes
+checking for ffi_prep_raw_closure()... yes
+checking for rb_thread_blocking_region()... yes
+checking for rb_thread_call_with_gvl()... yes
+checking for rb_thread_call_without_gvl()... yes
+checking for ffi_prep_cif_var()... yes
+creating extconf.h
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling FunctionInfo.c
+compiling Call.c
+compiling ffi.c
+compiling StructByValue.c
+compiling MemoryPointer.c
+compiling LastError.c
+compiling AbstractMemory.c
+compiling Type.c
+compiling MethodHandle.c
+compiling StructLayout.c
+compiling Pointer.c
+compiling Variadic.c
+compiling DynamicLibrary.c
+make: *** [DynamicLibrary.o] Hangup
+
+make failed, uncaught signal 1
