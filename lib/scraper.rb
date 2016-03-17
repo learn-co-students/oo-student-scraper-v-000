@@ -43,18 +43,20 @@ def self.scrape_profile_page(profile_url)
  # :bio => doc.css(".description-holder").css("p").text
  # }
 
-student_social_links.collect do |links|
+
+
+student_social_links.each do |links|
     if links.include?("twitter")
       social_link_hash[:twitter] = links
-      else social_link_hash[:twitter] = nil
-    end
-     if links.include?("linkedin")
+      #else social_link_hash[:twitter] = nil
+
+     elsif links.include?("linkedin")
         social_link_hash[:linkedin] = links
-       else  social_link_hash[:linkedin] = nil
-     end
-       if links.include?("github")
+      # else  social_link_hash[:linkedin] = nil
+     #end
+       elsif links.include?("github")
       social_link_hash[:github] = links
-         else social_link_hash[:github] = nil
+       #  else social_link_hash[:github] = nil
        end
 end
       social_link_hash[:blog] = student_social_links.last
