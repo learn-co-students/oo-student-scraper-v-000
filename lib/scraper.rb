@@ -5,6 +5,7 @@ require 'nokogiri'
 class Scraper
 
 
+
   def self.scrape_index_page(index_url)
     doc = Nokogiri::HTML(open(index_url))
     students = []
@@ -12,7 +13,7 @@ class Scraper
       card.css(".student-card a").each do |student|
       name = student.css(".student-name").text.strip
       location = student.css(".student-location").text.strip
-      link = student.css("a href")
+      link = "http://127.0.0.1:4000/#{student.attr('href')}"
       students << {name: name, location: location, profile_url: link}
       end
     end
