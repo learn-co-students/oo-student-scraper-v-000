@@ -34,16 +34,18 @@ class Scraper
     socials.each do |element|
       if element.class.to_s == "Nokogiri::XML::Element"
         url = element["href"]
-        src = element.first_element_child["src"].match(/(?:img\/)([a-zA-Z]*)(?:-icon)/)[1]
+        src = element.first_element_child["src"].match(/(?:img\/)([a-zA-Z]*)(?:-icon)/)
       end
-      if src == "github"
-        student[:github] = url
-      elsif src == "linkedin"
-        student[:linkedin] = url
-      elsif src == "twitter"
-        student[:twitter] = url
-      elsif src == "rss"
-        student[:blog] = url
+      if src
+        if src[1] == "github"
+          student[:github] = url
+        elsif src[1] == "linkedin"
+          student[:linkedin] = url
+        elsif src[1] == "twitter"
+          student[:twitter] = url
+        elsif src[1] == "rss"
+          student[:blog] = url
+        end
       end
     end
     student
