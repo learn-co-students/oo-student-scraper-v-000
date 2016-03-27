@@ -6,14 +6,11 @@ class Scraper
 
   def self.scrape_index_page(index_url)
     site = Nokogiri::HTML(open(index_url))
-    binding.pry
     student_arr = []
 
     all_students = site.css("div.roster-cards-container")
-    binding.pry
     students = all_students.css("div.student-card")
     students.each do |student|
-      binding.pry
       profile = {
         :name => student.css("div.card-text-container h4.student-name").text,
         :location => student.css("div.card-text-container p.student-location").text,
@@ -25,17 +22,31 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    
+    site = Nokogiri::HTML(open(profile_url))
+    main = site.css("div.vitals-container")
+    details = site.css("div.details-container")
+    socials = main.css("div.social-icon-container").children.to_a
+    student = {
+      :profile_quote => main.css("div.profile-quote").inner_text,
+      :bio => details.css("div.bio-content.content-holder div.description-holder p").text
+    }
+
+    socials.each do |element|
+      if element.class.to_s == "Nokogiri::XML::Element"
+        url = element["href"]
+        src = element.first_element_child["src"].match(/(?:img\/)([a-zA-Z]*)(?:-icon)/)[1]
+      end
+      if src == "github"
+        student[:github] = url
+      elsif src == "linkedin"
+        student[:linkedin] = url
+      elsif src == "twitter"
+        student[:twitter] = url
+      elsif src == "rss"
+        student[:blog] = url
+      end
+    end
+    student
   end
 
 end
-
-#all students: site.css("div.roster-cards-container")
-#student: students.css("div.student-card")   #add .first
-#:name:  student.css("div.card-text-container h4.student-name").text
-#:location: student.css("div.card-text-container p.student-location").text
-#:profile_url: student.css('a').attr('href').value
-
-# index_url = File.read('fixtures/student-site/_site/index.html')
-# scraped_students = Scraper.scrape_index_page('http://0.0.0.0:4000')
-# binding.pry
