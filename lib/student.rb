@@ -35,6 +35,7 @@ class Student
     @@all
   end
 
+<<<<<<< HEAD
 end
 
 
@@ -43,3 +44,24 @@ end
 
   
 
+=======
+end
+
+
+#Student.create_from_collection(Scraper.scrape_index_page("http://127.0.0.1:4000"))
+
+
+=begin
+  
+rescue Exception => e
+  
+end
+
+    student = Student.new
+    students_array.each do |student|
+      student.send("name=", student[:name])
+      student.send("location=", student[:location])
+      student.send("profile_url=", student[:profile_url])
+
+=end      
+>>>>>>> 020dfffa837c875ff389186739eb371f86007f75
