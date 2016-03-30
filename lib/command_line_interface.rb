@@ -3,7 +3,7 @@ require_relative "../lib/student.rb"
 require 'nokogiri'
 require 'colorize'
 
-class CommandLineInteface
+class CommandLineInterface
   BASE_URL = "http://127.0.0.1:4000/"
 
   def run
