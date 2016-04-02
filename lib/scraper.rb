@@ -6,16 +6,22 @@ require 'pry'
 class Scraper
 
   def self.scrape_index_page(index_url)
-      index_url = File.read("fixtures/student-site/index.html")
+      index_url = "http://127.0.0.1:4000/"
       doc = Nokogiri::HTML(open(index_url))
       binding.pry
     #div .student-card
-    # => h4 .student-name text
-    # => p .student-location text
+    # => .student-name text
+    # =>  .student-location text
+    # => .student-card a .attribute('href').value
+    student_index = [
+    :name => doc.css(".student-name").text,
+    :location => doc.css(".student-location").text
+      #:profile_url => doc.css("student-card a").attribute("href").value
+  ]
   end
 
   def self.scrape_profile_page(profile_url)
 
   end
-
+#binding.pry
 end
