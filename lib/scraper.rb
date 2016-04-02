@@ -14,7 +14,7 @@ class Scraper
     # =>  .student-location text
     # => .student-card a .attribute('href').value
     student_index_array = []
-    doc.css("div .student-card").each do |student_card|
+    doc.css(".student-card").each do |student_card|
   student_index_array = [{
     :name => doc.css(".student-card .student-name").text,
     :location => doc.css(".student-card .student-location").text,
