@@ -34,7 +34,7 @@ class Scraper
       end
     end
     student_hash[:profile_quote] = doc.css(".profile-quote").text if doc.css("profile.quote")
-    student_hash[:bio] = doc.css(".bio-block .description-holder p").text
+    student_hash[:bio] = doc.css(".bio-block .description-holder p").text if doc.css(".bio-block .description-holder p")
 
     student_hash
   end
