@@ -23,6 +23,7 @@ describe "Student" do
   after(:each) do 
     Student.class_variable_set(:@@all, [])
   end
+  
   describe "#new" do
     it "takes in an argument of a hash and sets that new student's attributes using the key/value pairs of that hash." do 
       expect{Student.new({:name => "Sophie DeBenedetto", :location => "Brooklyn, NY"})}.to_not raise_error
@@ -36,9 +37,10 @@ describe "Student" do
   end
 
   describe "#create_from_site" do 
-    it "uses the Scraper class to create new students with the correct name and location." do 
+    it "uses the Scraper class to create new students with the correct name and location." do
       Student.create_from_collection(student_index_array)
       expect(Student.class_variable_get(:@@all).first.name).to eq("Alex Patriquin")
+      expect(Student.class_variable_get(:@@all).last.name).to eq("Sushanth Bhaskarab")
     end
   end
 
