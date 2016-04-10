@@ -3,7 +3,7 @@ require 'pry'
 
 class Scraper
 
-HOST = "http://localhost:4000/"
+HOST = "http://127.0.0.1:4000/"
 
   def self.scrape_index_page(index_url)
     page = Nokogiri::HTML(open(HOST))
