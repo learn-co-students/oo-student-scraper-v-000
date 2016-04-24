@@ -1,5 +1,5 @@
 require "spec_helper"
-
+require 'pry'
 describe "Scraper" do
 
   let!(:student_index_array) {[{:name=>"Joe Burgess", :location=>"New York, NY", :profile_url=>"http://127.0.0.1:4000/students/joe-burgess.html"},
