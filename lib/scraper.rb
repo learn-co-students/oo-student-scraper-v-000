@@ -25,7 +25,7 @@ class Scraper
       :profile_quote => get_page.css(".profile-quote").text,
       :bio => get_page.css("p").text
     }
-    
+
     get_page.css("div.social-icon-container a").each do |social|
       case social.at("img").attributes["src"].value
       when "../assets/img/twitter-icon.png"
