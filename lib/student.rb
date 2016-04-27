@@ -22,9 +22,7 @@ class Student
     @blog = attributes_hash[:blog]
     @profile_quote = attributes_hash[:profile_quote]
     @bio = attributes_hash[:bio]
-    k = 'linkedin'
-    attributes_hash[k.to_sym]
-    binding.pry
+    
   end
 
   def self.all
