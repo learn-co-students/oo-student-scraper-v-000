@@ -1,7 +1,6 @@
 require 'open-uri'
 
 class Scraper
-
   def self.scrape_index_page(index_url)
     doc = Nokogiri::HTML(open(index_url))
     student_array = []
@@ -25,7 +24,6 @@ class Scraper
         match = links.match(/(linkedin|twitter|github)/)[1] #grab the match phrase
         profile_hash[match.to_sym] = link.first[1] #set the key equal to match and set the value equal to the URL
       else #do this if there are no matches above - checking to see if they have a blog link
-        match = links[1]
         profile_hash[:blog] = link.first[1]
       end
     end
