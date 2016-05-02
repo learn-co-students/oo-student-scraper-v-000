@@ -1,0 +1,79 @@
+
+Scraper
+  #scrape_index_page
+    is a class method that scrapes the student index page and a returns an array of hashes in which each hash represents one student (FAILED - 1)
+  #scrape_profile_page
+    is a class method that scrapes a student's profile page and returns a hash of attributes describing an individual student (FAILED - 2)
+    can handle profile pages without all of the social links (FAILED - 3)
+
+Student
+  #new
+    takes in an argument of a hash and sets that new student's attributes using the key/value pairs of that hash. (FAILED - 4)
+    adds that new student to the Student class' collection of all existing students, stored in the `@@all` class variable. (FAILED - 5)
+  #create_from_site
+    uses the Scraper class to create new students with the correct name and location. (FAILED - 6)
+  #add_student_attributes
+    uses the Scraper class to get a hash of a given students attributes and uses that hash to set additional attributes for that student. (FAILED - 7)
+
+Failures:
+
+  1) Scraper #scrape_index_page is a class method that scrapes the student index page and a returns an array of hashes in which each hash represents one student
+     Failure/Error: expect(scraped_students).to be_a(Array)
+       expected nil to be a kind of Array
+     # ./spec/scraper_spec.rb:28:in `block (3 levels) in <top (required)>'
+
+  2) Scraper #scrape_profile_page is a class method that scrapes a student's profile page and returns a hash of attributes describing an individual student
+     Failure/Error: expect(scraped_student).to be_a(Hash)
+       expected nil to be a kind of Hash
+     # ./spec/scraper_spec.rb:39:in `block (3 levels) in <top (required)>'
+
+  3) Scraper #scrape_profile_page can handle profile pages without all of the social links
+     Failure/Error: expect(scraped_student).to be_a(Hash)
+       expected nil to be a kind of Hash
+     # ./spec/scraper_spec.rb:46:in `block (3 levels) in <top (required)>'
+
+  4) Student #new takes in an argument of a hash and sets that new student's attributes using the key/value pairs of that hash.
+     Failure/Error: expect(student.name).to eq("Alex Patriquin")
+
+       expected: "Alex Patriquin"
+            got: nil
+
+       (compared using ==)
+     # ./spec/student_spec.rb:29:in `block (3 levels) in <top (required)>'
+
+  5) Student #new adds that new student to the Student class' collection of all existing students, stored in the `@@all` class variable.
+     Failure/Error: expect(Student.class_variable_get(:@@all).first.name).to eq("Alex Patriquin")
+
+     NoMethodError:
+       undefined method `name' for nil:NilClass
+     # ./spec/student_spec.rb:34:in `block (3 levels) in <top (required)>'
+
+  6) Student #create_from_site uses the Scraper class to create new students with the correct name and location.
+     Failure/Error: expect(Student.class_variable_get(:@@all).first.name).to eq("Alex Patriquin")
+
+     NoMethodError:
+       undefined method `name' for nil:NilClass
+     # ./spec/student_spec.rb:41:in `block (3 levels) in <top (required)>'
+
+  7) Student #add_student_attributes uses the Scraper class to get a hash of a given students attributes and uses that hash to set additional attributes for that student.
+     Failure/Error: expect(student.bio).to eq("I was in southern California for college (sun and In-n-Out!), rural Oregon for high school (lived in a town with 1500 people and 3000+ cows), and Tokyo for elementary/middle school.")
+
+       expected: "I was in southern California for college (sun and In-n-Out!), rural Oregon for high school (lived in a town with 1500 people and 3000+ cows), and Tokyo for elementary/middle school."
+            got: nil
+
+       (compared using ==)
+     # ./spec/student_spec.rb:48:in `block (3 levels) in <top (required)>'
+
+Finished in 0.03433 seconds (files took 0.76209 seconds to load)
+7 examples, 7 failures
+
+Failed examples:
+
+rspec ./spec/scraper_spec.rb:25 # Scraper #scrape_index_page is a class method that scrapes the student index page and a returns an array of hashes in which each hash represents one student
+rspec ./spec/scraper_spec.rb:36 # Scraper #scrape_profile_page is a class method that scrapes a student's profile page and returns a hash of attributes describing an individual student
+rspec ./spec/scraper_spec.rb:43 # Scraper #scrape_profile_page can handle profile pages without all of the social links
+rspec ./spec/student_spec.rb:27 # Student #new takes in an argument of a hash and sets that new student's attributes using the key/value pairs of that hash.
+rspec ./spec/student_spec.rb:33 # Student #new adds that new student to the Student class' collection of all existing students, stored in the `@@all` class variable.
+rspec ./spec/student_spec.rb:39 # Student #create_from_site uses the Scraper class to create new students with the correct name and location.
+rspec ./spec/student_spec.rb:46 # Student #add_student_attributes uses the Scraper class to get a hash of a given students attributes and uses that hash to set additional attributes for that student.
+
