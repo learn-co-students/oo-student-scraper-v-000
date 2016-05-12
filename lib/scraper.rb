@@ -5,8 +5,7 @@ require 'pry'
 class Scraper
 
   def self.open_doc(url)
-    doc = open(url)
-    @parse_page = Nokogiri::HTML(doc)
+    @parse_page = Nokogiri::HTML(open(url))
     @parse_page
   end
 

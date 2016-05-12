@@ -4,7 +4,7 @@ require 'nokogiri'
 require 'colorize'
 
 class CommandLineInteface
-  BASE_URL = "http://127.0.0.1:4000/"
+  BASE_URL = "http://0.0.0.0:3000/"
 
   def run
     make_students
