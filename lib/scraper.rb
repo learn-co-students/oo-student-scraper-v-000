@@ -36,8 +36,8 @@ class Scraper
       end
     end
 
-    scraped_student[:profile_quote] = @parse_page.css(".vitals-container").css(".profile-quote").text
-    scraped_student[:bio] = @parse_page.css(".details-container").css("p").text
+    scraped_student[:profile_quote] = self.open_doc(profile_url).css(".vitals-container").css(".profile-quote").text
+    scraped_student[:bio] = self.open_doc(profile_url).css(".details-container").css("p").text
 
   scraped_student
   end
