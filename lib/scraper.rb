@@ -19,11 +19,11 @@ class Scraper
 
 
   def self.scrape_profile_page(profile_url)
-    # responsible for scraping individual student's profile page to get further
-    # information about that student
+    
     doc = Nokogiri::HTML(open(profile_url))
     profile = {:profile_quote => doc.css("div.profile-quote").text,
                 :bio => doc.css("div.description-holder p").text}
+    #binding.pry 
     doc.css("div.social-icon-container a").each do |links|
       url = links.attribute("href").value
       if url.include?("twitter")
