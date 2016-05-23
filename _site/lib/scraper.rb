@@ -11,7 +11,8 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     #responsible for scraping an individual student's profile page to get further information about that student
-
+    doc :nokogiri::HTML(open("#{index_url}"))
+    binding.pry
   end
 
 end
