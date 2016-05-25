@@ -1,6 +1,6 @@
 require 'open-uri'
 require 'pry'
-
+   
 class Scraper
 
   @array_of_hashes = []
