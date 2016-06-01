@@ -19,7 +19,7 @@ class Scraper
 #   card.css('div.card-text-container').each do |student|       
 #     puts student.css('h4.student-name').text
 #     end
-#   end  =====> Ryan Johnson etc...
+#   end  =====> New York, NY etc...
 
 
 #------- location ------->
@@ -35,13 +35,13 @@ class Scraper
     binding.pry
 #    student_index.css("div.roster-cards-container").each do |card|
 #      card.css("div.student-card a").each do |entry|
-#        entry.css("div.card-text-container").map do |student|
+#        entry.css("div.card-text-container").each do |student|
 #          student_name = student.css("h4.student-name").text
 #          student_location = student.css("p.student-location").text
 #          scraped_students << {name: student_name, location: student_location}
 #        end
 #      end
-    scraped_students
+#    scraped_students
   end
 
   def self.scrape_profile_page(profile_url)
