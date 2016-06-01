@@ -33,14 +33,14 @@ class Scraper
     scraped_students = []
     student_index = Nokogiri::HTML(open(index_url))
     binding.pry
-    student_index.css("div.roster-cards-container").each do |card|
-      card.css("div.student-card a").each do |entry|
-        entry.css("div.card-text-container").map do |student|
-          student_name = student.css("h4.student-name").text
-          student_location = student.css("p.student-location").text
-          scraped_students << {name: student_name, location: student_location}
-        end
-      end
+#    student_index.css("div.roster-cards-container").each do |card|
+#      card.css("div.student-card a").each do |entry|
+#        entry.css("div.card-text-container").map do |student|
+#          student_name = student.css("h4.student-name").text
+#          student_location = student.css("p.student-location").text
+#          scraped_students << {name: student_name, location: student_location}
+#        end
+#      end
     scraped_students
   end
 
