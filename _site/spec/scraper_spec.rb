@@ -43,8 +43,7 @@ describe "Scraper" do
     end
 
     it "can handle profile pages without all of the social links" do
-      #profile_url = "http://127.0.0.1:4000/fixtures/student-site/students/david-kim.html"
-      profile_url = "http://127.0.0.1:4000/students/david-kim.html"
+      profile_url = "http://127.0.0.1:4000/fixtures/student-site/students/david-kim.html"
       scraped_student = Scraper.scrape_profile_page(profile_url)
       expect(scraped_student).to be_a(Hash)
       expect(scraped_student).to match(student_david_hash)
