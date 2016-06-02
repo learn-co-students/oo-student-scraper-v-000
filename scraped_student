@@ -1,0 +1,29 @@
+
+[1mFrom:[0m /home/sascott624/code/labs/oo-student-scraper-v-000/lib/scraper.rb @ line 58 Scraper.scrape_profile_page:
+
+    [1;34m51[0m: [32mdef[0m [1;36mself[0m.[1;34mscrape_profile_page[0m(profile_url)
+    [1;34m52[0m:   scraped_student = {}
+    [1;34m53[0m:   social_links = []
+    [1;34m54[0m:   student_profile = [1;34;4mNokogiri[0m::HTML(open(profile_url))
+    [1;34m55[0m: 
+    [1;34m56[0m:   scraped_student[[33m:profile_quote[0m] = student_profile.css([31m[1;31m'[0m[31m.profile-quote[1;31m'[0m[31m[0m).text
+    [1;34m57[0m:   scraped_student[[33m:bio[0m] = student_profile.css([31m[1;31m'[0m[31m.description-holder p[1;31m'[0m[31m[0m).text
+ => [1;34m58[0m:   binding.pry
+    [1;34m59[0m: 
+    [1;34m60[0m:   student_profile.css([31m[1;31m'[0m[31m.social-icon-container a[1;31m'[0m[31m[0m).each [32mdo[0m |social|
+    [1;34m61[0m:     social_links << social[[31m[1;31m'[0m[31mhref[1;31m'[0m[31m[0m]
+    [1;34m62[0m:   [32mend[0m
+    [1;34m63[0m: 
+    [1;34m64[0m:   social_links.each [32mdo[0m |site|
+    [1;34m65[0m:     [32mif[0m site.include?([31m[1;31m"[0m[31mtwitter[1;31m"[0m[31m[0m)
+    [1;34m66[0m:       scraped_student[[33m:twitter[0m] = site
+    [1;34m67[0m:     [32melsif[0m site.include?([31m[1;31m"[0m[31mlinkedin[1;31m"[0m[31m[0m)
+    [1;34m68[0m:       scraped_student[[33m:linkedin[0m] = site
+    [1;34m69[0m:     [32melsif[0m site.include?([31m[1;31m"[0m[31mgithub[1;31m"[0m[31m[0m)
+    [1;34m70[0m:       scraped_student[[33m:github[0m] = site
+    [1;34m71[0m:     [32melse[0m
+    [1;34m72[0m:       scraped_student[[33m:misc[0m] = site
+    [1;34m73[0m:     [32mend[0m
+    [1;34m74[0m:   [32mend[0m
+    [1;34m75[0m: [32mend[0m
+
