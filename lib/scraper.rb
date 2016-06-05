@@ -14,7 +14,7 @@ class Scraper
       hash = {
          :name => student.css('.student-name').text, 
          :location => student.css('.student-location').text, 
-         :profile_url => student.css('a').attribute("href").value 
+         :profile_url => "http://127.0.0.1:4000/" + student.css('a').attribute("href").value 
       }
       students << hash
     end

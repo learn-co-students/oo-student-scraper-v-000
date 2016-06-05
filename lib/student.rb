@@ -24,7 +24,6 @@ class Student
 
   def add_student_attributes(attributes_hash)
     attributes_hash.each do |x|
-      # binding.pry
       if x[0] == :twitter
         self.twitter = x[1]
       elsif x[0] == :linkedin
@@ -34,7 +33,6 @@ class Student
       elsif x[0] == :blog
         self.blog = x[1]
       elsif x[0] == :profile_quote
-        # binding.pry
         self.profile_quote = x[1]
       elsif x[0] == :bio
         self.bio = x[1]
