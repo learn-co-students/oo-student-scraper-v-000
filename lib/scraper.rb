@@ -24,11 +24,28 @@ end
       student_hash[:profile_url] = "http://127.0.0.1:4000/students/" + student.css("h4").text.downcase.gsub(" ", "-") + ".html"
       Student.new(student_hash)
     end
-    binding.pry
+    Student.all
   end
 
   def self.scrape_profile_page(profile_url)
-
+    doc = Nokogiri::HTML(open(profile_url))
+    student_hash = {}
+    doc.css("div.social-icon-container a").each do |social|
+      if social.css("img").attribute("src").to_s.include? "twitter"
+        student_hash[:twitter] = social["href"]
+      elsif social.css("img").attribute("src").to_s.include? "github"
+        student_hash[:github] = social["href"]
+      elsif social.css("img").attribute("src").to_s.include? "linkedin"
+        student_hash[:linkedin] = social["href"]
+      elsif social.css("img").attribute("src").to_s.include? "facebook"
+        student_hash[:facebook] = social["href"]
+      else
+        student_hash[:blog] = social["href"]
+      end
+    end
+    student_hash[:profile_quote] = doc.css("div.profile-quote").text
+    student_hash[:bio] = doc.css("div.description-holder p").text
+    student_hash
   end
 
 end
