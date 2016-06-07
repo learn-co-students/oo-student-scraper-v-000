@@ -16,15 +16,16 @@ end
   end
 
   def self.create_student_hash
+    all = []
     get_page.css("div.student-card").each do |student|
       student_hash = {}
-      Student.new(student_hash)
       student_hash[:name] = student.css("h4").text
       student_hash[:location] = student.css("p.student-location").text
       student_hash[:profile_url] = "http://127.0.0.1:4000/students/" + student.css("h4").text.downcase.gsub(" ", "-") + ".html"
       Student.new(student_hash)
+      all << student_hash
     end
-    Student.all
+    all
   end
 
   def self.scrape_profile_page(profile_url)
