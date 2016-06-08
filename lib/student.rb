@@ -34,6 +34,7 @@ class Student
   end
 
   def add_student_attributes(attributes_hash)
+#--------------   
     # This instance method should take in a hash whose key/value pairs describe
     # additional attributes of an individual student. In fact, we will be calling
     # `student.add_student_attributes` with the return value of the `Scraper.scrape_profile_page` 
@@ -44,7 +45,7 @@ class Student
     # of the hash. Use the `#send` method to achieve this.
 
     # **Important:** The return value of this method should be the student itself. Use the `self` keyword.
-
+#-----------------
     attributes_hash.each {|key, value| self.send(("#{key}="), value)}
 
 
