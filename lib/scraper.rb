@@ -40,12 +40,12 @@ class Scraper
           links[:linkedin] = media.attribute("href").value  
         elsif media.attribute("href").value.include? "github"
           links[:github] = media.attribute("href").value 
-        else
+        elsif media.attribute("href").value
           links[:blog] = media.attribute("href").value
+#reason why it's not getting here because all the social media links ran out and fulfilled the requirements up top.
+        end
           links[:profile_quote] = doc.css("div.profile-quote").text
           links[:bio] = doc.css("div.description-holder p").text
-          binding.pry
-        end
       end
       # binding.pry
 
