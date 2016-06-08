@@ -44,6 +44,7 @@ class Scraper
           links[:blog] = media.attribute("href").value
           links[:profile_quote] = doc.css("div.profile-quote").text
           links[:bio] = doc.css("div.description-holder p").text
+          binding.pry
         end
       end
       # binding.pry
