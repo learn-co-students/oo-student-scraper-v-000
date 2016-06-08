@@ -5,7 +5,8 @@ require 'pry'
 class Scraper
  
   def self.scrape_index_page(index_url)
-    doc = Nokogiri::HTML(open(index_url))
+    #doc = Nokogiri::HTML(open(index_url))
+    doc = Nokogiri::HTML(open(index_url+'/fixtures/student-site/index.html'))
     student_array =[]
     doc.css(".student-card").each do |card|  
       student_hash = {}
@@ -34,7 +35,7 @@ class Scraper
       #       :bio=> "I'm a school"
       #      }
 #----------------------------
-
+binding.pry
     doc = Nokogiri::HTML(open(profile_url))
     profile_page_hash = {}          
     doc.css(".social-icon-container a").each do |link|        
