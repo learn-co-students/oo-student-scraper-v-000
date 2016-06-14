@@ -23,12 +23,30 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
-    profiles = doc.css(".vitals-container")
-    profiles.collect do |profile|
-      {:twitter => profile.css("a").attribute("href").value}   #.select { |link| link["src"] == "../assets/img/twitter-icon.png"}}
+    hyperlinks = doc.css("a")
+    hyperlinks_array =[]
+    hyperlinks.each do |hyperlink|
+      hyperlinks_array << hyperlink.attribute("href").value
     end
-  end
-binding.pry
+
+    a_twitter = hyperlinks_array.detect {|w| w.split("/").include?("twitter.com") }
+    a_linkedin = hyperlinks_array.detect {|w| w.split("/").include?("www.linkedin.com") }
+    a_github = hyperlinks_array.detect {|w| w.split("/").include?("github.com") }
+    a_blog = hyperlinks_array[-1]
+    a_profile_quote = doc.css(".profile-quote").text
+    a_bio = doc.css(".bio-content .description-holder").text.strip
+
+    { :twitter => a_twitter,
+      :linkedin => a_linkedin,
+      :github => a_github,
+      :blog => a_blog,
+      :profile_quote => a_profile_quote,
+      :bio => a_bio}
+  #  end
+#   hyperlinks_array
+#   hyperlinks.collect {|hyperlink| hyperlink.attribute("href").value} # == "../assets/img/rss-icon.png"}
+   end
+#binding.pry
 end
 
 
