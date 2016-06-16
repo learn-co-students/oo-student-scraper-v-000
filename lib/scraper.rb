@@ -35,13 +35,13 @@ class Scraper
         scraped_profile[:twitter] = url
 
       elsif url.include?("linkedin")
-        scraped_profile[:linkedin_url] = url
+        scraped_profile[:linkedin] = url
         
       elsif url.include?("github")
-        scraped_profile[:github_url] = url
+        scraped_profile[:github] = url
       
       else url.include?("blog")
-        scraped_profile[:blog_url] = url
+        scraped_profile[:blog] = url
       end
     end
     scraped_profile
