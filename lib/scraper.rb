@@ -31,11 +31,16 @@ class Scraper
       hash[:github] = link.attr("href") if link.attr("href").include?("github")
       #need to truncate the blog link to remove the http://
       hash[:blog] = link.attr("href") unless link.attr("href").include?("twitter") || link.attr("href").include?("linkedin") || link.attr("href").include?("github")
+
     end
+    hash[:blog] = hash[:blog].delete!("http://") + "/" unless hash[:blog].nil?
     hash[:bio] = page.css(".description-holder p").text
     hash[:profile_quote] = page.css(".profile-quote").text
-
+    #binding.pry
     hash
   end
 
 end
+
+#Scraper.scrape_index_page("http://159.203.117.55:6891/fixtures/student-site/index.html")
+#Scraper.scrape_profile_page("http://159.203.117.55:6891/fixtures/student-site/students/joe-burgess.html")
