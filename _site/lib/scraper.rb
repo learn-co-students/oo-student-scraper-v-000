@@ -15,4 +15,3 @@ class Scraper
   end
 
 end
-Scraper.new.scrape_index_page(http://159.203.117.55:3024/)
