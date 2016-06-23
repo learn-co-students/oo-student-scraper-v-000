@@ -4,7 +4,7 @@ require 'nokogiri'
 
 class Scraper
 
-  def self.scrape_index_page(index_url)
+  def self.scrape_index_page("http://46.101.242.134:3202/fixtures/student-site/index.html")
     doc = Nokogiri::HTML(open("http://46.101.242.134:3202/fixtures/student-site/index.html"))
     scraped_students = []
     # binding.pry
