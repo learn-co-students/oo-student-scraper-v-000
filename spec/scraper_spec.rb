@@ -1,10 +1,10 @@
 require "spec_helper"
-
+#require 'pry'
 describe "Scraper" do
 
-  let!(:student_index_array) {[{:name=>"Joe Burgess", :location=>"New York, NY", :profile_url=>"http://127.0.0.1:4000/students/joe-burgess.html"},
-                               {:name=>"Mathieu Balez", :location=>"New York, NY", :profile_url=>"http://127.0.0.1:4000/students/mathieu-balez.html"},
-                               {:name=>"Diane Vu", :location=>"New York, NY", :profile_url=>"http://127.0.0.1:4000/students/diane-vu.html"}]}
+  let!(:student_index_array) {[{:name=>"Joe Burgess", :location=>"New York, NY", :profile_url=>"http://46.101.242.134:3202/students/joe-burgess.html"},
+                               {:name=>"Mathieu Balez", :location=>"New York, NY", :profile_url=>"http://46.101.242.134:3202/students/mathieu-balez.html"},
+                               {:name=>"Diane Vu", :location=>"New York, NY", :profile_url=>"http://46.101.242.134:3202/students/diane-vu.html"}]}
 
   let!(:student_joe_hash) {{:twitter=>"https://twitter.com/jmburges",
                             :linkedin=>"https://www.linkedin.com/in/jmburges",
@@ -23,8 +23,9 @@ describe "Scraper" do
 
   describe "#scrape_index_page" do
     it "is a class method that scrapes the student index page and a returns an array of hashes in which each hash represents one student" do
-      index_url = "http://127.0.0.1:4000/fixtures/student-site/index.html"
+      index_url = "http://46.101.242.134:3202/fixtures/student-site/index.html"
       scraped_students = Scraper.scrape_index_page(index_url)
+      #binding.pry
       expect(scraped_students).to be_a(Array)
       expect(scraped_students.first).to have_key(:location)
       expect(scraped_students.first).to have_key(:name)
@@ -34,14 +35,14 @@ describe "Scraper" do
 
   describe "#scrape_profile_page" do
     it "is a class method that scrapes a student's profile page and returns a hash of attributes describing an individual student" do
-      profile_url = "http://127.0.0.1:4000/fixtures/student-site/students/joe-burgess.html"
+      profile_url = "http://46.101.242.134:3202/fixtures/student-site/students/joe-burgess.html"
       scraped_student = Scraper.scrape_profile_page(profile_url)
       expect(scraped_student).to be_a(Hash)
       expect(scraped_student).to match(student_joe_hash)
     end
 
     it "can handle profile pages without all of the social links" do
-      profile_url = "http://127.0.0.1:4000/fixtures/student-site/students/david-kim.html"
+      profile_url = "http://46.101.242.134:3202/fixtures/student-site/students/david-kim.html"
       scraped_student = Scraper.scrape_profile_page(profile_url)
       expect(scraped_student).to be_a(Hash)
       expect(scraped_student).to match(student_david_hash)
