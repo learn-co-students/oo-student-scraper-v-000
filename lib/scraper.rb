@@ -5,13 +5,13 @@ require 'pry'
 class Scraper
 
   def self.scrape_index_page(index_url)
-    #html = Nokogiri::HTML(open(index_url))
-    html = File.open(index_url)
-    scraped_page = Nokogiri::HTML(html)
+    html = Nokogiri::HTML(open(index_url))
+    #html = File.open(index_url)
+    #scraped_page = Nokogiri::HTML(html)
     
     results = []
     
-    scraped_page.css(".roster-cards-container .student-card").each do |student|
+    html.css(".roster-cards-container .student-card").each do |student|
       student_hash = {
         :name => student.css("h4").text,
         :location => student.css("p").text,
@@ -28,8 +28,8 @@ class Scraper
 
 
   def self.scrape_profile_page(profile_url)
-    html = File.open(profile_url)
-    scraped_page = Nokogiri::HTML(html)
+    #html = File.open(profile_url)
+    scraped_page = Nokogiri::HTML(open(profile_url))
 
     #grab social media elements and add them to an array 
     scraped_page_social_elements = []
