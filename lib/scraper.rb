@@ -5,13 +5,13 @@ require 'pry'
 class Scraper
 
   def self.scrape_index_page(index_url)
-    html = Nokogiri::HTML(open(index_url))
-    #html = File.open(index_url)
-    #scraped_page = Nokogiri::HTML(html)
+    #html = Nokogiri::HTML(open(index_url))
+    html = File.open(index_url)
+    scraped_page = Nokogiri::HTML(html)
     
     results = []
     
-    html.css(".roster-cards-container .student-card").each do |student|
+    scraped_page.css(".roster-cards-container .student-card").each do |student|
       student_hash = {
         :name => student.css("h4").text,
         :location => student.css("p").text,
@@ -28,14 +28,14 @@ class Scraper
 
 
   def self.scrape_profile_page(profile_url)
-    #html = File.open(profile_url)
+    #html = File.open(profile_url)  #another way to open 
     scraped_page = Nokogiri::HTML(open(profile_url))
 
-    #grab social media elements and add them to an array 
-    scraped_page_social_elements = []
+    #grab social media text elements and add them to an array 
+    social_elements = []
 
     scraped_page.css(".social-icon-container").css("a").each do |el|
-      scraped_page_social_elements <<  el.attribute("href").value
+      social_elements <<  el.attribute("href").value
     end
 
     # start a hash - result asks for a hash 
@@ -43,7 +43,7 @@ class Scraper
 
     # iterate through the social elements array and create hash keys and values
     # if the element string, contains the appropriate info, it becomes the value of a hash key
-    scraped_page_social_elements.each do |element|
+    social_elements.each do |element|
       student[:twitter] = element if element.include?("twit")
       student[:linkedin] = element if element.include?("link")
       student[:github] = element if element.include?("git")
