@@ -14,8 +14,8 @@ describe "Scraper" do
                             :bio=>
   "I grew up outside of the Washington DC (NoVA!) and went to college at Carnegie Mellon University in Pittsburgh. After college, I worked as an Oracle consultant for IBM for a bit and now I teach here at The Flatiron School."}}
 
-  let!(:student_david_hash) {{:linkedin=>"https://www.linkedin.com/in/david-kim-38221690",
- :github=>"https://github.com/davdkm",
+  let!(:student_david_hash) {{:twitter=> nil, :linkedin=>"https://www.linkedin.com/in/david-kim-38221690",
+ :github=>"https://github.com/davdkm", :blog=> nil,
  :profile_quote=>
   "\"Yeah, well, you know, that's just, like, your opinion, man.\" - The Dude",
  :bio=>
