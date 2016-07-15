@@ -1,0 +1,29 @@
+
+[1mFrom:[0m /home/adamtaitano/code/labs/oo-student-scraper-v-000/lib/scraper.rb @ line 23 Scraper.scrape_index_page:
+
+     [1;34m8[0m: [32mdef[0m [1;36mself[0m.[1;34mscrape_index_page[0m(index_url)
+     [1;34m9[0m:   [36m@@array[0m = []
+    [1;34m10[0m:   doc = [1;34;4mNokogiri[0m::HTML(open([31m[1;31m"[0m[31m#{index_url}[0m[31m[1;31m"[0m[31m[0m))
+    [1;34m11[0m:   roster = doc.css([31m[1;31m"[0m[31m.roster-cards-container[1;31m"[0m[31m[0m)
+    [1;34m12[0m:   [1;34m# name = roster.first.css("h4.student-name").first.text   [0m
+    [1;34m13[0m:   [1;34m# location =  roster.first.css("p.student-location").first.text     [0m
+    [1;34m14[0m:   [1;34m# profile_url = roster.first.css(".student-card a").first.attribute("href").value[0m
+    [1;34m15[0m:   [1;34m# binding.pry[0m
+    [1;34m16[0m:   [1;34m#collection of students doc.css(".roster-cards-container")[0m
+    [1;34m17[0m:   [1;34m# roster.each do |students|[0m
+    [1;34m18[0m:   [1;34m#   # puts student.css("h4.student-name").text[0m
+    [1;34m19[0m:   [1;34m#   # puts student.css("p.student-location").text[0m
+    [1;34m20[0m:   [1;34m#   # binding.pry[0m
+    [1;34m21[0m:   [1;34m#   student = students.first.css(".student-card")[0m
+    [1;34m22[0m:   student = roster.css([31m[1;31m"[0m[31m.student-card[1;31m"[0m[31m[0m)
+ => [1;34m23[0m:     binding.pry
+    [1;34m24[0m:     [1;34m# students.collect do |student|[0m
+    [1;34m25[0m:     [1;34m#   student.first[0m
+    [1;34m26[0m:     [1;34m#   binding.pry[0m
+    [1;34m27[0m:     [1;34m# end[0m
+    [1;34m28[0m:     [1;34m# student.css(".student-card a").first.attribute("href").value[0m
+    [1;34m29[0m:     [1;34m# {name: "#{student.css("h4.student-name").text}", location: "#{student.css("p.student-location").text}" , profile_url: "#{student.css(".student-card a").first.attribute("href").value}"}[0m
+    [1;34m30[0m:   [1;34m# end[0m
+    [1;34m31[0m:   [36m@@array[0m
+    [1;34m32[0m: [32mend[0m
+
