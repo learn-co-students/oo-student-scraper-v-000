@@ -3,8 +3,8 @@
 ## Objectives
 
 1. Build two classes, a class that is responsible for scraping data from a web page and a class that uses that data to instantiate new objects.
-3. Understand the contents of a third class that is responsible for the command line interface.
-2. Use metaprogramming to instantiate new instances of a class and add attributes to instances of a class.
+2. Understand the contents of a third class that is responsible for the command line interface.
+3. Use metaprogramming to instantiate new instances of a class and add attributes to instances of a class.
 
 ## Overview
 
