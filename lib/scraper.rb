@@ -12,15 +12,18 @@ class Scraper
    # selector will allow us to grab index page that lists all of the students
     student_profile=[]
     index = doc.css("div.roster-cards-container").each do |student|
-      student.css("div.student_card a").each do |student_detail|
-         name_string = student_detail.css("h4.student-name").text,
-         location_string = student_detail.css("p.student-location").text,
-         profile_url_string =  student_detail.css("div.student-card a").attribute("href").value
-         student_profile << {name: name_string, location: location_string, profile_url: profile_url_string}
-      # binding.pry
+      student.css("div.student_card").each do |student_detail|
+      student_profile =[{
+         name: student_detail.css("h4.student-name").text,
+         location: student_detail.css("p.student-location").text,
+         profile_url: student_detail.css("div.student-card a").text
+        #  binding.pry
+
+      }]
       end
     end
       student_profile
+
   end
 
   def self.scrape_profile_page(profile_url)
