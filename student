@@ -1,0 +1,26 @@
+
+[1mFrom:[0m /home/lennhy/code/labs/oo-student-scraper-v-000/lib/scraper.rb @ line 42 Scraper.scrape_profile_page:
+
+    [1;34m26[0m: [32mdef[0m [1;36mself[0m.[1;34mscrape_profile_page[0m(profile_url)
+    [1;34m27[0m:   [1;34m# take the string of HTML returned by open-uri's open method and convert it into a NodeSet (aka, a bunch of nested "nodes")[0m
+    [1;34m28[0m:   doc = [1;34;4mNokogiri[0m::HTML(open([31m[1;31m"[0m[31mhttp://159.203.117.55:3537/fixtures/student-site/[1;31m"[0m[31m[0m))
+    [1;34m29[0m:   student_profile=[]
+    [1;34m30[0m:   hash={}
+    [1;34m31[0m:   doc.css([31m[1;31m"[0m[31m.roster-cards-container[1;31m"[0m[31m[0m).each [32mdo[0m |student|
+    [1;34m32[0m:     student
+    [1;34m33[0m:   [1;34m# 1. holds all the students profiles (div.roster-cards-container)[0m
+    [1;34m34[0m:   [1;34m# 2. iterate over each student card equal to (div.student-card a)[0m
+    [1;34m35[0m:   [1;34m# 3. student-profile-key for hash = after iterating take the href of each ("./fixtures/student-site/#{student_detail.attr('href')}")[0m
+    [1;34m36[0m:   [1;34m# 4. we will be using the href from above to get all our keys which are equal to each students profile[0m
+    [1;34m37[0m:   [1;34m# 5. div.main-wrapper profile -> vitals container -> social icon container-> hrefs[0m
+    [1;34m38[0m: 
+    [1;34m39[0m:   [1;34m# index = doc.css(".roster-cards-container").each do |student|[0m
+    [1;34m40[0m:   [1;34m#   student.css(".social-icon-container a")["href"][0m
+    [1;34m41[0m: 
+ => [1;34m42[0m:        binding.pry
+    [1;34m43[0m:       [1;34m#  student_profile << hash[0m
+    [1;34m44[0m:     [1;34m# end[0m
+    [1;34m45[0m:   [32mend[0m
+    [1;34m46[0m:   [1;34m# hash[0m
+    [1;34m47[0m: [32mend[0m
+
