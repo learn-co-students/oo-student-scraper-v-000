@@ -32,7 +32,7 @@ class Scraper
 
     href_links.each do |href_link|
 
-      if href_link.include?( "twitter")
+      if href_link.include?("twitter")
         social_hash[:twitter] = href_link
 
       elsif href_link.include?("linkedin")
@@ -46,10 +46,14 @@ class Scraper
       end
     end # end of second enumurable
     profile.css(".main-wrapper profile").each do |social|
-      social_hash[:bio] = social.css("p")
-      social_hash[:profile_quote] = social.css("div.vitals-container profile-quote")
+      if social.css("p").match(/[a..z][A..Z]/)
+        social_hash[:bio] = social.css("p")
+      end
+      if social.css(".profile-quote").text.match(/[a..z][A..Z]/)
+        social_hash[:profile_quote] = social.css(".profile-quote").text
+      end
     end
     social_hash
-
   end
+
 end
