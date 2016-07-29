@@ -27,10 +27,11 @@ class Scraper
     # take the string of HTML returned by open-uri's open method and convert it into a NodeSet (aka, a bunch of nested "nodes")
     profile = Nokogiri::HTML(open(profile_url))
     social_hash={}
-    # binding.pry
 
+    # save all the hrefs in a variable to use later. .map saves an entirely new array with the hrefs
     href_links = profile.css(".social-icon-container a").map { |url| url['href'] }
 
+    # cycle through each href and match them to the relative link
     href_links.each do |href_link|
       if href_link.include?("twitter")
         social_hash[:twitter] = href_link
@@ -44,14 +45,11 @@ class Scraper
       else social_hash[:blog] = href_link
       end
     end # end of each enumurable
-
-    if profile.css("p").text
-      social_hash[:bio] = profile.css("p").text
-    elsif profile.css(".profile-quote").text
-        social_hash[:profile_quote] = profile.css(".profile-quote").text
-    end
-    binding.pry
+    
+    # if there are no bios or quotes then these will return as empty strings.
+    social_hash[:bio] = profile.css("p").text
+    social_hash[:profile_quote] = profile.css(".profile-quote").text
     social_hash
-  end
+    end
 
 end
