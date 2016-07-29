@@ -27,31 +27,29 @@ class Scraper
     # take the string of HTML returned by open-uri's open method and convert it into a NodeSet (aka, a bunch of nested "nodes")
     profile = Nokogiri::HTML(open(profile_url))
     social_hash={}
-    profile.css(".main-wrapper profile").collect do |social|
 
-      href_links = social.css(".social-icon-container a").map { |url| url['href'] }
+    href_links = profile.css(".social-icon-container a").map { |url| url['href'] }
 
-      href_links.each do |href_link|
+    href_links.each do |href_link|
 
-        if href_link.include?( "twitter")
-          social_hash[:twitter] = href_link
+      if href_link.include?( "twitter")
+        social_hash[:twitter] = href_link
 
-        elsif href_link.include?("linkedin")
-          social_hash[:linkedin] = href_link
+      elsif href_link.include?("linkedin")
+        social_hash[:linkedin] = href_link
 
-        elsif href_link.include?("github")
-          social_hash[:github] = href_link
+      elsif href_link.include?("github")
+        social_hash[:github] = href_link
 
-        else social_hash[:blog] = href_link
+      else social_hash[:blog] = href_link
 
-        end
-      end # end of second enumurable
-
+      end
+    end # end of second enumurable
+    profile.css(".main-wrapper profile").each do |social|
       social_hash[:bio] = social.css("p")
-      social_hash[:profile_quote] = social.css(".profile-quote")
-
-    end # end of first enumerable
+      social_hash[:profile_quote] = social.css("div.vitals-container profile-quote")
+    end
     social_hash
-    # binding.pry
+
   end
 end
