@@ -42,17 +42,15 @@ class Scraper
         social_hash[:github] = href_link
 
       else social_hash[:blog] = href_link
+      end
+    end # end of each enumurable
 
-      end
-    end # end of second enumurable
-    profile.css(".main-wrapper profile").each do |social|
-      if social.css("p").include?(/[a..z][A..Z]/)
-        social_hash[:bio] = social.css("p")
-      end
-      if social.css(".profile-quote").text.include?(/[a..z][A..Z]/)
-        social_hash[:profile_quote] = social.css(".profile-quote").text
-      end
+    if profile.css("p").text
+      social_hash[:bio] = profile.css("p").text
+    elsif profile.css(".profile-quote").text
+        social_hash[:profile_quote] = profile.css(".profile-quote").text
     end
+    binding.pry
     social_hash
   end
 
