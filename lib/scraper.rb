@@ -13,7 +13,7 @@ class Scraper
     index_page.css("div.roster-cards-container").each do |card|
       student_name = card.css("div.student-card h4.student-name").text
       student_location = card.css("div.student-card p.student-location").text
-      student_profile = "./fixtures/student-site/students/#{student_name}"
+      student_profile = "./fixtures/student-site/students/#{student_name}.html"
       students << {name: student_name, location: student_location, profile_url: student_profile}
     end
     # index_page.css(".student-card")
