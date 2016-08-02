@@ -26,6 +26,7 @@ class Scraper
 
     student_profile = {}
     links = url.css("div.social-icon-container")
+    puts "#{links}"
     links.each do |link|
       link_text = link.css("a").attribute("href").text
       link_img = link.css("img.social-icon").attribute("src").text
