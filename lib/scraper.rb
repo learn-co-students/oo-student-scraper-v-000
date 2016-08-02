@@ -11,10 +11,13 @@ class Scraper
     students = []
 
     index_page.css("div.roster-cards-container").each do |card|
-      student_name = card.css("div.student-card h4.student-name").text
-      student_location = card.css("div.student-card p.student-location").text
-      student_profile = "./fixtures/student-site/students/#{student_name}.html"
-      students << {name: student_name, location: student_location, profile_url: student_profile}
+      card.css("div.student-card").each do |student|
+        #binding.pry
+        student_name = student.css("h4.student-name").text
+        student_location = student.css("p.student-location").text
+        student_profile = "./fixtures/student-site/students/#{student_name}.html"
+        students << {name: student_name, location: student_location, profile_url: student_profile}
+      end
     end
     # index_page.css(".student-card")
     #name > index_page.css(".student-card").first.css(".student-name").text
