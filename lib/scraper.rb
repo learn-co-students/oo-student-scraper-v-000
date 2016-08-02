@@ -15,7 +15,7 @@ class Scraper
         #binding.pry
         student_name = student.css("h4.student-name").text
         student_location = student.css("p.student-location").text
-        student_profile = "./fixtures/student-site/#{student.css("a")}"
+        student_profile = "./fixtures/student-site/#{student.css("a").attr("href")}"
         students << {name: student_name, location: student_location, profile_url: student_profile}
       end
     end
@@ -27,9 +27,34 @@ class Scraper
   end
 
   #scraping an individual student's profile page to get further
-  #information about that student.
+  #information about that student. use nokogiri and open-uri to access page.
+  #return value hash key/value describe a student.
+  #some don't have twitter or social ink
   def self.scrape_profile_page(profile_url)
+    profile_page = Nokogiri::HTML(open(profile_url))
+    #binding.pry
+    student = {}
+    social = profile_page.css("div.social-icon-container a").map {|e| e.attr("href")}
 
+    social.each do |link|
+      if link.include? ("linkedin")
+        student[:linkedin] = link
+      elsif link.include? ("twitter")
+        student[:twitter] = link
+      elsif link.include? ("github")
+        student[:github] = link
+      else
+        student[:blog] = link
+      end
+      student[:profile_quote] = profile_page.css("div.vitals-text-container div.profile-quote").text
+      student[:bio] = profile_page.css("div.bio-content.content-holder div.description-holder p").text
+    end
+    #twitter> .css("a").attr("href")
+    #linkind>
+    #github>
+    #blog>
+
+    student
   end
 
 end
