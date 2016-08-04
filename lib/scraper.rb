@@ -12,16 +12,12 @@ class Scraper
     doc = Nokogiri::HTML(open(index_url))
     # doc.css(".student_card a .card-text-container h4").text
 
-    # {|f| f.each_line {|line| p line}
     # The collection of students
     student_index_array = []
     # The css for the section of the page with student info
     page = doc.css(".roster .roster-cards-container")
-    # Arrays for each piece of information
-    # names = []
-    # locations = []
+
     urls = []
-    # collect student info into an array for each has key
 
     page.collect do |stu|
 
@@ -30,33 +26,15 @@ class Scraper
           # profile_url: student.css("a").collect {|links| links.attributes['href'].text}.join}
       end
 
-      # collect student names
-      # names = stu.css("h4").collect do |name|
-      #   name.text
-      # end
-      #
-      # # collect student locations
-      # locations = stu.css("p").collect do |location|
-      #   location.text
-      # end
-
       # collect student urls
       urls = stu.css("a").collect do |links|
         links.attributes['href'].text
       end
 
-      # student_index_array << {name: student_name, location: student_location, profile_url: student_url}
-      # Creat hash and add student names to to new hash in student array
-      # names.each do |n|
-      #   student_index_array << {name: n}
-      # end
-      # student_index_array.collect do |hash|
-      #   locations.each do |loc|
-      #     hash[:location] = loc
-        # end
+
       student_index_array.each do |hash|
         urls.each do |url|
-            hash[:profile_url] = "./fixtures/student-site/#{url}"
+            profile_url: = "./fixtures/student-site/#{url}"
           end
         end
 
