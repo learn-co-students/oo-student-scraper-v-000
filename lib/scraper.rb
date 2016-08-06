@@ -1,6 +1,5 @@
 require 'open-uri'
 require 'pry'
-require 'nokogiri'
 
 # Responsible for scraping data from the webpage that lists all the students
 class Scraper
@@ -17,64 +16,57 @@ class Scraper
     # The css for the section of the page with student info
     page = doc.css(".roster .roster-cards-container")
 
-    urls = []
-
+    url_prefix = "./fixtures/student-site/students/"
     page.collect do |stu|
 
       stu.css('.student-card').each do |student|
-        student_index_array <<  {name: student.css('h4').text, location: student.css('p').text, profile_url: nil}
+        student_index_array <<  {name: student.css('h4').text, location: student.css('p').text, profile_url: url_prefix + student.css('h4').text.downcase.split.join("-") + ".html"}
           # profile_url: student.css("a").collect {|links| links.attributes['href'].text}.join}
       end
-
-      # collect student urls
-      urls = stu.css("a").collect do |links|
-        links.attributes['href'].text
-      end
-
-
-      student_index_array.each do |hash|
-        urls.each do |url|
-            profile_url: = "./fixtures/student-site/#{url}"
-          end
-        end
-
-      student_index_array
-      binding.pry
     end
+    student_index_array
   end
 
 
   def self.scrape_profile_page(profile_url)
-    # def self.scrape_profile_page(profile_url)
     #     # take the string of HTML returned by open-uri's open method and convert it into a NodeSet (aka, a bunch of nested "nodes")
-    #     doc = Nokogiri::HTML(open(profile_url))
-    #     student_profile=[]
-    #     social_hash={}
-    #
-    #     doc.css(".main-wrapper profile").each do |social|
-    #
-    #       social.css(".social-icon-container").detect do |url|
-    #         if url.include?( "twitter")
-    #           social_hash[:twitter] = "#{url['href']}"
-    #
-    #         elsif url.include?("linkedin")
-    #           social_hash[:linkedin] = "#{url['href']}"
-    #
-    #         elsif url.include?("github")
-    #           social_hash[:github] = "#{url['href']}"
-    #
-    #         else social_hash[:blog] = "#{url['href']}"
-    #
-    #         end
-    #       end # end of second enumurable
-    #
-    #       social_hash[:bio] = social.css("p")
-    #       social_hash[:profile_quote] = social.css(".profile-quote")
-    #       binding.pry
-    #
-    #     end # end of first enumerable
-    #     social_hash
-      # end
+    doc = Nokogiri::HTML(open(profile_url))
+    student_profile=[]
+    social_hash={}
+    social_array = []
+    doc.css(".main-wrapper profile")
+    # This contains the links for the following:
+    # twitter (if present), linkedin, github
+    social = doc.css(".vitals-container .social-icon-container")
+    # twitter = social.css("a").first['href']
+    # social.each do |social|
+    #   twitter = social.css("a[href]~=github").text
+    #   binding.pry
+    # end
+    # twitter =  social.css("a").first['href']
+    # linkedin = social.css("a")[1]['href']
+    # github = social.css("a")[2]['href']
+    profile_quote = doc.css(".vitals-text-container .profile-quote").text
+    bio = doc.css(".details-container p").text
+    student_profile << {twitter: nil, linkedin: nil, github: nil, blog: nil, profile_quote: profile_quote, bio: bio}
+
+    # Try iterating and adding each link to social_array
+    social.css("a").each do |link|
+      social_array << link["href"]
+    end # end of enumerable over social links
+    social_array.each do |soc_link|
+      if soc_link.include?("twitter")
+        social_hash[:twitter] = soc_link
+      elsif soc_link.include?("github")
+        social_hash[:github] = soc_link
+      elsif soc_link.include?("linkedin")
+        social_hash[:linkedin] = soc_link
+      else
+        social_hash[:blog] = soc_link
+      end
+    end
+    # merge hashes and delete elements that weren't found
+    student_profile[0].merge(social_hash).delete_if {|k,v| v.nil?}
   end
 
 end
