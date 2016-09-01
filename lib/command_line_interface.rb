@@ -3,6 +3,8 @@ require_relative "../lib/student.rb"
 require 'nokogiri'
 require 'colorize'
 
+#We've given you a third class, `CommandLineInterface` that is responsible for generating students using both the `Student` and `Scraper` classes. As you go through this lab, take some time to read through the code in the `CommandLineInterface` class. Try to understand how it works and how it uses the code in our other classes to actually create, add attributes, and display students to the user via the command line interface.
+
 class CommandLineInteface
   BASE_PATH = "./fixtures/student-site/"
 

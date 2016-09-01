@@ -4,3 +4,5 @@ require_relative "../lib/command_line_interface.rb"
 
 
 CommandLineInteface.new.run
+
+#We've also given you an executable file in `bin/run` that you can execute once you get your tests passing to see your code in action!
