@@ -1,16 +1,16 @@
 require 'nokogiri'
-#require 'open-uri'
+require 'open-uri'
 require 'pry'
 
 class Scraper
 
   attr_accessor :name , :location , :profile_url
 
-  def self.scrape_index_page(index_url = "/fixtures/student-site/index.html")
-    html = File.read(index_url)
-    doc = Nokogiri::HTML(html)
+  def self.scrape_index_page(index_url) #= "/fixtures/student-site/index.html")
+    #html = File.read(index_url)
+    #doc = Nokogiri::HTML(html)
 
-    # * or * doc = Nokogiri::HTML(open(index_url))
+    doc = Nokogiri::HTML(open(index_url))
 
     students = {}
 
@@ -20,11 +20,12 @@ class Scraper
         :location => student.css(".student-location").text,
         :profile_url => student.css("a").attr("href").value
         ]
-    end
+      end
     #responsible for scraping the index page that lists all of the students
 
     #This is a class method that should take in an argument of the URL of the index page. It should use nokogiri and Open-URI to access that page. The return value of this method should be an array of hashes in which each hash represents a single student. The keys of the individual student hashes should be `:name`, `:location` and `:profile_url`.
     students
+    binding.pry
   end
 
   def self.scrape_profile_page(profile_url)
