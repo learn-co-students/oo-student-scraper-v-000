@@ -1,22 +1,25 @@
 require 'nokogiri'
-require 'open-uri'
+#require 'open-uri'
 require 'pry'
 
 class Scraper
 
   attr_accessor :name , :location , :profile_url
 
-  def self.scrape_index_page(index_url)
-    doc = Nokogiri::HTML(open(index_url))
+  def self.scrape_index_page(index_url = "/fixtures/student-site/index.html")
+    html = File.read(index_url)
+    doc = Nokogiri::HTML(html)
+
+    # * or * doc = Nokogiri::HTML(open(index_url))
 
     students = {}
 
     doc.css(".student-card").each do |student|
-      students = {
+      students = [
         :name => student.css(".student-name").text,
         :location => student.css(".student-location").text,
-        :profile_url => student.css(".student-card a")["href"]
-      }
+        :profile_url => student.css("a").attr("href").value
+        ]
     end
     #responsible for scraping the index page that lists all of the students
 
