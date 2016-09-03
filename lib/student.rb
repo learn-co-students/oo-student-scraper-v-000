@@ -1,5 +1,3 @@
-require_relative "../lib/scraper.rb"
-
 class Student
 
   #In this lab, you'll be scraping your Learn.co student website. You'll use the index page to grab a list of current students and instantiate a series of `Student` objects. You'll scrape the individual profile pages of each student to add attributes to each individual student.
@@ -16,7 +14,7 @@ class Student
   end
 
   def self.create_from_collection(index_url)
-      students_array = self.scrape_index_page(index_url)
+      #students_array = self.scrape_index_page(index_url)
       student = self.new(students_array)
     #This class method should take in an array of hashes. In fact, we will call `Student.create_from_collection` with the return value of the `Scraper.scrape_index_page` method as the argument. The `#create_from_collection` method should iterate over the array of hashes and create a new individual student using each hash. This brings us to the `#initialize` method on our `Student` class.
 
