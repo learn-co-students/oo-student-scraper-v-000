@@ -4,7 +4,7 @@ require 'pry'
 
 class Scraper
 
-  attr_accessor :name , :location , :profile_url, :twitter, :linkedin, :github, :blog, :profile_quote, :bio
+  attr_accessor :name , :location, :twitter, :linkedin, :github, :blog, :profile_quote, :bio, :profile_url
 
   def self.scrape_index_page(index_url)
 
@@ -25,28 +25,20 @@ class Scraper
     students
   end
 
-  def attribute(attribute)
-    attribute.each {|key, value| self.send(("#{key}="), value)}
-    attribute
-  end
-
   def self.scrape_profile_page(profile_url)
-
     doc = Nokogiri::HTML(open(profile_url))
 
-    attributes_hash = {:twitter => nil, :linkedin => nil, :github => nil, :blog => nil, :profile_quote => nil, :bio => nil}
+    attributes_hash = {}
+    
+    attributes_hash = {}.tap do |hash|
+      hash[:twitter] = doc.css("[href*=twitter]").attr("href").value unless doc.css("[href*=twitter]").empty?
+      hash[:linkedin] = doc.css("[href*=linkedin]").attr("href").value unless :linkedin == "" || nil
+      hash[:github] = doc.css("[href*=github]").attr("href").value unless :github == "" || nil
+      hash[:blog] = doc.css(".social-icon-container a")[3].attr("href") unless doc.css(".social-icon-container a")[3].nil?
+      hash[:profile_quote] = doc.css("div.profile-quote").text unless :profile_quote == "" || nil
+      hash[:bio] = doc.css(".description-holder p").text unless :bio == "" || nil
+    end
 
-    doc.css("body").each do |profile|
-      attributes_hash = {
-        :twitter => profile.css("[href*=twitter]").attr("href").value,
-        :linkedin => profile.css("[href*=linkedin]").attr("href").value,
-        :github => profile.css("[href*=github]").attr("href").value,
-        :blog => profile.css(".social-icon-container a")[3].attr("href"),
-        :profile_quote => profile.css("div.profile-quote").text,
-        :bio => profile.css(".description-holder p").text
-      }
-      end
-    #attribute(student)
     attributes_hash
   end
 end
