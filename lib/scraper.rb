@@ -28,33 +28,30 @@ class Scraper
     doc = Nokogiri::HTML(open("#{profile_url}"))
 
     student = Hash.new
+    links = []
 
-    # doc.css(".social-icon-container a").each do |profile|
-      
-     #binding.pry
-      doc.css(".social-icon-container a").each do |container|
-        if container.include?("twitter")
-          twitter_url = container.attribute("href").value
-          student[:twitter] = twitter_url
-        elsif container.include?("linked")
-          linkedin_url = container.attribute("href").value
-          student[:linkedin] = linkedin_url
-        elsif container.include?("github")
-          github_url = container.attribute("href").value
-          student[:github] = github_url
-        else
-          blog_url = container.attribute("href").value
-          student[:blog] = blog_url
-        end
-          student
+    doc.css(".social-icon-container a").map do |container|
+      links << container.attribute("href").value
+    end
+   
+    links.each do |x|
+      if x.include?("twitter")
+        student[:twitter] = x
+      elsif x.include?("linked")
+        student[:linkedin] = x
+      elsif x.include?("github")
+        student[:github] = x
+      else
+        student[:blog] = x
       end
-
+      links
+     end
+    links
 
     student[:profile_quote] = doc.css("div.profile-quote").text
     student[:bio] = doc.css("div.description-holder p").text
       
     student
-
 
   end
   scrape_profile_page("http://students.learn.co/students/steve-frost.html")
