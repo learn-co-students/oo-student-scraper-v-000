@@ -29,19 +29,22 @@ class Scraper
         social = doc.css("a")
         # binding.pry
           social.each do |link|
-            binding.pry
-            if link.css("a")[0]['href'].include?("twitter")
-              twit = link.css("a")[0]['href']
-              binding.pry
-            elsif link.css("a")[0]['href'].include?("linkedin")
-              linkd = link.css("a")[0]['href']
-            elsif link.css("a")[0]['href'].include?("github")
-              git = link.css("a")[0]['href']
+            # binding.pry
+            if link['href'].include?("twitter")
+              twit = link['href']
+              # binding.pry
+            elsif link['href'].include?("linkedin")
+              linkd = link['href']
+            elsif link['href'].include?("github")
+              git = link['href']
             else
-              blog = link.css("a")[0]['href']
+              blog = link['href']
             end
           end
 
+          quote = doc.css(".profile-quote").text.delete("\"")
+          bio = doc.css(".bio-block .description-holder p").text
+binding.pry
   end
 
 end
