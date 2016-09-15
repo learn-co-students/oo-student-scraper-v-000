@@ -45,6 +45,14 @@ class Scraper
           quote = doc.css(".profile-quote").text.delete("\"")
           bio = doc.css(".bio-block .description-holder p").text
 binding.pry
+        {
+          :twitter => twit,
+          :linkedin => linkd,
+          :git => git,
+          :blog => blog,
+          :quote => quote,
+          :bio => bio
+        }
   end
 
 end
