@@ -42,15 +42,14 @@ class Scraper
             end
           end
 
-          quote = doc.css(".profile-quote").text.delete("\"")
+          quote = doc.css(".profile-quote").text#.delete("\"")
           bio = doc.css(".bio-block .description-holder p").text
-binding.pry
         {
           :twitter => twit,
           :linkedin => linkd,
-          :git => git,
+          :github => git,
           :blog => blog,
-          :quote => quote,
+          :profile_quote => quote,
           :bio => bio
         }
   end
