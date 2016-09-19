@@ -38,13 +38,13 @@ class Scraper
             elsif link['href'].include?("github")
               git = link['href']
             else
-              blog = link['href']
+              blog = link['href'] unless link['href'] == "../"
             end
           end
 
           quote = doc.css(".profile-quote").text#.delete("\"")
           bio = doc.css(".bio-block .description-holder p").text
-        {
+        return_hash = {
           :twitter => twit,
           :linkedin => linkd,
           :github => git,
@@ -52,6 +52,8 @@ class Scraper
           :profile_quote => quote,
           :bio => bio
         }
+
+        return_hash.delete_if {|k,v| v == nil}
   end
 
 end
