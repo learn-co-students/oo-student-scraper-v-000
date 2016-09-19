@@ -27,11 +27,11 @@ class Student
       self.location ||= attributes_hash[:location]
       self.twitter ||= attributes_hash[:twitter]
       self.linkedin ||= attributes_hash[:linkedin]
-      self.github = attributes_hash[:github]
-      self.blog = attributes_hash[:blog]
-      self.profile_quote = attributes_hash[:profile_quote]
-      self.bio = attributes_hash[:bio]
-      self.profile_url = attributes_hash[:profile_url]
+      self.github ||= attributes_hash[:github]
+      self.blog ||= attributes_hash[:blog]
+      self.profile_quote ||= attributes_hash[:profile_quote]
+      self.bio ||= attributes_hash[:bio]
+      self.profile_url ||= attributes_hash[:profile_url]
   end
 
   def self.all
