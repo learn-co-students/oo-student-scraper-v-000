@@ -31,6 +31,7 @@ class CommandLineInteface
       puts "  profile quote:".colorize(:light_blue) + " #{student.profile_quote}"
       puts "  bio:".colorize(:light_blue) + " #{student.bio}"
       puts "  twitter:".colorize(:light_blue) + " #{student.twitter}"
+      puts "  facebook:".colorize(:light_blue) + " #{student.facebook}"
       puts "  linkedin:".colorize(:light_blue) + " #{student.linkedin}"
       puts "  github:".colorize(:light_blue) + " #{student.github}"
       puts "  blog:".colorize(:light_blue) + " #{student.blog}"
