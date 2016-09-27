@@ -3,5 +3,5 @@
 require_relative "../lib/command_line_interface.rb"
 
 
-http://192.241.200.116:13113
+
 CommandLineInteface.new.run
