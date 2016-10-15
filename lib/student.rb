@@ -8,18 +8,18 @@ class Student
   def initialize(student_hash)
     student_hash.each do |k, v|
       self.send("#{k}=", v)
-    @@all << self
     end
+    @@all << self
   end
 
   def self.create_from_collection(students_array)
     students_array.each do |student_hash|
       student = Student.new(student_hash)
-      student_hash.inject do |c, v|
-        student.name = c[1]
-        student.location = v[1]
-      end
-      student
+      # student_hash.inject do |c, v|
+      #   student.name = c[1]
+      #   student.location = v[1]
+      # end
+      # student
     end
   end
 
