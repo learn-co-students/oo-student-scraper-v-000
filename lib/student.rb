@@ -21,7 +21,9 @@ class Student
   end
 
   def add_student_attributes(attributes_hash)
-    
+    attributes_hash.each do |student, name|
+      self.send("#{student}=", name)
+    end
   end
 
   def self.all
