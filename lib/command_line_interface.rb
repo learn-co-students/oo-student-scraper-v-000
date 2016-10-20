@@ -1,10 +1,10 @@
-require_relative "../lib/scraper.rb"
+equire_relative "../lib/scraper.rb"
 require_relative "../lib/student.rb"
 require 'nokogiri'
 require 'colorize'
 
 class CommandLineInteface
-  BASE_PATH = "./fixtures/student-site/"
+  BASE_URL = "http://127.0.0.1:4000/"
 
   def run
     make_students
@@ -13,7 +13,7 @@ class CommandLineInteface
   end
 
   def make_students
-    students_array = Scraper.scrape_index_page(BASE_PATH + 'index.html')
+    students_array = Scraper.scrape_index_page(BASE_URL)
     Student.create_from_collection(students_array)
   end
 
@@ -39,3 +39,4 @@ class CommandLineInteface
   end
 
 end
+Contact GitHub API Training Shop Blog About
