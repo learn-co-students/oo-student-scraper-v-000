@@ -19,34 +19,37 @@ class Scraper
   # projects: kickstarter.css("li.project.grid_4")
   # title: project.css("h2.b  bcard_name strong a").text
   def self.scrape_profile_page(profile_url)
+    if profile_url !=nil
  html=File.read(profile_url)
  index = Nokogiri::HTML(html)
 
 i = index.css("div.social-icon-container a")
 h={}
-
-if i[0] !=nil
-twitter= i[0].attribute("href").value
-h[:twitter]=twitter
+if i != nil
+  i.each do |element|
+    string=element.attribute("href").value
+   if string.include?('git')
+     github= element.attribute("href").value
+     h[:github]=github
+  elsif string.include?('twitter')
+    twitter= element.attribute("href").value
+    h[:twitter]=twitter
+ elsif string.include?('link')
+   linked= element.attribute("href").value
+   h[:linkedin]=linked
+ else
+   blog= element.attribute("href").value
+   h[:blog] =blog
 end
-if i[1] !=nil
-linked= i[1].attribute("href").value
-h[:linkedin]=linked
 end
-if i[2] !=nil
-github= i[2].attribute("href").value
-h[:github]=github
-end
-if i[3] !=nil
-blog= i[3].attribute("href").value
-h[:blog] =blog
 end
 quote= index.css("div.profile-quote").text
 bio= index.css("div.description-holder p").text
 
-h[:profile_quote] = quote,
+h[:profile_quote] = quote
 h[:bio]= bio
  ##binding.pry
 h
+end
 end
 end
