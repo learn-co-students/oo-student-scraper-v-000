@@ -26,30 +26,27 @@ class Scraper
     profile = Nokogiri::HTML(html)
 
     profile.css(".vitals-container").each do |info|
-      if info.css(".social-icon-container a").attr("href").text.include?("twitter")
-        twitter = info.css(".social-icon-container a").attr("href").text
-        scraped_student[:twitter] = twitter
-      end
+      info.css(".social-icon-container a").each do |nested_info|
 
-      if info.css(".social-icon-container a").attr("href").text.include?("linkedin")
-        linkedin = info.css(".social-icon-container a").attr("href")
-        scraped_student[:linkedin] = linkedin
-      end
+        if nested_info.attr("href").include?("twitter")
+          scraped_student[:twitter] = nested_info.attr("href")
+        end
 
-      if info.css(".social-icon-container a").attr("href").text.include?("github")
-        github = info.css(".social-icon-container a").attr("href")
-        scraped_student[:github] = github
-      end
+        if nested_info.attr("href").include?("linkedin")
+          scraped_student[:linkedin] = nested_info.attr("href")
+        end
 
-      if info.css(".social-icon-container a").attr("href").text.include?("flatiron")
-        blog = info.css(".social-icon-container a").attr("href")
-        scraped_student[:blog] = blog
-      end
+        if nested_info.attr("href").include?("github")
+          scraped_student[:github] = nested_info.attr("href")
+        end
 
-      quote = info.css(".vitals-text-container .profile-quote").text
-      scraped_student[:profile_quote] = quote
+        if nested_info.attr("href").include?("flatiron")
+          scraped_student[:blog] = nested_info.attr("href")
+        end
+
+        scraped_student[:profile_quote] = info.css(".vitals-text-container .profile-quote").text
+      end
     end
-
     profile.css(".details-container").each do |info|
       bio = info.css(".description-holder p").text
       scraped_student[:bio] = bio
