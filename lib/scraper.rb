@@ -47,6 +47,7 @@ class Scraper
         scraped_student[:profile_quote] = info.css(".vitals-text-container .profile-quote").text
       end
     end
+    
     profile.css(".details-container").each do |info|
       bio = info.css(".description-holder p").text
       scraped_student[:bio] = bio
