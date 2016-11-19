@@ -40,8 +40,8 @@ class Scraper
           scraped_student[:github] = nested_info.attr("href")
         end
 
-        if nested_info.css(".social-icon").attr("src").include?("rss")
-          scraped_student[:blog] = nested_info.css(".social-icon").attr("src")
+        if nested_info.css(".social-icon").attr("src").text.include?("rss")
+          scraped_student[:blog] = nested_info.attr("href")
         end
 
         scraped_student[:profile_quote] = info.css(".vitals-text-container .profile-quote").text
