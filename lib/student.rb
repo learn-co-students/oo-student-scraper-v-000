@@ -5,7 +5,7 @@ class Student
 
   def initialize(student_hash)
     # it should take in an argument of a hash and use metaprogramming to assign the newly created student attributes
-    #  and values in accordance with the key/value pairs of the hash. Use the #send method to acheive this
+    # and values in accordance with the key/value pairs of the hash. Use the #send method to acheive this
     # this method should also add the newly created student to the Student class' @@all array of all students
     # You'll need to create this class variable and set it equal to an empty array at the top of your class
     # push self into the array at the end of the #initialize method
