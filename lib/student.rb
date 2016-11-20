@@ -31,7 +31,7 @@ class Student
     # dynamically assign the student attributes and values in accordance with the key/value pairs of the hash
     # use the #send method to achieve this
     attributes_hash.each do |key, value|
-      updt_student = self.send("#{key}=", value)
+      updated_student = self.send("#{key}=", value)
     end
     # Important: The return value of this method should be the student itself. Use the self keyword
     @@all << self
