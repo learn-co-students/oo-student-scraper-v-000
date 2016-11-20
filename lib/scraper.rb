@@ -16,6 +16,7 @@ class Scraper
 
       scraped_students << {name: student_name, location: student_location, profile_url: profile_url}
     end
+    
     scraped_students
   end
 
