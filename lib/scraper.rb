@@ -1,6 +1,6 @@
-require 'nokogiri'
 require 'open-uri'
 require 'pry'
+require 'nokogiri'
 
 class Scraper
 
@@ -13,7 +13,8 @@ class Scraper
       attributes = {
           name: student.css("h4.student-name").text,
           location: student.css("p.student-location").text,
-          profile_url:student.css("a").attribute("href").value,
+          # profile_url needs to be searched locally so attach the constructed path to its string directory
+          profile_url: "./fixtures/student-site/#{student.css("a").attribute("href").value}",
       }
       collection << attributes
     end
@@ -36,7 +37,7 @@ class Scraper
       elsif anchor.include?("github")
         updated_collection[:github] = anchor
       else student.css("img")[0]["src"].include?("rss-icon")
-      updated_collection[:blog] = anchor
+        updated_collection[:blog] = anchor
       end
     end
     updated_collection[:profile_quote] = scraped_students.css("div.profile-quote").text

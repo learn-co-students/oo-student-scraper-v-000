@@ -37,5 +37,4 @@ class CommandLineInteface
       puts "----------------------".colorize(:green)
     end
   end
-
 end
