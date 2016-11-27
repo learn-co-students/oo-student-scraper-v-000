@@ -1,3 +1,5 @@
+require 'colorize'
+
 class CommandLineInteface
   BASE_PATH = "./fixtures/student-site/"
 
