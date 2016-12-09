@@ -4,8 +4,10 @@ class Student
 
   @@all = []
 
-  def initialize(student_hash)
-    n.each{|key, value| self.send("#{key}=, value")}
+  def initialize(student_hash)  
+    student_hash.each{|key, value| self.send("#{key}=, value")}
+    #sophie.send("name=", "Sophie"), calls methods on objects, abstracts the specific method call , self refers to user instance that is bein initialized
+    #at that time
     @@all << self
   end
 
@@ -23,4 +25,4 @@ class Student
   end
 
 end
-end 
+end
