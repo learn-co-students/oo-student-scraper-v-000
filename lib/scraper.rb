@@ -22,12 +22,16 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
+
+    # student hash 
     scraped_student = {}
 
+    # get profile quote + store in student hash 
     scraped_student[:profile_quote] = doc.css(".profile-quote").text
+    # get bio + store in student hash 
     scraped_student[:bio] = doc.css(".bio-content .description-holder p").text
 
-    # social
+    # get social and store in student hash 
     doc.css("div.social-icon-container a").each do |social|
       social_type = social.attribute("href").value
 
@@ -41,6 +45,7 @@ class Scraper
         scraped_student[:blog] = social_type
       end
     end
+    # return hash 
     scraped_student
   end
 
