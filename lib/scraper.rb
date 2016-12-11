@@ -26,6 +26,23 @@ class Scraper
     scraped_student[:profile_quote] = doc.css(".profile-quote").text
     scraped_student[:bio] = doc.css(".bio-content .description-holder p").text
 
+    # social
+    doc.css(".social-icon-container a").each do |social|
+      social_type = social.attribute("href").value
+
+      if social_type.include?("linkedin")
+        scraped_student[:linkedin] = social_type
+      elsif social_type.include?("twitter")
+        scraped_student[:twitter] = social_type
+      elsif social_type.include?("github")
+        scraped_student[:github] = social_type
+      else
+        scraped_student[:blog] = social_type
+      end
+
+      scraped_student
+    end
+
 
 
 
