@@ -40,15 +40,8 @@ class Scraper
       else
         scraped_student[:blog] = social_type
       end
-
-      scraped_student
     end
-
-
-
-
-
-
+    scraped_student
   end
 
 end
