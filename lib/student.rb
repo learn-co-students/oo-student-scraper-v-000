@@ -4,17 +4,19 @@ class Student
 
   @@all = []
 
-  def initialize(student_hash)  
-    student_hash.each{|key, value| self.send("#{key}=, value")}
+  def initialize(student_hash)
+    student_hash.each{|key, value| self.send("#{key}=", value)}
     #sophie.send("name=", "Sophie"), calls methods on objects, abstracts the specific method call , self refers to user instance that is bein initialized
     #at that time
     @@all << self
   end
 
-  def self.create_from_collection(students_array)
-    students_array.each do ||
-      self.new()
+    def self.create_from_collection(students_array)
+      doc = Nokogiri::HTML(open("./fixtures/student-site/index.html"))
+      students_array.each do |student_hash|
+      Student.new(student_hash)
   end
+
 
   def add_student_attributes(attributes_hash)
 
