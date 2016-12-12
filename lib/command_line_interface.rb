@@ -3,7 +3,7 @@ require_relative "../lib/student.rb"
 require 'nokogiri'
 require 'colorize'
 
-class CommandLineInteface
+class CommandLineInterface
   BASE_PATH = "./fixtures/student-site/"
 
   def run
@@ -14,13 +14,13 @@ class CommandLineInteface
 
   def make_students
     students_array = Scraper.scrape_index_page(BASE_PATH + 'index.html')
-    Student.create_from_collection(students_array)
+    Student.create_from_collection(students_array) #takes in array of students and creates Student instances
   end
 
   def add_attributes_to_students
     Student.all.each do |student|
       attributes = Scraper.scrape_profile_page(student.profile_url)
-      student.add_student_attributes(attributes)
+      student.add_student_attributes(attributes) #takes in hash of student attributes and adds attributes to Student instances
     end
   end
 
