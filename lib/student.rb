@@ -17,14 +17,19 @@ class Student
       Student.new(student_hash)
   end
 
-
+#uses scraper class to get student attributes
+#uses hash to set additional attributes
   def add_student_attributes(attributes_hash)
-
+    #doc = Nokogiri::HTML(open("./fixtures/student-site/#{student.attr('href')}")
+      attributes_hash.each do |key, value|
+        self.send("#{key}=", value)
   end
+    self
+ end
 
   def self.all
     @@all
   end
 
-end
-end
+  end
+ end
