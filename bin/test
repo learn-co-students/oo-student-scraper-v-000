@@ -1,0 +1,3 @@
+require_relative '../lib/scraper.rb'
+
+Scraper.scrape_profile_page("./fixtures/student-site/students/joe-burgess.html")
