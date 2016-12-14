@@ -30,9 +30,6 @@ class Scraper
       elsif link.include?("linkedin")
         student[:linkedin] = link.css('a')['href']
 
-
-
-
      end
    end
     # student[:twitter] = doc.css(".social-icon-container a")[0]['href']
