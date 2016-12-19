@@ -8,13 +8,19 @@ class Scraper
 html = File.read(index_url)
     learn = Nokogiri::HTML(html)
      binding.pry
+# profile_url: what has been tried so far
+# learn.css("div.student-card a[href]") 
+# learn.css('div.student-card a').map{|link| link ['href']}  
+# learn.css("a[href]").map{|link| [link["href"]]} 
+# learn.css('div.heat a[href]').map { |link| link['href'] }
+#  learn.css('a[href]').map{|link| link['href']}  
 
 
   #   students = {}
   #
     #  students[:name] = learn.search(  learn.css(".student-name").first.text  ).text
   # students[:location] = learn.search(  learn.css(".student-location").first.text  ).text
-  # students[:profile_url] = learn.search().text
+  # students[:profile_url] = learn.search(   ).text
 
   end
 
