@@ -3,4 +3,5 @@
 require_relative "../lib/command_line_interface.rb"
 
 
-CommandLineInteface.new.run
+#CommandLineInteface.new.run
+puts Scraper.scrape_profile_page('fixtures/student-site/students/aaron-enser.html')
