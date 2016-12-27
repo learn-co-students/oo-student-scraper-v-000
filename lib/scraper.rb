@@ -8,17 +8,17 @@ class Scraper
     html = File.read(index_url)
     learn = Nokogiri::HTML(html)
 
+    learn.css(".student-card").each do |elements|
       scraper_array = []
       hash = {}
 
-    learn.css(".student-card").map do |elements|
 
        hash[:name] = elements.css(".student-name").text
        hash[:location] = elements.css(".student-location").text
        hash[:profile_url] = "./fixtures/student-site/" + elements.css('a[href]').map{|link| link['href']}.join
 
      scraper_array << hash
-      scraper_array
+scraper_array
     #  binding.pry
     end
  end
