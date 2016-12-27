@@ -8,9 +8,8 @@ class Scraper
     html = File.read(index_url)
     learn = Nokogiri::HTML(html)
 
-
       scraper_array = []
-hash = {}
+      hash = {}
 
     learn.css(".student-card").map do |elements|
 
@@ -19,11 +18,9 @@ hash = {}
        hash[:profile_url] = "./fixtures/student-site/" + elements.css('a[href]').map{|link| link['href']}.join
 
      scraper_array << hash
-scraper_array
+      scraper_array
     #  binding.pry
-   end
-
-
+    end
  end
 
 
@@ -33,7 +30,6 @@ scraper_array
       #   end
       #
       #     scraper_array << scraper
-
 
 
   def self.scrape_profile_page(profile_url)
