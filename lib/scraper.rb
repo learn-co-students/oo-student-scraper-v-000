@@ -10,38 +10,23 @@ class Scraper
 
 
       scraper_array = []
-      hash = {}
-      # name = learn.css(".student-name")
-      # url = learn.css('a[href]').map{|link| link['href']}
-      # binding.pry
+hash = {}
+
+    learn.css(".student-card").map do |elements|
+
+       hash[:name] = elements.css(".student-name").text
+       hash[:location] = elements.css(".student-location").text
+       hash[:profile_url] = "./fixtures/student-site/" + elements.css('a[href]').map{|link| link['href']}.join
+
+     scraper_array << hash
+scraper_array
+    #  binding.pry
+   end
 
 
-          # binding.pry
-          # hash[:name] = item.css(".student-name").text
-          # hash[:location] = item.css(".student-location").text
-          # hash[:profile_url] = item.css('a[href]').map{|link| link['href']}
+ end
 
 
-
-     learn.css(".student-name").zip(".student-location"), ('a[href]') do |name, location, profile_url|
-       hash = {}
-       hash[:name] = (".student-name").text
-       hash[:location] = (".student-location").text
-       hash[:profile_url] = ('a[href]').map{|link| link['href']}
-     
-     end
-
-     end
-# end
-      # learn.css(".student-name").css(".student-location").css("a[href]").map do |each_value|
-      #   binding.pry
-      #   name = {:name = each_name.text}
-      #  end
-      #
-      # learn.css(".student-location").map do |each_location|
-      #   location = {:location = each_location.text}
-      # end
-      #
       # names = learn.css('a[href]').map{|link| link['href']}
       #   names.map do |each_url|
       #     url = {:profile_url = "./fixtures/student-site/" + each_url}
