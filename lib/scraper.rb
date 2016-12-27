@@ -8,8 +8,10 @@ class Scraper
     html = File.read(index_url)
     learn = Nokogiri::HTML(html)
 
+    scraper_array = []
+
     learn.css(".student-card").each do |elements|
-      scraper_array = []
+
       hash = {}
 
 
