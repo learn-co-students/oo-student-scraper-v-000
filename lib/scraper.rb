@@ -10,7 +10,7 @@ class Scraper
 
     scraper_array = []
 
-    learn.css(".student-card").each do |elements|
+    learn.css(".student-card").map do |elements|
 
       hash = {}
 
