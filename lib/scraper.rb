@@ -10,24 +10,45 @@ class Scraper
 
 
       scraper_array = []
-      scraper = {}
+      hash = {}
+      # name = learn.css(".student-name")
+      # url = learn.css('a[href]').map{|link| link['href']}
+      # binding.pry
 
-      learn.css(".student-name").map do |each_name|
-        name = scraper[:name] = each_name.text
-      end
 
-      learn.css(".student-location").map do |each_location|
-        location = scraper[:location] = each_location.text
-      end
-
-      names = learn.css('a[href]').map{|link| link['href']}
-        names.map do |each_url|
-          url = scraper[:profile_url] = "./fixtures/student-site/" + each_url
-        end
-
-          scraper_array << scraper
           # binding.pry
-  end
+          # hash[:name] = item.css(".student-name").text
+          # hash[:location] = item.css(".student-location").text
+          # hash[:profile_url] = item.css('a[href]').map{|link| link['href']}
+
+
+
+     learn.css(".student-name").zip(".student-location"), ('a[href]') do |name, location, profile_url|
+       hash = {}
+       hash[:name] = (".student-name").text
+       hash[:location] = (".student-location").text
+       hash[:profile_url] = ('a[href]').map{|link| link['href']}
+     
+     end
+
+     end
+# end
+      # learn.css(".student-name").css(".student-location").css("a[href]").map do |each_value|
+      #   binding.pry
+      #   name = {:name = each_name.text}
+      #  end
+      #
+      # learn.css(".student-location").map do |each_location|
+      #   location = {:location = each_location.text}
+      # end
+      #
+      # names = learn.css('a[href]').map{|link| link['href']}
+      #   names.map do |each_url|
+      #     url = {:profile_url = "./fixtures/student-site/" + each_url}
+      #   end
+      #
+      #     scraper_array << scraper
+
 
 
   def self.scrape_profile_page(profile_url)
@@ -35,8 +56,6 @@ class Scraper
     doc = Nokogiri::HTML(html_file)
 
 
-
- # binding.pry
   end
 
 end
