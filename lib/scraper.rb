@@ -38,5 +38,4 @@ class Scraper
     profile[:bio]           = bio
     profile
   end
-
 end
