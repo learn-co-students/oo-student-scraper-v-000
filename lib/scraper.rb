@@ -15,12 +15,22 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    page = Nokogiri::HTML(open(profile_url))
+    page    = Nokogiri::HTML(open(profile_url))
     socials = page.css('.social-icon-container a')
-    quote = page.css('.profile-quote').text.strip
-    bio = page.css('.bio-content.content-holder').css('.description-holder').text.strip
+    quote   = page.css('.profile-quote').text.strip
+    bio     = page.css('.bio-content.content-holder').css('.description-holder').text.strip
     profile = {}
+    add_attributes(bio, profile, quote, socials)
+  end
 
+  def self.add_attributes(bio, profile, quote, socials)
+    build_socials(profile, socials)
+    profile[:profile_quote] = quote if quote
+    profile[:bio]           = bio if bio
+    profile
+  end
+
+  def self.build_socials(profile, socials)
     socials.each do |s|
       s = s.attribute('href').value
       if s.match(/twitter/)
@@ -33,9 +43,5 @@ class Scraper
         profile[:blog] = s
       end
     end
-
-    profile[:profile_quote] = quote
-    profile[:bio]           = bio
-    profile
   end
 end
