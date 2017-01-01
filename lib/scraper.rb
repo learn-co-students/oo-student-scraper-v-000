@@ -31,20 +31,20 @@ class Scraper
           doc.css(".main-wrapper").detect do |each_profile|
 
             url = each_profile.css(".social-icon-container").css('a[href]').map{|link| link['href']}
-            url.each do |each_link|
-          # binding.pry
-          if each_link == url[0]
-            url_hash[:twitter] = url[0]
-            elsif
-              each_link == url[1]
-                url_hash[:linkedin] = url[1]
-              elsif
-                each_link == url[2]
-                  url_hash[:github] = url[2]
-                elsif
-                  each_link == url[3]
-                    url_hash[:blog] = url[3]
-          end
+              url.each do |each_link|
+            # binding.pry
+                if each_link == url[0]
+                  url_hash[:twitter] = url[0]
+                  elsif
+                    each_link == url[1]
+                      url_hash[:linkedin] = url[1]
+                    elsif
+                      each_link == url[2]
+                        url_hash[:github] = url[2]
+                      elsif
+                        each_link == url[3]
+                          url_hash[:blog] = url[3]
+              end
         end
 
 
