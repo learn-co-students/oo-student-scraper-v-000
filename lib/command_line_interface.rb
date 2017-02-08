@@ -39,3 +39,5 @@ class CommandLineInteface
   end
 
 end
+
+# binding.pry
