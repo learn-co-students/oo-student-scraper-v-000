@@ -29,13 +29,21 @@ class Scraper
 
       socials.each do |link|
         url = link.attribute("href").value 
-        links[:twitter] = url if url.match(/twitter/)
-        links[:linkedin] = url if url.match(/linkedin/)
-        links[:github] = url if url.match(/github/)
+         if url.match(/twitter/)
+          links[:twitter] = url 
+         elsif url.match(/linkedin/)
+          links[:linkedin] = url 
+         elsif url.match(/github/)
+          links[:github] = url 
+         elsif !url.match(/facebook/)
+          links[:blog] = url 
+        end# of if statement 
 
-        binding.pry 
+        #binding.pry 
       end# of do
-      links[:profile_quote] = profile.css("div.profile-quote").text
+      links[:profile_quote] = profile.css("div.profile-quote").text 
+      links[:bio] = profile.css("div.description-holder p").text 
+      links 
   end
 
 end
