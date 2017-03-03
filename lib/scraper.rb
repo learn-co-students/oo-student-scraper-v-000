@@ -28,7 +28,27 @@ class Scraper
     profile_hash = {}
     #binding.pry
     doc.css(".social-icon-container a").each do |social| #.children.css("a")[0].attr('href').value
-      url = social.attributes['href'].value
+
+# [1] pry(Scraper)> social
+# => #(Element:0x1468560 {
+#   name = "a",
+#   attributes = [
+#     #(Attr:0x172373c {
+#       name = "href",
+#       value = "https://twitter.com/jmburges"
+#       })],
+#   children = [
+#     #(Element:0x1733150 {
+#       name = "img",
+#       attributes = [
+#         #(Attr:0x1732494 { name = "class", value = "social-icon" }),
+#         #(Attr:0x1732480 {
+#           name = "src",
+#           value = "../assets/img/twitter-icon.png"
+#           })]
+#       })]
+#   })
+      url = social.attributes['href'].value # we used attributes['href'] instead of .css("href") because social gives us an object
       profile_hash[:twitter] = url if url.include?('twitter')
       profile_hash[:linkedin] = url if url.include?('linkedin')
       profile_hash[:github] = url if url.include?('github')
