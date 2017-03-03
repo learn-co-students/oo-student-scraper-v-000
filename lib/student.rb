@@ -6,7 +6,7 @@ class Student
 
   def initialize(student_hash)
     student_hash.each { |info, value| self.send(("#{info}="), value)}
-    @@all << self   #good lord I forgot all about this.
+    @@all << self
   end
 
   def self.create_from_collection(students_array)
@@ -14,8 +14,7 @@ class Student
   end
 
   def add_student_attributes(attributes_hash)     #binding.pry
-    attributes_hash.each {|personal, value| self.send(("#{personal}="), value)}
-    self #@linkedin = attributes_hash[:linkedin]
+    attributes_hash.each {|personal, value| self.send(("#{personal}="), value)} #@linkedin = attributes_hash[:linkedin]
   end
 
   def self.all
