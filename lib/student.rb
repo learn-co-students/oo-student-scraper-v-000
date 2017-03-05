@@ -23,6 +23,7 @@ class Student
   # Uses mass assignment to only add the attributes a student has
   def add_student_attributes(attributes_hash)
     attributes_hash.each {|key, value| self.send(("#{key}="), value)}
+    self
   end
 
   # Allows the student array to be called
