@@ -25,18 +25,19 @@ class Scraper
     @index_url
     doc =
     Nokogiri::HTML(open("http://138.68.63.182:30016/fixtures/student-site/"))
-    binding.pry
+    scraped_students.to_a(array)
+    #binding.pry
     #names = doc.css(".student-name").text
     #names.each do |name|
     #end
     #binding.pry
-    doc.map do |node|
-      hash = {}
+    #doc.map do |node|
+      #hash = {}
 
-      hash['link'] = node.css('cards.collect{|node| node.css('a').first['href'] }')
-      hash['name'] = node.css('students.collect { |node| node.css('.student-name').text }')
-      hash['location'] = node.css('students.collect { |node| node.css('.student-location').text }')
-      hash
+      #hash['link'] = node.css('cards.collect{|node| node.css('a').first['href'] }')
+      #hash['name'] = node.css('students.collect { |node| node.css('.student-name').text }')
+      #hash['location'] = node.css('students.collect { |node| node.css('.student-location').text }')
+      #hash
     end
 
   #doc.css(".student-location").text
@@ -58,4 +59,4 @@ class Scraper
     #binding.pry
   end
 
-end
+#end
