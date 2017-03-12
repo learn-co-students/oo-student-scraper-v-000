@@ -5,16 +5,6 @@ require_relative './student.rb'
 
 class Scraper
 
-  attr_accessor :name, :location, :profile_url, :doc
-
-  def initialize
-    @name = name
-    @location = location
-    @profile_url = profile_url
-    @doc =
-    Nokogiri::HTML(open("http://138.68.63.182:30016/fixtures/student-site/"))
-  end
-
   #scraped_students = Scraper.scrape_index_page(index_url)
   #expect(scraped_students).to be_a(Array)
   #expect(scraped_students.first).to have_key(:location)
