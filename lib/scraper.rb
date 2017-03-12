@@ -30,7 +30,7 @@ class Scraper
     #names.each do |name|
     #end
     #binding.pry
-    collection.map do |node|
+    doc.map do |node|
       hash = {}
 
       hash['link'] = node.css('cards.collect{|node| node.css('a').first['href'] }')
