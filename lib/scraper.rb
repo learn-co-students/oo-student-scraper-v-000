@@ -1,34 +1,39 @@
 require 'open-uri'
 require 'nokogiri'
 require 'pry'
-require_relative './student.rb'
 
 class Scraper
 
-  #scraped_students = Scraper.scrape_index_page(index_url)
-  #expect(scraped_students).to be_a(Array)
-  #expect(scraped_students.first).to have_key(:location)
-  #expect(scraped_students.first).to have_key(:name)
-  #expect(scraped_students).to include(student_index_array[0], student_index_array[1], student_index_array[2])
 
+#binding.pry
   def self.scrape_index_page(index_url)
-    @index_url
-    doc =
-    Nokogiri::HTML(open("http://138.68.63.182:30016/fixtures/student-site/"))
-    scraped_students = []
     #binding.pry
+    doc = Nokogiri::HTML(open("http://138.68.63.182:30019/fixtures/student-site/"))
+    #binding.pry
+    scraped_students = []
+    hash = {:name =>node.css('students.collect { |node| node.css('.student-name').text }'), :location =>node.css('students.collect { |node| node.css('.student-location').text }'), :profile_url =>node.css('cards.collect{|node| node.css('a').first['href'] }')}
+    #hash = {:name => doc.css("setudent-name").text, :location => doc.css(".student-location").text, :profile_url => }
+    scraped_students = hash.collect {|k,v| key }
+    
+    #:location = scraped_students.first
+    #binding.pry
+
+    #div.roster-card-container => Iterate over to get 
+      #div.student-card
+        #a_href.HTML for student=profile_url
+          
     #names = doc.css(".student-name").text
     #names.each do |name|
     #end
     #binding.pry
     #doc.map do |node|
-      #hash = {}
+    #hash = {}
 
       #hash['link'] = node.css('cards.collect{|node| node.css('a').first['href'] }')
       #hash['name'] = node.css('students.collect { |node| node.css('.student-name').text }')
       #hash['location'] = node.css('students.collect { |node| node.css('.student-location').text }')
       #hash
-    end
+    #end
 
   #doc.css(".student-location").text
   #doc.css(".student-card")
@@ -43,10 +48,5 @@ class Scraper
       student.profile_url = node.css("div").text
 
     end
-    #doc1 =
-    #Nokogiri::HTML(open("http://138.68.63.182:30010/fixtures/student-site/students"))
-    #doc1.css(".a_href")
-    #binding.pry
   end
-
-#end
+end
