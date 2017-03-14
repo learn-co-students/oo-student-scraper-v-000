@@ -11,16 +11,25 @@ class Scraper
     #binding.pry
     html = File.read('./fixtures/student-site/index.html')
     index_page = Nokogiri::HTML(html)
+
+#array
     scraped_students = []
-    index_page.css("div.roster-card-container").each do |students|
-      scraper = students.css("h4.student-name")
-      students[scraper] = {
-        :name => students.css('.student-name').text,
+    index_page.css("div.roster-card-container").each do |container|
+      container.css("div.student-card.a_href").each do |students|
+
+#hash
+      h = {
         :location => students.css('.student-location').text,
+        :name => students.css('.student-name').text,
         :profile_url => students.css('a').first['href']
       }
+      end
     end
-    scraped_students.first.has_key?
+    scraped_students.first
+    #student_index_array[0] = scraped_students.first.has_key?.shift
+    #student_index_array[1] = scraped_students.first.has_key?.shift
+    #student_index_array[2] = scraped_students.first.has_key?.shift
+
   end
     #doc = Nokogiri::HTML(open("http://138.68.63.182:30012/fixtures/student-site/"))
     #binding.pry
