@@ -31,15 +31,15 @@ class Scraper
     profile_page.css('div.vitals-container').each do |vitals|
       vitals.css('div.social-icon-container').each do |social|
       binding.pry
+      end
     end
-
-        scraped_students << {
+        #scraped_students << {
         #  :twitter => social.css('a href'),
         #  :linkedin => social.css('a href'),
         #  :github => social.css('a href'),
         #  :blog =>,
         #  :profile_quote => social.css('.profile_quote'),
-        #  :bio => 
+        #  :bio =>
         #}
   end
 end
