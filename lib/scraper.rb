@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require 'open-uri'
 require 'nokogiri'
 require 'pry'
@@ -29,16 +30,17 @@ class Scraper
 
     scraped_students = []
 
-      vitals.css('div.social-icon-container').each do |social|
+      profile_page.css('div.social-icon-container').each do |social|
+
       binding.pry
       end
     end
-        #scraped_students << {
-        #  :twitter => social.css('a')[0]['href']  or social.css('a').first['href'], => "https://twitter.com/jmburges"
-        #  :linkedin => social.css('a')[1]['href'], => "https://www.linkedin.com/in/jmburges"
-        #  :github => social.css('a')[2]['href'], => "https://github.com/jmburges"
+        scraped_students << {
+          :twitter => social.css('a')[0]['href']  or social.css('a').first['href'], => "https://twitter.com/jmburges"
+          :linkedin => social.css('a')[1]['href'], => "https://www.linkedin.com/in/jmburges"
+          :github => social.css('a')[2]['href'], => "https://github.com/jmburges"
         #  :blog =>,
-        #  :profile_quote => vitals.css('div.profile-quote').text, => "\"Reduce to a previously solved problem\""
+          :profile_quote => vitals.css('div.profile-quote').text, => "\"Reduce to a previously solved problem\""
         #  :bio =>
         #[20] pry(Scraper)> vitals.css('div.title-holder').text
         #=> ""
@@ -61,13 +63,13 @@ class Scraper
         #vitals.css('.div.description-holder p')
         #=> []
         #vitals.css('.div.description-holder p').text
-        #=> "" 
+        #=> ""
 
 
         #}
-  end
+
 end
 
 # output = Scraper.scrape_index_page('./fixtures/student-site/index.html')
 output = Scraper.scrape_profile_page("./fixtures/student-site/students/joe-burgess.html")
-#binding.pry
+binding.pry
