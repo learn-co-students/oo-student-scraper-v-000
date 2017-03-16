@@ -4,17 +4,8 @@ require 'pry'
 
 class Scraper
 
-  # def self.get_page
-  #   doc = Nokogiri::HTML(open("http://138.68.63.182:30002/fixtures/student-site/"))
-  # end
-  #
-  # def self.get_students
-  #   self.get_page.css(".student-card")
-  # end
-
   def self.scrape_index_page(index_url)
     roster = Nokogiri::HTML(File.read(index_url))
-    #   doc = Nokogiri::HTML(open("http://138.68.63.182:30002/fixtures/student-site/"))
 
     students = []
 
@@ -22,16 +13,33 @@ class Scraper
       students << {
         :name => student.css(".student-name").text,
         :location => student.css(".student-location").text,
-        :profile_url => student.css("a").attribute("href").value
+        :profile_url => "./fixtures/student-site/#{student.css("a").attribute("href").value}"
       }
-      # binding.pry
     end
     students
   end
-  #=> array of hashes where each hash represents a student
 
   def self.scrape_profile_page(profile_url)
+    profile = Nokogiri::HTML(File.read(profile_url))
 
+    student = {
+      :profile_quote => profile.css(".profile-quote").text,
+      :bio => profile.css("div.description-holder p").text
+    }
+
+    social = profile.css(".social-icon-container a").collect {|a| a['href']}
+    social.each do |link|
+      if link.include? "twitter.com"
+        student[:twitter] = link
+      elsif link.include? "linkedin.com"
+        student[:linkedin] = link
+      elsif link.include? "github.com"
+        student[:github] = link
+      else
+        student[:blog] = link
+      end
+    end
+    student
   end
 
 end
