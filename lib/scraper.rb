@@ -10,8 +10,8 @@ class Scraper
     index_page = Nokogiri::HTML(html)
   #array
     scraped_students = []
-    index_page.css('.roster-card-container').each do |cards|
-      cards.css("div.student-card").each do |student|
+    index_page.css('div.roster-card-container').each do |cards|
+      cards.css('div.student-card').each do |student|
   #hash
         scraped_students << {
           :location => student.css('.student-location').text,
@@ -21,43 +21,51 @@ class Scraper
       end
     end
     scraped_students
+
+
   end
 
 #scrape_profile_page method is responsible for scraping an individual student's profile page to get further information about that student.
   def self.scrape_profile_page(profile_url)
     html = File.read(profile_url)
     profile_page = Nokogiri::HTML(html)
-#array
-    scraped_student = []
+  end
+end
 
-      profile_page.css('div.vitals-tex-container').each do |vitals|
-        vitals.css('div.social-icon-container').each do |social|
+      #profile_page.css('div.vitals-text-container').each do |vitals|
+        #vitals.css('div.social-icon-container').each do |social|
 
 #hash
-        scraped_student << {
-          :twitter => social.css('a')[0]['href'],  #or social.css('a').first['href'], => "https://twitter.com/jmburges"
-          :linkedin => social.css('a')[1]['href'], #=> "https://www.linkedin.com/in/jmburges"
-          :github => social.css('a')[2]['href'], #=> "https://github.com/jmburges"
-
-          #John Anthony Rivera
-          :blog => profile_page.css('.social-icon').attribute('src').value,
-                      #profile_page.css('.social-icon').attribute("src").value
+        #scraped_student << {
+          #:twitter => social.css('a')[0]['href'],  #or social.css('a').first['href'], => "https://twitter.com/jmburges"
+          #:linkedin => social.css('a')[1]['href'], #=> "https://www.linkedin.com/in/jmburges"
+          #:github => social.css('a')[2]['href'], #=> "https://github.com/jmburges"
+          #:blog => profile_page.css('.social-icon').attribute('src').value,
+              #John Anthony Rivera
+                  #profile_page.css('.social-icon').attribute("src").value
                         #=> "../assets/img/twitter-icon.png"
           #<img class="social-icon" src="../assets/img/rss-icon.png">http://johnanthony-dev.com/blog/
           #<img class="social-icon" src="../assets/img/rss-icon.png"> http://joemburgess.com/
           #<img class="social-icon" src="../assets/img/rss-icon.png">
           #<img class="social-icon" src="../assets/img/rss-icon.png"> http://dannydawson.io/
-          :profile_quote => profile_page.css('.profile-quote').text,# => "\"Reduce to a previously solved problem\""
-          :bio => profile_page.css('.description-holder p').text
+          #:profile_quote => profile_page.css('.profile-quote').text,# => "\"Reduce to a previously solved problem\""
+          #:bio => profile_page.css('.description-holder p').text
 #=> "I grew up outside of the Washington DC (NoVA!) and went to college at Carnegie Mellon University in Pittsburgh. After college, I worked as an Ora
 #cle consultant for IBM for a bit and now I teach here at The Flatiron School."
+          #end
+        #}
+        #if social.include?("twitter")
+        #elsif social.include?("linkedin")
+        #elsif social.include?("github")
+        #elsif social.include?("blog")
+        #else social.include?("bio")
 
-        }
-      end
-    end
+          #end
+        #end
+      #end
     #scraped_student
-end
+#end
 
-output = Scraper.scrape_index_page('./fixtures/student-site/index.html')
+#output = Scraper.scrape_index_page('./fixtures/student-site/index.html')
 #output = Scraper.scrape_profile_page("./fixtures/student-site/students/joe-burgess.html")
-binding.pry
+#binding.pry
