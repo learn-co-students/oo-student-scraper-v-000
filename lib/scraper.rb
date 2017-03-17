@@ -30,8 +30,8 @@ class Scraper
 #array
     scraped_student = []
 
-      profile_page.css('div.social-icon-container').each do |social|
-        #social.css('a').first[href].each do ||
+      profile_page.css('div.vitals-tex-container').each do |vitals|
+        vitals.css('div.social-icon-container').each do |social|
 
 #hash
         scraped_student << {
@@ -55,9 +55,9 @@ class Scraper
         }
       end
     end
-    scraped_student
+    #scraped_student
 end
 
-# output = Scraper.scrape_index_page('./fixtures/student-site/index.html')
-output = Scraper.scrape_profile_page("./fixtures/student-site/students/joe-burgess.html")
+output = Scraper.scrape_index_page('./fixtures/student-site/index.html')
+#output = Scraper.scrape_profile_page("./fixtures/student-site/students/joe-burgess.html")
 binding.pry
