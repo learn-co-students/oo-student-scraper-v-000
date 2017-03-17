@@ -35,36 +35,23 @@ class Scraper
       binding.pry
       end
     end
-        scraped_students << {
-          :twitter => social.css('a')[0]['href']  or social.css('a').first['href'], => "https://twitter.com/jmburges"
-          :linkedin => social.css('a')[1]['href'], => "https://www.linkedin.com/in/jmburges"
-          :github => social.css('a')[2]['href'], => "https://github.com/jmburges"
-        #  :blog =>,
-          :profile_quote => vitals.css('div.profile-quote').text, => "\"Reduce to a previously solved problem\""
-        #  :bio =>
-        #[20] pry(Scraper)> vitals.css('div.title-holder').text
-        #=> ""
-        #[21] pry(Scraper)> vitals.css('div.title-holder')
-        #=> []
-        #[22] pry(Scraper)> vitals.css('div.title-holder h3')
-        #=> []
-        #[23] pry(Scraper)> vitals.css('div.title-holder h3').text
-        #=> ""
-        #[24] pry(Scraper)> vitals.css('div.description-holder').text
-        #=> ""
-        #[25] pry(Scraper)> vitals.css('div.description-holder p').text
-        #=> ""
-        #[26] pry(Scraper)> vitals.css('div.description-holder p')
-        #=> []
-        # vitals.css('.description-holder p').text
-        #=> ""
-        # vitals.css('.description-holder p')
-        #=> []
-        #vitals.css('.div.description-holder p')
-        #=> []
-        #vitals.css('.div.description-holder p').text
-        #=> ""
+        #scraped_students << {
+          #:twitter => social.css('a')[0]['href']  or social.css('a').first['href'], => "https://twitter.com/jmburges"
+          #:linkedin => social.css('a')[1]['href'], => "https://www.linkedin.com/in/jmburges"
+          #:github => social.css('a')[2]['href'], => "https://github.com/jmburges"
 
+          #John Anthony Rivera
+          #  :blog => profile_page.css('.social-icon').attribute ('src').value,
+                      #profile_page.css('.social-icon').attribute("src").value
+                        #=> "../assets/img/twitter-icon.png"
+          #<img class="social-icon" src="../assets/img/rss-icon.png">http://johnanthony-dev.com/blog/
+          #<img class="social-icon" src="../assets/img/rss-icon.png"> http://joemburgess.com/
+          #<img class="social-icon" src="../assets/img/rss-icon.png">
+          #<img class="social-icon" src="../assets/img/rss-icon.png"> http://dannydawson.io/
+          #:profile_quote => profile_page.css('.profile-quote').text, => "\"Reduce to a previously solved problem\""
+          #  :bio => profile_page.css('.description-holder p').text
+#=> "I grew up outside of the Washington DC (NoVA!) and went to college at Carnegie Mellon University in Pittsburgh. After college, I worked as an Ora
+#cle consultant for IBM for a bit and now I teach here at The Flatiron School."
 
         #}
 
