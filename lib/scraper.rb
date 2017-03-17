@@ -28,13 +28,13 @@ class Scraper
     html = File.read(profile_url)
     profile_page = Nokogiri::HTML(html)
 #array
-    scraped_students = []
+    scraped_student = []
 
       profile_page.css('div.social-icon-container').each do |social|
         #social.css('a').first[href].each do ||
 
 #hash
-        scraped_students << {
+        scraped_student << {
           :twitter => social.css('a')[0]['href'],  #or social.css('a').first['href'], => "https://twitter.com/jmburges"
           :linkedin => social.css('a')[1]['href'], #=> "https://www.linkedin.com/in/jmburges"
           :github => social.css('a')[2]['href'], #=> "https://github.com/jmburges"
@@ -55,9 +55,9 @@ class Scraper
         }
       end
     end
-    scraped_students
+    scraped_student
 end
 
 # output = Scraper.scrape_index_page('./fixtures/student-site/index.html')
 output = Scraper.scrape_profile_page("./fixtures/student-site/students/joe-burgess.html")
-binding.pry 
+binding.pry
