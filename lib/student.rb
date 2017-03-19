@@ -18,7 +18,7 @@ class Student
   end
 
   def add_student_attributes(attributes_hash)
-    binding.pry
+
 #(attributes_hash)
 #=> {:twitter=>"someone@twitter.com",
  #:linkedin=>"someone@linkedin.com",
@@ -33,7 +33,7 @@ class Student
       self.send("#{k}=", v)
     end
   end
-  
+
   def self.all
     @@all
   end

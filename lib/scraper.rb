@@ -32,7 +32,7 @@ class Scraper
         s[:github] = link
       else
         s[:blog] = link
-      end    
+      end
     end
     s[:profile_quote] = page.css('.profile-quote').text
     s[:bio] = page.css('.description-holder p').text
