@@ -24,6 +24,7 @@ describe "Scraper" do
   describe "#scrape_index_page" do
     it "is a class method that scrapes the student index page and a returns an array of hashes in which each hash represents one student" do
       index_url = "./fixtures/student-site/index.html"
+      binding.pry
       scraped_students = Scraper.scrape_index_page(index_url)
       expect(scraped_students).to be_a(Array)
       expect(scraped_students.first).to have_key(:location)
