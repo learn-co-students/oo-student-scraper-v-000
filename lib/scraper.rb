@@ -20,7 +20,7 @@ class Scraper
         }
       end
     end
-    scraped_students
+    (scraped_students.first).to_a.has_key?
 
 
   end
