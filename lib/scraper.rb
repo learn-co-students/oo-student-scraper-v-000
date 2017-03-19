@@ -18,7 +18,8 @@ class Scraper
       each_student = {
         :name => s.css("div.card-text-container h4.student-name").text,
         :location => s.css("div.card-text-container p.student-location").text,
-        :profile_url => s.css("a").attribute("href").value
+        binding.pry
+        :profile_url => "./fixtures/student-site/#{s.css("a").attribute("href").value}"
       }
       student_index_array << each_student
 
