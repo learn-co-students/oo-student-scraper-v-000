@@ -24,42 +24,35 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    student_profile_array = []
+    all_students = {}
     html = File.read(profile_url)
     student_scraper = Nokogiri::HTML(html)
 
-    student_scraper.css("div.vitals-container").collect do |s|
-      twitter_link = nil
-      linkedin_link = nil
-      github_link = nil
-      bio = nil
+    student_scraper.css("div.main-wrapper").collect do |s|
 
-      s.css("a").each do |h|
+      s.css("div.vitals-container a").each do |h|
         link = h.attribute("href").value
         if link.include? "https://twitter.com/"
-          twitter_link = link
+          all_students[:twitter] = link
         elsif link.include? "https://www.linkedin.com/"
-          linkedin_link = link
+            all_students[:linkedin] = link
         elsif link.include? "https://github.com"
-          github_link = link
+          all_students[:github] = link
         else
-          bio = link
+          all_students[:blog] = link
         end
       end
-      each_student = {
-        :twitter => s.css("div.card-text-container h4.student-name").text,
-        :linkedin => s.css("div.card-text-container p.student-location").text,
-        :github => "./fixtures/student-site/#{s.css("a").attribute("href").value}",
-        # :blog =>
-        # :profile_quote =>
-        # :bio =>
 
-      }
-      student_profile_array << each_student
+      bio = s.css("div.details-container div.bio-block.details-block div.description-holder").text
+      # bio.slice!("\n              ")
+      # bio.slice!("\n            ")
+
+      all_students[:profile_quote] = s.css("div.vitals-container div.vitals-text-container div.profile-quote").text
+      all_students[:bio] = bio.strip
 
     end
-
-    student_profile_array
-
+    all_students
   end
+
+
 end
