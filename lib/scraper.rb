@@ -20,46 +20,33 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     profile_page = Nokogiri::HTML(open(profile_url))
 
+    student = {}
+
     # Profile Page - Nokogiri XML Object
     profile = profile_page.css("div.main-wrapper.profile")
-
-    # Social Links
-    twitter_url = ""
-    linkedin_url = ""
-    github_url = ""
-    blog_url = ""
 
     social_links = profile.css("div.vitals-container div.social-icon-container a").map{|social_link| social_link.attribute("href").value}
     social_links.each do |link|
       if link.include?("twitter")
-        twitter_url = link
+        student[:twitter] = link
       elsif link.include?("github")
-        github_url = link
+        student[:github] = link
       elsif link.include?("linkedin")
-        linkedin_url = link
+        student[:linkedin] = link
       else
         # all blog URLs are different
-        blog_url = link
+        student[:blog] = link
       end
     end
 
     # Profile Quote
-    profile_quote = profile.css("div.vitals-container div.vitals-text-container div.profile-quote").text
+    student[:profile_quote] = profile.css("div.profile-quote").text
 
     # Bio
-    bio_text = profile.css("div.description-holder p").text
+    student[:bio] = profile.css("div.description-holder p").text
 
-    profile = {
-      :twitter => twitter_url,
-      :linkedin => linkedin_url,
-      :github => github_url,
-      :blog => blog_url,
-      :profile_quote => profile_quote,
-      :bio => bio_text
-    }
-
-    profile.delete_if {|k, v| v == ""}
-    profile
+    student.delete_if {|k, v| v == ""}
+    student
 
   end
 
