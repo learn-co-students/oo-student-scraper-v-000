@@ -25,27 +25,25 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    doc = Nokogiri::HTML(open(profile_url))
-    profile_doc = doc.css("div.vitals-container")
+    profile_page = Nokogiri::HTML(open(profile_url))
 
     profile = {}
 
-    profile_doc.each do |social|
-
-      links = []
-      social.css("div.social-icon-container a").each do |link|
-        links << link.attribute("href").value
+    links = profile_page.css(".social-icon-container").children.css("a").map { |el| el.attribute('href').value}
+    links.each do |link|
+      if link.include?("linkedin")
+        profile[:linkedin] = link
+      elsif link.include?("github")
+        profile[:github] = link
+      elsif link.include?("twitter")
+        profile[:twitter] = link
+      else
+        profile[:blog] = link
       end
-
-      profile[:twitter] = "#{links.grep(/twitter/).first.to_s}" if links.grep(/twitter/) != []
-      profile[:linkedin] = "#{links.grep(/linkedin/).first.to_s}" if links.grep(/linkedin/) != []
-      profile[:github] = "#{links.grep(/github/).first.to_s}" if links.grep(/github/) != []
-      profile[:blog] = "#{links.grep(/.com\/$/).first.to_s}" if links.grep(/.com\/$/) != []
-
-      profile[:profile_quote] = "#{social.css("div.profile-quote").text}"
     end
 
-    profile[:bio] = "#{doc.css("div.details-container div.description-holder p").text}"
+    profile[:profile_quote] = "#{profile_page.css("div.profile-quote").text}"
+    profile[:bio] = "#{profile_page .css("div.details-container div.description-holder p").text}"
 
     profile
 
