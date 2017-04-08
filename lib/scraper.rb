@@ -4,7 +4,7 @@ require 'pry'
 class Scraper
 
   def self.scrape_index_page(index_url)
-    html=open('http://159.203.110.173:30001/fixtures/student-site/')
+    html=open(index_url)
     studentPage=Nokogiri::HTML(html)
 
     students=[]
