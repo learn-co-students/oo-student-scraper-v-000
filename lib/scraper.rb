@@ -59,7 +59,7 @@ class Scraper
     info_hash[:bio] = descrip
     info_hash[:profile_quote] = prof_quote
    
-    binding.pry
+    
     info_hash
     end
 
