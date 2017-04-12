@@ -5,7 +5,7 @@ class Student
   @@all = []
 
   def initialize(student_hash)
-    student_hash.each{|k, v| self.send(("#{k}="), v)}
+    student_hash.each{|a, v| self.send(("#{a}="), v)} # 'a' = attribute
     self.class.all << self
   end
 
@@ -14,7 +14,7 @@ class Student
   end
 
   def add_student_attributes(attributes_hash)
-    attributes_hash.each{|k, v| self.send(("#{k}="), v)}
+    attributes_hash.each{|a, v| self.send(("#{a}="), v)} # 'a' = attribute
     self
   end
 
