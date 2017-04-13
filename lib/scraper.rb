@@ -8,7 +8,7 @@ class Scraper
     doc = Nokogiri::HTML(open(index_url))
     cards = doc.css('div.student-card')
     cards.collect do |card|
-      {name: card.css('h4.student-name').text, location: card.css('p.student-location').text, profile_url: card.at('a')['href']}
+      {name: card.css('h4.student-name').text, location: card.css('p.student-location').text, profile_url: './fixtures/student-site/' + card.at('a')['href']}
     end
   end
 
