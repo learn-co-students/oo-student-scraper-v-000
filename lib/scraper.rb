@@ -35,10 +35,7 @@ class Scraper
     quote = doc.css('.profile-quote').text
     bio = doc.css('div.bio-content.content-holder div.description-holder p').text
     hash1 = {:profile_quote => quote, :bio => bio}
-     #binding.pry
     @hash.merge!(hash1)
     @hash
-#binding.pry
   end
-#  binding.pry
 end
