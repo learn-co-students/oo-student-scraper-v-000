@@ -1,7 +1,9 @@
 class Student
 
-  attr_accessor :name, :location, :twitter, :linkedin, :github, :blog, :profile_quote, :bio, :profile_url
-
+  attr_accessor :name, :location, :twitter, :linkedin, :github, :youtube, :facebook, :instagram, :nikolas, :perritano, :learn, :blog, :profile_quote, :bio, :profile_url
+  # :nikolas, :perritano :: These are errors caused by Scraper.get_social using regex match for https to retrieve links
+  # Should check from some common sites array to determine whether it should be admitted or not.
+  
   @@all = []
 
   def initialize(student_hash)
