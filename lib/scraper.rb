@@ -1,5 +1,5 @@
 require 'open-uri'
-require 'Nokogiri'
+require 'nokogiri'    #in windows this is Nokogiri
 require 'pry'
 
 class Scraper
