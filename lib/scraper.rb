@@ -20,12 +20,20 @@ class Scraper
     html = open(profile_url)
     doc = Nokogiri::HTML(html)
     social = doc.css(".social-icon-container")
-    {:twitter =>social.css("a:first-of-type")[0].attributes["href"].value,
-    :linkedin =>social.css("a:nth-of-type(2)")[0].attributes["href"].value,
-    :github =>social.css("a:nth-of-type(3)")[0].attributes["href"].value,
-    :blog=>social.css("a:nth-of-type(4)")[0].attributes["href"].value,
+    linkedin =social.css("a:nth-of-type(2)")[0].attributes["href"].value
+    github =social.css("a:nth-of-type(3)")[0].attributes["href"].value
+    blog=social.css("a:nth-of-type(4)")[0].attributes["href"].value
+    profile = {:twitter =>social.css("a:first-of-type")[0].attributes["href"].value,
     :profile_quote=> doc.css(".vitals-text-container .profile-quote").text,
     :bio=> doc.css(".details-container p").text  }
+    if linkedin
+      profile[:linkedin] = linkedin
+    elsif github
+      profile[:github] = github
+    elsif blog
+      profile[:blog] = blog
+    end
+    profile
   end
 
 end
