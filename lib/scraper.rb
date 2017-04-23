@@ -21,28 +21,30 @@ class Scraper
 
     social_media_links = doc.css("a").map {|element| element["href"]}
     host_components = social_media_links.map { |u| URI(u).host }
-    twitter = social_media_links[host_components.index("twitter.com")]
-    linkedin = social_media_links[host_components.index("www.linkedin.com")]
-    github = social_media_links[host_components.index("github.com")]
-    blog_base_url = host_components.reject {|e| e == "twitter.com" || e == "www.linkedin.com" || e == "github.com" || e == nil}.first
-    blog_full_url = social_media_links[host_components.index(blog_base_url)]
+    profile_page = {}    
+
     profile_quote = doc.css(".vitals-text-container .profile-quote").text
     bio = doc.css(".details-container p").text
 
-    puts ":twitter=>#{twitter}"
-    puts ":linkedin=>#{linkedin}"
-    puts ":github=>#{github}"
-    puts ":blog=>#{blog_full_url}"
-    puts ":profile_quote=> #{profile_quote}"
-    puts ":bio => #{bio}"
+    host_components.each do |host|
 
-    profile_page = {:twitter=>"#{twitter}",
-    :linkedin=>"#{linkedin}",
-    :github=>"#{github}",
-    :blog=>"#{blog_full_url}",
-    :profile_quote=> "#{profile_quote}",
-    :bio => "#{bio}"
-    }
+      if host == "twitter.com"
+        profile_page[:twitter] = social_media_links[host_components.index("twitter.com")]
+      elsif host == "www.linkedin.com"
+        profile_page[:linkedin] = social_media_links[host_components.index("www.linkedin.com")]
+      elsif host == "github.com"
+        profile_page[:github] = social_media_links[host_components.index("github.com")]
+      elsif host != "twitter.com" && host != "www.linkedin.com" && host != "github.com" && host != nil
+        blog_base_url = host_components.reject {|e| e == "twitter.com" || e == "www.linkedin.com" || e == "github.com" || e == nil}.first
+        blog_full_url = social_media_links[host_components.index(blog_base_url)]
+        profile_page[:blog] = blog_full_url
+      end
+    end
+
+    profile_page[:profile_quote] = profile_quote
+    profile_page[:bio] = bio
+
+    
     profile_page
   end
 
