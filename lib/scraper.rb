@@ -9,8 +9,15 @@ class Scraper
 
     profiles_hash = {}
 
-    profiles.css("div.student-card").each do |profile|
-
+    profiles_hash.css("div.student-card").each do |profile|
+      info = profile.css("").text
+      profile[info.to_sym] = {
+      :name => profile.css("a div.card-text-container h4.student-name").text,
+      :location => profile.css("p.student-location").text,
+      :profile_url => profile.css("ul.project-meta span.location-name").text
+        }
+   end
+  profiles_hash
   end
 
   def self.scrape_profile_page(profile_url)
