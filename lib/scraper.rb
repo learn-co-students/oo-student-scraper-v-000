@@ -5,6 +5,11 @@ require 'pry'
 class Scraper
 
   def self.scrape_index_page(index_url)
+    profiles = Nokogiri::HTML(open("http://students.learn.co/"))
+
+    profiles_hash = {}
+
+    profiles..css(".roster-cards-container")
 
   end
 
@@ -13,3 +18,5 @@ class Scraper
   end
 
 end
+
+Scraper.new
