@@ -9,7 +9,7 @@ class Scraper
 
     profiles_hash = {}
 
-    profiles..css(".roster-cards-container")
+    profiles.css("div.student-card").each do |profile|
 
   end
 
