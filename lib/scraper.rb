@@ -25,7 +25,7 @@ attr_accessor :name, :location, :profile_url
 
     doc = Nokogiri::HTML(open(profile_url))
 binding.pry
-    doc.css('main-wrapper profile').each do |profile|
+    doc.css('.social-icon-container').each do |link|
 
       # twitter = ,
       # linkedin = ,
