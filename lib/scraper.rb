@@ -2,6 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'pry'
 
+
 class Scraper
 
 attr_accessor :name, :location, :profile_url
@@ -25,15 +26,22 @@ attr_accessor :name, :location, :profile_url
 
     doc = Nokogiri::HTML(open(profile_url))
 binding.pry
+    links = []
+
     doc.css('.social-icon-container').each do |link|
+    twitter = doc.children.css('.social-icon-container').children[1].attributes['href'].value,
+    linkedin = doc.children.css('.social-icon-container').children[3].attributes['href'].value,
+    github = doc.children.css('.social-icon-container').children[5].attributes['href'].value
 
-      # twitter = ,
-      # linkedin = ,
-      # github = ,
-      # blog = ,
-      # profile_quote = ,
-      # bio = >
+    links.push({twitter: twitter, linkedin: linkedin, github: github})
+    end
 
+    doc.css('.profile-quote').each do |quote|
+    profile_quote =  doc.css('.profile-quote').children.text
+    # blog = ,
+    # bio = >
     end
   end
+
+
 end
