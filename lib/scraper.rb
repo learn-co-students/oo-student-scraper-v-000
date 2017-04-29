@@ -25,23 +25,35 @@ attr_accessor :name, :location, :profile_url
   def self.scrape_profile_page(profile_url)
 
     doc = Nokogiri::HTML(open(profile_url))
-binding.pry
-    links = []
+
+    student = {}
 
     doc.css('.social-icon-container').each do |link|
     twitter = doc.children.css('.social-icon-container').children[1].attributes['href'].value,
     linkedin = doc.children.css('.social-icon-container').children[3].attributes['href'].value,
     github = doc.children.css('.social-icon-container').children[5].attributes['href'].value
+    blog = doc.children.css('.social-icon-container').children[7].attributes['href'].value
+#binding.pry
 
-    links.push({twitter: twitter, linkedin: linkedin, github: github})
+    student[:twitter] = twitter[0]
+    student[:linkedin] = linkedin
+    student[:github] = github
+    student[:blog] = blog
     end
 
     doc.css('.profile-quote').each do |quote|
     profile_quote =  doc.css('.profile-quote').children.text
-    # blog = ,
-    # bio = >
-    end
-  end
 
+    student[:profile_quote] = profile_quote
+    end
+
+    doc.css('.description-holder').each do |description|
+#binding.pry
+    bio = doc.css('.description-holder').children[1].text
+
+    student[:bio] = bio
+  end
+  student
+end
 
 end
