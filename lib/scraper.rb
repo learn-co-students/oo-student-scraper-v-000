@@ -29,6 +29,17 @@ attr_accessor :name, :location, :profile_url
     student = {}
 
     doc.css('.social-icon-container').each do |link|
+      case link
+      when include?('twitter')
+        puts link
+      when include?('linkedin')
+        puts link
+      when include?('github')
+        puts link
+      when include?('blog')
+        puts link
+      end
+        
     twitter = doc.children.css('.social-icon-container').children[1].attributes['href'].value,
     linkedin = doc.children.css('.social-icon-container').children[3].attributes['href'].value,
     github = doc.children.css('.social-icon-container').children[5].attributes['href'].value
