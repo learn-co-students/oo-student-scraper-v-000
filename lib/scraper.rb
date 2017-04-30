@@ -24,21 +24,24 @@ class Scraper
     end
 
   def self.scrape_profile_page(profile_url)
-    profiles = Nokogiri::HTML(open(profile_url))
-
-    profiles.css("div.main-wrapper profile").each do |i|
+    info = Nokogiri::HTML(open(profile_url))
+      binding.pry
       details_hash = {
-      :twitter => i.css("div.vitals-container div.social-icon-container a")[0].attribute("href").text,
-      :linkedin => i.css("div.vitals-container div.social-icon-container a")[1].attribute("href").text,
-      :github => i.css("div.vitals-container div.social-icon-container a")[2].attribute("href").text,
-      :blog => i.css("div.vitals-container div.social-icon-container a")[3].attribute("href").text,
-      :profile_quote => i.css("div.vitals-text-container div.profile-quote").text,
-      :bio => i.css("div.details-container div.bio-block details-block div.bio-content content-holder div.description-holder p").text
+      :twitter => info.css("div.vitals-container div.social-icon-container a").attribute("href").text,
+      # :twitter => info.css("div.main-wrapper profile div.vitals-container div.social-icon-container a")[0].attribute("href").text,
+      :linkedin => info.css("div.vitals-container div.social-icon-container a")[1].attribute("href").text,
+      :github => info.css("div.vitals-container div.social-icon-container a")[2].attribute("href").text,
+      :blog => info.css("div.vitals-container div.social-icon-container a")[3].attribute("href").text,
+      :profile_quote => info.css("div.vitals-text-container div.profile-quote").text,
+
+      :bio => info.css("div.details-container div.bio-block details-block div.bio-content content-holder div.description-holder p").text
       }
-    end
+
+      details.hash
+
   end
-  # details_hash
-  binding.pry
+
+
 end
 
 # Scraper.new
