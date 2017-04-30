@@ -11,7 +11,8 @@ class Student
     #   expect{Student.new({:name => "Sophie DeBenedetto", :location => "Brooklyn, NY"})}.to_not raise_error
     #   expect(student.name).to eq("Alex Patriquin")
     #   expect(student.location).to eq("New York, NY")
-    # end 
+    # end
+    #binding.pry
     @name = student_hash[:name] 
     @location = student_hash[:location]
     @profile_url = student_hash[:profile_url]

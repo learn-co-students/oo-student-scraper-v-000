@@ -19,8 +19,8 @@ class Scraper
   def self.scrape_index_page(index_url)
   	#scraped_students = []
     html = open("fixtures/student-site/index.html")
-	   doc = Nokogiri::HTML(html)
-     binding.pry
+	  doc = Nokogiri::HTML(html)
+     #binding.pry
 	#doc.search("h1.profile-name h2.profile-location").text
 	  scraped_students = doc.css(".student-card")
 	  scraped_students.each do |student|
