@@ -11,18 +11,19 @@ class Scraper
     profiles_hash = {}
 
     profiles.css("div.roster-cards-container").each do |profile|
-      binding.pry
+      profile.css("div.student-card").each do |i|
+        binding.pry
       info = profile.css("div.student-card").text
       profiles_hash[info.to_sym] = {
-      :name => profiles.css("a div.card-text-container h4.student-name").text,
-      :location => profiles.css("a div.card-text-container p.student-location").text,
-      :profile_url => profiles.css("a").text
+      :name => i.css("a div.card-text-container h4.student-name").text,
+      :location => i.css("a div.card-text-container p.student-location").text,
+      :profile_url => i.css("a").attribute("href").text
     }
-
     profiles_array << profiles_hash
    end
+ end
   profiles_array
-  end
+end
 
   def self.scrape_profile_page(profile_url)
     #     doc = Nokogiri::HTML.parse(<<-HTML_END)
