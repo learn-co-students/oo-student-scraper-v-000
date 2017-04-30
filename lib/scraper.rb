@@ -5,7 +5,7 @@ require 'pry'
 
 class Scraper
 
-attr_accessor :name, :location, :profile_url
+attr_accessor :name, :location, :twitter, :linkedin, :github, :blog, :profile_quote, :bio, :profile_url
 
   def self.scrape_index_page(index_url)
 
@@ -26,45 +26,36 @@ attr_accessor :name, :location, :profile_url
 
     doc = Nokogiri::HTML(open(profile_url))
 
-    student = {}
+    student_hash = {}
 
     doc.css('.social-icon-container').each do |link|
-      case link
-      when include?('twitter')
-        puts link
-      when include?('linkedin')
-        puts link
-      when include?('github')
-        puts link
-      when include?('blog')
-        puts link
-      end
-        
+
+
     twitter = doc.children.css('.social-icon-container').children[1].attributes['href'].value,
     linkedin = doc.children.css('.social-icon-container').children[3].attributes['href'].value,
-    github = doc.children.css('.social-icon-container').children[5].attributes['href'].value
+    github = doc.children.css('.social-icon-container').children[5].attributes['href'].value,
     blog = doc.children.css('.social-icon-container').children[7].attributes['href'].value
 #binding.pry
 
-    student[:twitter] = twitter[0]
-    student[:linkedin] = linkedin
-    student[:github] = github
-    student[:blog] = blog
+    student_hash[:twitter] = twitter[0]
+    student_hash[:linkedin] = linkedin
+    student_hash[:github] = github
+    student_hash[:blog] = blog
     end
 
     doc.css('.profile-quote').each do |quote|
     profile_quote =  doc.css('.profile-quote').children.text
 
-    student[:profile_quote] = profile_quote
+    student_hash[:profile_quote] = profile_quote
     end
 
     doc.css('.description-holder').each do |description|
 #binding.pry
     bio = doc.css('.description-holder').children[1].text
 
-    student[:bio] = bio
+    student_hash[:bio] = bio
   end
-  student
+  student_hash
 end
 
 end
