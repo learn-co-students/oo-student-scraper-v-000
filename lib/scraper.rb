@@ -34,7 +34,7 @@ class Scraper
       :profile_quote => info.css("div.vitals-text-container div.profile-quote").text,
       :bio => info.css("div.description-holder p").text
       }
-      details.hash
+      details_hash
   end
 
 
