@@ -11,7 +11,7 @@ class Scraper
 
     profiles.css("div.roster-cards-container").each do |profile|
       profile.css("div.student-card").each do |i|
-      info = profile.css("div.student-card").text
+      # info = profile.css("div.student-card").text
       profiles_hash = {
       :name => i.css("a div.card-text-container h4.student-name").text,
       :location => i.css("a div.card-text-container p.student-location").text,
@@ -24,21 +24,19 @@ class Scraper
     end
 
   def self.scrape_profile_page(profile_url)
-    #     doc = Nokogiri::HTML.parse(<<-HTML_END)
-    # <div class="heat">
-    #    <a href='http://example.org/site/1/'>site 1</a>
-    #    <a href='http://example.org/site/2/'>site 2</a>
-    #    <a href='http://example.org/site/3/'>site 3</a>
-    # </div>
-    # <div class="wave">
-    #    <a href='http://example.org/site/4/'>site 4</a>
-    #    <a href='http://example.org/site/5/'>site 5</a>
-    #    <a href='http://example.org/site/6/'>site 6</a>
-    # </div>
-    # HTML_END
-    #
-    # l = doc.css('div.heat a').map { |link| link['href'] }
+    profiles = Nokogiri::HTML(open("http://students.learn.co/"))
 
+    profiles.css("div.main-wrapper profile").each do |x|
+      details_hash = {
+        binding.pry
+      :twitter => i.css("div.vitals-container div.social-icon-container a")[0].attribute("href").text,
+      :linkedin => i.css("div.vitals-container div.social-icon-container a")[1].attribute("href").text,
+      :github => i.css("div.vitals-container div.social-icon-container a")[2].attribute("href").text,
+      :blog => i.css("a div.card-text-container h4.student-name").text,
+      :profile_quote => i.css("div.vitals-text-container div.profile-quote").text,
+      :bio => i.css("div.details-container div.bio-block details-block div.bio-content content-holder div.description-holder p").text
+      }
+    end
   end
 
 end
