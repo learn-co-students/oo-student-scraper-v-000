@@ -14,8 +14,7 @@ class Student
     # end 
     @name = student_hash[:name] 
     @location = student_hash[:location]
-
-
+    @profile_url = student_hash[:profile_url]
     # it "adds that new student to the Student class' collection of all existing students, stored in the `@@all` class variable." do 
     #   expect(Student.class_variable_get(:@@all).first.name).to eq("Alex Patriquin")
     # end
