@@ -24,9 +24,10 @@ class Scraper
     end
 
   def self.scrape_profile_page(profile_url)
-    profiles = Nokogiri::HTML(open("http://students.learn.co/"))
+    profiles = Nokogiri::HTML(open(profile_url))
 
-    profiles.css("div.main-wrapper profile").each do |x|
+    profiles.css("div.main-wrapper profile").each do |i|
+
       details_hash = {
         binding.pry
       :twitter => i.css("div.vitals-container div.social-icon-container a")[0].attribute("href").text,
