@@ -25,17 +25,33 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     info = Nokogiri::HTML(open(profile_url))
+      # binding.pry
+      details_hash = {}
 
-      details_hash = {
-      :twitter => info.css("div.social-icon-container a").attribute("href").text,
-      :linkedin => info.css("div.social-icon-container a")[1].attribute("href").text,
-      :github => info.css("div.social-icon-container a")[2].attribute("href").text,
-      :blog => info.css("div.social-icon-container a")[3].attribute("href").text,
-      :profile_quote => info.css("div.vitals-text-container div.profile-quote").text,
-      :bio => info.css("div.description-holder p").text
-      }
+      if info.css("div.social-icon-container a").attribute("href").text.
+        details_hash[:twitter] = info.css("div.social-icon-container a").attribute("href").text,
+        details_hash[:linkedin] = info.css("div.social-icon-container a").attribute("href").text,
+        details_hash[:github] = info.css("div.social-icon-container a").attribute("href").text,
+        details_hash[:blog] = info.css("div.social-icon-container a").attribute("href").text
+      end
+        details_hash[:profile_quote] = info.css("div.vitals-text-container div.profile-quote").text,
+        details_hash[:bio] = info.css("div.description-holder p").text
       details_hash
   end
+
+  # def self.scrape_profile_page(profile_url)
+  #   info = Nokogiri::HTML(open(profile_url))
+  #     # binding.pry
+  #     details_hash = {
+  #     :twitter => info.css("div.social-icon-container a").attribute("href").text,
+  #     :linkedin => info.css("div.social-icon-container a")[1].attribute("href").text,
+  #     :github => info.css("div.social-icon-container a")[2].attribute("href").text,
+  #     :blog => info.css("div.social-icon-container a")[3].attribute("href").text,
+  #     :profile_quote => info.css("div.vitals-text-container div.profile-quote").text,
+  #     :bio => info.css("div.description-holder p").text
+  #     }
+  #     details_hash
+  # end
 
 
 end
