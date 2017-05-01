@@ -25,7 +25,7 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     info = Nokogiri::HTML(open(profile_url))
-      # binding.pry
+      binding.pry
       details_hash = {}
 
       if info.css("div.social-icon-container a").attribute("href").text
