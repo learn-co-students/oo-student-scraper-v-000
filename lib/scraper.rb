@@ -28,7 +28,7 @@ class Scraper
       # binding.pry
       details_hash = {}
 
-      if info.css("div.social-icon-container a").attribute("href").text.
+      if info.css("div.social-icon-container a").attribute("href").text
         details_hash[:twitter] = info.css("div.social-icon-container a").attribute("href").text,
         details_hash[:linkedin] = info.css("div.social-icon-container a").attribute("href").text,
         details_hash[:github] = info.css("div.social-icon-container a").attribute("href").text,
