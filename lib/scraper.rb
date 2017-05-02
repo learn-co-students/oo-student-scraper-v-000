@@ -9,7 +9,9 @@ class Scraper
     students = doc.css("")
     students.each do |student|
       student_hash = {
-        
+        :name => student.css("")
+        :location => student.css("")
+        :profile_url => student.css("")
       }
       student_index << student_hash
     end
