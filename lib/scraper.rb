@@ -12,7 +12,6 @@ class Scraper
         :name => student.css(".student-name").text,
         :location => student.css(".student-location").text,
         :profile_url => "./fixtures/student-site/#{student.css("a").attribute("href").value}"
-        binding.pry
       }
       student_index << student_hash
     end
