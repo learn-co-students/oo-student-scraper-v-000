@@ -11,7 +11,7 @@ class Scraper
 
     profiles.css("div.roster-cards-container").each do |profile|
       profile.css("div.student-card").each do |i|
-      # info = profile.css("div.student-card").text
+      
       profiles_hash = {
       :name => i.css("a div.card-text-container h4.student-name").text,
       :location => i.css("a div.card-text-container p.student-location").text,
@@ -27,39 +27,23 @@ class Scraper
     info = Nokogiri::HTML(open(profile_url))
 
       details_hash = {}
-
-      info.css("div.social-icon-container a").each do |link|
-        url = link.attribute("href").text
-          if url.match("twitter")
-            details_hash[:twitter] = url
-          elsif url.match("linkedin")
-            details_hash[:linkedin] = url
-          elsif url.match("github")
-            details_hash[:github] = url
-          else
-            details_hash[:blog] = url
+        info.css("div.social-icon-container a").each do |link|
+          url = link.attribute("href").text
+            if url.match("twitter")
+              details_hash[:twitter] = url
+            elsif url.match("linkedin")
+              details_hash[:linkedin] = url
+            elsif url.match("github")
+              details_hash[:github] = url
+            else
+              details_hash[:blog] = url
+            end
           end
-        end
-          details_hash[:profile_quote] = info.css("div.vitals-text-container div.profile-quote").text,
+
+          details_hash[:profile_quote] = info.css("div.vitals-text-container div.profile-quote").text
           details_hash[:bio] = info.css("div.description-holder p").text
-        details_hash
+
+          details_hash
   end
 
-  # def self.scrape_profile_page(profile_url)
-  #   info = Nokogiri::HTML(open(profile_url))
-  #     # binding.pry
-  #     details_hash = {
-  #     :twitter => info.css("div.social-icon-container a").attribute("href").text,
-  #     :linkedin => info.css("div.social-icon-container a")[1].attribute("href").text,
-  #     :github => info.css("div.social-icon-container a")[2].attribute("href").text,
-  #     :blog => info.css("div.social-icon-container a")[3].attribute("href").text,
-  #     :profile_quote => info.css("div.vitals-text-container div.profile-quote").text,
-  #     :bio => info.css("div.description-holder p").text
-  #     }
-  #     details_hash
-  # end
-
-
 end
-
-# Scraper.new
