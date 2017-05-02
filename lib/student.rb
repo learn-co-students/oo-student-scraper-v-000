@@ -17,10 +17,13 @@ class Student
   end
 
   def add_student_attributes(attributes_hash)
-
+    attributes_hash.each do |key, value|
+      @@all.send(:key => value)
+    end
   end
 
   def self.all
     @@all
   end
+
 end
