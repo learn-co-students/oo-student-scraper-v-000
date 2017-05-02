@@ -5,15 +5,8 @@ class Student
   @@all = []
 
   def initialize(student_hash)
-    @name = name
-    @location = location
-    @twitter = twitter
-    @linkedin = linkedin
-    @github = github
-    @blog = blog
-    @profile_quote = profile_quote
-    @bio = bio
-    @profile_url = profile_url
+    @name = student_hash[:name]
+    @location = student_hash[:location]
     @@all << self
   end
 
