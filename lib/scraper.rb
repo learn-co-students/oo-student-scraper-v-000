@@ -6,7 +6,7 @@ class Scraper
   def self.scrape_index_page(index_url)
     jon_snow = Nokogiri::HTML(open(index_url))
     student_index = []
-    students = doc.css("")
+    students = jon_snow.css("")
     students.each do |student|
       student_hash = {
         :name => student.css("")
