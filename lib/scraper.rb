@@ -16,6 +16,7 @@ class Scraper
       student_index << student_hash
     end
     student_index
+    binding.pry
   end
 
   def self.scrape_profile_page(profile_url)
