@@ -12,7 +12,7 @@ class Student
   end
 
   def self.create_from_collection(students)
-
+    students.each {|student| Student.new(student)}
   end
 
   def add_student_attributes(attributes = {})
@@ -20,6 +20,6 @@ class Student
   end
 
   def self.all
-
+    @@all
   end
 end

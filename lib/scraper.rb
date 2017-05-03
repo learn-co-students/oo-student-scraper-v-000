@@ -30,30 +30,33 @@ attr_accessor :name, :location, :twitter, :linkedin, :github, :blog, :profile_qu
 
     doc.css('.social-icon-container').each do |link|
 
+      twitter = doc.children.css('.social-icon-container').children[1].attributes['href'].value,
+      linkedin = doc.children.css('.social-icon-container').children[3].attributes['href'].value,
+      github = doc.children.css('.social-icon-container').children[5].attributes['href'].value,
+      blog = doc.children.css('.social-icon-container').children[7].attributes['href'].value
 
-    twitter = doc.children.css('.social-icon-container').children[1].attributes['href'].value,
-    linkedin = doc.children.css('.social-icon-container').children[3].attributes['href'].value,
-    github = doc.children.css('.social-icon-container').children[5].attributes['href'].value,
-    blog = doc.children.css('.social-icon-container').children[7].attributes['href'].value
-#binding.pry
+      
+        student_hash[:twitter] = twitter[0]
 
-    student_hash[:twitter] = twitter[0]
-    student_hash[:linkedin] = linkedin
-    student_hash[:github] = github
-    student_hash[:blog] = blog
+        student_hash[:linkedin] = linkedin
+
+        student_hash[:github] = github
+
+        student_hash[:blog] = blog
+
     end
 
     doc.css('.profile-quote').each do |quote|
-    profile_quote =  doc.css('.profile-quote').children.text
+      profile_quote =  doc.css('.profile-quote').children.text
 
-    student_hash[:profile_quote] = profile_quote
+      student_hash[:profile_quote] = profile_quote
+
     end
 
     doc.css('.description-holder').each do |description|
-#binding.pry
-    bio = doc.css('.description-holder').children[1].text
+      bio = doc.css('.description-holder').children[1].text
 
-    student_hash[:bio] = bio
+      student_hash[:bio] = bio
   end
   student_hash
 end
