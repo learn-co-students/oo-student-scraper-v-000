@@ -5,17 +5,18 @@ require 'pry'
 class Scraper
 
   def self.scrape_index_page(index_url)
-    profiles = Nokogiri::HTML(open("http://students.learn.co/"))
+    profiles = Nokogiri::HTML(open("./fixtures/student-site/index.html"))
 
     profiles_array = []
 
     profiles.css("div.roster-cards-container").each do |profile|
       profile.css("div.student-card").each do |i|
-      
+
       profiles_hash = {
       :name => i.css("a div.card-text-container h4.student-name").text,
       :location => i.css("a div.card-text-container p.student-location").text,
       :profile_url => "./fixtures/student-site/" + i.css("a").attribute("href").text
+
       }
         profiles_array << profiles_hash
          end
@@ -24,7 +25,9 @@ class Scraper
     end
 
   def self.scrape_profile_page(profile_url)
-    info = Nokogiri::HTML(open(profile_url))
+  #  binding.pry
+      info = Nokogiri::HTML(open(profile_url))
+
 
       details_hash = {}
         info.css("div.social-icon-container a").each do |link|

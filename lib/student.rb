@@ -7,6 +7,7 @@ class Student
   def initialize(student_hash)
     @name = student_hash[:name]
     @location = student_hash[:location]
+    @profile_url = student_hash[:profile_url]
     @@all << self
   end
 
@@ -17,11 +18,15 @@ class Student
   end
 
   def add_student_attributes(attributes_hash)
-    attributes_hash.each do |key, value|
-    # binding.pry
-    @twitter = key => value
+    attributes_hash.each do |attribute, value|
+    self.send("#{attribute}=", value)
     end
   end
+
+  #Every time you call a method on an object you're "sending" that object a
+  #"message" where the message is the name of the method you called.
+  #The send method allows you to send a message (call a method) when you won't
+  #know the name of that method until runtime.
 
   def self.all
     @@all
