@@ -19,14 +19,15 @@ class Scraper
     nodeset = doc.css('a[href]')
 	  scraped_students.each do |student|
       student = Student.new(name, location, profile_url) 
-      student.name = student.first.css(".student-name").text
-      student.location = student.first.css(".student-location").text 
-      student.profile_url = student.first.css('a[href]').text
-      binding.pry
-       #                   end 
+       student.name = student.first.css(".student-name").text
+       student.location = student.first.css(".student-location").text 
+       student.profile_url = nodeset.map {|element| element["href"]}.compact
+      #binding.pry
+                         end 
       #student.url = student.first.css(?????).text
       #http://ruby.bastardsbook.com/chapters/html-parsing/
       #https://www.sitepoint.com/nokogiri-fundamentals-extract-html-web/
+      #http://stackoverflow.com/questions/7107642/getting-attributes-value-in-nokogiri-to-extract-link-urls
   end
   #def first 
    # @first = scraped_students[:location] scraped_students[:name]
