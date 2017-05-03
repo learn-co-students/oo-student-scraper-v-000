@@ -26,7 +26,7 @@ class Scraper
       :bio => profile_page.css("div.bio-content.content-holder div.description-holder p").text
     }
 
-    social_links = profile_page.css("div.social-icon-container").text
+    social_links = profile_page.css("div.social-icon-container a").text
     binding.pry
   end
 
