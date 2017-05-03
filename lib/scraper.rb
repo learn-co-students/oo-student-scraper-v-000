@@ -16,10 +16,12 @@ class Scraper
     html = open("fixtures/student-site/index.html")
 	  doc = Nokogiri::HTML(html)  
 	  scraped_students = doc.css(".student-card")
+    nodeset = doc.css('a[href]')
 	  scraped_students.each do |student|
       student = Student.new(name, location, profile_url) 
       student.name = student.first.css(".student-name").text
       student.location = student.first.css(".student-location").text 
+      student.profile_url = student.first.css('a[href]').text
       binding.pry
        #                   end 
       #student.url = student.first.css(?????).text
