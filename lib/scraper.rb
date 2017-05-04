@@ -18,7 +18,7 @@ class Scraper
 	  scraped_students = doc.css(".student-card")
     nodeset = doc.css('a[href]')
 	  scraped_students.each do |student|
-      student = Student.new(name, location, profile_url) 
+      student = Student.new (name) 
        student.name = student.first.css(".student-name").text
        student.location = student.first.css(".student-location").text 
        student.profile_url = nodeset.map {|element| element["href"]}.compact
