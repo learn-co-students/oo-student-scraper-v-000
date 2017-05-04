@@ -26,8 +26,19 @@ class Scraper
       :bio => profile_page.css("div.bio-content.content-holder div.description-holder p").text
     }
 
-    social_links = profile_page.css("div.social-icon-container a")
-    binding.pry
-  end
+    social_links = profile_page.css("div.social-icon-container a").map {|link| link["href"]}
 
+    social_links.each do |link|
+      if link.include?("twitter.com")
+        student[:twitter] = link
+      elsif link.include?("linkedin.com")
+        student[:linkedin] = link
+      elsif link.include?("github.com")
+        student[:github] = link
+      else
+        student[:blog] = link
+      end
+    end
+    student
+  end
 end
