@@ -3,31 +3,22 @@ require 'pry'
 require 'nokogiri'
 
 class Scraper
-#describe "#scrape_index_page" do
- #   it "is a class method that scrapes the student index page and a returns an array of hashes in which each hash represents one student" do
- #     index_url = "./fixtures/student-site/index.html"
- #     scraped_students = Scraper.scrape_index_page(index_url)
- #     expect(scraped_students).to be_a(Array)
- #     expect(scraped_students.first).to have_key(:location)
- #     expect(scraped_students.first).to have_key(:name)
- #     expect(scraped_students).to include(student_index_array[0], student_index_array[1], student_index_array[2])
-  #  end
   def self.scrape_index_page(index_url)
     html = open("fixtures/student-site/index.html")
 	  doc = Nokogiri::HTML(html)  
 	  scraped_students = doc.css(".student-card")
     nodeset = doc.css('a[href]')
-	  scraped_students.each do |student|
-      student = Student.new (name) 
-       student.name = student.first.css(".student-name").text
-       student.location = student.first.css(".student-location").text 
-       student.profile_url = nodeset.map {|element| element["href"]}.compact
-      #binding.pry
-                         end 
-      #student.url = student.first.css(?????).text
-      #http://ruby.bastardsbook.com/chapters/html-parsing/
-      #https://www.sitepoint.com/nokogiri-fundamentals-extract-html-web/
-      #http://stackoverflow.com/questions/7107642/getting-attributes-value-in-nokogiri-to-extract-link-urls
+	  scraped_students.map do |student|
+       student_hash = {}
+       #binding.pry
+       student_hash[:name]= student.css(".student-name").text
+       student_hash[:location] = student.css(".student-location").text 
+       student_hash[:profile_url] = student.css("a").attr("href").value
+       #binding.pry
+       #student_hash[:profile_url] = nodeset.map {|element| element["href"]}.compact
+       # binding.pry
+       student_hash
+    end 
   end
   #def first 
    # @first = scraped_students[:location] scraped_students[:name]
@@ -37,3 +28,7 @@ class Scraper
   end
 end
 #Scraper.new.scrape_index_page("fixtures/student-site/index.html")
+#student.url = student.first.css(?????).text
+      #http://ruby.bastardsbook.com/chapters/html-parsing/
+      #https://www.sitepoint.com/nokogiri-fundamentals-extract-html-web/
+      #http://stackoverflow.com/questions/7107642/getting-attributes-value-in-nokogiri-to-extract-link-urls
