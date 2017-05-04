@@ -10,21 +10,14 @@ class Scraper
     nodeset = doc.css('a[href]')
 	  scraped_students.map do |student|
        student_hash = {}
-       #binding.pry
        student_hash[:name]= student.css(".student-name").text
        student_hash[:location] = student.css(".student-location").text 
        student_hash[:profile_url] = student.css("a").attr("href").value
-       #binding.pry
-       #student_hash[:profile_url] = nodeset.map {|element| element["href"]}.compact
-       # binding.pry
        student_hash
     end 
   end
-  #def first 
-   # @first = scraped_students[:location] scraped_students[:name]
-  #end 
   def self.scrape_profile_page(profile_url)
-    
+     student_hash = {}
   end
 end
 #Scraper.new.scrape_index_page("fixtures/student-site/index.html")
