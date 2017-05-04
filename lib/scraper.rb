@@ -29,13 +29,13 @@ attr_accessor :name, :location, :twitter, :linkedin, :github, :blog, :profile_qu
     student_hash = {}
 
     doc.css('.social-icon-container a').each do |link|
-
-      if link.attributes['href'].value.include?('twitter')
-        student_hash[:twitter] = link.attributes['href'].value
-      elsif link.attributes['href'].value.include?('linkedin')
-        student_hash[:linkedin] = link.attributes['href'].value
-      elsif link.attributes['href'].value.include?('github')
-        student_hash[:github] = link.attributes['href'].value
+      social_link = link.attributes['href'].value
+      if social_link.include?('twitter')
+        student_hash[:twitter] = social_link
+      elsif social_link.include?('linkedin')
+        student_hash[:linkedin] = social_link
+      elsif social_link.include?('github')
+        student_hash[:github] = social_link
       else
         student_hash[:blog] = link.attributes['href'].value
       end
