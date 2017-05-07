@@ -17,11 +17,25 @@ class Scraper
     end 
   end
   def self.scrape_profile_page(profile_url)
-     student_hash = {}
-  end
+      html = open(profile_url)
+      doc = Nokogiri::HTML(html) 
+      #binding.pry
+      scraped_student = {
+        :profile_quote => doc.css(".vitals-container .vitals-text-container .profile-quote").text,
+        :bio => doc.css(".details-container .bio-block .bio-content .description-holder p").text
+      }
+      socials = doc.css(".vitals-container .social-icon-container a")
+      socials.each do |social|
+      if social.attribute("href").value.include?("twitter")
+        scraped_student[:twitter] = social.attribute("href").value
+      elsif social.attribute("href").value.include?("linkedin")
+        scraped_student[:linkedin] = social.attribute("href").value
+      elsif social.attribute("href").value.include?("github")
+        scraped_student[:github] = social.attribute("href").value
+      else social.attribute("href").value.include?("blog")
+        scraped_student[:blog] = social.attribute("href").value
+      end 
+      end  
+      scraped_student
+    end 
 end
-#Scraper.new.scrape_index_page("fixtures/student-site/index.html")
-#student.url = student.first.css(?????).text
-      #http://ruby.bastardsbook.com/chapters/html-parsing/
-      #https://www.sitepoint.com/nokogiri-fundamentals-extract-html-web/
-      #http://stackoverflow.com/questions/7107642/getting-attributes-value-in-nokogiri-to-extract-link-urls
