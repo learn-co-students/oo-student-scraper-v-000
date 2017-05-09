@@ -27,19 +27,34 @@ end
 
 #----------------------------------------------------------------
 def self.scrape_profile_page(profile_url)
-        
+        student_hash=  {}               
+
         #gets an indiv students profile page into a nokogiri doc
         raw_doc = Nokogiri::HTML(open(profile_url))
-
-        puts raw_doc.css(".bio-content .description-holder p").text
-        puts raw_doc.css(".profile-quote").text
-        puts raw_doc.css("div.social-icon-container a[href*=linkedin]").attribute("href").value
         
-
+        #assemble the info into a hash
+        raw_doc.css("div.social-icon-container a").each {|link|
+                                            if link.attribute("href").value =~ /twitter/
+                                            student_hash[:twitter] =  link.attribute("href").value
+                                            
+                                            elsif link.attribute("href").value =~ /linkedin/
+                                            student_hash[:linkedin] =  link.attribute("href").value
+                                          
+                                            elsif link.attribute("href").value =~ /github/
+                                            student_hash[:github] =  link.attribute("href").value
+                                            
+                                            else
+                                            student_hash[:blog] = link.attribute("href").value
+                                            end
+                                        }
         
+        student_hash[:profile_quote] = raw_doc.css(".profile-quote").text
+        student_hash[:bio] = raw_doc.css(".bio-content .description-holder p").text
+        
+                        
 
 
-
+student_hash
 end
 
 
