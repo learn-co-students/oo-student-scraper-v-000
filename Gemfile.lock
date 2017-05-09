@@ -30,9 +30,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  nokogiri (= 1.6.6.2)
+  nokogiri
   pry
   rspec
 
 BUNDLED WITH
-   1.12.5
+   1.14.6
