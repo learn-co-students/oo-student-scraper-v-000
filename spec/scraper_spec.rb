@@ -1,44 +1,50 @@
-require 'nokogiri'
-require 'open-uri'
-require 'pry'
+require "spec_helper"
 
-class Scraper
+describe "Scraper" do
 
-  def self.scrape_index_page(index_url)
-    doc = Nokogiri::HTML(open(index_url))
+  let!(:student_index_array) {[{:name=>"Joe Burgess", :location=>"New York, NY", :profile_url=>"./fixtures/student-site/students/joe-burgess.html"},
+                               {:name=>"Mathieu Balez", :location=>"New York, NY", :profile_url=>"./fixtures/student-site/students/mathieu-balez.html"},
+                               {:name=>"Diane Vu", :location=>"New York, NY", :profile_url=>"./fixtures/student-site/students/diane-vu.html"}]}
 
-    scraped_students = []
+  let!(:student_joe_hash) {{:twitter=>"https://twitter.com/jmburges",
+                            :linkedin=>"https://www.linkedin.com/in/jmburges",
+                            :github=>"https://github.com/jmburges",
+                            :blog=>"http://joemburgess.com/",
+                            :profile_quote=>"\"Reduce to a previously solved problem\"",
+                            :bio=>
+  "I grew up outside of the Washington DC (NoVA!) and went to college at Carnegie Mellon University in Pittsburgh. After college, I worked as an Oracle consultant for IBM for a bit and now I teach here at The Flatiron School."}}
 
-    doc.css("div.student-card").each do |student|
-      scraped_students << {
-        name: student.css("h4.student-name").text,
-        location: student.css("p.student-location").text, profile_url: "http://students.learn.co/#{student.css("a").attribute("href").value}"}
+  let!(:student_david_hash) {{:linkedin=>"https://www.linkedin.com/in/david-kim-38221690",
+ :github=>"https://github.com/davdkm",
+ :profile_quote=>
+  "\"Yeah, well, you know, that's just, like, your opinion, man.\" - The Dude",
+ :bio=>
+  "I'm a southern California native seeking to find work as a full stack web developer. I enjoying tinkering with computers and learning new things!"}}
+
+  describe "#scrape_index_page" do
+    it "is a class method that scrapes the student index page and a returns an array of hashes in which each hash represents one student" do
+      index_url = "./fixtures/student-site/index.html"
+      scraped_students = Scraper.scrape_index_page(index_url)
+      expect(scraped_students).to be_a(Array)
+      expect(scraped_students.first).to have_key(:location)
+      expect(scraped_students.first).to have_key(:name)
+      expect(scraped_students).to include(student_index_array[0], student_index_array[1], student_index_array[2])
     end
-    scraped_students
   end
 
-  def self.scrape_profile_page(profile_url)
-    doc = Nokogiri::HTML(open(profile_url))
-
-    student_details = {}
-
-    doc.css("div.social-icon-container").each do |social_media|
-      if social_media.include?("twitter")
-        student_details[:twitter] = doc.css("div.social-icon-containter")[0]["href"]
-      elsif social_media.include?("linkedin")
-        student_details[:linkedin] = doc.css("div.social-icon-containter")[0]["href"]
-      elsif social_media.include?("github")
-        student_details[:github] = doc.css("div.social-icon-containter")[0]["href"]
-      elsif social_media.include?(".com")
-        student_details[:blog]= doc.css("div.social-icon-container a")[0]["href"]
-      end
+  describe "#scrape_profile_page" do
+    it "is a class method that scrapes a student's profile page and returns a hash of attributes describing an individual student" do
+      profile_url = "./fixtures/student-site/students/joe-burgess.html"
+      scraped_student = Scraper.scrape_profile_page(profile_url)
+      expect(scraped_student).to be_a(Hash)
+      expect(scraped_student).to match(student_joe_hash)
     end
 
-    student_details[:profile_quote] = doc.css("div.vitals-text-container.profile-quote").text
-    student_details[:bio] = doc.css("div.details-container.description-holder p").text
-
-    student_details
-
+    it "can handle profile pages without all of the social links" do
+      profile_url = "./fixtures/student-site/students/david-kim.html"
+      scraped_student = Scraper.scrape_profile_page(profile_url)
+      expect(scraped_student).to be_a(Hash)
+      expect(scraped_student).to match(student_david_hash)
+    end
   end
-
 end
