@@ -13,8 +13,7 @@ class Scraper
                   :location => student.css('.student-location').text,
                   :profile_url => "./fixtures/student-site/#{student.css('a').attr('href').text}" }
                 end
-
-  end
+              end
 
   def self.scrape_profile_page(profile_url)
     array = []
