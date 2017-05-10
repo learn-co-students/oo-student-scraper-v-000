@@ -23,8 +23,7 @@ class Scraper
     student = doc.css('.profile')
     social = student.css('.social-icon-container a')
 
-    student_name = student.css('.profile-name').text
-    student_location = student.css('.profile-location').text
+
     student_quote = student.css('.profile-quote').text
     student_bio = student.css('.bio-block .description-holder').text.strip
 
@@ -42,14 +41,11 @@ class Scraper
         else
              profile[:blog] = link
         end
-
-      end
+       end
 
       profile[:profile_quote] = student_quote
       profile[:bio] = student_bio
 
       profile
-
-end
-
-end
+    end
+  end
