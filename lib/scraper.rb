@@ -9,9 +9,9 @@ class Scraper
     #return array of hashes
     students = []
     indices.css("div.student-card").each do |student|
-      students << {:name => student.css("h4.student-name").text,
-      :location => student.css("p.student-location").text,
-      :profile_url => student.css("a").attribute("href").value}
+      students << {name: student.css("h4.student-name").text,
+      location: student.css("p.student-location").text,
+      profile_url: student.css("a").attribute("href").value}
     end
     students
   end
@@ -20,10 +20,10 @@ class Scraper
     #key/value pairs describe an individual student
     profile = Nokogiri::HTML(open(profile_url))
     student_profile = {}
-    social_links = []
-    social_links = profile.css("div.social-icon-container").children.css("a").collect {|cssline|
-      cssline.attribute("href").value}
-    social_links.each do |link|
+    social_links_prefix = profile.css("div.social-icon-container").children.css("a")
+    social_links_children_suffix = social_links_prefix.collect {|prefix|
+      prefix.attribute("href").value}
+    social_links_children_suffix.each do |link|
       if link.include?("twitter.com")
         student_profile[:twitter] = link
       elsif link.include?("linkedin.com")
