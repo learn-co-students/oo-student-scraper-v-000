@@ -39,5 +39,3 @@ class Scraper
     profile_info
   end
 end
-
-Scraper.scrape_index_page("./fixtures/student-site/index.html")
