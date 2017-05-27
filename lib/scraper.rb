@@ -13,7 +13,6 @@ class Scraper
        student_hash[:name]= student.css(".student-name").text
        student_hash[:location] = student.css(".student-location").text
        student_hash[:profile_url] = student.css("a").attr("href").value
-       #binding.pry
        student_hash
     end
   end
@@ -26,7 +25,6 @@ class Scraper
         :bio => doc.css(".details-container .bio-block .bio-content .description-holder p").text
       }
       socials = doc.css(".vitals-container .social-icon-container a")
-  binding.pry
       socials.each do |social|
       if social.attribute("href").value.include?("twitter")
         scraped_student[:twitter] = social.attribute("href").value
