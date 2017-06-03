@@ -16,11 +16,11 @@ class Scraper
        student_hash =  {
        :name => card.css(".student-name").text,
        :location => card.css(".student-location").text,
-       :profile_url => "/fixtures/student-site/" + card.css("a").attr('href').text
+       :profile_url => card.css("a").attr('href').text
        }
        student_array << student_hash
      end
-     student_array #do not move or delete
+     student_array 
    end
 
 
