@@ -3,6 +3,7 @@ require 'open-uri'
 require 'pry'
 
 class Scraper
+  BASE_PATH = ""
 
   def self.scrape_index_page(index_url)
 
@@ -14,7 +15,7 @@ class Scraper
       scraped_students << {
         :name => student.css("h4.student-name").text,
         :location => student.css("p.student-location").text,
-         :profile_url => ("./fixtures/student-site/" + student.css("a").attribute("href").value)
+         :profile_url => BASE_PATH + student.css("a").attribute("href").value
       }
     end
     scraped_students
