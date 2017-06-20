@@ -58,7 +58,6 @@ class Scraper
 
 
   student.delete_if { |key, value| value.nil? }
-  student
   #binding.pry
   end
 
