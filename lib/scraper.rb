@@ -45,6 +45,3 @@ class Scraper
     student
   end
 end
-
-#Scraper.scrape_profile_page("./fixtures/student-site/students/ryan-johnson.html")
-Scraper.scrape_index_page("./fixtures/student-site/index.html")
