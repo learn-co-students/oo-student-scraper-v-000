@@ -25,7 +25,7 @@ class Scraper
     end
     # Push to profile_info Array, current state is Array of Hashes
     profile_info << { :profile_quote => doc.css('div.profile-quote').text }
-    profile_info <<  { :bio => doc.css('.bio-content div.description-holder p').text }
+    profile_info << { :bio => doc.css('.bio-content div.description-holder p').text }
     # Array of Hashes to (1) Hash
     profile_info = profile_info.reduce Hash.new, :merge
 
