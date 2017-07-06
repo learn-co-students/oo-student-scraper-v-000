@@ -1,5 +1,5 @@
 require "spec_helper"
-
+require 'pry'
 describe "Scraper" do
 
   let!(:student_index_array) {[{:name=>"Joe Burgess", :location=>"New York, NY", :profile_url=>"students/joe-burgess.html"},
@@ -26,6 +26,7 @@ describe "Scraper" do
       index_url = "./fixtures/student-site/index.html"
       scraped_students = Scraper.scrape_index_page(index_url)
       expect(scraped_students).to be_a(Array)
+  
       expect(scraped_students.first).to have_key(:location)
       expect(scraped_students.first).to have_key(:name)
       expect(scraped_students).to include(student_index_array[0], student_index_array[1], student_index_array[2])
