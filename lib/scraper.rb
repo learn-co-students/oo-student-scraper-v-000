@@ -24,8 +24,6 @@ class Scraper
     scraper = Nokogiri::HTML(html)
     student_hash = {}
     scraper.css(".social-icon-container a").each do |link|
-
-      #binding.pry
       if link.attr("href").include?("twitter")
       student_hash[:twitter] = link.attr('href')
       elsif link.attr("href").include?("linkedin")
@@ -33,14 +31,11 @@ class Scraper
       elsif link.attr("href").include?("github")
       student_hash[:github] = link.attr('href')
       else
-          student_hash[:blog] = link.attr('href')
-          #binding.pry
+      student_hash[:blog] = link.attr('href')
       end
     end # end of link iteration
-      #binding.pry
       student_hash[:profile_quote] = scraper.css("div.profile-quote").text
       student_hash[:bio] = scraper.css("div.description-holder p").text
-      #binding.pry
       student_hash
    end # end of method
 
