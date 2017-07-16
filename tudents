@@ -1,0 +1,26 @@
+
+[1mFrom:[0m /home/schun08-29386/code/labs/oo-student-scraper-v-000/lib/scraper.rb @ line 22 Scraper.scrape_index_page:
+
+     [1;34m6[0m: [32mdef[0m [1;36mself[0m.[1;34mscrape_index_page[0m(index_url)
+     [1;34m7[0m:   [1;34m# sample result[0m
+     [1;34m8[0m:     [1;34m# [{:name => "Abby Smith", :location => "Brooklyn, NY", :profile_url => "./fixtures/student-site/students/abby-smith.html"},[0m
+     [1;34m9[0m:     [1;34m#  {:name => "Joe Jones", :location => "Paris, France", :profile_url => "./fixtures/student-site/students/joe-jonas.html"},[0m
+    [1;34m10[0m:     [1;34m#  {:name => "Carlos Rodriguez", :location => "New York, NY", :profile_url => "./fixtures/student-site/students/carlos-rodriguez.html"}][0m
+    [1;34m11[0m:   html = open(index_url)
+    [1;34m12[0m:   index = [1;34;4mNokogiri[0m::HTML(html)
+    [1;34m13[0m:   students = []
+    [1;34m14[0m:   index.css([31m[1;31m"[0m[31mdiv.student-card[1;31m"[0m[31m[0m).each [32mdo[0m |item|
+    [1;34m15[0m:     student = {
+    [1;34m16[0m:       [35mname[0m: item.css([31m[1;31m"[0m[31mdiv.card-text-container h4.student-name[1;31m"[0m[31m[0m).text,
+    [1;34m17[0m:       [35mlocation[0m: item.css([31m[1;31m"[0m[31mdiv.card-text-container p.student-location[1;31m"[0m[31m[0m).text,
+    [1;34m18[0m:       [35mprofile_url[0m: item.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m).attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value
+    [1;34m19[0m:     }
+    [1;34m20[0m:     students << student
+    [1;34m21[0m:   [32mend[0m
+ => [1;34m22[0m:   binding.pry
+    [1;34m23[0m:   students
+    [1;34m24[0m:   [1;34m# :profile_url => index.css("div.student-card a").attribute("href").value[0m
+    [1;34m25[0m:   [1;34m# :name => index.css("div.cart-text-container h4.student-name").text[0m
+    [1;34m26[0m:   [1;34m# :location => index.css("div.cart-text-container p.student-location").text[0m
+    [1;34m27[0m: [32mend[0m
+
