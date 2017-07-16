@@ -3,7 +3,7 @@ require_relative "../lib/student.rb"
 require 'nokogiri'
 require 'colorize'
 
-class CommandLineInteface
+class CommandLineInterface
   BASE_PATH = "./fixtures/student-site/"
 
   def run
@@ -19,7 +19,8 @@ class CommandLineInteface
 
   def add_attributes_to_students
     Student.all.each do |student|
-      attributes = Scraper.scrape_profile_page(student.profile_url)
+      attributes = Scraper.scrape_profile_page(BASE_PATH + 'students/' + student.profile_url)
+      # made a change here so that the tests pass and the program knows where to find the profile urls
       student.add_student_attributes(attributes)
     end
   end

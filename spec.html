@@ -287,58 +287,17 @@ a {
 <div id="div_group_2" class="example_group passed">
   <dl style="margin-left: 15px;">
   <dt id="example_group_2" class="passed">#scrape_index_page</dt>
-    <script type="text/javascript">makeRed('rspec-header');</script>
-    <script type="text/javascript">makeRed('div_group_2');</script>
-    <script type="text/javascript">makeRed('example_group_2');</script>
     <script type="text/javascript">moveProgressBar('12.5');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">is a class method that scrapes the student index page and a returns an array of hashes in which each hash represents one student</span>
-      <span class="duration">0.02146s</span>
-      <div class="failure" id="failure_1">
-        <div class="message"><pre>expected  to respond to `has_key?`</pre></div>
-        <div class="backtrace"><pre>./spec/scraper_spec.rb:29:in `block (3 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">27</span>      scraped_students = <span class="constant">Scraper</span>.scrape_index_page(index_url)
-<span class="linenum">28</span>      expect(scraped_students).to be_a(<span class="constant">Array</span>)
-<span class="offending"><span class="linenum">29</span>      expect(scraped_students.first).to have_key(<span class="symbol">:location</span>)</span>
-<span class="linenum">30</span>      expect(scraped_students.first).to have_key(<span class="symbol">:name</span>)
-<span class="linenum">31</span>      expect(scraped_students).to include(student_index_array[<span class="integer">0</span>], student_index_array[<span class="integer">1</span>], student_index_array[<span class="integer">2</span>])</code></pre>
-      </div>
-    </dd>
+    <dd class="example passed"><span class="passed_spec_name">is a class method that scrapes the student index page and a returns an array of hashes in which each hash represents one student</span><span class='duration'>0.08469s</span></dd>
   </dl>
 </div>
 <div id="div_group_3" class="example_group passed">
   <dl style="margin-left: 15px;">
   <dt id="example_group_3" class="passed">#scrape_profile_page</dt>
-    <script type="text/javascript">makeRed('div_group_3');</script>
-    <script type="text/javascript">makeRed('example_group_3');</script>
     <script type="text/javascript">moveProgressBar('25.0');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">is a class method that scrapes a student&#39;s profile page and returns a hash of attributes describing an individual student</span>
-      <span class="duration">0.00064s</span>
-      <div class="failure" id="failure_2">
-        <div class="message"><pre>expected nil to be a kind of Hash</pre></div>
-        <div class="backtrace"><pre>./spec/scraper_spec.rb:39:in `block (3 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">37</span>      profile_url = <span class="string"><span class="delimiter">&quot;</span><span class="content">./fixtures/student-site/students/joe-burgess.html</span><span class="delimiter">&quot;</span></span>
-<span class="linenum">38</span>      scraped_student = <span class="constant">Scraper</span>.scrape_profile_page(profile_url)
-<span class="offending"><span class="linenum">39</span>      expect(scraped_student).to be_a(<span class="constant">Hash</span>)</span>
-<span class="linenum">40</span>      expect(scraped_student).to match(student_joe_hash)
-<span class="linenum">41</span>    <span class="keyword">end</span></code></pre>
-      </div>
-    </dd>
+    <dd class="example passed"><span class="passed_spec_name">is a class method that scrapes a student&#39;s profile page and returns a hash of attributes describing an individual student</span><span class='duration'>0.00522s</span></dd>
     <script type="text/javascript">moveProgressBar('37.5');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">can handle profile pages without all of the social links</span>
-      <span class="duration">0.00031s</span>
-      <div class="failure" id="failure_3">
-        <div class="message"><pre>expected nil to be a kind of Hash</pre></div>
-        <div class="backtrace"><pre>./spec/scraper_spec.rb:46:in `block (3 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">44</span>      profile_url = <span class="string"><span class="delimiter">&quot;</span><span class="content">./fixtures/student-site/students/david-kim.html</span><span class="delimiter">&quot;</span></span>
-<span class="linenum">45</span>      scraped_student = <span class="constant">Scraper</span>.scrape_profile_page(profile_url)
-<span class="offending"><span class="linenum">46</span>      expect(scraped_student).to be_a(<span class="constant">Hash</span>)</span>
-<span class="linenum">47</span>      expect(scraped_student).to match(student_david_hash)
-<span class="linenum">48</span>    <span class="keyword">end</span></code></pre>
-      </div>
-    </dd>
+    <dd class="example passed"><span class="passed_spec_name">can handle profile pages without all of the social links</span><span class='duration'>0.00219s</span></dd>
   </dl>
 </div>
 <div id="div_group_4" class="example_group passed">
@@ -349,99 +308,35 @@ a {
 <div id="div_group_5" class="example_group passed">
   <dl style="margin-left: 15px;">
   <dt id="example_group_5" class="passed">#new</dt>
-    <script type="text/javascript">makeRed('div_group_5');</script>
-    <script type="text/javascript">makeRed('example_group_5');</script>
     <script type="text/javascript">moveProgressBar('50.0');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">takes in an argument of a hash and sets that new student&#39;s attributes using the key/value pairs of that hash.</span>
-      <span class="duration">0.00444s</span>
-      <div class="failure" id="failure_4">
-        <div class="message"><pre>
-expected: &quot;Alex Patriquin&quot;
-     got: nil
-
-(compared using ==)
-</pre></div>
-        <div class="backtrace"><pre>./spec/student_spec.rb:29:in `block (3 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">27</span>    it <span class="string"><span class="delimiter">&quot;</span><span class="content">takes in an argument of a hash and sets that new student's attributes using the key/value pairs of that hash.</span><span class="delimiter">&quot;</span></span> <span class="keyword">do</span> 
-<span class="linenum">28</span>      expect{<span class="constant">Student</span>.new({<span class="symbol">:name</span> =&gt; <span class="string"><span class="delimiter">&quot;</span><span class="content">Sophie DeBenedetto</span><span class="delimiter">&quot;</span></span>, <span class="symbol">:location</span> =&gt; <span class="string"><span class="delimiter">&quot;</span><span class="content">Brooklyn, NY</span><span class="delimiter">&quot;</span></span>})}.to_not raise_error
-<span class="offending"><span class="linenum">29</span>      expect(student.name).to eq(<span class="string"><span class="delimiter">&quot;</span><span class="content">Alex Patriquin</span><span class="delimiter">&quot;</span></span>)</span>
-<span class="linenum">30</span>      expect(student.location).to eq(<span class="string"><span class="delimiter">&quot;</span><span class="content">New York, NY</span><span class="delimiter">&quot;</span></span>)
-<span class="linenum">31</span>    <span class="keyword">end</span> </code></pre>
-      </div>
-    </dd>
+    <dd class="example passed"><span class="passed_spec_name">takes in an argument of a hash and sets that new student&#39;s attributes using the key/value pairs of that hash.</span><span class='duration'>0.00180s</span></dd>
     <script type="text/javascript">moveProgressBar('62.5');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">adds that new student to the Student class&#39; collection of all existing students, stored in the `@@all` class variable.</span>
-      <span class="duration">0.00017s</span>
-      <div class="failure" id="failure_5">
-        <div class="message"><pre>undefined method `name&#39; for nil:NilClass</pre></div>
-        <div class="backtrace"><pre>./spec/student_spec.rb:34:in `block (3 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">32</span>
-<span class="linenum">33</span>    it <span class="string"><span class="delimiter">&quot;</span><span class="content">adds that new student to the Student class' collection of all existing students, stored in the `@@all` class variable.</span><span class="delimiter">&quot;</span></span> <span class="keyword">do</span> 
-<span class="offending"><span class="linenum">34</span>      expect(<span class="constant">Student</span>.class_variable_get(<span class="symbol">:@@all</span>).first.name).to eq(<span class="string"><span class="delimiter">&quot;</span><span class="content">Alex Patriquin</span><span class="delimiter">&quot;</span></span>)</span>
-<span class="linenum">35</span>    <span class="keyword">end</span>
-<span class="linenum">36</span>  <span class="keyword">end</span></code></pre>
-      </div>
-    </dd>
+    <dd class="example passed"><span class="passed_spec_name">adds that new student to the Student class&#39; collection of all existing students, stored in the `@@all` class variable.</span><span class='duration'>0.00018s</span></dd>
   </dl>
 </div>
 <div id="div_group_6" class="example_group passed">
   <dl style="margin-left: 15px;">
   <dt id="example_group_6" class="passed">.create_from_collection</dt>
-    <script type="text/javascript">makeRed('div_group_6');</script>
-    <script type="text/javascript">makeRed('example_group_6');</script>
     <script type="text/javascript">moveProgressBar('75.0');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">uses the Scraper class to create new students with the correct name and location.</span>
-      <span class="duration">0.00014s</span>
-      <div class="failure" id="failure_6">
-        <div class="message"><pre>undefined method `name&#39; for nil:NilClass</pre></div>
-        <div class="backtrace"><pre>./spec/student_spec.rb:42:in `block (3 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">40</span>      <span class="constant">Student</span>.class_variable_set(<span class="symbol">:@@all</span>, [])
-<span class="linenum">41</span>      <span class="constant">Student</span>.create_from_collection(student_index_array)
-<span class="offending"><span class="linenum">42</span>      expect(<span class="constant">Student</span>.class_variable_get(<span class="symbol">:@@all</span>).first.name).to eq(<span class="string"><span class="delimiter">&quot;</span><span class="content">Alex Patriquin</span><span class="delimiter">&quot;</span></span>)</span>
-<span class="linenum">43</span>    <span class="keyword">end</span>
-<span class="linenum">44</span>  <span class="keyword">end</span></code></pre>
-      </div>
-    </dd>
+    <dd class="example passed"><span class="passed_spec_name">uses the Scraper class to create new students with the correct name and location.</span><span class='duration'>0.00016s</span></dd>
   </dl>
 </div>
 <div id="div_group_7" class="example_group passed">
   <dl style="margin-left: 15px;">
   <dt id="example_group_7" class="passed">#add_student_attributes</dt>
-    <script type="text/javascript">makeRed('div_group_7');</script>
-    <script type="text/javascript">makeRed('example_group_7');</script>
     <script type="text/javascript">moveProgressBar('87.5');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">uses the Scraper class to get a hash of a given students attributes and uses that hash to set additional attributes for that student.</span>
-      <span class="duration">0.00025s</span>
-      <div class="failure" id="failure_7">
-        <div class="message"><pre>
-expected: &quot;I was in southern California for college (sun and In-n-Out!), rural Oregon for high school (lived in a town with 1500 people and 3000+ cows), and Tokyo for elementary/middle school.&quot;
-     got: nil
-
-(compared using ==)
-</pre></div>
-        <div class="backtrace"><pre>./spec/student_spec.rb:49:in `block (3 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">47</span>    it <span class="string"><span class="delimiter">&quot;</span><span class="content">uses the Scraper class to get a hash of a given students attributes and uses that hash to set additional attributes for that student.</span><span class="delimiter">&quot;</span></span> <span class="keyword">do</span> 
-<span class="linenum">48</span>      student.add_student_attributes(student_hash) 
-<span class="offending"><span class="linenum">49</span>      expect(student.bio).to eq(<span class="string"><span class="delimiter">&quot;</span><span class="content">I was in southern California for college (sun and In-n-Out!), rural Oregon for high school (lived in a town with 1500 people and 3000+ cows), and Tokyo for elementary/middle school.</span><span class="delimiter">&quot;</span></span>)</span>
-<span class="linenum">50</span>      expect(student.blog).to eq(<span class="string"><span class="delimiter">&quot;</span><span class="content">someone@blog.com</span><span class="delimiter">&quot;</span></span>)
-<span class="linenum">51</span>      expect(student.linkedin).to eq(<span class="string"><span class="delimiter">&quot;</span><span class="content">someone@linkedin.com</span><span class="delimiter">&quot;</span></span>)</code></pre>
-      </div>
-    </dd>
+    <dd class="example passed"><span class="passed_spec_name">uses the Scraper class to get a hash of a given students attributes and uses that hash to set additional attributes for that student.</span><span class='duration'>0.00024s</span></dd>
   </dl>
 </div>
 <div id="div_group_8" class="example_group passed">
   <dl style="margin-left: 15px;">
   <dt id="example_group_8" class="passed">.all</dt>
     <script type="text/javascript">moveProgressBar('100.0');</script>
-    <dd class="example passed"><span class="passed_spec_name">returns the class variable @@all</span><span class='duration'>0.00179s</span></dd>
+    <dd class="example passed"><span class="passed_spec_name">returns the class variable @@all</span><span class='duration'>0.00186s</span></dd>
   </dl>
 </div>
-<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>0.12997 seconds</strong>";</script>
-<script type="text/javascript">document.getElementById('totals').innerHTML = "8 examples, 7 failures";</script>
+<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>0.09866 seconds</strong>";</script>
+<script type="text/javascript">document.getElementById('totals').innerHTML = "8 examples, 0 failures";</script>
 </div>
 </div>
 </body>
