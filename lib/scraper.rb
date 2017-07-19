@@ -4,6 +4,7 @@ require 'pry'
 
 class Scraper
   attr_accessor :twitter, :blog, :facebook, :github, :linkedin
+
   def self.scrape_index_page(index_url)
     index_info = Nokogiri::HTML(open(index_url))
 
@@ -21,8 +22,8 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     profile = Nokogiri::HTML(open(profile_url))
 
-    split_array = profile.css("div.social-icon-container").text.split('href')
-    total_links = split_array.count -1
+    split_array = profile.css("div.social-icon-container").text.split('')
+    total_links = split_array.count{|a|a =="\n"} -1
 
 
      if profile.css("a")[1]['href'].include?("twitter")
@@ -98,16 +99,44 @@ class Scraper
         end
       end
 
-    student = {
-      :profile_quote => profile.css("div.profile-quote").text,
-      :bio => profile.css("div.description-holder p").text,
-      link1.to_sym => profile.css("a")[1]['href'],
-    }
 
-    student.send("#{link2}=",profile.css("a")[2]['href']) if link2 != nil
-   student.send("#{link3}=",profile.css("a")[3]['href']) if link3 != nil
-  student.send("#{link4}=",profile.css("a")[4]['href']) if link4 != nil
-   student.send("#{link5}=",profile.css("a")[5]['href']) if link5 != nil
+
+    case total_links
+    when 1
+      student = {
+        :profile_quote => profile.css("div.profile-quote").text,
+        :bio => profile.css("div.description-holder p").text,
+        link1.to_sym => profile.css("a")[1]['href'],
+      }
+    when 2
+      student = {
+        :profile_quote => profile.css("div.profile-quote").text,
+        :bio => profile.css("div.description-holder p").text,
+        link1.to_sym => profile.css("a")[1]['href'], link2.to_sym => profile.css("a")[2]['href']
+      }
+    when 3
+      student = {
+        :profile_quote => profile.css("div.profile-quote").text,
+        :bio => profile.css("div.description-holder p").text,
+        link1.to_sym => profile.css("a")[1]['href'], link2.to_sym => profile.css("a")[2]['href'], link3.to_sym => profile.css("a")[3]['href']
+      }
+    when 4
+      student = {
+        :profile_quote => profile.css("div.profile-quote").text,
+        :bio => profile.css("div.description-holder p").text,
+        link1.to_sym => profile.css("a")[1]['href'], link2.to_sym => profile.css("a")[2]['href'], link3.to_sym => profile.css("a")[3]['href'], link4.to_sym => profile.css("a")[4]['href']
+      }
+    when 5
+      student = {
+        :profile_quote => profile.css("div.profile-quote").text,
+        :bio => profile.css("div.description-holder p").text,
+        link1.to_sym => profile.css("a")[1]['href'], link2.to_sym => profile.css("a")[2]['href'], link3.to_sym => profile.css("a")[3]['href'], link4.to_sym => profile.css("a")[4]['href'], link5.to_sym => profile.css("a")[5]['href']
+      }
+    else
+      student = {
+        :profile_quote => profile.css("div.profile-quote").text,
+        :bio => profile.css("div.description-holder p").text}
+    end
 
   end
 
