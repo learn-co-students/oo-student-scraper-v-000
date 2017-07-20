@@ -27,10 +27,9 @@ class Scraper
     student_hash[:profile_quote] = doc.css("div.vitals-text-container div.profile-quote").text
     student_hash[:bio] = doc.css("div.details-container div.bio-block div.bio-content div.description-holder p").text
 
-    social_links = doc.css("div.social-icon-container a")
-    social_array = social_links.collect {|link| link.attribute("href").value}
+    social_links = doc.css("div.social-icon-container a").collect {|link| link.attribute("href").value}
 
-    social_array.each do |link|
+    social_links.each do |link|
       if link.include?("twitter")
         student_hash[:twitter] = link
       elsif link.include?("linkedin")
