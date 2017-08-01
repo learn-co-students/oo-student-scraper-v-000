@@ -21,36 +21,37 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     profile_page = Nokogiri::HTML(open(profile_url))
     links = {}
-    # binding.pry
-    social = profile_page.css('div.social-icon-container')      social.css('.social-icon-container').each do |icon|
-        binding.pry
-        links[:twitter] = if icon.css('a').attribute('href').value.include?('twitter.com')
-          icon.css('a').attribute('href').value
-        end
+    social = profile_page.css('div.social-icon-container')
 
-        links[:linkedin] = if icon.css('a').attribute('href').value.include?('linkedin.com')
-          icon.css('a').attribute('href').value
-        end
+    social.css('.social-icon-container').each do |icon|
+      # binding.pry
+      if icon.css('a').attribute('href').value.include?('twitter.com')
+        links[:twitter] = icon.css('a').attribute('href').value
 
-        links[:github] = if icon.css('a').attribute('href').value.include?('github.com')
-          icon.css('a').attribute('href').value
-        end
+      elsif icon.css('a').attribute('href').value.include?('linkedin.com')
+        links[:linkedin] = icon.css('a').attribute('href').value
 
-        links[:blog] = if icon.css('a').attribute('href').value.include?('#')
-          icon.css('a').attribute('href').value
-        end
+      elsif icon.css('a').attribute('href').value.include?('github.com')
+        links[:github] = icon.css('a').attribute('href').value
+
+      ### maybe make this so it doesn't include the other sites? ie, !icon.css('a').attribute('href').value.include?('twitter, github, linkedin')###
+      else #icon.css('a').attribute('href').value.include?('#')
+        links[:blog] = icon.css('a').attribute('href').value
       end
-    #collect profile_quote before returning links
+      # binding.pry
+    end
+
     profile_page.css('.vitals-text-container').each do |quote|
       links[:profile_quote] = quote.css('.profile-quote').text
     end
-    #collect bio before returning links
+
     profile_page.css('.bio-content').each do |bio|
       links[:bio] = bio.css('.description-holder p').text
     end
     # binding.pry
-    links.reject{|k,v| v.nil?}
+    links#.reject{|k,v| v.nil?}
   end
+
 end
 
 # social = profile_page.css('div.social-icon-container')
