@@ -5,7 +5,6 @@ class Scraper
 
   def self.scrape_index_page(index_url)
     index_page = Nokogiri::HTML(open(index_url))
-    #binding.pry
     students = []
 
     index_page.css('div.roster-cards-container').each do |card|
@@ -20,15 +19,47 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
+    profile_page = Nokogiri::HTML(open(profile_url))
+    links = {}
+    # binding.pry
+    profile_page.css('div.social-icon-container').each do |social|
+      social.css('.social-icon-container').each do |icon|
 
+        links[:twitter] = if icon.css('a').attribute('href').value.include?('twitter.com')
+          icon.css('a').attribute('href').value
+        end,
+
+        links[:linkedin] = if icon.css('a').attribute('href').value.include?('linkedin.com')
+          icon.css('a').attribute('href').value
+        end,
+
+        links[:github] = if icon.css('a').attribute('href').value.include?('github.com')
+          icon.css('a').attribute('href').value
+        end,
+
+        links[:blog] = if icon.css('a').attribute('href').value.include?('#')
+          icon.css('a').attribute('href').value
+        end
+      end
+    end
+    #collect profile_quote before returning links
+    profile_page.css('.vitals-text-container').each do |quote|
+      links[:profile_quote] = quote.css('.profile-quote').text
+    end
+    #collect bio before returning links
+    profile_page.css('.bio-content').each do |bio|
+      links[:bio] = bio.css('.description-holder p').text
+    end
+    # binding.pry
+    links.reject{|k,v| v.nil?}
   end
-
 end
 
-#student: index_page.css('div.student-card')
-#name: student.css('h4.student-name').text
-#location: student.css('p.student-location').text
-#profile_url: student.css('a').attribute('href').value
+# social = profile_page.css('div.social-icon-container')
+# icon = social.css('.social-icon-container')
 
-#card = index_page.css('div.roster-cards-container')
-#first_student = card.css('.student-card a').first
+# links[:twitter] = if icon.css('a').attribute('href').value.include?('twitter.com')
+#   icon.css('a').attribute('href').value
+# else
+#   nil
+# end
