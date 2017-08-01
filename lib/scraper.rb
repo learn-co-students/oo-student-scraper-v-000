@@ -22,26 +22,24 @@ class Scraper
     profile_page = Nokogiri::HTML(open(profile_url))
     links = {}
     # binding.pry
-    profile_page.css('div.social-icon-container').each do |social|
-      social.css('.social-icon-container').each do |icon|
-
+    social = profile_page.css('div.social-icon-container')      social.css('.social-icon-container').each do |icon|
+        binding.pry
         links[:twitter] = if icon.css('a').attribute('href').value.include?('twitter.com')
           icon.css('a').attribute('href').value
-        end,
+        end
 
         links[:linkedin] = if icon.css('a').attribute('href').value.include?('linkedin.com')
           icon.css('a').attribute('href').value
-        end,
+        end
 
         links[:github] = if icon.css('a').attribute('href').value.include?('github.com')
           icon.css('a').attribute('href').value
-        end,
+        end
 
         links[:blog] = if icon.css('a').attribute('href').value.include?('#')
           icon.css('a').attribute('href').value
         end
       end
-    end
     #collect profile_quote before returning links
     profile_page.css('.vitals-text-container').each do |quote|
       links[:profile_quote] = quote.css('.profile-quote').text
@@ -60,6 +58,8 @@ end
 
 # links[:twitter] = if icon.css('a').attribute('href').value.include?('twitter.com')
 #   icon.css('a').attribute('href').value
-# else
-#   nil
+# end
+#
+# links[:github] = if icon.css('a').attribute('href').value.include?('github.com')
+#   icon.css('a').attribute('href').value
 # end
