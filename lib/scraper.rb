@@ -22,21 +22,21 @@ class Scraper
     profile_page = Nokogiri::HTML(open(profile_url))
     links = {}
     social = profile_page.css('div.social-icon-container')
-
-    social.css('.social-icon-container').each do |icon|
-      # binding.pry
-      if icon.css('a').attribute('href').value.include?('twitter.com')
+    icon = social.css('.social-icon-container')
+    binding.pry
+    icon.css('a').attribute('href').value.each do |site|
+      binding.pry
+      if site.include?('twitter.com')
         links[:twitter] = icon.css('a').attribute('href').value
 
-      elsif icon.css('a').attribute('href').value.include?('linkedin.com')
-        links[:linkedin] = icon.css('a').attribute('href').value
-
-      elsif icon.css('a').attribute('href').value.include?('github.com')
-        links[:github] = icon.css('a').attribute('href').value
-
-      ### maybe make this so it doesn't include the other sites? ie, !icon.css('a').attribute('href').value.include?('twitter, github, linkedin')###
-      else #icon.css('a').attribute('href').value.include?('#')
-        links[:blog] = icon.css('a').attribute('href').value
+      # elsif icon.css('a').attribute('href').value.include?('linkedin.com')
+      #   links[:linkedin] = icon.css('a').attribute('href').value
+      #
+      # elsif icon.css('a').attribute('href').value.include?('github.com')
+      #   links[:github] = icon.css('a').attribute('href').value
+      #
+      # elsif !(icon.css('a').attribute('href').value.include?('twitter, github, linkedin'))
+      #   links[:blog] = icon.css('a').attribute('href').value
       end
       # binding.pry
     end
@@ -49,7 +49,7 @@ class Scraper
       links[:bio] = bio.css('.description-holder p').text
     end
     # binding.pry
-    links#.reject{|k,v| v.nil?}
+    links.reject{|k,v| v.nil?}
   end
 
 end
