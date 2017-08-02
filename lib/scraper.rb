@@ -23,16 +23,12 @@ class Scraper
     students = {}
     social = profile_page.css('div.social-icon-container').children.css('a').map{ |icon| icon.attribute('href').value}
     social.each do |link|
-
       if link.include?('twitter')
         students[:twitter] = link
-
       elsif link.include?('linkedin')
         students[:linkedin] = link
-
       elsif link.include?('github')
         students[:github] = link
-
       else
         students[:blog] = link
       end
@@ -45,7 +41,6 @@ class Scraper
     profile_page.css('.bio-content').each do |bio|
       students[:bio] = bio.css('.description-holder p').text
     end
-    # binding.pry
     students.reject{|k,v| v.nil?}
   end
 
