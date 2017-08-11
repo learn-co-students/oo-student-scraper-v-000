@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.9
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "README";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'>
+<h1 id="label-Object+Oriented+Student+Scraper">Object Oriented Student Scraper</h1>
+
+<h2 id="label-Objectives">Objectives</h2>
+<ol><li>
+<p>Build two classes, a class that is responsible for scraping data from a web
+page and a class that uses that data to instantiate new objects.</p>
+</li><li>
+<p>Understand the contents of a third class that is responsible for the
+command line interface.</p>
+</li><li>
+<p>Use metaprogramming to instantiate new instances of a class and add
+attributes to instances of a class.</p>
+</li></ol>
+
+<h2 id="label-Overview">Overview</h2>
+
+<p>In this lab, you&#39;ll be scraping your Learn.co student website.
+You&#39;ll use the index page to grab a list of current students and
+instantiate a series of <code>Student</code> objects. You&#39;ll scrape the
+individual profile pages of each student to add attributes to each
+individual student.</p>
+
+<p>We&#39;ve given you a third class, <code>CommandLineInterface</code> that
+is responsible for generating students using both the <code>Student</code>
+and <code>Scraper</code> classes. As you go through this lab, take some
+time to read through the code in the <code>CommandLineInterface</code>
+class. Try to understand how it works and how it uses the code in our other
+classes to actually create, add attributes, and display students to the
+user via the command line interface.</p>
+
+<p>We&#39;ve also given you an executable file in <code>bin/run</code> that
+you can execute once you get your tests passing to see your code in action!</p>
+
+<h2 id="label-Before+You+Begin">Before You Begin</h2>
+
+<p>For this project, we&#39;ll be scraping data from your student site at <a
+href="http://students.learn.co/">students.learn.co</a>. Sort of. We
+can&#39;t really give you a project with a full test suite and base those
+tests on a real live website on the real live internet. Why? Because
+websites change! They get new styling or new information, or they break
+because someone did something wrong. It happens! So, any tests we write
+would be based on the website at a given point in time. The code you write
+to pass those tests would assume that you are scraping a website that may
+have since changed. Your scraper would pass tests but fail to actually
+scrape the web page if you tried to run your code by sending a real web
+request to the real website. That would be terrible! Then you couldn&#39;t
+see your code in action or view the page you were writing code to scrape.
+Just awful.</p>
+
+<p>Don&#39;t worry! We&#39;ve very cleverly solved this problem for the
+purposes of this project. We&#39;ve stored a copy of your student site
+<em>inside a subdirectory in this project</em>. The copy is being
+maintained only for the purposes of this project, so we don&#39;t have to
+worry about things like the styling changing or the code breaking and
+affecting our scraper code.</p>
+
+<p>To locally view the stored web page, simply type the following into your
+terminal: <code>open fixtures/student-site/index.html</code></p>
+
+<p><strong>Important if you&#39;re using the Learn IDE:</strong> If you&#39;re
+using the Learn IDE you&#39;ll have to run a server to view the site. You
+can do this by typing <code>httpserver &amp;</code> to run the server in
+the background (make sure you know how to switch this job back to the
+foreground so you can close the server later with <code>ctrl + c</code>).
+Enter the IP address this command outputs into your web browser. Then
+navigate to the fixtures folder, and then the student-site folder and the
+page should come up! For more information on background jobs in bash, take
+a look at this readme: <a
+href="https://github.com/learn-co-curriculum/bash-background-jobs">github.com/learn-co-curriculum/bash-background-jobs</a>/</p>
+
+<h2 id="label-Instructions">Instructions</h2>
+
+<p>Run <code>bundle install</code> first.</p>
+
+<h3 id="label-The+Scraper+Class">The <code>Scraper</code> Class</h3>
+
+<p>Let&#39;s start with the <code>Scraper</code> class in
+<code>lib/scraper.rb</code>. In this class you are responsible for defining
+two methods. The <code>#scrape_index_page</code> method is responsible for
+scraping the index page that lists all of the students and the
+<code>#scrape_profile_page</code> method is responsible for scraping an
+individual student&#39;s profile page to get further information about that
+student.</p>
+
+<h4 id="label-The+-23scrape_index_page+Method">The <code>#scrape_index_page</code> Method</h4>
+
+<p>This is a class method that should take in an argument of the URL of the
+index page. It should use nokogiri and Open-URI to access that page. The
+return value of this method should be an array of hashes in which each hash
+represents a single student. The keys of the individual student hashes
+should be <code>:name</code>, <code>:location</code> and
+<code>:profile_url</code>.</p>
+
+<p>Here&#39;s a look at the desired behavior:</p>
+
+<pre class="code ruby"><code class="ruby">Scraper.scrape_index_page(index_url)
+# =&gt; [
+        {:name =&gt; &quot;Abby Smith&quot;, :location =&gt; &quot;Brooklyn, NY&quot;, :profile_url =&gt; &quot;./fixtures/student-site/students/abby-smith.html&quot;},
+        {:name =&gt; &quot;Joe Jones&quot;, :location =&gt; &quot;Paris, France&quot;, :profile_url =&gt; &quot;./fixtures/student-site/students/joe-jonas.html&quot;},
+        {:name =&gt; &quot;Carlos Rodriguez&quot;, :location =&gt; &quot;New York, NY&quot;, :profile_url =&gt; &quot;./fixtures/student-site/students/carlos-rodriguez.html&quot;},
+        {:name =&gt; &quot;Lorenzo Oro&quot;, :location =&gt; &quot;Los Angeles, CA&quot;, :profile_url =&gt; &quot;./fixtures/student-site/students/lorenzo-oro.html&quot;},
+        {:name =&gt; &quot;Marisa Royer&quot;, :location =&gt; &quot;Tampa, FL&quot;, :profile_url =&gt; &quot;./fixtures/student-site/students/marisa-royer.html&quot;}
+      ]
+</code></pre>
+
+<p><strong>Top-Tip:</strong> Remember to use the element inspector in your
+browser&#39;s developer tools to examine each element whose value you are
+trying to scrape. Also remember to use <code>binding.pry</code> and
+experiment with different element selectors in your terminal. It takes a
+lot of trial and error to find the correct selectors for the desired
+element.</p>
+
+<h4 id="label-The+-23scrape_profile_page+Method">The <code>#scrape_profile_page</code> Method</h4>
+
+<p>This is a class method that should take in an argument of a student&#39;s
+profile URL. It should use nokogiri and Open-URI to access that page. The
+return value of this method should be a hash in which the key/value pairs
+describe an individual student. Some students don&#39;t have a twitter or
+some other social link. Be sure to be able to handle that. Here is what the
+hash should look like:</p>
+
+<pre class="code ruby"><code class="ruby">Scraper.scrape_profile_page(profile_url)
+# =&gt; {:twitter=&gt;&quot;http://twitter.com/flatironschool&quot;,
+      :linkedin=&gt;&quot;https://www.linkedin.com/in/flatironschool&quot;,
+      :github=&gt;&quot;https://github.com/learn-co,
+      :blog=&gt;&quot;http://flatironschool.com&quot;,
+      :profile_quote=&gt;&quot;\&quot;Forget safety. Live where you fear to live. Destroy your reputation. Be notorious.\&quot; - Rumi&quot;,
+      :bio=&gt; &quot;I&#39;m a school&quot;
+     }
+</code></pre>
+
+<p>The only attributes you need to scrape from a student&#39;s profile page
+are the ones listed above: twitter url, linkedin url, github url, blog url,
+profile quote, and bio. The hash you build using those attributes should be
+formatted like the one in the example above.</p>
+
+<p><strong>Why class methods?</strong></p>
+
+<p>Why are our scraping methods being defined as class methods? Well, we
+don&#39;t need to store any information about the <code>Scraper</code> once
+it has completed the job of scraping. We simply need to scrape some
+information and pass that information along to our <code>Student</code>
+class. So, we don&#39;t need to produce instances of <code>Scraper</code>
+that maintain their own attributes.</p>
+
+<h3 id="label-The+Student+Class">The <code>Student</code> Class</h3>
+
+<p>We&#39;ve already given you the <code>attr_accessors</code> that you are
+required to have for each individual student.</p>
+
+<p>The student class will use the information returned by the above methods
+from our <code>Scraper</code> class in order to create students and add
+attributes to individual students. However, the <code>Student</code> class
+shouldn&#39;t know about the <code>Scraper</code> class. This means that
+the <code>Student</code> class shouldn&#39;t directly interact with the
+<code>Scraper</code> class––it shouldn&#39;t call on the
+<code>Scraper</code> class in any of its methods or take in the
+<code>Scraper</code> class itself as an argument. Why is this? We want our
+program to be as flexible as possible. We can imagine any number of
+applications that use a <code>Student</code> model. So we don&#39;t want
+our <code>Student</code> model to be dependent on <em>how</em> it gets
+information regarding the students it creates. It should simply be ready to
+take in that information, regardless of its source (be it scraping, a .csv
+file, or a form on a website).</p>
+
+<h4 id="label-The+-23create_from_collection-28students_array-29">The <code>#create_from_collection(students_array)</code></h4>
+
+<p>This class method should take in an array of hashes. In fact, we will call
+<code>Student.create_from_collection</code> with the return value of the
+<code>Scraper.scrape_index_page</code> method as the argument. The
+<code>#create_from_collection</code> method should iterate over the array
+of hashes and create a new individual student using each hash. This brings
+us to the <code>#initialize</code> method on our <code>Student</code>
+class.</p>
+
+<h5 id="label-The+-23initialize+Method">The <code>#initialize</code> Method</h5>
+
+<p>The <code>#initialize</code> method should take in an argument of a hash
+and use metaprogramming to assign the newly created student attributes and
+values in accordance with the key/value pairs of the hash. Use the
+<code>#send</code> method to acheive this. This method should also add the
+newly created student to the <code>Student</code> class&#39;
+<code>@@all</code> array of all students. You&#39;ll need to create this
+class variable and set it equal to an empty array at the top of your class.
+Push <code>self</code> into the array at the end of the
+<code>#initialize</code> method.</p>
+
+<h4 id="label-The+-23add_student_attributes+Method">The <code>#add_student_attributes</code> Method</h4>
+
+<p>This instance method should take in a hash whose key/value pairs describe
+additional attributes of an individual student. In fact, we will be calling
+<code>student.add_student_attributes</code> with the return value of the
+<code>Scraper.scrape_profile_page</code> method as the argument.</p>
+
+<p>The <code>#add_student_attributes</code> method should iterate over the
+given hash and use metaprogramming to dynamically assign the student
+attributes and values in accordance with the key/value pairs of the hash.
+Use the <code>#send</code> method to achieve this.</p>
+
+<p><strong>Important:</strong> The return value of this method should be the
+student itself. Use the <code>self</code> keyword.</p>
+
+<h4 id="label-The+.all+Method">The <code>.all</code> Method</h4>
+
+<p>This class method should return the contents of the <code>@@all</code>
+array.</p>
+
+<h2 id="label-Our+Code+in+Action">Our Code in Action</h2>
+
+<p>Now that you have all your tests passing, you can run our executable file,
+which relies on our <code>CommandLineInterface</code> class.</p>
+
+<p>We&#39;ve provided you with all of the code in the
+<code>CommandLineInterface</code> class. Take a few minutes to read through
+this class and gain a strong understanding of how it uses the code you
+wrote in your Scraper and Student classes to make a request to the local
+files and scrape the students.</p>
+
+<p>Now run the executable file with <code>ruby bin/run</code>. You should see
+all of the students you scraped and instantiated <code>puts</code>-ed out
+to the terminal. Great job!</p>
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/oo-student-scraper' title='Object Oriented Student Scraper'>Object Oriented Student Scraper</a> on Learn.co and start learning to code for free.</p><p class='util--hide'>View <a href='https://learn.co/lessons/oo-student-scraper'>Student Scraper</a> on Learn.co and start learning to code for free.</p></div></div>
+
+      <div id="footer">
+  Generated on Fri Aug 11 08:40:38 2017 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.9 (ruby-2.4.1).
+</div>
+
+    </div>
+  </body>
+</html>
