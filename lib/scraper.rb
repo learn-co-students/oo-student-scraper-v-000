@@ -14,7 +14,7 @@ class Scraper
           profile_url: student.css('a').attr('href').value
           }
       end
-      
+
       scraped_students
   end
 
@@ -35,7 +35,7 @@ class Scraper
       end
 
     doc.css('html').each do |details|
-      scraped_student[:profile_quote] = details.css('.profile-quote').text.strip
+      scraped_student[:profile_quote] = details.css('.profile-quote').text
       scraped_student[:bio] = details.css('.bio-content.content-holder .description-holder').text.strip
     end
     scraped_student
