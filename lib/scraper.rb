@@ -14,6 +14,7 @@ class Scraper
           profile_url: student.css('a').attr('href').value
           }
       end
+      
       scraped_students
   end
 
