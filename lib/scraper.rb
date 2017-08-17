@@ -36,7 +36,7 @@ class Scraper
 
     doc.css('html').each do |details|
       scraped_student[:profile_quote] = details.css('.profile-quote').text
-      scraped_student[:bio] = details.css('.bio-content.content-holder .description-holder').text.strip
+      scraped_student[:bio] = details.css('.bio-content.content-holder .description-holder').text
     end
     scraped_student
   end
