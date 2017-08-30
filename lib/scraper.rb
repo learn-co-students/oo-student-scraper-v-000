@@ -10,7 +10,7 @@ class Scraper
       doc.css('.student-card').each do | student |
         scraped_students << {
           name: student.css('.student-name').text,
-          location: student.css('.student-location').text,
+          location: student.css('.student-location').text.strip,
           profile_url: student.css('a').attr('href').value
           }
       end
