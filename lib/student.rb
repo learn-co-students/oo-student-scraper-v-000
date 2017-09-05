@@ -11,7 +11,6 @@ class Student
   end
 
   def self.create_from_collection(students_array)
-    # binding.pry
     students_array.each do |student_hash|
     student = self.new(student_hash)
     @@all << student
@@ -26,7 +25,6 @@ class Student
     @blog = attributes_hash[:blog]
     @profile_quote = attributes_hash[:profile_quote]
     @bio = attributes_hash[:bio]
-    # binding.pry
   end
 
   def self.all
