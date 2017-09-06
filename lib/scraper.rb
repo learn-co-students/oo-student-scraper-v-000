@@ -24,8 +24,8 @@ class Scraper
     student_info = {}
     profile_doc = Nokogiri::HTML(open(profile_url))
 
-    student_info[:profile_quote] = profile_doc.css('.profile-quote').text()
-    student_info[:bio] = profile_doc.css('.bio-content p').text()
+    student_info[:profile_quote] = profile_doc.css('.profile-quote').text
+    student_info[:bio] = profile_doc.css('.bio-content p').text
 
     # Store the user's profile links.
     profile_links = profile_doc.css(".social-icon-container a")
