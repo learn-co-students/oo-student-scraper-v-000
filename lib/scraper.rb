@@ -21,29 +21,28 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     # binding.pry
+    student = {}
     doc = Nokogiri::HTML(open(profile_url))
-    doc.css(".social-icon-container").each do |student|
-      binding.pry
-      student_profile = {
-          twitter: student.at("a")["href"],
-          :linkedin=>"https://www.linkedin.com/in/jmburges",
-          :github=>"https://github.com/jmburges",
-          :blog=>"http://joemburgess.com/",
-          :profile_quote=>"\"Reduce to a previously solved problem\"",
-          :bio=>
-      "I grew up outside of the Washington DC (NoVA!) and went to college at Carnegie Mellon University in Pittsburgh. After college, I worked as an Oracle consultant for IBM for a bit and now I teach here at The Flatiron School."
-      }
-     
-      student
+    icons = []
+    doc.css(".social-icon-container").children.css("a").each do |icon|
+      icons << icon.attribute("href").value
     end
-#     {:twitter=>"https://twitter.com/jmburges",
-#     :linkedin=>"https://www.linkedin.com/in/jmburges",
-#     :github=>"https://github.com/jmburges",
-#     :blog=>"http://joemburgess.com/",
-#     :profile_quote=>"\"Reduce to a previously solved problem\"",
-#     :bio=>
-# "I grew up outside of the Washington DC (NoVA!) and went to college at Carnegie Mellon University in Pittsburgh. After college, I worked as an Oracle consultant for IBM for a bit and now I teach here at The Flatiron School."}}
-
+    # Check each icon
+    icons.each do |icon|
+       if icon.include?("twitter")
+        student[:twitter] = icon 
+       elsif icon.include?("github")
+        student[:github] = icon
+       elsif icon.include?("linkedin")
+        student[:linkedin] = icon
+       else
+        student[:blog] = icon
+       end
+    end 
+    student[:profile_quote] = doc.css("body > div > div.vitals-container > div.vitals-text-container > div").text.strip
+    student[:bio] = doc.css("body > div > div.details-container > div.bio-block.details-block > div > div.description-holder > p").text.strip
+     # return hash
+    student
   end
 
 end
