@@ -1,3 +1,5 @@
+#responsible for generating students using both the Student and Scraper classes
+
 require_relative "../lib/scraper.rb"
 require_relative "../lib/student.rb"
 require 'nokogiri'
