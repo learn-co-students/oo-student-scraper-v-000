@@ -1,0 +1,420 @@
+=> [[[32m#<Student:0x00000002671400[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671400[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671338[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671338[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671270[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671270[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026711a8[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026711a8[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026710e0[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026710e0[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671018[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671018[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002670f50[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002670f50[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61d50[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61d50[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61c88[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61c88[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61b98[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61b98[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61ad0[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61ad0[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61a08[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61a08[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61940[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61940[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61878[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61878[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m],
+ [[32m#<Student:0x00000002671400[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671400[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671338[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671338[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671270[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671270[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026711a8[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026711a8[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026710e0[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026710e0[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671018[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671018[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002670f50[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002670f50[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61d50[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61d50[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61c88[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61c88[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61b98[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61b98[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61ad0[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61ad0[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61a08[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61a08[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61940[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61940[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61878[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61878[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m],
+ [[32m#<Student:0x00000002671400[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671400[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671338[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671338[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671270[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671270[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026711a8[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026711a8[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026710e0[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026710e0[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671018[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671018[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002670f50[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002670f50[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61d50[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61d50[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61c88[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61c88[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61b98[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61b98[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61ad0[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61ad0[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61a08[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61a08[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61940[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61940[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61878[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61878[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m],
+ [[32m#<Student:0x00000002671400[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671400[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671338[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671338[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671270[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671270[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026711a8[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026711a8[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026710e0[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026710e0[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671018[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671018[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002670f50[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002670f50[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61d50[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61d50[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61c88[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61c88[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61b98[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61b98[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61ad0[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61ad0[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61a08[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61a08[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61940[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61940[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61878[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61878[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m],
+ [[32m#<Student:0x00000002671400[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671400[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671338[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671338[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671270[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671270[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026711a8[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026711a8[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026710e0[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026710e0[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671018[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671018[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002670f50[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002670f50[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61d50[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61d50[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61c88[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61c88[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61b98[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61b98[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61ad0[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61ad0[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61a08[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61a08[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61940[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61940[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61878[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61878[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m],
+ [[32m#<Student:0x00000002671400[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671400[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671338[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671338[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671270[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671270[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026711a8[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026711a8[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026710e0[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026710e0[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671018[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671018[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002670f50[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002670f50[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61d50[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61d50[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61c88[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61c88[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61b98[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61b98[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61ad0[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61ad0[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61a08[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61a08[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61940[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61940[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61878[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61878[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m],
+ [[32m#<Student:0x00000002671400[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671400[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671338[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671338[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671270[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671270[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026711a8[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026711a8[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026710e0[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x000000026710e0[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671018[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002671018[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002670f50[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000002670f50[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61d50[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61d50[0m @location[32m=[0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mAlex Patriquin[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61c88[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61c88[0m @location[32m=[0m[31m[1;31m"[0m[31mKansas City, MO[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mBacon McRib[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61b98[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61b98[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mSan Francisco, CA[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mAlisha McWilliams[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61ad0[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61ad0[0m @location[32m=[0m[31m[1;31m"[0m[31mAustin, TX[1;31m"[0m[31m[0m, @name[32m=[0m[31m[1;31m"[0m[31mDaniel Fenjves[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61a08[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61a08[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mChicago, IL[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mArielle Sullivan[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61940[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61940[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61878[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m,
+  [32m#<Student:0x00000001e61878[0m
+   @location[32m=[0m[31m[1;31m"[0m[31mPortland, OR[1;31m"[0m[31m[0m,
+   @name[32m=[0m[31m[1;31m"[0m[31mSushanth Bhaskarab[1;31m"[0m[31m[0m[32m>[0m]]
