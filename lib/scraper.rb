@@ -39,24 +39,20 @@ class Scraper
     profile_data = {}
 
     #iterate throuugh each link on page
-    html.css(".social-icon-container a").each do |link|
-
-    social_sites = ['youtube', 'twitter', 'linkedin', 'github', 'facebook']
-    key = link['href'][/(?<=https:\/\/).*(?=.com)/]
-
-      #remove www. portion if included in link
-
-      if key != nil
-        key = key.split("www.").last
-      end
+    html.css(".social-icon-container").children.css("a").each do |link|
 
       #if url is for social site, pull name from url
-      if social_sites.any? {|site| site == key}
-        profile_data[:"#{key}"] = "#{link['href']}"
+      if link['href'].include?('twitter')
+        profile_data[:twitter] = link['href']
+      elsif link['href'].include?('github')
+        profile_data[:github] = link['href']
+      elsif link['href'].include?('linkedin')
+        profile_data[:linkedin] = link['href']
       #otherwise, link is for user's blog
       else
         profile_data[:blog] = "#{link['href']}"
       end
+
     end
 
     #pull profile quote and bio
