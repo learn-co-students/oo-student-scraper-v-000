@@ -21,32 +21,47 @@ class Scraper
   	
   	url = Nokogiri::HTML(open(profile_url))
   	#collect all social links
-  	links = url.css('.main-wrapper .vitals-container')
+  	links = url.css('.main-wrapper')
   	links.each do |link|
   		# binding.pry	
-  		link.search('a').each do |site|
+  		link.css('.vitals-container').search('a').each do |site|
   			# binding.pry
   			info.each do |k, v|
   				# binding.pry
   				if site.attribute('href').value.slice(k.to_s).eql?(k.to_s)
 	 					info[k] = site.attribute('href').value
-	 				end
+	 				
+	 				elsif k.eql?(:blog) && info.none?{|a,b| site.attribute('href').value.slice(a.to_s).eql?(a.to_s)} && site.attribute('href').value.include?("http://")
+	 				# 	# !info.values.include?(site.attribute('href').value) && !site.attribute('href').value.slice(k.to_s).eql?(k.to_s)
+	 					info[k] = site.attribute('href').value
+	 				end 
 	 			end
 	 		end
 
-	 		link.search('[class^="profile"]').each do |klass|
+	 		link.css('.vitals-container').search('[class^="profile"]').each do |klass|
 	 			# binding.pry
 	 			info.each do |k,v|
 	 				# binding.pry
 	 				if info[k].empty? && klass.attribute('class').value.sub(/[-_]/, " ").eql?(k.to_s.sub(/[-_]/, " "))
+	 					# if info[k].empty? && klass.attribute('class').value.sub(/[-_]/, " ").eql?(k.to_s.sub(/[-_]/, " "))
 	 					# binding.pry
 	 				 info[k] = klass.text
 	 				end
 	 			end
 	 		end
+	 		link.css('.details-container').search('[class^="bio"]').each do |klass|
+	 			# binding.pry
+	 			info.each do |k,v|
+	 				# binding.pry
+	 				if info[k].empty? && klass.attribute('class').value.slice(k.to_s).eql?(k.to_s)
+	 					# binding.pry
+	 				 info[k] = klass.css('p').text
+	 				end
+	 			end
+	 		end
 	 	end
 	 	# binding.pry
-	 	info
+	 	info.delete_if {|k, v| v == ""}
 	end
 
 end #. End of Class
