@@ -33,9 +33,13 @@ class Scraper
 	 				end
 	 			end
 	 		end
+
 	 		link.search('[class^="profile"]').each do |klass|
+	 			# binding.pry
 	 			info.each do |k,v|
-	 				if info[k].empty? || klass.attribute('class').value.eql?(k.to_s)
+	 				# binding.pry
+	 				if info[k].empty? && klass.attribute('class').value.sub(/[-_]/, " ").eql?(k.to_s.sub(/[-_]/, " "))
+	 					# binding.pry
 	 				 info[k] = klass.text
 	 				end
 	 			end
@@ -47,13 +51,13 @@ class Scraper
 
 end #. End of Class
 
-{:twitter=>"https://twitter.com/empireofryan", 
-	:linkedin=>"https://www.linkedin.com/in/ryan-johnson-321629ab", 
-	:github=>"https://github.com/empireofryan", 
-	:blog=>"", 
-	:profile_quote=>"", 
-	:bio=>""
-} 
+# {:twitter=>"https://twitter.com/empireofryan", 
+# 	:linkedin=>"https://www.linkedin.com/in/ryan-johnson-321629ab", 
+# 	:github=>"https://github.com/empireofryan", 
+# 	:blog=>"", 
+# 	:profile_quote=>"", 
+# 	:bio=>""
+# } 
 
 
 
