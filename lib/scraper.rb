@@ -1,6 +1,8 @@
 require 'open-uri'
 require 'pry'
 
+# attr_accessor :linkedin, :github, :blog, :profile_quote, :bio
+
 class Scraper
 
   def self.scrape_index_page(index_url)
@@ -15,11 +17,65 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-
-    
-  end
+  	info = {twitter: "",linkedin: "", github: "", blog: "", profile_quote: "", bio: ""}
+  	
+  	url = Nokogiri::HTML(open(profile_url))
+  	#collect all social links
+  	links = url.css('.main-wrapper .vitals-container')
+  	links.each do |link|
+  		# binding.pry	
+  		link.search('a').each do |site|
+  			# binding.pry
+  			info.each do |k, v|
+  				# binding.pry
+  				if site.attribute('href').value.slice(k.to_s).eql?(k.to_s)
+	 					info[k] = site.attribute('href').value
+	 				end
+	 			end
+	 		end
+	 		link.search('[class^="profile"]').each do |klass|
+	 			info.each do |k,v|
+	 				if info[k].empty? || klass.attribute('class').value.eql?(k.to_s)
+	 				 info[k] = klass.text
+	 				end
+	 			end
+	 		end
+	 	end
+	 	# binding.pry
+	 	info
+	end
 
 end #. End of Class
 
-# index_url = Nokogiri::HTML(open('http://127.0.0.1:8080/'))
+{:twitter=>"https://twitter.com/empireofryan", 
+	:linkedin=>"https://www.linkedin.com/in/ryan-johnson-321629ab", 
+	:github=>"https://github.com/empireofryan", 
+	:blog=>"", 
+	:profile_quote=>"", 
+	:bio=>""
+} 
+
+
+
+
+
+
+  		# keys.select do |key|
+  		# 	if key.to_s == link.slice(key.to_s)
+
+  	# if self.instance_methods.include?(link)
+  	# self.send("#{key}" )
+
+# index_url = Nokogiri::HTML(open('http://127.0.0.1:8080/students/ryan-johnson.html'))
 # index_url = 'http://127.0.0.1:8080/'
+
+# :linkedin=>"https://www.linkedin.com/in/flatironschool",
+#       :github=>"https://github.com/learn-co,
+#       :blog=>"http://flatironschool.com",
+#       :profile_quote=>"\"Forget safety. Live where you fear to live. Destroy your reputation. Be notorious.\" - Rumi",
+#       :bio
+
+#       def initialize(attributes)
+#     		attributes.each {|key, value| self.send(("#{key}="), value)}
+#   		end
+# 			
