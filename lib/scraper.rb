@@ -16,10 +16,15 @@ class Scraper
       location = student_attributes.css("p.student-location").text
       profile_url = student_attributes.css("a")[0]["href"]
 
+
       student_hash = {:name => name, :location => location, :profile_url => profile_url}
+
+
+
       student_hash_array << student_hash
     end
     student_hash_array
+    # binding.pry
   end
 
 
