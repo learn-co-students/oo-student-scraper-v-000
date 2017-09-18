@@ -31,7 +31,9 @@ class Scraper
     twitter = ""
 
     social = student_profile.css('.social-icon-container a')
-        blog = social[3].attr('href')
+        if social[3]
+          blog = social[3].attr('href')
+        end
       social.each do |social_site|
         if social_site.attr('href').include?("linkedin")
           linkedin = social_site.attr('href')
@@ -49,6 +51,8 @@ class Scraper
       :profile_quote => profile_quote,
       :bio => bio
     }
+
+    student_info.delete_if { |key, value| value.to_s.strip == '' }
   end
 
 end
