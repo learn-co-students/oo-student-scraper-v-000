@@ -22,14 +22,31 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
-    profile = doc.css('.vitals-container')
+    profile = doc.css('.main-wrapper')
+    profile_info= []
+
+    student_profile.each do |student|
+      profile = Hash.new
+
+      profile[:twitter] = profile.css(".social-icon-container a").first.attribute("href").value
+      profile[:linkedin] = profile.css(".social-icon-container a")[1].attribute("href").value
+      profile[:github] = profile.css(".social-icon-container a")[2].attribute("href").value
+      profile[:blog] = profile.css(".social-icon-container a")[3].attribute("href").value
+      profile[:profile_quote] = profile.css(".vitals-text-container .profile-quote").text
+      profile[:bio] = profile.css(".details-container p").text
+
+      profile_info << profile
+    end
+
     binding.pry
+
+    profile_info
     #twitter = profile.css(".social-icon-container a").first.attribute("href").value
     #linkedin= profile.css(".social-icon-container a")[1].attribute("href").value
-    #github = profile.css(".social-icon-container a").first.attribute("href").value
-    #blog = profile.css(".social-icon-container a").first.attribute("href").value
-    #profile_quote = profile.css(".vitals-text-container .profile-name").text
-    #bio = profile.css(".details-container").text
+    #github = profile.css(".social-icon-container a")[2].attribute("href").value
+    #blog = profile.css(".social-icon-container a")[3].attribute("href").value
+    #profile_quote = profile.css(".vitals-text-container .profile-quote").text
+    #bio = profile.css(".details-container p").text
   end
 
 end
