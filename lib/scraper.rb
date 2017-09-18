@@ -5,30 +5,48 @@ require 'nokogiri'
 class Scraper
 
   def self.scrape_index_page(index_url)
-    html = File.read('fixtures/student-site/index.html')
-    students = Nokogiri::HTML(html)
-    student_hash = []
-    binding.pry
-    students.css('div.roster-cards-container.student-card').each do |individual_students|
-        binding.pry
+    students = Nokogiri::HTML(open(index_url))
+    students_array = []
+    students.css('div.roster-cards-container').each do |individual_students|
+      individual_students.css('.student-card a').each do |student|
+        name = student.css('.student-name').text
+        location = student.css('.student-location').text
+        url = student.attr('href')
+        #url = individual_students.css('a').map { |link| link['href'] }
+        students_array << {:name => name, :location => location, :profile_url => url}
+      end
     end
+    students_array
+  end
+
+
+  def self.scrape_profile_page(profile_url)
+    student_profile = Nokogiri::HTML(open(profile_url))
+    student_info = {}
+    bio = student_profile.css('.description-holder p').text
+    profile_quote = student_profile.css('.profile-quote').text
+
+    linkedin = ""
+    github = ""
+    blog = ""
+    twitter = ""
+
+    social = student_profile.css('.social-icon-container a')
+      # if !social[3]
+      #   blog = ""
+      # else
+        blog = social[3].attr('href')
+      # end
+      social.each do |social_site|
+        if social_site.attr('href').include?("linkedin")
+          linkedin = social_site.attr('href')
+        elsif social_site.attr('href').include?("github")
+          github = social_site.attr('href')
+        elsif social_site.attr('href').include?("twitter")
+          twitter = social_site.attr('href')
+        end
+      end
+    student_info = {:twitter => twitter, :linkedin => linkedin, :github => github, :blog => blog, :profile_quote => profile_quote, :bio => bio}
   end
 
 end
-
-
-# html = File.read('fixtures/kickstarter.html')
-# kickstarter = Nokogiri::HTML(html)
-#
-# projects = {}
-#
-#iterate through all the projects on page
-    # projects: kickstarter.css("li.project.grid_4")
-# kickstarter.css("li.project.grid_4").each do |project|
-#   title = project.css("h2.bbcard_name strong a").text
-#   projects[title.to_sym] = {
-#     :image_link => project.css("div.project-thumbnail a img").attribute("src").value,
-#     :description => project.css("p.bbcard_blurb").text,
-#     :location => project.css("ul.project-meta span.location-name").text,
-#     :percent_funded => project.css("ul.project-stats li.first.funded strong").text.gsub("%","").to_i
-#   }
