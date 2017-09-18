@@ -23,24 +23,27 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     profile_page = Nokogiri::HTML(open(profile_url))
 
-    twitter_link = ""
-    linkedin_link = ""
-    github_link = ""
-    blog_link = ""
+    student = {}
 
-    if profile_page.css('div.social-icon-container a[href*="twitter"]') != nil
-      twitter_link = profile_page.css('div.social-icon-container a[href*="twitter"]').attribute("href").value
+    if profile_page.css('div.social-icon-container a[href*="twitter"]').length != 0
+      student[:twitter] = profile_page.css('div.social-icon-container a[href*="twitter"]').attribute("href").value
     end
 
-    student = {
-      :twitter => twitter_link,
-      :linkedin => profile_page.css('div.social-icon-container a[href*="linkedin"]').attribute("href").value,
-      :github => profile_page.css('div.social-icon-container a[href*="github"]').attribute("href").value,
-      :blog => profile_page.css('div.social-icon-container a:nth-child(4)').attribute("href").value,
-      :profile_quote => profile_page.css("div.profile-quote").text,
-      :bio => profile_page.css("div.description-holder p").text
-      #<img class="social-icon" src="../assets/img/linkedin-icon.png">
-    }
+    if profile_page.css('div.social-icon-container a[href*="linkedin"]').length != 0
+      student[:linkedin] = profile_page.css('div.social-icon-container a[href*="linkedin"]').attribute("href").value
+    end
+
+    if profile_page.css('div.social-icon-container a[href*="github"]').length != 0
+      student[:github] = profile_page.css('div.social-icon-container a[href*="github"]').attribute("href").value
+    end
+
+    if profile_page.css('div.social-icon-container a:nth-child(4)').length != 0
+      student[:blog] = profile_page.css('div.social-icon-container a:nth-child(4)').attribute("href").value
+    end
+
+    student[:profile_quote] = profile_page.css("div.profile-quote").text
+    student[:bio] = profile_page.css("div.description-holder p").text
+
 
     # return the student hash
     student
