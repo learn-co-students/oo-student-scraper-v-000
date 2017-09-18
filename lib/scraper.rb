@@ -12,7 +12,6 @@ class Scraper
         name = student.css('.student-name').text
         location = student.css('.student-location').text
         url = student.attr('href')
-        #url = individual_students.css('a').map { |link| link['href'] }
         students_array << {:name => name, :location => location, :profile_url => url}
       end
     end
@@ -32,11 +31,7 @@ class Scraper
     twitter = ""
 
     social = student_profile.css('.social-icon-container a')
-      # if !social[3]
-      #   blog = ""
-      # else
         blog = social[3].attr('href')
-      # end
       social.each do |social_site|
         if social_site.attr('href').include?("linkedin")
           linkedin = social_site.attr('href')
@@ -46,7 +41,14 @@ class Scraper
           twitter = social_site.attr('href')
         end
       end
-    student_info = {:twitter => twitter, :linkedin => linkedin, :github => github, :blog => blog, :profile_quote => profile_quote, :bio => bio}
+    student_info = {
+      :twitter => twitter,
+      :linkedin => linkedin,
+      :github => github,
+      :blog => blog,
+      :profile_quote => profile_quote,
+      :bio => bio
+    }
   end
 
 end
