@@ -4,41 +4,46 @@ require 'pry'
 class Scraper
 
   def self.scrape_index_page(index_url)
-    index_page = Nokogiri::HTML(index_url)
+    index_page = Nokogiri::HTML(open(index_url))
 
-    projects = []
+    students = []
 
-    index_page.css("li.project.grid_4").each do |project|
-      title = project.css("h2.bbcard_name strong a").text
-      projects[title.to_sym] = {
-        :image_link => project.css("div.project-thumbnail a img").attribute("src").value,
-        :description => project.css("p.bbcard_blurb").text,
-        :location => project.css("ul.project-meta span.location-name").text,
-        :percent_funded => project.css("ul.project-stats li.first.funded strong").text.gsub("%","").to_i
+    index_page.css("div.student-card").each do |student|
+      students << {
+        :name => student.css("h4.student-name").text,
+        :location => student.css("p.student-location").text,
+        :profile_url => student.css("a").attribute("href").value
       }
     end
 
-    # return the projects hash
-    projects
+    # return the array of student hashes
+    students
   end
 
   def self.scrape_profile_page(profile_url)
-    profile_page = Nokogiri::HTML(profile_url)
+    profile_page = Nokogiri::HTML(open(profile_url))
 
-    projects = {}
+    twitter_link = ""
+    linkedin_link = ""
+    github_link = ""
+    blog_link = ""
 
-    profile_page.css("li.project.grid_4").each do |project|
-      title = project.css("h2.bbcard_name strong a").text
-      projects[title.to_sym] = {
-        :image_link => project.css("div.project-thumbnail a img").attribute("src").value,
-        :description => project.css("p.bbcard_blurb").text,
-        :location => project.css("ul.project-meta span.location-name").text,
-        :percent_funded => project.css("ul.project-stats li.first.funded strong").text.gsub("%","").to_i
-      }
+    if profile_page.css('div.social-icon-container a[href*="twitter"]') != nil
+      twitter_link = profile_page.css('div.social-icon-container a[href*="twitter"]').attribute("href").value
     end
 
-    # return the projects hash
-    projects
+    student = {
+      :twitter => twitter_link,
+      :linkedin => profile_page.css('div.social-icon-container a[href*="linkedin"]').attribute("href").value,
+      :github => profile_page.css('div.social-icon-container a[href*="github"]').attribute("href").value,
+      :blog => profile_page.css('div.social-icon-container a:nth-child(4)').attribute("href").value,
+      :profile_quote => profile_page.css("div.profile-quote").text,
+      :bio => profile_page.css("div.description-holder p").text
+      #<img class="social-icon" src="../assets/img/linkedin-icon.png">
+    }
+
+    # return the student hash
+    student
   end
 
 end
