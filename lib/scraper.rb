@@ -22,31 +22,26 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
-    profile = doc.css('.main-wrapper')
-    profile_info= []
+    student_profile = doc.css('.main-wrapper')
+    profile = Hash.new
 
-    student_profile.each do |student|
-      profile = Hash.new
+    social_links = student_profile.css(".social-icon-container a").collect {|i| i.attribute("href").value}
+    twitter_link = social_links.select {|i| i.include?("twitter")}.first
+    linkedin_link = social_links.select {|i| i.include?("linkedin")}.first
+    github_link = social_links.select {|i| i.include?("github")}.first
+    blog_image = student_profile.css(".social-icon-container a img").collect {|i| i["src"]}.grep(/rss-icon.png/).count
 
-      profile[:twitter] = profile.css(".social-icon-container a").first.attribute("href").value
-      profile[:linkedin] = profile.css(".social-icon-container a")[1].attribute("href").value
-      profile[:github] = profile.css(".social-icon-container a")[2].attribute("href").value
-      profile[:blog] = profile.css(".social-icon-container a")[3].attribute("href").value
-      profile[:profile_quote] = profile.css(".vitals-text-container .profile-quote").text
-      profile[:bio] = profile.css(".details-container p").text
+    profile[:twitter] = twitter_link if twitter_link != nil
+    profile[:linkedin] = linkedin_link if linkedin_link != nil
+    profile[:github] = github_link if github_link != nil
 
-      profile_info << profile
+    if blog_image == 1
+      profile[:blog] = social_links.last
     end
 
-    binding.pry
+    profile[:profile_quote] = student_profile.css(".vitals-text-container .profile-quote").text
+    profile[:bio] = student_profile.css(".details-container p").text
 
-    profile_info
-    #twitter = profile.css(".social-icon-container a").first.attribute("href").value
-    #linkedin= profile.css(".social-icon-container a")[1].attribute("href").value
-    #github = profile.css(".social-icon-container a")[2].attribute("href").value
-    #blog = profile.css(".social-icon-container a")[3].attribute("href").value
-    #profile_quote = profile.css(".vitals-text-container .profile-quote").text
-    #bio = profile.css(".details-container p").text
+    profile
   end
-
 end
