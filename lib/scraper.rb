@@ -4,8 +4,20 @@ require 'pry'
 class Scraper
 
   def self.scrape_index_page(index_url)
-    student_array = {}
-        # is a class method that scrapes the student index page and a returns an array of hashes in which each hash represents one student (FAILED - 1)
+    index_page = Nokogiri::HTML(open(index_url))
+
+    scraped_students = []
+
+    index_page.css(".student-card").each do |student|
+      student_info = {}
+      student_info[:name] = student.css(".student-name").text
+      student_info[:location] = student.css(".student-location").text
+      student_info[:profile_url] = student.css("a").attribute("href").text
+      scraped_students << student_info
+      #binding.pry
+    end
+    scraped_students
+
   end
 
   def self.scrape_profile_page(profile_url)
