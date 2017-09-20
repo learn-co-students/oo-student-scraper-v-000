@@ -24,7 +24,12 @@ class Scraper
     # is a class method that scrapes a student's profile page and returns a hash of attributes describing an individual student (FAILED - 2)
     profile_page = Nokogiri::HTML(open(profile_url))
 
-    profile
+    profile_info = {}
+
+    profile_info[:profile_quote] = profile_page.css(".profile-quote").text
+    profile_info[:bio] = profile_page.css(".description-holder p").text
+    binding.pry
+
 
     # can handle profile pages without all of the social links (FAILED - 3)
   end
