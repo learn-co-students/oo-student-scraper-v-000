@@ -21,17 +21,27 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    # is a class method that scrapes a student's profile page and returns a hash of attributes describing an individual student (FAILED - 2)
     profile_page = Nokogiri::HTML(open(profile_url))
 
     profile_info = {}
 
     profile_info[:profile_quote] = profile_page.css(".profile-quote").text
     profile_info[:bio] = profile_page.css(".description-holder p").text
-    binding.pry
 
-
-    # can handle profile pages without all of the social links (FAILED - 3)
+    # can handle profile pages without all of the social links
+    profile_page.css(".social-icon-container a").each do |social|
+      if social["href"].include?("twitter")
+        profile_info[:twitter] = social["href"]
+      elsif social["href"].include?("linkedin")
+        profile_info[:linkedin] = social["href"]
+      elsif social["href"].include?("github")
+        profile_info[:github] = social["href"]
+      else
+        profile_info[:blog] = social["href"]
+      end
+    end
+    # binding.pry
+    profile_info
   end
 
 end
