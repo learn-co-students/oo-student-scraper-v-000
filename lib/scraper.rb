@@ -28,23 +28,30 @@ class Scraper
   # cards.first.css("p.student-location").text - location
 
   def self.scrape_profile_page(profile_url)
+    data = {}
+
     noko_doc = Nokogiri::HTML(open(profile_url))
-    binding.pry
+
     #pass in each 'a' and use its own name to make the key
+
     noko_doc.css(".social-icon-container a").each do |ele_a|
-      ele_a.attribute("href").value.gsub
+      link = ele_a.attribute("href").value
 
-
-
-
-    student_info = {
-
-
-
-    }
+      if link.include?("twitter.com")
+        data[:twitter] = link
+      elsif link.include?("facebook.com")
+        data[:facebook] = link
+      elsif link.include?("github.com")
+        data[:github] = link
+      elsif link.include?("linkedin.com")
+        data[:linkedin] = link
+      end
+    end
+    data
   end
 
 end
 
-Scraper.scrape_index_page("./fixtures/student-site/index.html")
-Scraper.scrape_profile_page("./fixtures/student-site/students/aaron-enser.html")
+# Scraper.scrape_index_page("../fixtures/student-site/index.html")
+
+# Scraper.scrape_profile_page("../fixtures/student-site/students/aaron-enser.html")
