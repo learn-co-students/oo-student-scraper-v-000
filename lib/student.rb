@@ -20,15 +20,23 @@ class Student
 
   def initialize(student_hash)
     self.class.all << self
-    binding.pry
+    student_hash.each do |key, value|
+      self.send("#{key}=", value)
+    end
   end
 
   def self.create_from_collection(students_array)
-
+    # take in array of hashes, make a student with each hash, which will be the argument for the init method.
+    students_array.each do |student_hash|
+      Student.new(student_hash)
+    end
   end
 
   def add_student_attributes(attributes_hash)
-
+    attributes_hash.each do |key, value|
+      self.send("#{key}=", value)
+    end
+    self
   end
 
   def self.all
@@ -36,4 +44,4 @@ class Student
   end
 end
 
-Student.new(Scraper.scrape_profile_page("./fixtures/student-site/students/aaron-enser.html"))
+# Student.create_from_collection(Scraper.scrape_index_page("../fixtures/student-site/index.html"))

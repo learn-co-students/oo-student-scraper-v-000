@@ -32,8 +32,6 @@ class Scraper
 
     noko_doc = Nokogiri::HTML(open(profile_url))
 
-    #pass in each 'a' and use its own name to make the key
-
     noko_doc.css(".social-icon-container a").each do |ele_a|
       link = ele_a.attribute("href").value
 
@@ -45,8 +43,12 @@ class Scraper
         data[:github] = link
       elsif link.include?("linkedin.com")
         data[:linkedin] = link
+      else
+        data[:blog] = link
       end
     end
+    data[:profile_quote] = noko_doc.css("div.profile-quote").text
+    data[:bio] = noko_doc.css("div.description-holder p").text
     data
   end
 
@@ -54,4 +56,4 @@ end
 
 # Scraper.scrape_index_page("../fixtures/student-site/index.html")
 
-# Scraper.scrape_profile_page("../fixtures/student-site/students/aaron-enser.html")
+# Scraper.scrape_profile_page("../fixtures/student-site/students/joe-burgess.html")
