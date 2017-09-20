@@ -10,7 +10,7 @@ class Student
     # takes in an argument of a hash and sets that new student's attributes using the key/value pairs of that hash
     student_hash.each do |key, value|
       self.send("#{key}=", value)
-    end
+    end 
 
     @@all << self
   end
