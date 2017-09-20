@@ -14,6 +14,7 @@ class Student
                 :blog,
                 :profile_quote,
                 :bio,
+                :facebook,
                 :profile_url
 
   @@all = []
