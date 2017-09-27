@@ -16,6 +16,8 @@ class Scraper
       }
     end
     students
+    Student.create_from_collection(students)
+    students
   end
 
   def self.scrape_profile_page(profile_url)
@@ -44,8 +46,6 @@ class Scraper
     student_hash[:bio] = doc.css(".description-holder p").text
 
     student_hash
-
-
   end
 
 end
