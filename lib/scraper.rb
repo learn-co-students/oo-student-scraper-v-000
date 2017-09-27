@@ -26,17 +26,17 @@ class Scraper
     links = doc.css(".social-icon-container a")
 
     links.each do |l|
-      string = l.attribute("href").value
+      href = l.attribute("href").value
 
       case
-      when string.include?("twitter")
-        student_hash[:twitter] = string
-      when string.include?("linkedin")
-        student_hash[:linkedin] = string
-      when string.include?("github")
-        student_hash[:github] = string
+      when href.include?("twitter")
+        student_hash[:twitter] = href
+      when href.include?("linkedin")
+        student_hash[:linkedin] = href
+      when href.include?("github")
+        student_hash[:github] = href
       else
-        student_hash[:blog] = string
+        student_hash[:blog] = href
       end
     end
 
