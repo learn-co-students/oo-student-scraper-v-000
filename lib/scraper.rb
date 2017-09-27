@@ -16,8 +16,6 @@ class Scraper
       }
     end
     students
-    Student.create_from_collection(students)
-    students
   end
 
   def self.scrape_profile_page(profile_url)
