@@ -15,7 +15,7 @@ class Student
     end
   end
 
-  def add_student_attributes(attributes_hash=Scraper.scrape_profile_page(self.profile_url))
+  def add_student_attributes(attributes_hash)
     attributes_hash.each {|key, value| self.send(("#{key}="), value)}
     self
   end
