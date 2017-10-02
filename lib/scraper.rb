@@ -51,14 +51,6 @@ class Scraper
       profile_hash[:profile_quote] = doc.css('div.profile-quote').text
       profile_hash[:bio] = doc.css('.description-holder').search('p').text
     profile_hash
-    # profile_hash = {
-    #   :twitter => doc.css('.social-icon-container').search('a')[0].attr('href'),
-    #   :linkedin => doc.css('.social-icon-container').search('a')[1].attr('href'),
-    #   :github => doc.css('.social-icon-container').search('a')[2].attr('href'),
-    #   :blog=> doc.css('.social-icon-container').search('a')[3].attr('href'),
-    #   :profile_quote => doc.css('div.profile-quote').text,
-    #   :bio => doc.css('.description-holder').search('p').text
-    #  }
   end
 
 end
