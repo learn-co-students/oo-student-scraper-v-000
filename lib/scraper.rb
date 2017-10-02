@@ -41,17 +41,22 @@ class Scraper
     @quote = doc.css(".profile-quote").text
     @bio = doc.css(".description-holder p").text
 
-    profiles = {
-    :twitter => @twitter ,
-    :linkedin => @linkedin,
-    :github => @github,
-    :blog => @blog,
-    :profile_quote => @quote,
-    :bio => @bio
+    Hash.new.tap do |my_hash|
+  my_hash[:x] = 1 if condition_1
+  my_hash[:y] = 2 if condition_2
+  ...
+end
+    profiles.tap do |hash|
+      hash[:twitter] = @twitter if @twitter !=nil
+      hash[:linkedin] => @linkedin if @linkedin !=nil
+      hash[:github] => @github if @github !=nil
+      hash[:blog] = @blog,
+      hash[:profile_quote] = @quote,
+      hash[:bio] = @bio
     }
 
     profiles
-  
+
 end
 
 #iterate through url's
