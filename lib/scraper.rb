@@ -48,8 +48,9 @@ class Scraper
       hash[:blog] = @blog
       hash[:profile_quote] = @quote
       hash[:bio] = @bio
+
     end
-  binding.pry
+
     profiles
   end
 end
