@@ -27,45 +27,75 @@ class Scraper
   def self.scrape_profile_page(profile_url)
       html = File.read(profile_url)
       doc = Nokogiri::HTML(html)
-      social_media = {
-        :twitter => doc.css("div.social-icon-container a").map { |link| link ['href']}.first.join,
-        :linkedin => doc.css("div.social-icon-container a").map { |link| link ['href']}[1],
-        :github => doc.css("div.social-icon-container a").map { |link| link ['href']}.last.join,
-        :profile_quote => doc.css("div.profile_quote").text,
-        :bio => doc.css(div.description-holder).text
-    }
+      social_media = {}
+    #   THIS METHOD IS HARDCODED FOR ALL SOCIAL LINKS AND IT WORKS
+    #   social_media = {
+    #    :twitter => doc.css("div.social-icon-container a").map { |link| link ['href']}.first,
+    #    :linkedin => doc.css("div.social-icon-container a").map { |link| link ['href']}[1],
+    #   :blog => doc.css("div.social-icon-container a").map { |link| link ['href']}.last,
+    #     :github => doc.css("div.social-icon-container a").map { |link| link ['href']}[2],
+    #     :profile_quote => doc.css("div.profile-quote").text,
+    #     :bio => doc.css("div.description-holder p").text
+    # }
+    #END OF METHOD THAT WORKS
 
-    # def social_media
-    #   if student.css("div.social-icon-container a").map { |link| link ['href']}.include? "github"
-    #
-    #   end
+    social_links = doc.css("div.social-icon-container a").map { |link| link ['href']}
+
+    social_media[:profile_quote] = doc.css("div.profile-quote").text
+    social_media[:bio] = doc.css("div.description-holder p").text
+
+    social_links.each do |link|
+      if link.include?("twitter.com")
+        social_media[:twitter] = link
+      elsif link.include?("linkedin.com")
+        social_media[:linkedin] = link
+      elsif  link.include?("github.com")
+        social_media[:github] = link
+      else
+        social_media[:blog] = link
+      end
+    end
+    social_media
+  end
+end
+
+# BEGIN CASE/SWITCH WIP
+
+    # case social_links
+    # when social_links.each {|link|.include? "twitter.com"}
+    #   twitter: link
+    # when social_links.each {|link|.include? "linkedin.com"}
+    #   :linkedin => link
+    # when social_links.each {|link|.include? "github.com"}
+    #   :github => link
+    # else
+    #   :blog => link
     # end
 
+    #  case social_links.each {|link|}
+    #     when link.include? "twitter.com"
+    #       twitter: link
+    #     when link.include? "linkedin.com"
+    #       :linkedin => link
+    #     when link.include? "github.com"
+    #       :github => link
+    #     else
+    #       :blog => link
+    #     end
+    #
+    # case social_links
+    # when "twitter.com"
+    #   twitter: link
+    # when  "linkedin.com"
+    #   :linkedin => link
+    # when  "github.com"
+    #   :github => link
+    # else
+    #   :blog => link
+    # end
 
-  end
-    #   name = doc.css("div.vitals-text-container
-    #  h1.profile-name").each do |student|
-    #   name = student.css("div.card-text-container h4.student-name").text
+#END OF CASE/SWITCH WIP
 
 
-
-
-    # doc.css("div.social-icon-container a").map { |link| link ['href']}.join
-
-
-    #responsible for scraping an individual student's profile page to get further information about that student
-  
-end
-binding.pry
-self.scrape_profile_page(profile_url)
-#
-# self.students.each do |student|
-#   html = File.read(student[:profile_url])
-#   doc = Nokogiri::HTML(html)
-#   social_media = {
-#   :twitter => student.css("div.social-icon-container a").map { |link| link ['href']}.first.join,
-#   :linkedin => "hi",
-#   :github => "hi",
-#   :blog => "hi",
-#   :profile_quote => doc.css("div.profile_quote").text,
-#   :bio => doc.css(div.description-holder).text
+# binding.pry
+# self.scrape_profile_page(profile_url)
