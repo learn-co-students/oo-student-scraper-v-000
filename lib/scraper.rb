@@ -6,7 +6,7 @@ class Scraper
   @@students = []
 
   def self.scrape_index_page(index_url)
-    html = File.read('fixtures/student-site/index.html')
+    html = File.read(index_url)
     doc = Nokogiri::HTML(html)
 
     doc.css("div.student-card").each do |student|
@@ -72,7 +72,9 @@ end
     #   :blog => link
     # end
 
-    #  case social_links.each {|link|}
+    #  CORRECT case/switch METHOD:
+    # social_links.each {|link|}
+    # case link
     #     when link.include? "twitter.com"
     #       twitter: link
     #     when link.include? "linkedin.com"
@@ -82,7 +84,8 @@ end
     #     else
     #       :blog => link
     #     end
-    #
+    #end
+
     # case social_links
     # when "twitter.com"
     #   twitter: link
@@ -98,4 +101,5 @@ end
 
 
 # binding.pry
+# self.scrape_index_page(index_url)
 # self.scrape_profile_page(profile_url)
