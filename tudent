@@ -1,0 +1,25 @@
+
+[1mFrom:[0m /home/bretburau/Dev/oo-student-scraper-v-000/lib/scraper.rb @ line 13 Scraper.scrape_index_page:
+
+     [1;34m7[0m: [32mdef[0m [1;36mself[0m.[1;34mscrape_index_page[0m(index_url)
+     [1;34m8[0m:   student_list = []
+     [1;34m9[0m:   html = open([31m[1;31m"[0m[31mfixtures/student-site/index.html[1;31m"[0m[31m[0m)
+    [1;34m10[0m:   doc = [1;34;4mNokogiri[0m::HTML(html)
+    [1;34m11[0m:   students = doc.css([31m[1;31m"[0m[31m.student-card[1;31m"[0m[31m[0m)
+    [1;34m12[0m:   students.each [32mdo[0m |student|
+ => [1;34m13[0m:     binding.pry
+    [1;34m14[0m: 
+    [1;34m15[0m:     this_student_hash = {
+    [1;34m16[0m:       [35mname[0m: student.css([31m[1;31m"[0m[31m.card-text-container .student-name[1;31m"[0m[31m[0m).text,
+    [1;34m17[0m:       [35mlocation[0m: student.css([31m[1;31m"[0m[31mp[1;31m"[0m[31m[0m).text,
+    [1;34m18[0m:       [35mprofile_url[0m: student.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m)[student][[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m]
+    [1;34m19[0m:     }
+    [1;34m20[0m:     student_list << this_student_hash
+    [1;34m21[0m:   [32mend[0m
+    [1;34m22[0m:   
+    [1;34m23[0m:   [1;34m# doc.css(".card-text-container .student-name").text  << name[0m
+    [1;34m24[0m:   [1;34m# students.css("a")[1]["href"]   <<<<<<<<<<<<<<<< "1" is the index...set to 'student' in .each?[0m
+    [1;34m25[0m:   [1;34m# students.css("p").text <<< student location[0m
+    [1;34m26[0m:   student_list
+    [1;34m27[0m: [32mend[0m
+
