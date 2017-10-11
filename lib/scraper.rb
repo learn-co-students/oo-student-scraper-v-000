@@ -33,23 +33,19 @@ class Scraper
       if social.css('img').attr('src').value.include?("twitter")
         student_hash[:twitter] = social.attr('href')
       elsif social.css('img').attr('src').value.include?("linkedin")
-        student_hash[:linked] = social.attr('href')
+        student_hash[:linkedin] = social.attr('href')
       elsif social.css('img').attr('src').value.include?("github")
         student_hash[:github] = social.attr('href')
       elsif social.css('img').attr('src').value.include?("rss")
         student_hash[:blog] = social.attr('href')
       end
+    end
 
-      doc.css('html').each do |details|
+    doc.css('html').each do |details|
       student_hash[:profile_quote] = doc.css(".profile-quote").text.strip
       student_hash[:bio] = doc.css(".description-holder").css("p").text
-
     end
-
-
-      student_hash
-    end
-
+    student_hash
   end
 
 end
