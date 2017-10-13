@@ -34,7 +34,7 @@ class Scraper
     #section 1, the links all included in one class name:
     links = doc.css(".social-icon-container").children.css("a").map {|child| child.attr("href")}.each do |link|
 
-        binding.pry
+
          if link.include?("twitter")
             student[:twitter] = link
          elsif link.include?("linkedin")
@@ -46,8 +46,10 @@ class Scraper
         end
       end
 #then the other two
+
       student[:profile_quote] = doc.css(".profile-quote").text
-      student[:bio] = doc.css(".description-holder").text
+      student[:bio] = doc.css(".description-holder p").text 
+
 
       student
 
