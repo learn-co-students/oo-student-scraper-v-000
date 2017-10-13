@@ -37,5 +37,4 @@ class Scraper
     # end
     #profiles
   end
-
 end
