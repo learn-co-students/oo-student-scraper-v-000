@@ -29,27 +29,29 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)#  #students/fname-lname.html      ./fixtures/student-site/students
-    doc = Nokogiri::HTML(open(profile.url))
-    each_student = []
-    doc.css(". ").each do |student|
-    #   student.css(".social-icon-container ").each do|s|
-        a.attr('href')
-    "twitter".included?("twitter")
-    these 3 are(".social-icon-container").children.map do |social|
-        student[:twitter] =href .src("")
-        student[:linkedin] =  a href  .src("")
-        student[:github] =  a href   .src("")
+    doc = Nokogiri::HTML(open(profile_url))
+    student = {}
+    #section 1, the links all included in one class name:
+    links = doc.css(".social-icon-container").children.css("a").map {|child| child.attr("href")}.each do |link|
 
-        student[:blog] =
-
-       (".details-container description-holder")
-        student[:bio] =
-
-       (".vitals-text-container profile-quote")
-        student[:profile_quote] = s.css(".profile-quote").text
-
+    #social_links.each do |social_media|
+        binding.pry
+         if link.includes?("twitter")
+            student[:twitter] = link
+         elsif link.includes?("linkedin")
+            student[:linkedin] = link
+         elsif link.includes?("github")
+            student[:github] = link
+         else
+           student[:blog] = link
+        end
       end
-    end
-    profiles
+
+      student[:profile_quote] = doc.css(".profile-quote").text
+      student[:bio] = doc.css(".description-holder").text
+
+      student
+
+  end
 
 end
