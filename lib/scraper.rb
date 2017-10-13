@@ -7,21 +7,25 @@ require_relative './student.rb'
 class Scraper
 
   def self.scrape_index_page(index_url)
-    get_page
+    doc = Nokogiri::HTML(open("./fixtures/student-site/"))
+    info = {}
+    doc.css(".roster-cards-container").each do |details|
+      name = details.css("").text
+        details[name] = {
+          :location => details.css("").text
+          :profile_url => details.css(" ..... a img").attribute("src").value
+
+ end
+
+  :name :location, :profile_url
     get_students
+    #/fixtures/student-site/
   end
 
-  def self.scrape_profile_page(profile_url)
-    get_page
-    
-  end
 
-  def get_page(url)
-     doc = Nokogiri::HTML(open("url"))
-  end
 
   def get_students
-    self.get_page.css(".post")
+    self.get_page.css
      # this returns the array
   end
    #
@@ -31,5 +35,9 @@ class Scraper
   #  return :linkedin  :github  :blog  :profile_quote :bio
 
     # doc = Nokogiri::HTML(open("index_url"))
+
+end
+def self.scrape_profile_page(profile_url)
+  get_page
 
 end
