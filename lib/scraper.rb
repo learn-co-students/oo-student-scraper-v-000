@@ -12,7 +12,6 @@ class Scraper
       c.css(".student-card a").each do |student|
         student = {
          :profile_url => student.attr('href'),
-         #student[:profile_url] = student.attr('href') outside of the {}
          :name => student.css(".student-name").text,
          :location => student.css(".student-location").text
        }
@@ -20,21 +19,13 @@ class Scraper
        end
      end
     students
-     # students = {}
-     # student[:profile_url] = student.attr('href')
-     #student[:name] = student.css.....
-    #student[:location] = student.css....
-
 
   end
 
   def self.scrape_profile_page(profile_url)#  #students/fname-lname.html      ./fixtures/student-site/students
     doc = Nokogiri::HTML(open(profile_url))
     student = {}
-    #section 1, the links all included in one class name:
     links = doc.css(".social-icon-container").children.css("a").map {|child| child.attr("href")}.each do |link|
-
-
          if link.include?("twitter")
             student[:twitter] = link
          elsif link.include?("linkedin")
@@ -45,14 +36,8 @@ class Scraper
            student[:blog] = link
         end
       end
-#then the other two
-
       student[:profile_quote] = doc.css(".profile-quote").text
-      student[:bio] = doc.css(".description-holder p").text 
-
-
+      student[:bio] = doc.css(".description-holder p").text
       student
-
   end
-
 end
