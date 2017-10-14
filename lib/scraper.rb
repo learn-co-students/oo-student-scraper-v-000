@@ -25,7 +25,20 @@ class Scraper
 
 
   def self.scrape_profile_page(profile_url)
+    shtml = open(profile_url)
+    sdoc = Nokogiri::HTML(shtml)
+    # binding.pry
+    profile = {}
+    sdoc.css(".social-icon-container a").each do |link|
+      # binding.pry
+      profile[:twitter] =  link.attribute("href").value if link.attribute("href").value.include? ("twitter")
+      profile[:linkedin] =  link.attribute("href").value if link.attribute("href").value.include? ("linkedin")
+      profile[:github] =  link.attribute("href").value if link.attribute("href").value.include? ("github")
+      profile[:blog] =  link.attribute("href").value if link.css("img").attribute("src").value.include? ("rss-icon")
+    end
 
+    profile [:profile_quote] = sdoc.css(".profile-quote").text
+    profile [:bio] = sdoc.css(".description-holder p").text
+    profile
   end
-
 end
