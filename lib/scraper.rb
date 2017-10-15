@@ -22,8 +22,26 @@ class Scraper
     html = File.read(profile_url)
     new_html = Nokogiri::HTML(html)
     profile = {}
-    
+    links = new_html.css('div.vitals-container div.social-icon-container a')
+    links.each do |link|
+      if link.attr("href").include?("twitter")
+        profile[:twitter] = link.attr("href")
+      elsif link.attr("href").include?("linkedin")
+        profile[:linkedin] = link.attr("href")
+      elsif link.attr("href").include?("github")
+        profile[:github] = link.attr("href")
+      else 
+        profile[:blog] = link.attr("href")
+      end
+    end
+    profile[:profile_quote] = new_html.css('div.vitals-container div.vitals-text-container div.profile-quote').text
+    profile[:bio] = new_html.css('div.details-container div.bio-block.details-block div.bio-content.content-holder div.description-holder p').text
+    profile
 
   end
 # twitter url, linkedin url, github url, blog url, profile quote, and bio
+# bio: (div.details-container div.bio-block details-block div.bio-content div.description-holder p )
+# profile: div.vitals-container div.vitals-text-container div.profile-quote
+# twitter url: div.vitals-container div.social-icon-container a
+
 end
