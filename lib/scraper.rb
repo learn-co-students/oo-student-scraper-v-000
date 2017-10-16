@@ -10,18 +10,18 @@ class Scraper
     doc.css("div.roster-cards-container").each do |student_info|
       students << {
         :name => student_info.css("h4.student-name").text,
-        :location =>
-        :profile_url =>
-        binding.pry
+        :location => student_info.css("p.student-location").text,
+        :profile_url => student_info.css("a".attribute"href".value).text
       }
+      binding.pry
       end
     end
 
 
   end
 
-  def self.scrape_profile_page(profile_url)
+  # def self.scrape_profile_page(profile_url)
+  #
+  # end
 
-  end
-
-end
+# end
