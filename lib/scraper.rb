@@ -27,12 +27,13 @@ class Scraper
         student[:linkedin] = social_link.css("a")[1].attribute("href").value
       elsif social_link.include?("github")
         student[:github] = social_link.css("a")[2].attribute("href").value
-      elsif social_link.inlude?("blog")
+      elsif social_link.include?("blog")
         student[:blog] = social_link.css("a")[3].attribute("href").value
       end
-      student[:quote] = doc.css("div.profile_quote").text
-      student[:bio] = doc.css("div.bio-content.content-holder div.description-holder p").text
     end
+    student[:profile_quote] = doc.css(".profile-quote").text
+    student[:bio] = doc.css("div.bio-content.content-holder div.description-holder p").text
+    student
   end
 
 end
