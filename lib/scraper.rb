@@ -20,15 +20,30 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
     student = {}
-    doc.css("div.social-icon-container").each do |student_info|
-      student[:twitter] = student_info.css("a")[0].attribute("href").value
-      student[:linkedin] = student_info.css("a")[1].attribute("href").value
-      student[:github] = student_info.css("a")[2].attribute("href").value
-      student[:blog] = student_info.css("a")[3].attribute("href").value
-      binding.pry
+    social_links = doc.css("div.social-icon-container a")
+    social_links.each do |social_link|
+      if social_link.attr("href").include?("twitter")
+        student[:twitter] = social_link.attr("href")
+      elsif social_link.attr("href").include?("linkedin")
+        student[:linkedin] = social_link.attr("href")
+      elsif social_link.attr("href").include?("github")
+        student[:github] = social_link.attr("href")
+      else
+        student[:blog] = social_link.attr("href")
+
+      # if student_info.("href").value.include?("twitter")
+      #   student[:twitter] = student_info.("href").value
+      # elsif student_info.css("a").attribute("href").value.include?("linkedin")
+      #   student[:linkedin] = student_info.css("a").attribute("href").value
+      # elsif student_info.css("a").attribute("href").value.include?("github")
+      #   student[:github] = student_info.css("a").attribute("href").value
+      # else student_info.css("a").attribute("href").value.include?("blog")
+      #   student[:blog] = student_info.css("a").attribute("href").value
+      # binding.pry
+      end
     end
     student[:profile_quote] = doc.css(".profile-quote").text
-    student[:bio] = doc.css("div.bio-content.content-holder div.description-holder p").text
+    student[:bio] = doc.css("div.description-holder p").text
     student
   end
 
