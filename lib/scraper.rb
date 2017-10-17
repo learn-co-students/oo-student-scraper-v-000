@@ -28,10 +28,7 @@ class Scraper
       if tag.first[1].include?("github")
         hash[:github] = tag.first[1]
       end
-      if !tag.first[1].include?("twitter")
-        && !tag.first[1].include?("linkedin")
-        && !tag.first[1].include?("github")
-        && tag.first[1]
+      if !tag.first[1].include?("twitter") && !tag.first[1].include?("linkedin") && !tag.first[1].include?("github")
         hash[:blog] = tag.first[1]
       end
     end
