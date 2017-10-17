@@ -30,16 +30,6 @@ class Scraper
         student[:github] = social_link.attr("href")
       else
         student[:blog] = social_link.attr("href")
-
-      # if student_info.("href").value.include?("twitter")
-      #   student[:twitter] = student_info.("href").value
-      # elsif student_info.css("a").attribute("href").value.include?("linkedin")
-      #   student[:linkedin] = student_info.css("a").attribute("href").value
-      # elsif student_info.css("a").attribute("href").value.include?("github")
-      #   student[:github] = student_info.css("a").attribute("href").value
-      # else student_info.css("a").attribute("href").value.include?("blog")
-      #   student[:blog] = student_info.css("a").attribute("href").value
-      # binding.pry
       end
     end
     student[:profile_quote] = doc.css(".profile-quote").text
