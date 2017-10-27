@@ -17,7 +17,8 @@ class Scraper
 # binding.pry
       new_student_hash[:name] = student.css("h4").text
       new_student_hash[:location] = student.css("p").text
-      new_student_hash[:profile_url] = "./fixtures/student-site/" + student.css("a").attribute("href").value
+      new_student_hash[:profile_url] = student.css("a").attribute("href").value
+      # new_student_hash[:profile_url] = "./fixtures/student-site/" + student.css("a").attribute("href").value
 
       return_array_of_hash << new_student_hash
     end
