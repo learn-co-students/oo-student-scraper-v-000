@@ -4,23 +4,25 @@ require 'pry'
 class Scraper
 
   def self.scrape_index_page(index_url)
-    doc = Nokogiri::HTML(open(index_url))
-
-    return_array_of_hash = []
-
-
-
-    return_array_of_hash
-    # [
-    #     {:name => "Abby Smith", :location => "Brooklyn, NY", :profile_url => "./fixtures/student-site/students/abby-smith.html"},
-    #     {:name => "Joe Jones", :location => "Paris, France", :profile_url => "./fixtures/student-site/students/joe-jonas.html"},
-    #     {:name => "Carlos Rodriguez", :location => "New York, NY", :profile_url => "./fixtures/student-site/students/carlos-rodriguez.html"},
-    #     {:name => "Lorenzo Oro", :location => "Los Angeles, CA", :profile_url => "./fixtures/student-site/students/lorenzo-oro.html"},
-    #     {:name => "Marisa Royer", :location => "Tampa, FL", :profile_url => "./fixtures/student-site/students/marisa-royer.html"}
-    #   ]
+    # doc = Nokogiri::HTML(open(index_url))
+    # return_array_of_hash = []
+    # students = doc.css(".student-card")
+    #
+    # students.each do |student|
+    #   new_student_hash = {:name=>"", :location=>"", :profile_url=>""}
+    #
+    #   new_student_hash[:name] = student.css("h4").text
+    #   new_student_hash[:location] = student.css("p").text
+    #   new_student_hash[:profile_url] = "./fixtures/student-site/" + student.css("a").attribute("href").value
+    #
+    #   return_array_of_hash << new_student_hash
+    # end
+    #
+    # return_array_of_hash
   end
 
   def self.scrape_profile_page(profile_url)
+    doc = Nokogiri::HTML(open(profile_url))
     return_hash = {
       :twitter=>"",
       :linkedin=>"",
@@ -29,16 +31,27 @@ class Scraper
       :profile_quote=>"",
       :bio=> ""
     }
+    social_container = doc.css(".social-icon-container").children.css("a")
 
+
+    social_container.each do |placeholder|
+
+      binding.pry
+      social_url = placeholder
+      case social_url
+      when social_url.include?("twitter")
+        return_hash[:twitter] = social_url
+      when social_url.include?("linkedin")
+        return_hash[:linkedin] = social_url
+      when social_url.include?("github")
+        return_hash[:github] = social_url
+      end
+    end
+
+    # return_hash[:blog] =
+    return_hash[:profile_quote] = doc.css(".profile-quote").text
+    return_hash[:bio] = doc.css("p").text
 
     return_hash
-    # {:twitter=>"http://twitter.com/flatironschool",
-    #   :linkedin=>"https://www.linkedin.com/in/flatironschool",
-    #   :github=>"https://github.com/learn-co,
-    #   :blog=>"http://flatironschool.com",
-    #   :profile_quote=>"\"Forget safety. Live where you fear to live. Destroy your reputation. Be notorious.\" - Rumi",
-    #   :bio=> "I'm a school"
-    #  }
   end
-
 end
