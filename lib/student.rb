@@ -10,11 +10,14 @@ class Student
   end
 
   def self.create_from_collection(students_array)
-
+    students_array.each do |student|
+      new_student = Student.new({})
+      student.each {|key, value| new_student.send(("#{key}="), value)}
+    end
   end
 
   def add_student_attributes(attributes_hash)
-
+    attributes_hash.each {|key, value| self.send(("#{key}="), value)}
   end
 
   def self.all
