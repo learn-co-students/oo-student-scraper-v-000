@@ -10,15 +10,11 @@ class Scraper
     return_array_of_hash = []
     students = doc.css(".student-card")
 
-# index_hash = doc.css(".student-card").map do |student|
-
     students.each do |student|
       new_student_hash = {}
-# binding.pry
       new_student_hash[:name] = student.css("h4").text
       new_student_hash[:location] = student.css("p").text
       new_student_hash[:profile_url] = student.css("a").attribute("href").value
-      # new_student_hash[:profile_url] = "./fixtures/student-site/" + student.css("a").attribute("href").value
 
       return_array_of_hash << new_student_hash
     end
@@ -35,7 +31,6 @@ class Scraper
     social_container.each do |placeholder|
 
       social_url = placeholder.attribute("href").value
-# binding.pry
 
       if social_url.include?("twitter")
         return_hash[:twitter] = social_url
