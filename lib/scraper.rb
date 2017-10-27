@@ -9,9 +9,9 @@ class Scraper
     doc = Nokogiri::HTML(open(index_url))
     doc.css(".student-card").each do |post|
       scraped_students << {
-        :name => post.css("div.card-text-container h4.student-name").text,
-        :location => post.css("div.card-text-container p.student-location").text,
-        :profile_url => post.css("a")[0]["href"]
+        :name => post.css(".student-name").text,
+        :location => post.css(".student-location").text,
+        :profile_url => post.css("a")[0]['href']
       }
     end
     scraped_students
@@ -23,26 +23,37 @@ class Scraper
     sites = doc.css(".social-icon-container a[href]")
     new_site = sites.map { |link| link['href'] }
 
-    name = doc.css(".vitals-text-container h1.profile-name").text
+    # twitter_url = new_site.select { |link| link.include?("twitter") }
+    # if twitter_url != []
+    #   scraped_student[:twitter] = twitter_url[0]
+    # end
+    #
+    # linkedin_url = new_site.select { |link| link.include?("linkedin") }
+    # if linkedin_url != []
+    #   scraped_student[:linkedin] = linkedin_url[0]
+    # end
+    #
+    # git_url = new_site.select { |link| link.include?("github") }
+    # if git_url != []
+    #   scraped_student[:github] = git_url[0]
+    # end
+    #
+    # blog_url = new_site.select { | link| link != twitter_url[0] && link != linkedin_url[0] && link != git_url[0] }
+    # if blog_url != []
+    #   scraped_student[:blog] = blog_url[0]
+    # end
 
-    twitter_url = new_site.select { |link| link.include?("twitter") }
-    if twitter_url != []
-      scraped_student[:twitter] = twitter_url[0]
-    end
-
-    linkedin_url = new_site.select { |link| link.include?("linkedin") }
-    if linkedin_url != []
-      scraped_student[:linkedin] = linkedin_url[0]
-    end
-
-    git_url = new_site.select { |link| link.include?("github") }
-    if git_url != []
-      scraped_student[:github] = git_url[0]
-    end
-
-    blog_url = new_site.select { | link| link != twitter_url[0] && link != linkedin_url[0] && link != git_url[0] }
-    if blog_url != []
-      scraped_student[:blog] = blog_url[0]
+    #REFACTORED
+    new_site.each do |link|
+      if link.include?("linkedin")
+        scraped_student[:linkedin] = link
+      elsif link.include?("github")
+        scraped_student[:github] = link
+      elsif link.include?("twitter")
+        scraped_student[:twitter] = link
+      else
+        scraped_student[:blog] = link
+      end
     end
 
     scraped_student[:profile_quote] = doc.css(".profile-quote").text
