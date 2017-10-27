@@ -17,49 +17,29 @@ class Scraper
     index_hash
   end
 
-  # def self.scrape_profile_page(profile_url)
-  #   doc = Nokogiri::HTML(open(profile_url))
-  #   profile_hash = doc.css(".social-icon-container a").map do |profile|
-  #     #:twitter, :linkedin, :github, :blog, :profile_quote, :bio,
-  #     social_hash = {}
-  #     url = profile.attribute("href").text
-  #
-  #     if url.include?("twitter")
-  #       social_hash[:twitter] = url
-  #     elsif url.include?("linkedin")
-  #       social_hash[:linkedin] = url
-  #     elsif url.include?("github")
-  #       social_hash[:github] = url
-  #     elsif url.include?("facebook")
-  #       social_hash[:facebook] = url
-  #     else
-  #       social_hash[:blog] = url
-  #     end
-  #     social_hash[:profile_quote] = profile.css(".profile-quote").text
-  #     social_hash[:bio] = profile.css("p").text
-  #   end
-  #   profile_hash
-  # end
   def self.scrape_profile_page(profile_url)
-      get_page = Nokogiri::HTML(open(profile_url))
+    doc = Nokogiri::HTML(open(profile_url))
 
-      student_profile = {
-        :profile_quote => get_page.css(".profile-quote").text,
-        :bio => get_page.css("p").text
-      }
+    social_hash = {}
+    social_hash[:profile_quote] = doc.css(".profile-quote").text
+    social_hash[:bio] = doc.css("p").text
 
-      get_page.css("div.social-icon-container a").each do |social|
-        case social.at("img").attributes["src"].value
-        when "../assets/img/twitter-icon.png"
-          student_profile[:twitter] = social.attributes["href"].value
-        when "../assets/img/linkedin-icon.png"
-          student_profile[:linkedin] = social.attributes["href"].value
-        when "../assets/img/github-icon.png"
-          student_profile[:github] = social.attributes["href"].value
-        when "../assets/img/rss-icon.png"
-          student_profile[:blog] = social.attributes["href"].value
-        end
+    doc.css(".social-icon-container a").map do |profile|
+      #:twitter, :linkedin, :github, :blog, :profile_quote, :bio,
+      url = profile.attribute("href").text
+
+      if url.include?("twitter")
+        social_hash[:twitter] = url
+      elsif url.include?("linkedin")
+        social_hash[:linkedin] = url
+      elsif url.include?("github")
+        social_hash[:github] = url
+      elsif url.include?("facebook")
+        social_hash[:facebook] = url
+      else
+        social_hash[:blog] = url
       end
-      student_profile
     end
+    social_hash
+  end
 end
