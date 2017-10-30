@@ -26,8 +26,6 @@ class Scraper
       elsif profile.attribute("href").value.include?("github")
         #binding.pry
           profiles[:github] = profile.attribute("href").value
-      elsif profile.attribute("href").value.include?("youtube")
-          profiles[:youtube] = profile.attribute("href").value
       else
           profiles[:blog] = profile.attribute("href").value
         end
