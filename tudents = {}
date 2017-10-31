@@ -1,0 +1,32 @@
+
+[1mFrom:[0m /home/RonaldVilorio/oo-student-scraper-v-000/lib/scraper.rb @ line 18 Scraper.scrape_index_page:
+
+     [1;34m8[0m: [32mdef[0m [1;36mself[0m.[1;34mscrape_index_page[0m(index_url)
+     [1;34m9[0m:   html = open(index_url)
+    [1;34m10[0m:   doc = [1;34;4mNokogiri[0m::HTML(html)
+    [1;34m11[0m: 
+    [1;34m12[0m: 
+    [1;34m13[0m:   name = doc.css([31m[1;31m"[0m[31m.student-card[1;31m"[0m[31m[0m).first.css([31m[1;31m"[0m[31m.card-text-container[1;31m"[0m[31m[0m).first.css([31m[1;31m"[0m[31m.student-name[1;31m"[0m[31m[0m).text
+    [1;34m14[0m:   location = doc.css([31m[1;31m"[0m[31m.student-card[1;31m"[0m[31m[0m).first.css([31m[1;31m"[0m[31m.card-text-container[1;31m"[0m[31m[0m).first.css([31m[1;31m"[0m[31m.student-location[1;31m"[0m[31m[0m).text
+    [1;34m15[0m:   profile_url = doc.css([31m[1;31m"[0m[31m.student-card[1;31m"[0m[31m[0m).css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m).first[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m]
+    [1;34m16[0m: 
+    [1;34m17[0m:   student_card = doc.css([31m[1;31m"[0m[31m.student-card[1;31m"[0m[31m[0m)
+ => [1;34m18[0m:   binding.pry
+    [1;34m19[0m: 
+    [1;34m20[0m:   students = {}
+    [1;34m21[0m: 
+    [1;34m22[0m: 
+    [1;34m23[0m:   [1;34m# # convert to key value pairs[0m
+    [1;34m24[0m:   student_card.each{|student|
+    [1;34m25[0m:     name = student.first.css([31m[1;31m"[0m[31m.card-text-container[1;31m"[0m[31m[0m).first.css([31m[1;31m"[0m[31m.student-name[1;31m"[0m[31m[0m).text
+    [1;34m26[0m:     students[name.to_sym] = {}
+    [1;34m27[0m: 
+    [1;34m28[0m: 
+    [1;34m29[0m:   }
+    [1;34m30[0m: 
+    [1;34m31[0m:   [1;34m# for getting url just concatenate fixtures/ + the href[0m
+    [1;34m32[0m: 
+    [1;34m33[0m: 
+    [1;34m34[0m: 
+    [1;34m35[0m: [32mend[0m
+
