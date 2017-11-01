@@ -23,16 +23,6 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
     profile = {}
-    # links = doc.css(".social-icon-container a")
-    #
-    #     profile = {:twitter => links.css("a").attribute("href").value} #only returns twitter url (first in that container)
-    #
-    #     profile = {:linkedin => links["href"]}
-    #
-    #     profile = {:github => links["href"]}
-    #
-    #     profile = {:blog => links["href"]}
-
       social = doc.css(".social-icon-container a").collect do |link|
         if link["href"].include?("twitter.com")
           profile[:twitter] = link["href"]
