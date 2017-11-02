@@ -11,8 +11,7 @@ class Student
 
   def self.create_from_collection(students_array)
     students_array.each do |student|
-      new_student = Student.new({})
-      student.each {|key, value| new_student.send(("#{key}="), value)}
+      Student.new(student)
     end
   end
 

@@ -2,9 +2,6 @@ require 'open-uri'
 require 'pry'
 
 class Scraper
-# Joe Burgess
-# Mathieu Balez
-# Diane Vu
   def self.scrape_index_page(index_url)
     doc = Nokogiri::HTML(open(index_url))
     return_array_of_hash = []
