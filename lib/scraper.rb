@@ -14,17 +14,29 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    #binding.pry
     html = open(profile_url)
     doc = Nokogiri::HTML(html)
-    hash = {}
-    hash[:twitter] = doc.css('a[href*="twitter"]').attribute('href').value unless doc.css('a[href*="twitter"]') == []
-    hash[:linkedin] = doc.css('a[href*="linkedin"]').attribute('href').value unless doc.css('a[href*="linkedin"]') == []
-    hash[:github] = doc.css('a[href*="github"]').attribute('href').value unless doc.css('a[href*="github"]') == []
-    hash[:blog] = doc.css('a:nth-child(4)').attribute('href').value unless doc.css('a:nth-child(4)') == []
-    hash[:profile_quote] = doc.css('div.profile-quote').text
-    hash[:bio] = doc.css('div.description-holder p').text
-    hash
+    #binding.pry
+    profile_hash = {}
+    name = doc.css('h1.profile-name').text
+    container = doc.css('div.social-icon-container a')
+      if container[0].attribute('href').value.include?("twitter")
+        profile_hash[:twitter] = doc.css('a[href*="twitter"]').attribute('href').value
+      end
+      if container[0].attribute('href').value.include?("linkedin") || container[1].attribute('href').value.include?("linkedin")
+        profile_hash[:linkedin] = doc.css('a[href*="linkedin"]').attribute('href').value
+      end
+      if container[0].attribute('href').value.include?("github") || container[1].attribute('href').value.include?("github") || container[2].attribute('href').value.include?("github")
+        profile_hash[:github] = doc.css('a[href*="github"]').attribute('href').value
+      end
+    if container[3] != nil
+      if container[1].attribute('href').value.include?(name.downcase.split[0]) || container[2].attribute('href').value.include?(name.downcase.split[0]) || container[3].attribute('href').value.include?(name.downcase.split[0])
+        profile_hash[:blog] = doc.css('a:nth-child(4)').attribute('href').value
+      end
+    end
+    profile_hash[:profile_quote] = doc.css('div.profile-quote').text
+    profile_hash[:bio] = doc.css('div.description-holder p').text
+    profile_hash
   end
 
 end

@@ -1,0 +1,1525 @@
+
+                   SSUUMMMMAARRYY OOFF LLEESSSS CCOOMMMMAANNDDSS
+
+      Commands marked with * may be preceded by a number, _N.
+      Notes in parentheses indicate the behavior if _N is given.
+      A key preceded by a caret indicates the Ctrl key; thus ^K is ctrl-K.
+
+  h  H                 Display this help.
+  q  :q  Q  :Q  ZZ     Exit.
+ ---------------------------------------------------------------------------
+
+                           MMOOVVIINNGG
+
+  e  ^E  j  ^N  CR  *  Forward  one line   (or _N lines).
+  y  ^Y  k  ^K  ^P  *  Backward one line   (or _N lines).
+  f  ^F  ^V  SPACE  *  Forward  one window (or _N lines).
+  b  ^B  ESC-v      *  Backward one window (or _N lines).
+  z                 *  Forward  one window (and set window to _N).
+  w                 *  Backward one window (and set window to _N).
+  ESC-SPACE         *  Forward  one window, but don't stop at end-of-file.
+  d  ^D             *  Forward  one half-window (and set half-window to _N).
+  u  ^U             *  Backward one half-window (and set half-window to _N).
+  ESC-)  RightArrow *  Left  one half screen width (or _N positions).
+  ESC-(  LeftArrow  *  Right one half screen width (or _N positions).
+  F                    Forward forever; like "tail -f".
+  ESC-F                Like F but stop when search pattern is found.
+  r  ^R  ^L            Repaint screen.
+  R                    Repaint screen, discarding buffered input.
+        ---------------------------------------------------
+        Default "window" is the screen height.
+        Default "half-window" is half of the screen height.
+ ---------------------------------------------------------------------------
+
+                          SSEEAARRCCHHIINNGG
+
+  /_p_a_t_t_e_r_n          *  Search forward for (_N-th) matching line.
+  ?_p_a_t_t_e_r_n          *  Search backward for (_N-th) matching line.
+  n                 *  Repeat previous search (for _N-th occurrence).
+  N                 *  Repeat previous search in reverse direction.
+  ESC-n             *  Repeat previous search, spanning files.
+  ESC-N             *  Repeat previous search, reverse dir. & spanning files.
+  ESC-u                Undo (toggle) search highlighting.
+  &_p_a_t_t_e_r_n          *  Display only matching lines
+        ---------------------------------------------------
+        A search pattern may be preceded by one or more of:
+        ^N or !  Search for NON-matching lines.
+        ^E or *  Search multiple files (pass thru END OF FILE).
+        ^F or @  Start search at FIRST file (for /) or last file (for ?).
+        ^K       Highlight matches, but don't move (KEEP position).
+        ^R       Don't use REGULAR EXPRESSIONS.
+ ---------------------------------------------------------------------------
+
+                           JJUUMMPPIINNGG
+
+  g  <  ESC-<       *  Go to first line in file (or line _N).
+  G  >  ESC->       *  Go to last line in file (or line _N).
+  p  %              *  Go to beginning of file (or _N percent into file).
+  t                 *  Go to the (_N-th) next tag.
+  T                 *  Go to the (_N-th) previous tag.
+  {  (  [           *  Find close bracket } ) ].
+  }  )  ]           *  Find open bracket { ( [.
+  ESC-^F _<_c_1_> _<_c_2_>  *  Find close bracket _<_c_2_>.
+  ESC-^B _<_c_1_> _<_c_2_>  *  Find open bracket _<_c_1_> 
+        ---------------------------------------------------
+        Each "find close bracket" command goes forward to the close bracket 
+          matching the (_N-th) open bracket in the top line.
+        Each "find open bracket" command goes backward to the open bracket 
+          matching the (_N-th) close bracket in the bottom line.
+
+  m_<_l_e_t_t_e_r_>            Mark the current position with <letter>.
+  '_<_l_e_t_t_e_r_>            Go to a previously marked position.
+  ''                   Go to the previous position.
+  ^X^X                 Same as '.
+        ---------------------------------------------------
+        A mark is any upper-case or lower-case letter.
+        Certain marks are predefined:
+             ^  means  beginning of the file
+             $  means  end of the file
+ ---------------------------------------------------------------------------
+
+                        CCHHAANNGGIINNGG FFIILLEESS
+
+  :e [_f_i_l_e]            Examine a new file.
+  ^X^V                 Same as :e.
+  :n                *  Examine the (_N-th) next file from the command line.
+  :p                *  Examine the (_N-th) previous file from the command line.
+  :x                *  Examine the first (or _N-th) file from the command line.
+  :d                   Delete the current file from the command line list.
+  =  ^G  :f            Print current file name.
+ ---------------------------------------------------------------------------
+
+                    MMIISSCCEELLLLAANNEEOOUUSS CCOOMMMMAANNDDSS
+
+  -_<_f_l_a_g_>              Toggle a command line option [see OPTIONS below].
+  --_<_n_a_m_e_>             Toggle a command line option, by name.
+  __<_f_l_a_g_>              Display the setting of a command line option.
+  ___<_n_a_m_e_>             Display the setting of an option, by name.
+  +_c_m_d                 Execute the less cmd each time a new file is examined.
+
+  !_c_o_m_m_a_n_d             Execute the shell command with $SHELL.
+  |XX_c_o_m_m_a_n_d            Pipe file between current pos & mark XX to shell command.
+  v                    Edit the current file with $VISUAL or $EDITOR.
+  V                    Print version number of "less".
+ ---------------------------------------------------------------------------
+
+                           OOPPTTIIOONNSS
+
+        Most options may be changed either on the command line,
+        or from within less by using the - or -- command.
+        Options may be given in one of two forms: either a single
+        character preceded by a -, or a name preceded by --.
+
+  -?  ........  --help
+                  Display help (from command line).
+  -a  ........  --search-skip-screen
+                  Search skips current screen.
+  -A  ........  --SEARCH-SKIP-SCREEN
+                  Search starts just after target line.
+  -b [_N]  ....  --buffers=[_N]
+                  Number of buffers.
+  -B  ........  --auto-buffers
+                  Don't automatically allocate buffers for pipes.
+  -c  ........  --clear-screen
+                  Repaint by clearing rather than scrolling.
+  -d  ........  --dumb
+                  Dumb terminal.
+  -D [_x_n_._n]  .  --color=_x_n_._n
+                  Set screen colors. (MS-DOS only)
+  -e  -E  ....  --quit-at-eof  --QUIT-AT-EOF
+                  Quit at end of file.
+  -f  ........  --force
+                  Force open non-regular files.
+  -F  ........  --quit-if-one-screen
+                  Quit if entire file fits on first screen.
+  -g  ........  --hilite-search
+                  Highlight only last match for searches.
+  -G  ........  --HILITE-SEARCH
+                  Don't highlight any matches for searches.
+  -h [_N]  ....  --max-back-scroll=[_N]
+                  Backward scroll limit.
+  -i  ........  --ignore-case
+                  Ignore case in searches that do not contain uppercase.
+  -I  ........  --IGNORE-CASE
+                  Ignore case in all searches.
+  -j [_N]  ....  --jump-target=[_N]
+                  Screen position of target lines.
+  -J  ........  --status-column
+                  Display a status column at left edge of screen.
+  -k [_f_i_l_e]  .  --lesskey-file=[_f_i_l_e]
+                  Use a lesskey file.
+  -K            --quit-on-intr
+                  Exit less in response to ctrl-C.
+  -L  ........  --no-lessopen
+                  Ignore the LESSOPEN environment variable.
+  -m  -M  ....  --long-prompt  --LONG-PROMPT
+                  Set prompt style.
+  -n  -N  ....  --line-numbers  --LINE-NUMBERS
+                  Don't use line numbers.
+  -o [_f_i_l_e]  .  --log-file=[_f_i_l_e]
+                  Copy to log file (standard input only).
+  -O [_f_i_l_e]  .  --LOG-FILE=[_f_i_l_e]
+                  Copy to log file (unconditionally overwrite).
+  -p [_p_a_t_t_e_r_n]  --pattern=[_p_a_t_t_e_r_n]
+                  Start at pattern (from command line).
+  -P [_p_r_o_m_p_t]   --prompt=[_p_r_o_m_p_t]
+                  Define new prompt.
+  -q  -Q  ....  --quiet  --QUIET  --silent --SILENT
+                  Quiet the terminal bell.
+  -r  -R  ....  --raw-control-chars  --RAW-CONTROL-CHARS
+                  Output "raw" control characters.
+  -s  ........  --squeeze-blank-lines
+                  Squeeze multiple blank lines.
+  -S  ........  --chop-long-lines
+                  Chop (truncate) long lines rather than wrapping.
+  -t [_t_a_g]  ..  --tag=[_t_a_g]
+                  Find a tag.
+  -T [_t_a_g_s_f_i_l_e] --tag-file=[_t_a_g_s_f_i_l_e]
+                  Use an alternate tags file.
+  -u  -U  ....  --underline-special  --UNDERLINE-SPECIAL
+                  Change handling of backspaces.
+  -V  ........  --version
+                  Display the version number of "less".
+  -w  ........  --hilite-unread
+                  Highlight first new line after forward-screen.
+  -W  ........  --HILITE-UNREAD
+                  Highlight first new line after any forward movement.
+  -x [_N[,...]]  --tabs=[_N[,...]]
+                  Set tab stops.
+  -X  ........  --no-init
+                  Don't use termcap init/deinit strings.
+  -y [_N]  ....  --max-forw-scroll=[_N]
+                  Forward scroll limit.
+  -z [_N]  ....  --window=[_N]
+                  Set size of window.
+  -" [_c[_c]]  .  --quotes=[_c[_c]]
+                  Set shell quote characters.
+  -~  ........  --tilde
+                  Don't display tildes after end of file.
+  -# [_N]  ....  --shift=[_N]
+                  Horizontal scroll amount (0 = one half screen width)
+      ........  --no-keypad
+                  Don't send termcap keypad init/deinit strings.
+      ........  --follow-name
+                  The F command changes files if the input file is renamed.
+      ........  --use-backslash
+                  Subsequent options use backslash as escape char.
+
+
+ ---------------------------------------------------------------------------
+
+                          LLIINNEE EEDDIITTIINNGG
+
+        These keys can be used to edit text being entered 
+        on the "command line" at the bottom of the screen.
+
+ RightArrow ..................... ESC-l ... Move cursor right one character.
+ LeftArrow ...................... ESC-h ... Move cursor left one character.
+ ctrl-RightArrow  ESC-RightArrow  ESC-w ... Move cursor right one word.
+ ctrl-LeftArrow   ESC-LeftArrow   ESC-b ... Move cursor left one word.
+ HOME ........................... ESC-0 ... Move cursor to start of line.
+ END ............................ ESC-$ ... Move cursor to end of line.
+ BACKSPACE ................................ Delete char to left of cursor.
+ DELETE ......................... ESC-x ... Delete char under cursor.
+ ctrl-BACKSPACE   ESC-BACKSPACE ........... Delete word to left of cursor.
+ ctrl-DELETE .... ESC-DELETE .... ESC-X ... Delete word under cursor.
+ ctrl-U ......... ESC (MS-DOS only) ....... Delete entire line.
+ UpArrow ........................ ESC-k ... Retrieve previous command line.
+ DownArrow ...................... ESC-j ... Retrieve next command line.
+ TAB ...................................... Complete filename & cycle.
+ SHIFT-TAB ...................... ESC-TAB   Complete filename & reverse cycle.
+ ctrl-L ................................... Complete filename, list all.
+
+
+
+                   SSUUMMMMAARRYY OOFF LLEESSSS CCOOMMMMAANNDDSS
+
+      Commands marked with * may be preceded by a number, _N.
+      Notes in parentheses indicate the behavior if _N is given.
+      A key preceded by a caret indicates the Ctrl key; thus ^K is ctrl-K.
+
+  h  H                 Display this help.
+  q  :q  Q  :Q  ZZ     Exit.
+ ---------------------------------------------------------------------------
+
+                           MMOOVVIINNGG
+
+  e  ^E  j  ^N  CR  *  Forward  one line   (or _N lines).
+  y  ^Y  k  ^K  ^P  *  Backward one line   (or _N lines).
+  f  ^F  ^V  SPACE  *  Forward  one window (or _N lines).
+  b  ^B  ESC-v      *  Backward one window (or _N lines).
+  z                 *  Forward  one window (and set window to _N).
+  w                 *  Backward one window (and set window to _N).
+  ESC-SPACE         *  Forward  one window, but don't stop at end-of-file.
+  d  ^D             *  Forward  one half-window (and set half-window to _N).
+  u  ^U             *  Backward one half-window (and set half-window to _N).
+  ESC-)  RightArrow *  Left  one half screen width (or _N positions).
+  ESC-(  LeftArrow  *  Right one half screen width (or _N positions).
+  F                    Forward forever; like "tail -f".
+  ESC-F                Like F but stop when search pattern is found.
+  r  ^R  ^L            Repaint screen.
+  R                    Repaint screen, discarding buffered input.
+        ---------------------------------------------------
+        Default "window" is the screen height.
+        Default "half-window" is half of the screen height.
+ ---------------------------------------------------------------------------
+
+                          SSEEAARRCCHHIINNGG
+
+  /_p_a_t_t_e_r_n          *  Search forward for (_N-th) matching line.
+  ?_p_a_t_t_e_r_n          *  Search backward for (_N-th) matching line.
+  n                 *  Repeat previous search (for _N-th occurrence).
+  N                 *  Repeat previous search in reverse direction.
+  ESC-n             *  Repeat previous search, spanning files.
+  ESC-N             *  Repeat previous search, reverse dir. & spanning files.
+  ESC-u                Undo (toggle) search highlighting.
+  &_p_a_t_t_e_r_n          *  Display only matching lines
+        ---------------------------------------------------
+        A search pattern may be preceded by one or more of:
+        ^N or !  Search for NON-matching lines.
+        ^E or *  Search multiple files (pass thru END OF FILE).
+        ^F or @  Start search at FIRST file (for /) or last file (for ?).
+        ^K       Highlight matches, but don't move (KEEP position).
+        ^R       Don't use REGULAR EXPRESSIONS.
+ ---------------------------------------------------------------------------
+
+                           JJUUMMPPIINNGG
+
+  g  <  ESC-<       *  Go to first line in file (or line _N).
+  G  >  ESC->       *  Go to last line in file (or line _N).
+  p  %              *  Go to beginning of file (or _N percent into file).
+  t                 *  Go to the (_N-th) next tag.
+  T                 *  Go to the (_N-th) previous tag.
+  {  (  [           *  Find close bracket } ) ].
+  }  )  ]           *  Find open bracket { ( [.
+  ESC-^F _<_c_1_> _<_c_2_>  *  Find close bracket _<_c_2_>.
+  ESC-^B _<_c_1_> _<_c_2_>  *  Find open bracket _<_c_1_> 
+        ---------------------------------------------------
+        Each "find close bracket" command goes forward to the close bracket 
+          matching the (_N-th) open bracket in the top line.
+        Each "find open bracket" command goes backward to the open bracket 
+          matching the (_N-th) close bracket in the bottom line.
+
+  m_<_l_e_t_t_e_r_>            Mark the current position with <letter>.
+  '_<_l_e_t_t_e_r_>            Go to a previously marked position.
+  ''                   Go to the previous position.
+  ^X^X                 Same as '.
+        ---------------------------------------------------
+        A mark is any upper-case or lower-case letter.
+        Certain marks are predefined:
+             ^  means  beginning of the file
+             $  means  end of the file
+ ---------------------------------------------------------------------------
+
+                        CCHHAANNGGIINNGG FFIILLEESS
+
+  :e [_f_i_l_e]            Examine a new file.
+  ^X^V                 Same as :e.
+  :n                *  Examine the (_N-th) next file from the command line.
+  :p                *  Examine the (_N-th) previous file from the command line.
+  :x                *  Examine the first (or _N-th) file from the command line.
+  :d                   Delete the current file from the command line list.
+  =  ^G  :f            Print current file name.
+ ---------------------------------------------------------------------------
+
+                    MMIISSCCEELLLLAANNEEOOUUSS CCOOMMMMAANNDDSS
+
+  -_<_f_l_a_g_>              Toggle a command line option [see OPTIONS below].
+  --_<_n_a_m_e_>             Toggle a command line option, by name.
+  __<_f_l_a_g_>              Display the setting of a command line option.
+  ___<_n_a_m_e_>             Display the setting of an option, by name.
+  +_c_m_d                 Execute the less cmd each time a new file is examined.
+
+  !_c_o_m_m_a_n_d             Execute the shell command with $SHELL.
+  |XX_c_o_m_m_a_n_d            Pipe file between current pos & mark XX to shell command.
+  v                    Edit the current file with $VISUAL or $EDITOR.
+  V                    Print version number of "less".
+ ---------------------------------------------------------------------------
+
+                           OOPPTTIIOONNSS
+
+        Most options may be changed either on the command line,
+        or from within less by using the - or -- command.
+        Options may be given in one of two forms: either a single
+        character preceded by a -, or a name preceded by --.
+
+  -?  ........  --help
+                  Display help (from command line).
+  -a  ........  --search-skip-screen
+                  Search skips current screen.
+  -A  ........  --SEARCH-SKIP-SCREEN
+                  Search starts just after target line.
+  -b [_N]  ....  --buffers=[_N]
+                  Number of buffers.
+  -B  ........  --auto-buffers
+                  Don't automatically allocate buffers for pipes.
+  -c  ........  --clear-screen
+                  Repaint by clearing rather than scrolling.
+  -d  ........  --dumb
+                  Dumb terminal.
+  -D [_x_n_._n]  .  --color=_x_n_._n
+                  Set screen colors. (MS-DOS only)
+  -e  -E  ....  --quit-at-eof  --QUIT-AT-EOF
+                  Quit at end of file.
+  -f  ........  --force
+                  Force open non-regular files.
+  -F  ........  --quit-if-one-screen
+                  Quit if entire file fits on first screen.
+  -g  ........  --hilite-search
+                  Highlight only last match for searches.
+  -G  ........  --HILITE-SEARCH
+                  Don't highlight any matches for searches.
+  -h [_N]  ....  --max-back-scroll=[_N]
+                  Backward scroll limit.
+  -i  ........  --ignore-case
+                  Ignore case in searches that do not contain uppercase.
+  -I  ........  --IGNORE-CASE
+                  Ignore case in all searches.
+  -j [_N]  ....  --jump-target=[_N]
+                  Screen position of target lines.
+  -J  ........  --status-column
+                  Display a status column at left edge of screen.
+  -k [_f_i_l_e]  .  --lesskey-file=[_f_i_l_e]
+                  Use a lesskey file.
+  -K            --quit-on-intr
+                  Exit less in response to ctrl-C.
+  -L  ........  --no-lessopen
+                  Ignore the LESSOPEN environment variable.
+  -m  -M  ....  --long-prompt  --LONG-PROMPT
+                  Set prompt style.
+  -n  -N  ....  --line-numbers  --LINE-NUMBERS
+                  Don't use line numbers.
+  -o [_f_i_l_e]  .  --log-file=[_f_i_l_e]
+                  Copy to log file (standard input only).
+  -O [_f_i_l_e]  .  --LOG-FILE=[_f_i_l_e]
+                  Copy to log file (unconditionally overwrite).
+  -p [_p_a_t_t_e_r_n]  --pattern=[_p_a_t_t_e_r_n]
+                  Start at pattern (from command line).
+  -P [_p_r_o_m_p_t]   --prompt=[_p_r_o_m_p_t]
+                  Define new prompt.
+  -q  -Q  ....  --quiet  --QUIET  --silent --SILENT
+                  Quiet the terminal bell.
+  -r  -R  ....  --raw-control-chars  --RAW-CONTROL-CHARS
+                  Output "raw" control characters.
+  -s  ........  --squeeze-blank-lines
+                  Squeeze multiple blank lines.
+  -S  ........  --chop-long-lines
+                  Chop (truncate) long lines rather than wrapping.
+  -t [_t_a_g]  ..  --tag=[_t_a_g]
+                  Find a tag.
+  -T [_t_a_g_s_f_i_l_e] --tag-file=[_t_a_g_s_f_i_l_e]
+                  Use an alternate tags file.
+  -u  -U  ....  --underline-special  --UNDERLINE-SPECIAL
+                  Change handling of backspaces.
+  -V  ........  --version
+                  Display the version number of "less".
+  -w  ........  --hilite-unread
+                  Highlight first new line after forward-screen.
+  -W  ........  --HILITE-UNREAD
+                  Highlight first new line after any forward movement.
+  -x [_N[,...]]  --tabs=[_N[,...]]
+                  Set tab stops.
+  -X  ........  --no-init
+                  Don't use termcap init/deinit strings.
+  -y [_N]  ....  --max-forw-scroll=[_N]
+                  Forward scroll limit.
+  -z [_N]  ....  --window=[_N]
+                  Set size of window.
+  -" [_c[_c]]  .  --quotes=[_c[_c]]
+                  Set shell quote characters.
+  -~  ........  --tilde
+                  Don't display tildes after end of file.
+  -# [_N]  ....  --shift=[_N]
+                  Horizontal scroll amount (0 = one half screen width)
+      ........  --no-keypad
+                  Don't send termcap keypad init/deinit strings.
+      ........  --follow-name
+                  The F command changes files if the input file is renamed.
+      ........  --use-backslash
+                  Subsequent options use backslash as escape char.
+
+
+ ---------------------------------------------------------------------------
+
+                          LLIINNEE EEDDIITTIINNGG
+
+        These keys can be used to edit text being entered 
+        on the "command line" at the bottom of the screen.
+
+ RightArrow ..................... ESC-l ... Move cursor right one character.
+ LeftArrow ...................... ESC-h ... Move cursor left one character.
+ ctrl-RightArrow  ESC-RightArrow  ESC-w ... Move cursor right one word.
+ ctrl-LeftArrow   ESC-LeftArrow   ESC-b ... Move cursor left one word.
+ HOME ........................... ESC-0 ... Move cursor to start of line.
+ END ............................ ESC-$ ... Move cursor to end of line.
+ BACKSPACE ................................ Delete char to left of cursor.
+ DELETE ......................... ESC-x ... Delete char under cursor.
+ ctrl-BACKSPACE   ESC-BACKSPACE ........... Delete word to left of cursor.
+ ctrl-DELETE .... ESC-DELETE .... ESC-X ... Delete word under cursor.
+ ctrl-U ......... ESC (MS-DOS only) ....... Delete entire line.
+ UpArrow ........................ ESC-k ... Retrieve previous command line.
+ DownArrow ...................... ESC-j ... Retrieve next command line.
+ TAB ...................................... Complete filename & cycle.
+ SHIFT-TAB ...................... ESC-TAB   Complete filename & reverse cycle.
+ ctrl-L ................................... Complete filename, list all.
+
+
+
+[1mFrom:[0m /home/yahyal0v3/oo-student-scraper-v-000/lib/scraper.rb @ line 17 Scraper.scrape_profile_page:
+
+    [1;34m16[0m: [32mdef[0m [1;36mself[0m.[1;34mscrape_profile_page[0m(profile_url)
+ => [1;34m17[0m:   binding.pry
+    [1;34m18[0m:   html = open(profile_url)
+    [1;34m19[0m:   doc = [1;34;4mNokogiri[0m::HTML(html)
+    [1;34m20[0m:   profile_hash = {}
+    [1;34m21[0m:   name = doc.css([31m[1;31m'[0m[31mh1.profile-name[1;31m'[0m[31m[0m).text
+    [1;34m22[0m:   container = doc.css([31m[1;31m'[0m[31mdiv.social-icon-container a[1;31m'[0m[31m[0m)
+    [1;34m23[0m:   [32mif[0m container[[1;34m0[0m].attribute([31m[1;31m'[0m[31mhref[1;31m'[0m[31m[0m).value.include?([31m[1;31m"[0m[31mtwitter[1;31m"[0m[31m[0m)
+    [1;34m24[0m:     profile_hash[[33m:twitter[0m] = doc.css([31m[1;31m'[0m[31ma[href*="twitter"][1;31m'[0m[31m[0m).attribute([31m[1;31m'[0m[31mhref[1;31m'[0m[31m[0m).value
+    [1;34m25[0m:   [32melsif[0m container[[1;34m0[0m].attribute([31m[1;31m'[0m[31mhref[1;31m'[0m[31m[0m).value.include?([31m[1;31m"[0m[31mlinkedin[1;31m"[0m[31m[0m)
+    [1;34m26[0m:     profile_hash[[33m:linkedin[0m] = doc.css([31m[1;31m'[0m[31ma[href*="linkedin"][1;31m'[0m[31m[0m).attribute([31m[1;31m'[0m[31mhref[1;31m'[0m[31m[0m).value || container[[1;34m1[0m].attribute([31m[1;31m'[0m[31mhref[1;31m'[0m[31m[0m).value.include?([31m[1;31m"[0m[31mlinkedin[1;31m"[0m[31m[0m) || container[[1;34m2[0m].attribute([31m[1;31m'[0m[31mhref[1;31m'[0m[31m[0m).value.include?([31m[1;31m"[0m[31mlinkedin[1;31m"[0m[31m[0m)
+    [1;34m27[0m:   [32melsif[0m container[[1;34m0[0m].attribute([31m[1;31m'[0m[31mhref[1;31m'[0m[31m[0m).value.include?([31m[1;31m"[0m[31mgithub[1;31m"[0m[31m[0m) || container[[1;34m1[0m].attribute([31m[1;31m'[0m[31mhref[1;31m'[0m[31m[0m).value.include?([31m[1;31m"[0m[31mgithub[1;31m"[0m[31m[0m) || container[[1;34m2[0m].attribute([31m[1;31m'[0m[31mhref[1;31m'[0m[31m[0m).value.include?([31m[1;31m"[0m[31mgithub[1;31m"[0m[31m[0m)
+    [1;34m28[0m:     profile_hash[[33m:github[0m] = doc.css([31m[1;31m'[0m[31ma[href*="github"][1;31m'[0m[31m[0m).attribute([31m[1;31m'[0m[31mhref[1;31m'[0m[31m[0m).value
+    [1;34m29[0m:   [32melsif[0m container[[1;34m1[0m].attribute([31m[1;31m'[0m[31mhref[1;31m'[0m[31m[0m).value.include?(name.downcase.split[[1;34m0[0m]) || container[[1;34m2[0m].attribute([31m[1;31m'[0m[31mhref[1;31m'[0m[31m[0m).value.include?(name.downcase.split[[1;34m0[0m]) || container[[1;34m3[0m].attribute([31m[1;31m'[0m[31mhref[1;31m'[0m[31m[0m).value.include?(name.downcase.split[[1;34m0[0m])
+    [1;34m30[0m:     profile_hash[[33m:blog[0m] = doc.css([31m[1;31m'[0m[31ma:nth-child(4)[1;31m'[0m[31m[0m).attribute([31m[1;31m'[0m[31mhref[1;31m'[0m[31m[0m).value
+    [1;34m31[0m:   [32mend[0m
+    [1;34m32[0m:   profile_hash[[33m:profile_quote[0m] = doc.css([31m[1;31m'[0m[31mdiv.profile-quote[1;31m'[0m[31m[0m).text
+    [1;34m33[0m:   profile_hash[[33m:bio[0m] = doc.css([31m[1;31m'[0m[31mdiv.description-holder p[1;31m'[0m[31m[0m).text
+    [1;34m34[0m:   profile_hash
+    [1;34m35[0m: [32mend[0m
+
+=> [1;34m#(Document:0x1014158 {[0m
+  name = [31m[1;31m"[0m[31mdocument[1;31m"[0m[31m[0m,
+  children = [
+    [1;34m#(DTD:0x1031898 {[0m name = [31m[1;31m"[0m[31mhtml[1;31m"[0m[31m[0m }),
+    [1;34m#(Element:0x103824c {[0m
+      name = [31m[1;31m"[0m[31mhtml[1;31m"[0m[31m[0m,
+      children = [
+        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m  [1;31m"[0m[31m[0m),
+        [1;34m#(Element:0x104f460 {[0m
+          name = [31m[1;31m"[0m[31mhead[1;31m"[0m[31m[0m,
+          children = [
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0x1065774 {[0m
+              name = [31m[1;31m"[0m[31mmeta[1;31m"[0m[31m[0m,
+              attributes = [
+                [1;34m#(Attr:0x1067c54 {[0m name = [31m[1;31m"[0m[31mcharset[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mutf-8[1;31m"[0m[31m[0m })]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0x116ab4c {[0m
+              name = [31m[1;31m"[0m[31mmeta[1;31m"[0m[31m[0m,
+              attributes = [
+                [1;34m#(Attr:0x1161588 {[0m name = [31m[1;31m"[0m[31mname[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mviewport[1;31m"[0m[31m[0m }),
+                [1;34m#(Attr:0x1161560 {[0m
+                  name = [31m[1;31m"[0m[31mcontent[1;31m"[0m[31m[0m,
+                  value = [31m[1;31m"[0m[31mwidth=device-width, intial-scale=1[1;31m"[0m[31m[0m
+                  })]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0x11321e8 {[0m
+              name = [31m[1;31m"[0m[31mtitle[1;31m"[0m[31m[0m,
+              children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mLearn Verified Student Roster[1;31m"[0m[31m[0m)]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0x111168c {[0m
+              name = [31m[1;31m"[0m[31mlink[1;31m"[0m[31m[0m,
+              attributes = [
+                [1;34m#(Attr:0x1109928 {[0m name = [31m[1;31m"[0m[31mrel[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mstylesheet[1;31m"[0m[31m[0m }),
+                [1;34m#(Attr:0x11098ec {[0m
+                  name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m,
+                  value = [31m[1;31m"[0m[31m../css/normalize.css[1;31m"[0m[31m[0m
+                  })]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0x10c4cd8 {[0m
+              name = [31m[1;31m"[0m[31mlink[1;31m"[0m[31m[0m,
+              attributes = [
+                [1;34m#(Attr:0x10c0afc {[0m name = [31m[1;31m"[0m[31mrel[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mstylesheet[1;31m"[0m[31m[0m }),
+                [1;34m#(Attr:0x10c0ad4 {[0m
+                  name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m,
+                  value = [31m[1;31m"[0m[31m../css/fonts.css[1;31m"[0m[31m[0m
+                  })]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0x108f718 {[0m
+              name = [31m[1;31m"[0m[31mlink[1;31m"[0m[31m[0m,
+              attributes = [
+                [1;34m#(Attr:0x108d2c4 {[0m name = [31m[1;31m"[0m[31mrel[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mstylesheet[1;31m"[0m[31m[0m }),
+                [1;34m#(Attr:0x108d2b0 {[0m
+                  name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m,
+                  value = [31m[1;31m"[0m[31m../css/styles.css[1;31m"[0m[31m[0m
+                  })]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m  [1;31m"[0m[31m[0m)]
+          }),
+        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m  [1;31m"[0m[31m[0m),
+        [1;34m#(Element:0x1043f98 {[0m
+          name = [31m[1;31m"[0m[31mbody[1;31m"[0m[31m[0m,
+          children = [
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0x1030c68 {[0m
+              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+              attributes = [
+                [1;34m#(Attr:0x101b6d8 {[0m
+                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                  value = [31m[1;31m"[0m[31mmain-wrapper profile[1;31m"[0m[31m[0m
+                  })],
+              children = [
+                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m),
+                [1;34m#(Element:0xff17c0 {[0m
+                  name = [31m[1;31m"[0m[31mheader[1;31m"[0m[31m[0m,
+                  attributes = [
+                    [1;34m#(Attr:0xff0a3c {[0m name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mheader[1;31m"[0m[31m[0m })],
+                  children = [
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0xfb336c {[0m
+                      name = [31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0xfb20ac {[0m name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31m../[1;31m"[0m[31m[0m })],
+                      children = [
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0xf87a8c {[0m
+                          name = [31m[1;31m"[0m[31mimg[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0xf83b6c {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mlearn-logo[1;31m"[0m[31m[0m
+                              }),
+                            [1;34m#(Attr:0xf83b58 {[0m
+                              name = [31m[1;31m"[0m[31msrc[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mhttps://s3.amazonaws.com/learn-verified/logo.png[1;31m"[0m[31m[0m
+                              })]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m)]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m)]
+                  }),
+                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m),
+                [1;34m#(Element:0xd219a0 {[0m
+                  name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                  attributes = [
+                    [1;34m#(Attr:0xd1efd4 {[0m
+                      name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                      value = [31m[1;31m"[0m[31mprofile-banner[1;31m"[0m[31m[0m
+                      }),
+                    [1;34m#(Attr:0xd1efc0 {[0m
+                      name = [31m[1;31m"[0m[31mid[1;31m"[0m[31m[0m,
+                      value = [31m[1;31m"[0m[31mjoe-burgess-cover[1;31m"[0m[31m[0m
+                      })]
+                  }),
+                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m),
+                [1;34m#(Element:0xcaee3c {[0m
+                  name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                  attributes = [
+                    [1;34m#(Attr:0xc9ea8c {[0m
+                      name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                      value = [31m[1;31m"[0m[31mvitals-container[1;31m"[0m[31m[0m
+                      })],
+                  children = [
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0xb30c18 {[0m
+                      name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0xb2ee90 {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mprofile-photo[1;31m"[0m[31m[0m
+                          }),
+                        [1;34m#(Attr:0xb2ee68 {[0m
+                          name = [31m[1;31m"[0m[31mid[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mjoe-burgess-card[1;31m"[0m[31m[0m
+                          })]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0xa18a4c {[0m
+                      name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0xa12034 {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31msocial-icon-container[1;31m"[0m[31m[0m
+                          })],
+                      children = [
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0x102a610 {[0m
+                          name = [31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0x101fcd8 {[0m
+                              name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mhttps://twitter.com/jmburges[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Element:0x113e754 {[0m
+                              name = [31m[1;31m"[0m[31mimg[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0x113dcdc {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31msocial-icon[1;31m"[0m[31m[0m
+                                  }),
+                                [1;34m#(Attr:0x113dcb4 {[0m
+                                  name = [31m[1;31m"[0m[31msrc[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31m../assets/img/twitter-icon.png[1;31m"[0m[31m[0m
+                                  })]
+                              })]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0x1116268 {[0m
+                          name = [31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0x1110b9c {[0m
+                              name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mhttps://www.linkedin.com/in/jmburges[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Element:0x10ec364 {[0m
+                              name = [31m[1;31m"[0m[31mimg[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0x10e387c {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31msocial-icon[1;31m"[0m[31m[0m
+                                  }),
+                                [1;34m#(Attr:0x10e3868 {[0m
+                                  name = [31m[1;31m"[0m[31msrc[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31m../assets/img/linkedin-icon.png[1;31m"[0m[31m[0m
+                                  })]
+                              })]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0x10a8a74 {[0m
+                          name = [31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0x10971d4 {[0m
+                              name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mhttps://github.com/jmburges[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Element:0x108a31c {[0m
+                              name = [31m[1;31m"[0m[31mimg[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0x1089278 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31msocial-icon[1;31m"[0m[31m[0m
+                                  }),
+                                [1;34m#(Attr:0x1089264 {[0m
+                                  name = [31m[1;31m"[0m[31msrc[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31m../assets/img/github-icon.png[1;31m"[0m[31m[0m
+                                  })]
+                              })]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0x1046e78 {[0m
+                          name = [31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0x1043a84 {[0m
+                              name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mhttp://joemburgess.com/[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Element:0x100e80c {[0m
+                              name = [31m[1;31m"[0m[31mimg[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0x1009744 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31msocial-icon[1;31m"[0m[31m[0m
+                                  }),
+                                [1;34m#(Attr:0x1009708 {[0m
+                                  name = [31m[1;31m"[0m[31msrc[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31m../assets/img/rss-icon.png[1;31m"[0m[31m[0m
+                                  })]
+                              })]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m)]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0xfaee48 {[0m
+                      name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0xfa78a0 {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mvitals-text-container[1;31m"[0m[31m[0m
+                          })],
+                      children = [
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0xf865b0 {[0m
+                          name = [31m[1;31m"[0m[31mh1[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0xf81664 {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mprofile-name[1;31m"[0m[31m[0m
+                              })],
+                          children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mJoe Burgess[1;31m"[0m[31m[0m)]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0xd60a88 {[0m
+                          name = [31m[1;31m"[0m[31mh2[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0xd5ef6c {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mprofile-location[1;31m"[0m[31m[0m
+                              })],
+                          children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m)]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0xcf5bd4 {[0m
+                          name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0xcf32bc {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mprofile-quote[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\"[0m[31mReduce to a previously solved problem[1;35m\"[0m[31m[1;31m"[0m[31m[0m)]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m)]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m)]
+                  }),
+                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m),
+                [1;34m#(Element:0xb2a87c {[0m
+                  name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                  attributes = [
+                    [1;34m#(Attr:0xb27f78 {[0m
+                      name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                      value = [31m[1;31m"[0m[31mdetails-container[1;31m"[0m[31m[0m
+                      })],
+                  children = [
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0xade3f0 {[0m
+                      name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0xadc604 {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mbio-block details-block[1;31m"[0m[31m[0m
+                          })],
+                      children = [
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0x10c2f64 {[0m
+                          name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0x102aef8 {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mbio-content content-holder[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0x113ee70 {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0x113cbd4 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mtitle-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0x1129138 {[0m
+                                  name = [31m[1;31m"[0m[31mh3[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mBiography[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0x10f2e08 {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0x10ed318 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mdescription-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0x10c0728 {[0m
+                                  name = [31m[1;31m"[0m[31mp[1;31m"[0m[31m[0m,
+                                  children = [
+                                    [1;34m#(Text [0m[31m[1;31m"[0m[31mI grew up outside of the Washington DC (NoVA!) and went to college at Carnegie Mellon University in Pittsburgh. After college, I worked as an Oracle consultant for IBM for a bit and now I teach here at The Flatiron School.[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m)]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m)]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0x107c348 {[0m
+                      name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0x1073040 {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31meducation-block details-block[1;31m"[0m[31m[0m
+                          })],
+                      children = [
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0x1056e2c {[0m
+                          name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0x104f4c4 {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31meducation-content content-holder[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0x10150a8 {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0x1009a3c {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mtitle-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0xfeb730 {[0m
+                                  name = [31m[1;31m"[0m[31mh3[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mEducation[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0xfa0578 {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0xf9c84c {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mdescription-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0xf805ac {[0m
+                                  name = [31m[1;31m"[0m[31mh4[1;31m"[0m[31m[0m,
+                                  children = [
+                                    [1;34m#(Text [0m[31m[1;31m"[0m[31mCarnegie Mellon University[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0xd69cc8 {[0m
+                                  name = [31m[1;31m"[0m[31mh5[1;31m"[0m[31m[0m,
+                                  children = [
+                                    [1;34m#(Text [0m[31m[1;31m"[0m[31mBachelor of Science in Information Systems and Economics[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m)]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m)]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0xcf25d8 {[0m
+                      name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0xce6ef4 {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mexperience-block details-block[1;31m"[0m[31m[0m
+                          })],
+                      children = [
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0xbbbb24 {[0m
+                          name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0xba3ca4 {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mexperience-content content-holder[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0xb25570 {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0xb200c0 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mtitle-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0xa19b18 {[0m
+                                  name = [31m[1;31m"[0m[31mh3[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mExperience[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0x101eb44 {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0x116abb0 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mdescription-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0x113a3c0 {[0m
+                                  name = [31m[1;31m"[0m[31mh4[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mThe Flatiron School[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0x11210f0 {[0m
+                                  name = [31m[1;31m"[0m[31mh5[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mLead iOS Instructor[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0x10ed228 {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0x10e3e1c {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mdescription-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0x10bf33c {[0m
+                                  name = [31m[1;31m"[0m[31mh4[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mIBM[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0x10952a8 {[0m
+                                  name = [31m[1;31m"[0m[31mh5[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mConsultant[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m)]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m)]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m)]
+                  }),
+                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m),
+                [1;34m#(Element:0x104e178 {[0m
+                  name = [31m[1;31m"[0m[31mfooter[1;31m"[0m[31m[0m,
+                  attributes = [
+                    [1;34m#(Attr:0x1046a7c {[0m name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mfooter[1;31m"[0m[31m[0m })],
+                  children = [
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0x1009640 {[0m
+                      name = [31m[1;31m"[0m[31mimg[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0x10085c4 {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mmade-with-love[1;31m"[0m[31m[0m
+                          }),
+                        [1;34m#(Attr:0x10085b0 {[0m
+                          name = [31m[1;31m"[0m[31msrc[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mhttps://s3.amazonaws.com/learn-verified/made-with-love.png[1;31m"[0m[31m[0m
+                          })]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m)]
+                  }),
+                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m)]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m  [1;31m"[0m[31m[0m)]
+          }),
+        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m[1;31m"[0m[31m[0m)]
+      })]
+  })
+=> [1;34m#(Document:0xe1887c {[0m
+  name = [31m[1;31m"[0m[31mdocument[1;31m"[0m[31m[0m,
+  children = [
+    [1;34m#(DTD:0xe23524 {[0m name = [31m[1;31m"[0m[31mhtml[1;31m"[0m[31m[0m }),
+    [1;34m#(Element:0xe288d0 {[0m
+      name = [31m[1;31m"[0m[31mhtml[1;31m"[0m[31m[0m,
+      children = [
+        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m  [1;31m"[0m[31m[0m),
+        [1;34m#(Element:0xe3a8c8 {[0m
+          name = [31m[1;31m"[0m[31mhead[1;31m"[0m[31m[0m,
+          children = [
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0xf3eecc {[0m
+              name = [31m[1;31m"[0m[31mmeta[1;31m"[0m[31m[0m,
+              attributes = [
+                [1;34m#(Attr:0xf3bd58 {[0m name = [31m[1;31m"[0m[31mcharset[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mutf-8[1;31m"[0m[31m[0m })]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0xf183bc {[0m
+              name = [31m[1;31m"[0m[31mmeta[1;31m"[0m[31m[0m,
+              attributes = [
+                [1;34m#(Attr:0xf161d4 {[0m name = [31m[1;31m"[0m[31mname[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mviewport[1;31m"[0m[31m[0m }),
+                [1;34m#(Attr:0xf161c0 {[0m
+                  name = [31m[1;31m"[0m[31mcontent[1;31m"[0m[31m[0m,
+                  value = [31m[1;31m"[0m[31mwidth=device-width, intial-scale=1[1;31m"[0m[31m[0m
+                  })]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0xee2b04 {[0m
+              name = [31m[1;31m"[0m[31mtitle[1;31m"[0m[31m[0m,
+              children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mLearn Verified Student Roster[1;31m"[0m[31m[0m)]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0xebcf08 {[0m
+              name = [31m[1;31m"[0m[31mlink[1;31m"[0m[31m[0m,
+              attributes = [
+                [1;34m#(Attr:0xeb93d0 {[0m name = [31m[1;31m"[0m[31mrel[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mstylesheet[1;31m"[0m[31m[0m }),
+                [1;34m#(Attr:0xeb93bc {[0m
+                  name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m,
+                  value = [31m[1;31m"[0m[31m../css/normalize.css[1;31m"[0m[31m[0m
+                  })]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0xe87330 {[0m
+              name = [31m[1;31m"[0m[31mlink[1;31m"[0m[31m[0m,
+              attributes = [
+                [1;34m#(Attr:0xe86160 {[0m name = [31m[1;31m"[0m[31mrel[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mstylesheet[1;31m"[0m[31m[0m }),
+                [1;34m#(Attr:0xe86138 {[0m name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31m../css/fonts.css[1;31m"[0m[31m[0m })]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0xe48c0c {[0m
+              name = [31m[1;31m"[0m[31mlink[1;31m"[0m[31m[0m,
+              attributes = [
+                [1;34m#(Attr:0xe46f74 {[0m name = [31m[1;31m"[0m[31mrel[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mstylesheet[1;31m"[0m[31m[0m }),
+                [1;34m#(Attr:0xe46efc {[0m
+                  name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m,
+                  value = [31m[1;31m"[0m[31m../css/styles.css[1;31m"[0m[31m[0m
+                  })]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m  [1;31m"[0m[31m[0m)]
+          }),
+        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m  [1;31m"[0m[31m[0m),
+        [1;34m#(Element:0xdd7df4 {[0m
+          name = [31m[1;31m"[0m[31mbody[1;31m"[0m[31m[0m,
+          children = [
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0xdca5dc {[0m
+              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+              attributes = [
+                [1;34m#(Attr:0xdc8200 {[0m
+                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                  value = [31m[1;31m"[0m[31mmain-wrapper profile[1;31m"[0m[31m[0m
+                  })],
+              children = [
+                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m),
+                [1;34m#(Element:0xda25b4 {[0m
+                  name = [31m[1;31m"[0m[31mheader[1;31m"[0m[31m[0m,
+                  attributes = [
+                    [1;34m#(Attr:0xda0ebc {[0m name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mheader[1;31m"[0m[31m[0m })],
+                  children = [
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0xd6946c {[0m
+                      name = [31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0xd6851c {[0m name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31m../[1;31m"[0m[31m[0m })],
+                      children = [
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0xd50e94 {[0m
+                          name = [31m[1;31m"[0m[31mimg[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0xd4e7fc {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mlearn-logo[1;31m"[0m[31m[0m
+                              }),
+                            [1;34m#(Attr:0xd4e7d4 {[0m
+                              name = [31m[1;31m"[0m[31msrc[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mhttps://s3.amazonaws.com/learn-verified/logo.png[1;31m"[0m[31m[0m
+                              })]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m)]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m)]
+                  }),
+                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m),
+                [1;34m#(Element:0xadc5b4 {[0m
+                  name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                  attributes = [
+                    [1;34m#(Attr:0xad654c {[0m
+                      name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                      value = [31m[1;31m"[0m[31mprofile-banner[1;31m"[0m[31m[0m
+                      }),
+                    [1;34m#(Attr:0xad6524 {[0m
+                      name = [31m[1;31m"[0m[31mid[1;31m"[0m[31m[0m,
+                      value = [31m[1;31m"[0m[31mjoe-burgess-cover[1;31m"[0m[31m[0m
+                      })]
+                  }),
+                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m),
+                [1;34m#(Element:0x98b05c {[0m
+                  name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                  attributes = [
+                    [1;34m#(Attr:0x97cdf4 {[0m
+                      name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                      value = [31m[1;31m"[0m[31mvitals-container[1;31m"[0m[31m[0m
+                      })],
+                  children = [
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0x903738 {[0m
+                      name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0x901a8c {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mprofile-photo[1;31m"[0m[31m[0m
+                          }),
+                        [1;34m#(Attr:0x901a64 {[0m
+                          name = [31m[1;31m"[0m[31mid[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mjoe-burgess-card[1;31m"[0m[31m[0m
+                          })]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0x7e273c {[0m
+                      name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0x7dfdc0 {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31msocial-icon-container[1;31m"[0m[31m[0m
+                          })],
+                      children = [
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0xf31f24 {[0m
+                          name = [31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0xf2f3c8 {[0m
+                              name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mhttps://twitter.com/jmburges[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Element:0xf12714 {[0m
+                              name = [31m[1;31m"[0m[31mimg[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0xf119a4 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31msocial-icon[1;31m"[0m[31m[0m
+                                  }),
+                                [1;34m#(Attr:0xf1197c {[0m
+                                  name = [31m[1;31m"[0m[31msrc[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31m../assets/img/twitter-icon.png[1;31m"[0m[31m[0m
+                                  })]
+                              })]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0xecc00c {[0m
+                          name = [31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0xebff14 {[0m
+                              name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mhttps://www.linkedin.com/in/jmburges[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Element:0xea58f8 {[0m
+                              name = [31m[1;31m"[0m[31mimg[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0xea3e90 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31msocial-icon[1;31m"[0m[31m[0m
+                                  }),
+                                [1;34m#(Attr:0xea3e7c {[0m
+                                  name = [31m[1;31m"[0m[31msrc[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31m../assets/img/linkedin-icon.png[1;31m"[0m[31m[0m
+                                  })]
+                              })]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0xe6c8b4 {[0m
+                          name = [31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0xe6b1a8 {[0m
+                              name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mhttps://github.com/jmburges[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Element:0xe4992c {[0m
+                              name = [31m[1;31m"[0m[31mimg[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0xe48db0 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31msocial-icon[1;31m"[0m[31m[0m
+                                  }),
+                                [1;34m#(Attr:0xe48d88 {[0m
+                                  name = [31m[1;31m"[0m[31msrc[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31m../assets/img/github-icon.png[1;31m"[0m[31m[0m
+                                  })]
+                              })]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0xe183b8 {[0m
+                          name = [31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0xe12fbc {[0m
+                              name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mhttp://joemburgess.com/[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Element:0xdc5e74 {[0m
+                              name = [31m[1;31m"[0m[31mimg[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0xdc55f0 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31msocial-icon[1;31m"[0m[31m[0m
+                                  }),
+                                [1;34m#(Attr:0xdc55dc {[0m
+                                  name = [31m[1;31m"[0m[31msrc[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31m../assets/img/rss-icon.png[1;31m"[0m[31m[0m
+                                  })]
+                              })]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m)]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0xd6e764 {[0m
+                      name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0xd692c8 {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mvitals-text-container[1;31m"[0m[31m[0m
+                          })],
+                      children = [
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0xd544f4 {[0m
+                          name = [31m[1;31m"[0m[31mh1[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0xd50944 {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mprofile-name[1;31m"[0m[31m[0m
+                              })],
+                          children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mJoe Burgess[1;31m"[0m[31m[0m)]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0xb3ade4 {[0m
+                          name = [31m[1;31m"[0m[31mh2[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0xb38120 {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mprofile-location[1;31m"[0m[31m[0m
+                              })],
+                          children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mNew York, NY[1;31m"[0m[31m[0m)]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0xac533c {[0m
+                          name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0xabae8c {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mprofile-quote[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\"[0m[31mReduce to a previously solved problem[1;35m\"[0m[31m[1;31m"[0m[31m[0m)]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m)]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m)]
+                  }),
+                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m),
+                [1;34m#(Element:0x903f1c {[0m
+                  name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                  attributes = [
+                    [1;34m#(Attr:0x901780 {[0m
+                      name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                      value = [31m[1;31m"[0m[31mdetails-container[1;31m"[0m[31m[0m
+                      })],
+                  children = [
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0x8c12fc {[0m
+                      name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0x8be714 {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mbio-block details-block[1;31m"[0m[31m[0m
+                          })],
+                      children = [
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0xf45ac4 {[0m
+                          name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0xf3e42c {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mbio-content content-holder[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0xf18b64 {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0xf13e98 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mtitle-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0xef4a70 {[0m
+                                  name = [31m[1;31m"[0m[31mh3[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mBiography[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0xebcf80 {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0xeb936c {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mdescription-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0xe9c834 {[0m
+                                  name = [31m[1;31m"[0m[31mp[1;31m"[0m[31m[0m,
+                                  children = [
+                                    [1;34m#(Text [0m[31m[1;31m"[0m[31mI grew up outside of the Washington DC (NoVA!) and went to college at Carnegie Mellon University in Pittsburgh. After college, I worked as an Oracle consultant for IBM for a bit and now I teach here at The Flatiron School.[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m)]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m)]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0xe4a55c {[0m
+                      name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0xe48d74 {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31meducation-block details-block[1;31m"[0m[31m[0m
+                          })],
+                      children = [
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0xe2e230 {[0m
+                          name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0xe28664 {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31meducation-content content-holder[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0xdd5428 {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0xdcead8 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mtitle-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0xdacde8 {[0m
+                                  name = [31m[1;31m"[0m[31mh3[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mEducation[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0xd6ec00 {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0xd698a4 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mdescription-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0xd55264 {[0m
+                                  name = [31m[1;31m"[0m[31mh4[1;31m"[0m[31m[0m,
+                                  children = [
+                                    [1;34m#(Text [0m[31m[1;31m"[0m[31mCarnegie Mellon University[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0xb4cb98 {[0m
+                                  name = [31m[1;31m"[0m[31mh5[1;31m"[0m[31m[0m,
+                                  children = [
+                                    [1;34m#(Text [0m[31m[1;31m"[0m[31mBachelor of Science in Information Systems and Economics[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m)]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m)]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0xace1f8 {[0m
+                      name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0xac5878 {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mexperience-block details-block[1;31m"[0m[31m[0m
+                          })],
+                      children = [
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0xa686a0 {[0m
+                          name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0x990a34 {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mexperience-content content-holder[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0x905b8c {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0x9028c4 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mtitle-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0x8c19a0 {[0m
+                                  name = [31m[1;31m"[0m[31mh3[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mExperience[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0xf3eabc {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0xf3bb28 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mdescription-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0xf18178 {[0m
+                                  name = [31m[1;31m"[0m[31mh4[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mThe Flatiron School[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0xef5a88 {[0m
+                                  name = [31m[1;31m"[0m[31mh5[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mLead iOS Instructor[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0xebef9c {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0xebdb88 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mdescription-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0xe9eeb8 {[0m
+                                  name = [31m[1;31m"[0m[31mh4[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mIBM[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0xe76c9c {[0m
+                                  name = [31m[1;31m"[0m[31mh5[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mConsultant[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m)]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m)]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m)]
+                  }),
+                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m),
+                [1;34m#(Element:0xe2ec80 {[0m
+                  name = [31m[1;31m"[0m[31mfooter[1;31m"[0m[31m[0m,
+                  attributes = [
+                    [1;34m#(Attr:0xe2949c {[0m name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mfooter[1;31m"[0m[31m[0m })],
+                  children = [
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0xdd7cc8 {[0m
+                      name = [31m[1;31m"[0m[31mimg[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0xdd5f7c {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mmade-with-love[1;31m"[0m[31m[0m
+                          }),
+                        [1;34m#(Attr:0xdd5f40 {[0m
+                          name = [31m[1;31m"[0m[31msrc[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mhttps://s3.amazonaws.com/learn-verified/made-with-love.png[1;31m"[0m[31m[0m
+                          })]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m)]
+                  }),
+                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m)]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m  [1;31m"[0m[31m[0m)]
+          }),
+        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m[1;31m"[0m[31m[0m)]
+      })]
+  })
