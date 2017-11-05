@@ -19,19 +19,12 @@ class Scraper
     #binding.pry
     profile_hash = {}
     name = doc.css('h1.profile-name').text
-    container = doc.css('div.social-icon-container a')
-      if container[0].attribute('href').value.include?("twitter")
-        profile_hash[:twitter] = doc.css('a[href*="twitter"]').attribute('href').value
-      end
-      if container[0].attribute('href').value.include?("linkedin") || container[1].attribute('href').value.include?("linkedin")
-        profile_hash[:linkedin] = doc.css('a[href*="linkedin"]').attribute('href').value
-      end
-      if container[0].attribute('href').value.include?("github") || container[1].attribute('href').value.include?("github") || container[2].attribute('href').value.include?("github")
-        profile_hash[:github] = doc.css('a[href*="github"]').attribute('href').value
-      end
-    if container[3] != nil
-      if container[1].attribute('href').value.include?(name.downcase.split[0]) || container[2].attribute('href').value.include?(name.downcase.split[0]) || container[3].attribute('href').value.include?(name.downcase.split[0])
-        profile_hash[:blog] = doc.css('a:nth-child(4)').attribute('href').value
+    doc.css('div.social-icon-container a').each do |a|
+      profile_hash[:twitter] = doc.css('a[href*="twitter"]').attribute('href').value if a.attribute('href').value.include?("twitter")
+      profile_hash[:linkedin] = doc.css('a[href*="linkedin"]').attribute('href').value if a.attribute('href').value.include?("linkedin")
+      profile_hash[:github] = doc.css('a[href*="github"]').attribute('href').value if a.attribute('href').value.include?("github")
+      if doc.css('div.social-icon-container a')[3] != nil
+        profile_hash[:blog] = doc.css('a:nth-child(4)').attribute('href').value if a.attribute('href').value.include?(name.downcase.split[0])
       end
     end
     profile_hash[:profile_quote] = doc.css('div.profile-quote').text
