@@ -7,6 +7,7 @@ class Student
   def initialize(student_hash)
     @name = student_hash[:name]
     @location = student_hash[:location]
+    @profile_url = student_hash[:profile_url]
     @@all << self
   end
 
@@ -22,7 +23,6 @@ class Student
     @github = attributes_hash[:github]
     @blog = attributes_hash[:blog]
     @profile_quote = attributes_hash[:profile_quote]
-    @profile_url = attributes_hash[:profile_url]
     @bio = attributes_hash[:bio]
   end
 
