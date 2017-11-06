@@ -18,13 +18,15 @@ class Scraper
     doc = Nokogiri::HTML(html)
     #binding.pry
     profile_hash = {}
-    name = doc.css('h1.profile-name').text
     doc.css('div.social-icon-container a').each do |a|
-      profile_hash[:twitter] = doc.css('a[href*="twitter"]').attribute('href').value if a.attribute('href').value.include?("twitter")
-      profile_hash[:linkedin] = doc.css('a[href*="linkedin"]').attribute('href').value if a.attribute('href').value.include?("linkedin")
-      profile_hash[:github] = doc.css('a[href*="github"]').attribute('href').value if a.attribute('href').value.include?("github")
-      if doc.css('div.social-icon-container a')[3] != nil
-        profile_hash[:blog] = doc.css('a:nth-child(4)').attribute('href').value if a.attribute('href').value.include?(name.downcase.split[0])
+      if a.attribute('href').value.include?("twitter")
+        profile_hash[:twitter] = a.attribute('href').value
+      elsif a.attribute('href').value.include?("linkedin")
+        profile_hash[:linkedin] = a.attribute('href').value
+      elsif a.attribute('href').value.include?("github")
+        profile_hash[:github] = a.attribute('href').value
+      else
+        profile_hash[:blog] = a.attribute('href').value
       end
     end
     profile_hash[:profile_quote] = doc.css('div.profile-quote').text
