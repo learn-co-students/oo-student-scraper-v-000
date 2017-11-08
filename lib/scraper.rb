@@ -29,17 +29,21 @@ class Scraper
 
     social.css("a").each{|e|
       the_url = e.attribute("href").value
-      ["twitter","github","linkedin"].each{|i|
+      blog = true
+      ["twitter","github","linkedin","youtube"].each{|i|
         if the_url.include?(i)
           student[i.to_sym] = the_url
+          blog = false
         end
       }
+      if blog
+        student[:blog] = the_url
+      end
     }
 
     #binding.pry
 
     student.merge({
-      :blog => "blog",
       :profile_quote => doc.css("div.vitals-container div.vitals-text-container div.profile-quote").text,
       :bio => details.css("div.description-holder p").text,
     })
