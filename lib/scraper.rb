@@ -35,6 +35,6 @@ class Scraper
         student[:bio]= profile_page.css("div.bio-content.content-holder div.description-holder p").text
 
       student
-      
-      end
+
     end
+end
