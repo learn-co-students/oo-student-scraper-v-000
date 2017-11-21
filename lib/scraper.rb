@@ -22,7 +22,7 @@ class Scraper
     doc.css(".social-icon-container a").each do |link|
       link = link.attribute("href").value
       link_type = link.scan(/\b+\w{1,}(?=\.)/).last
-      if link_type.match /twitter|linkedin|github/
+      if link_type =~ /twitter|linkedin|github/
         profile[link_type.to_sym] = link
       else
         profile[:blog] = link
