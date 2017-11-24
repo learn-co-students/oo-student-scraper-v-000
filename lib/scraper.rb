@@ -57,7 +57,7 @@ class Scraper
         :profile_quote => student.css(".profile-quote").text,
         :bio =>student.css(".bio-content p").text,
       }
-      individual.delete([:twitter) if individual[:twitter]==""
+      individual.delete(:twitter) if individual[:twitter]==""
       individual
     end
   end
