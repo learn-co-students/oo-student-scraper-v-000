@@ -7,11 +7,11 @@ class Student
   def initialize(student_hash)
     self.name = student_hash[:name]
     self.location = student_hash[:location]
-    @@all << self
+    self.class.all << self
   end
 
   def self.create_from_collection(students_array)
-    Student.new(self)
+    students_array.each{|student| self.new(student)}
   end
 
   def add_student_attributes(attributes_hash)
