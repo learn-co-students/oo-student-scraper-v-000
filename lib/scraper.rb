@@ -29,20 +29,20 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     html = File.read(profile_url)
     student_scrape = Nokogiri::HTML(html)
+    output = {}
+    output[:profile_quote] = student.scrape.css("div.profile-quote")
     #binding.pry
+
     output = {
       :twitter => student_scrape.css().text
       :linkedin => student_scrape.css().text
       :github => student_scrape.css().text
       :blog => student_scrape.css().text
       :profile_quote => student_scrape.css().text
-      :bio => student_scrape.css().text
+      :bio => student_scrape.css("div.socal-icon").text
     }
-
-
-
-
-
+    #binding.pry
+    output
   end #self.scrape_profile_page
 
 end #SCRAPER CLASS
