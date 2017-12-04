@@ -8,7 +8,16 @@ class Scraper
   def self.scrape_index_page(index_url)
     html = File.read("fixtures/student-site/index.html")
     students_index = Nokogiri::HTML(html)
+    binding.pry
     students = {}
+    students_index.css("div.student-card").each do |student_card|
+        name = student_card.css("h4.student-name").text
+        students[name.to_sym] = {
+          :name => student_card.css("h4.student-name").text
+          :location => student_card.css("p.student-location").text
+          :profile_url => student_card.css("href").text
+        }
+
 
 
   end #self.scrape_index_page
