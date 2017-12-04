@@ -4,6 +4,7 @@ require 'nokogiri'
 
 class Scraper
 #attr_accessor :name, :location, :profile_url, :students
+attr_accessor :name, :location, :profile_url, :students
 #is a class method that scrapes the student index page ('./fixtures/student-site/index.html') and a returns an array of hashes in which each hash represents one student
   def self.scrape_index_page(index_url)
     html = File.read("fixtures/student-site/index.html")
@@ -21,7 +22,6 @@ class Scraper
         }
         #binding.pry
       end
-      #binding.pry
       students
   end #self.scrape_index_page
 
