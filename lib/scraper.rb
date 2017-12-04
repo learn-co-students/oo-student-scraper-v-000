@@ -25,9 +25,32 @@ class Scraper
     html = File.read(profile_url)
     learn_students_profiles = Nokogiri::HTML(html)
     student = {}
-    binding.pry
 
+
+    url_links = learn_students_profiles.css("div.social-icon-container a").collect do |a|
+                  a.attribute("href").value
+                end
+  #=> Gives an array of the url links
+
+  url_links.each do |link|
+    if link.include?("twitter.com")
+      student[:twitter] = link
+    elsif link.include?("linkedin.com")
+      student[:linkedin] = link
+    elsif link.include?("github.com")
+      student[:github] = link
+    else
+      student[:blog] = link
+    end
   end
 
+    student[:bio] = learn_students_profiles.css("div.description-holder p").text
+    student[:profile_quote] = learn_students_profiles.css("div.profile-quote").text
+
+    # bio: learn_students_profiles.css("div.description-holder p").text
+    # profiles.css("div.social-icon-container a").attribute("href").value
+    # quote: learn_students_profiles.css("div.profile-quote").text
+
+    student
+  end
 end
-Scraper.scrape_profile_page("/fixtures/student-site/students/ryan-johnson.html")
