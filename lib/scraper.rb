@@ -52,6 +52,8 @@ class Scraper
         end
         #binding.pry
       end #end loop
+
+        #binding.pry
     #binding.pry
     output
   end #self.scrape_profile_page
