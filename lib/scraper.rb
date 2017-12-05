@@ -30,19 +30,29 @@ class Scraper
     html = File.read(profile_url)
     student_scrape = Nokogiri::HTML(html)
     output = {}
-    output[:profile_quote] = student.scrape.css("div.profile-quote")
+    output[:profile_quote] = student_scrape.css("div.profile-quote").text
+    output[:bio] = student_scrape.css("div.description-holder p").text
+    social_links = student_scrape.css("div.social-icon-container") #only gives first link with a href selectors, ugh.  No .text until yielding the saved values.
+    #last_link = social_links.css("a:last-child")
+    #output[:blog] = last_link.attribute("href").value #I give up on this.
+    social_links = social_links.css("a")
+    social_links = social_links.map {|link| link.attribute("href")} #piss poor but passes, why does attribute fix on the first one whereas everything else collects?
     #binding.pry
-
-    output = {
-      :twitter => student_scrape.css().text
-      :linkedin => student_scrape.css().text
-      :github => student_scrape.css().text
-      :blog => student_scrape.css().text
-      :profile_quote => student_scrape.css().text
-      :bio => student_scrape.css("div.socal-icon").text
-    }
+      social_links.map do |link|
+        #binding.pry
+        if link.value.include?("twitter")
+          output[:twitter] = link.value
+        elsif link.value.include?("linkedin")
+          output[:linkedin] = link.value
+        elsif link.value.include?("github")
+          output[:github] = link.value
+        #binding.pry
+        else
+          output[:blog] = link.value #want to use last child but this stuff is unreadable (can't search, everyone's last link is a different host. could delete elements as used?
+        end
+        #binding.pry
+      end #end loop
     #binding.pry
     output
   end #self.scrape_profile_page
-
 end #SCRAPER CLASS
