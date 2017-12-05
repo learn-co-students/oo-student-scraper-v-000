@@ -18,9 +18,9 @@ class CommandLineInteface
   end
 
   def add_attributes_to_students
-    Student.all.each do |student|
-      attributes = Scraper.scrape_profile_page(BASE_PATH + student.profile_url)
-      student.add_student_attributes(attributes)
+    Student.all.each do |student| # iterate over the array of all student objects
+      attributes = Scraper.scrape_profile_page(BASE_PATH + student.profile_url) # scrape profile page and add to attributes
+      student.add_student_attributes(attributes) # add  attributes to each student
     end
   end
 
