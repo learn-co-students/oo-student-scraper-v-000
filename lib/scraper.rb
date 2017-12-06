@@ -16,24 +16,30 @@ class Scraper
     scraped_students
   end
 
+  # {twitter: student.css("a").attribute("href").value}
+
   def self.scrape_profile_page(profile_url)
     html = open(profile_url)
     doc = Nokogiri::HTML(html)
-
-    section = doc.css(".vitals-container")
-
-    #  github = section.css.(".social-icon-container").css.("a").attribute("href").value
-    # linkedin =
-    twitter = section.css("a").attribute("href").value
-    # blog =
-    # quote =
-    # bio =
-binding.pry
-
+    links = doc.css(".social-icon-container").css("a")
+    profile = Hash.new
+    links.each do |link|
+      case
+      when link.attribute("href").value.include?("twitter.com")
+        profile[:twitter] = link.attribute("href").value
+      when link.attribute("href").value.include?("github.com")
+        profile[:github] = link.attribute("href").value
+      when link.attribute("href").value.include?("youtube.com")
+        profile[:youtube] = link.attribute("href").value
+      when link.attribute("href").value.include?("linkedin.com")
+        profile[:linkedin] = link.attribute("href").value
+      else
+        profile[:blog] = link.attribute("href").value
+      end
+    end
+    profile[:profile_quote] = doc.css(".profile-quote").text
+    profile[:bio] = doc.css(".description-holder").css("p").text
+    profile
   end
 
 end
-# is a class method that scrapes the student index page ('./fixtures/student-site/index.html')
-# and a returns an array of hashes in which each hash represents one student (FAILED - 1)
-
-# expected [{:name => "Ryan Johnson", :location => "New York, NY", :profile_url => "students/ryan-johnson.html"},
