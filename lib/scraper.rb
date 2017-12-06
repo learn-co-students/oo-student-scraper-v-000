@@ -21,6 +21,7 @@ class Scraper
         #binding.pry
       end
     students
+    #binding.pry
   end #self.scrape_index_page
 
 
