@@ -1,0 +1,28 @@
+
+[1mFrom:[0m /home/dbfarms/oo-student-scraper-v-000/lib/scraper.rb @ line 17 Scraper.scrape_index_page:
+
+     [1;34m7[0m: [32mdef[0m [1;36mself[0m.[1;34mscrape_index_page[0m(index_url)
+     [1;34m8[0m: 
+     [1;34m9[0m:   html = [1;34;4mFile[0m.read([31m[1;31m'[0m[31mfixtures/student-site/index.html[1;31m'[0m[31m[0m)
+    [1;34m10[0m:   student_site = [1;34;4mNokogiri[0m::HTML(html)
+    [1;34m11[0m:   [1;34m#project  student_site.css("div.student-card")[0m
+    [1;34m12[0m:   [1;34m#student student_site.css("div.student-card h4")[0m
+    [1;34m13[0m:   [1;34m#location student_site.css("div.student-card p")[0m
+    [1;34m14[0m:   [1;34m#link student_site.css("div.student-card a").attribute("href").value[0m
+    [1;34m15[0m: 
+    [1;34m16[0m:   projects = {}
+ => [1;34m17[0m:   binding.pry
+    [1;34m18[0m:    student_site.css([31m[1;31m"[0m[31mdiv.student-card[1;31m"[0m[31m[0m).each [32mdo[0m |project|
+    [1;34m19[0m:      title = project.css([31m[1;31m"[0m[31mdiv.student-card[1;31m"[0m[31m[0m)
+    [1;34m20[0m:     [1;34m#binding.pry[0m
+    [1;34m21[0m:      projects[[33m:title[0m] = {
+    [1;34m22[0m:        [33m:name[0m => project.css([31m[1;31m"[0m[31mdiv.student-card h4[1;31m"[0m[31m[0m).text,
+    [1;34m23[0m:        [33m:location[0m => project.css([31m[1;31m"[0m[31mdiv.student-card p[1;31m"[0m[31m[0m).text,
+    [1;34m24[0m:        [33m:link[0m => project.css([31m[1;31m"[0m[31mdiv.student-card a[1;31m"[0m[31m[0m).attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value
+    [1;34m25[0m:      }
+    [1;34m26[0m:    [32mend[0m
+    [1;34m27[0m: 
+    [1;34m28[0m:   binding.pry
+    [1;34m29[0m: 
+    [1;34m30[0m: [32mend[0m
+
