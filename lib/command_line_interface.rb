@@ -13,7 +13,7 @@ class CommandLineInteface
   end
 
   def make_students
-    students_array = Scraper.scrape_index_page(BASE_PATH + 'index.html')
+    students_array = Scraper.scrape_index_page(BASE_PATH)
     Student.create_from_collection(students_array)
   end
 
@@ -37,5 +37,4 @@ class CommandLineInteface
       puts "----------------------".colorize(:green)
     end
   end
-
 end
