@@ -3,7 +3,7 @@ require_relative "../lib/student.rb"
 require 'nokogiri'
 require 'colorize'
 
-class CommandLineInteface
+class CommandLineInterface
   BASE_PATH = "./fixtures/student-site/"
 
   def run
@@ -13,7 +13,7 @@ class CommandLineInteface
   end
 
   def make_students
-    students_array = Scraper.scrape_index_page(BASE_PATH)
+    students_array = Scraper.scrape_index_page(BASE_PATH + "index.html")
     Student.create_from_collection(students_array)
   end
 
@@ -38,3 +38,4 @@ class CommandLineInteface
     end
   end
 end
+# binding.pry
