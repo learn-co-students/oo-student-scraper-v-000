@@ -14,15 +14,29 @@ class Scraper
       student_info_hash = {
         :name => student.css("h4.student-name").text,
         :location => student.css("p.student-location").text,
-        :profile_url => student.css("a.href").text
+        :profile_url => student.css("a").attribute("href").text
       }
       @student_info_hash_array << student_info_hash
     end
+    @student_info_hash_array
   end
 
   def self.scrape_profile_page(profile_url)
+    web_page_2 = Nokogiri::HTML(open(profile_url))
     
-  end
+        web_page_2.css("social-icon-container").each do |student| 
+          
+          profile_hash = {
+            :twitter, 
+            :linkedin, 
+            :github, 
+            :blog, 
+            :profile_quote, 
+            :bio,
+          }
+        end
+        profile_hash
+      end
 
 end
 
