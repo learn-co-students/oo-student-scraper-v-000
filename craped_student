@@ -1,0 +1,27 @@
+
+[1mFrom:[0m /home/lizbur10/oo-student-scraper-v-000/lib/scraper.rb @ line 37 Scraper.scrape_profile_page:
+
+    [1;34m26[0m: [32mdef[0m [1;36mself[0m.[1;34mscrape_profile_page[0m(profile_url)
+    [1;34m27[0m:   scraped_student = {}
+    [1;34m28[0m:   html = open([31m[1;31m"[0m[31m#{profile_url}[0m[31m[1;31m"[0m[31m[0m)
+    [1;34m29[0m:   doc = [1;34;4mNokogiri[0m::HTML(html)
+    [1;34m30[0m:   doc.css([31m[1;31m"[0m[31m.social-icon-container a[1;31m"[0m[31m[0m).each [32mdo[0m | link |
+    [1;34m31[0m:     scraped_student[[33m:twitter[0m] = link[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m] [32mif[0m link[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m].include?([31m[1;31m'[0m[31mtwitter[1;31m'[0m[31m[0m)
+    [1;34m32[0m:     scraped_student[[33m:linkedin[0m] = link[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m] [32mif[0m link[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m].include?([31m[1;31m'[0m[31mlinkedin[1;31m'[0m[31m[0m)
+    [1;34m33[0m:     scraped_student[[33m:github[0m] = link[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m] [32mif[0m link[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m].include?([31m[1;31m'[0m[31mgithub[1;31m'[0m[31m[0m)
+    [1;34m34[0m:     scraped_student[[33m:blog[0m] = link[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m] [32mif[0m !( link[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m].include?([31m[1;31m'[0m[31mtwitter[1;31m'[0m[31m[0m) || link[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m].include?([31m[1;31m'[0m[31mlinkedin[1;31m'[0m[31m[0m) || link[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m].include?([31m[1;31m'[0m[31mgithub[1;31m'[0m[31m[0m) )
+    [1;34m35[0m:     scraped_student[[33m:profile_quote[0m] = doc.css([31m[1;31m"[0m[31m.profile-quote[1;31m"[0m[31m[0m).text
+    [1;34m36[0m:     scraped_student[[33m:bio[0m] = doc.css([31m[1;31m"[0m[31m.description-holder p[1;31m"[0m[31m[0m).text
+ => [1;34m37[0m:     binding.pry
+    [1;34m38[0m:   [32mend[0m
+    [1;34m39[0m:   [1;34m# @scraped_student = {[0m
+    [1;34m40[0m:   [1;34m#   :twitter => urls[:twitter],[0m
+    [1;34m41[0m:   [1;34m#   :linkedin => urls[:linkedin],[0m
+    [1;34m42[0m:   [1;34m#   :github => urls[:github],[0m
+    [1;34m43[0m:   [1;34m#   :blog => urls[:blog],[0m
+    [1;34m44[0m:   [1;34m#   :profile_quote => doc.css(".profile-quote").text,[0m
+    [1;34m45[0m:   [1;34m#   :bio => doc.css(".description-holder p").text[0m
+    [1;34m46[0m:   [1;34m# }[0m
+    [1;34m47[0m:   [1;34m# @scraped_student = @scraped_student.select { | k, v | !v.nil? }[0m
+    [1;34m48[0m: [32mend[0m
+
