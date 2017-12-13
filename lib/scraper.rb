@@ -39,7 +39,7 @@ class Scraper
       :profile_quote => doc.css(".profile-quote").text,
       :bio => doc.css(".description-holder p").text
     }
-    # binding.pry
+    binding.pry
   end
 
 end
