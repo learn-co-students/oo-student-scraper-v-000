@@ -1,10 +1,13 @@
 require 'open-uri'
 require 'nokogiri'
 require 'pry'
+require 'mechanize'
 
 class Scraper
 
   @student_info_hash_array = []
+
+  @profile_hash = {}
 
   def self.scrape_index_page(index_url)    
     web_page = Nokogiri::HTML(open(index_url))
@@ -21,23 +24,23 @@ class Scraper
     @student_info_hash_array
   end
 
+  XXX AAQ ABOUT THIS TOMORROW
+  
   def self.scrape_profile_page(profile_url)
-    web_page_2 = Nokogiri::HTML(open(profile_url))
+    profile_page = Nokogiri::HTML(open(profile_url))
     
-        web_page_2.css("main-wrapper profile").each do |student| 
-          
-          profile_hash = {
-            :twitter => student.css("div.social-icon-container a")attribute.("href").text 
-            :linkedin => student.css("div.social-icon-container a")attribute.("href").text  
-            :github => student.css("div.social-icon-container a")attribute.("href").text  
-            :blog => student.css("div.social-icon-container a")attribute.("href").text  
-            :profile_quote => student.css("div.social-icon-container div.vitals-text-container div.profile-quote").text  
-            :bio => student.css("div.social-icon-container div.details-container div.bio-content content-holder div.description-holder p").text 
-          }
-        end
-        profile_hash
-      end
+    profile_page.css("main-wrapper profile").each do |student| 
+    
+    @profile_hash << 
 
+            :twitter => student.css("div.social-icon-container a").attribute("href").text, 
+            :linkedin => student.css("div.social-icon-container a").attribute("href").text,
+            :github => student.css("div.social-icon-container a").attribute("href").text,
+            :blog => student.css("div.social-icon-container a").attribute("href").text,
+            :profile_quote => student.css("div.social-icon-container div.vitals-text-container div.profile-quote").text,  
+            :bio => student.css("div.social-icon-container div.details-container div.bio-content content-holder div.description-holder p").text
+          
+    end
 end
 
 # scrape information from index and instantiate students
