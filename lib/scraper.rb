@@ -23,22 +23,27 @@ class Scraper
     end
     @student_info_hash_array
   end
-
-  XXX AAQ ABOUT THIS TOMORROW
   
   def self.scrape_profile_page(profile_url)
+    students = {}
     profile_page = Nokogiri::HTML(open(profile_url))
     
-    profile_page.css("main-wrapper profile").each do |student| 
-    
-    @profile_hash << 
+    profile_page.css("div.social-icon-container a").attribute("href").text 
 
-            :twitter => student.css("div.social-icon-container a").attribute("href").text, 
-            :linkedin => student.css("div.social-icon-container a").attribute("href").text,
-            :github => student.css("div.social-icon-container a").attribute("href").text,
-            :blog => student.css("div.social-icon-container a").attribute("href").text,
-            :profile_quote => student.css("div.social-icon-container div.vitals-text-container div.profile-quote").text,  
-            :bio => student.css("div.social-icon-container div.details-container div.bio-content content-holder div.description-holder p").text
+    profile_page.each do |link| 
+    
+    students[:twitter ] = link
+
+
+            # => , 
+            # :linkedin => student.css("div.social-icon-container a").attribute("href").text,
+            # :github => student.css("div.social-icon-container a").attribute("href").text,
+            # :blog => student.css("div.social-icon-container a").attribute("href").text,
+
+
+
+            # :profile_quote => student.css("div.social-icon-container div.vitals-text-container div.profile-quote").text,  
+            # :bio => student.css("div.social-icon-container div.details-container div.bio-content content-holder div.description-holder p").text
           
     end
 end
