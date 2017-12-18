@@ -1,13 +1,11 @@
 require 'open-uri'
 require 'nokogiri'
 require 'pry'
-require 'mechanize'
+# require 'mechanize'
 
 class Scraper
 
   @student_info_hash_array = []
-
-  @profile_hash = {}
 
   def self.scrape_index_page(index_url)    
     web_page = Nokogiri::HTML(open(index_url))
@@ -23,42 +21,35 @@ class Scraper
     end
     @student_info_hash_array
   end
-
-  XXX AAQ ABOUT THIS TOMORROW
   
   def self.scrape_profile_page(profile_url)
+    profile_hash = {}
+    
     profile_page = Nokogiri::HTML(open(profile_url))
     
-    profile_page.css("main-wrapper profile").each do |student| 
+    link = profile_page.css("div.social-icon-container").children.css("a").map { |sm| sm.attribute("href").text }
     
-    @profile_hash << 
+    link.each do |site|
 
-            :twitter => student.css("div.social-icon-container a").attribute("href").text, 
-            :linkedin => student.css("div.social-icon-container a").attribute("href").text,
-            :github => student.css("div.social-icon-container a").attribute("href").text,
-            :blog => student.css("div.social-icon-container a").attribute("href").text,
-            :profile_quote => student.css("div.social-icon-container div.vitals-text-container div.profile-quote").text,  
-            :bio => student.css("div.social-icon-container div.details-container div.bio-content content-holder div.description-holder p").text
-          
+      if site != nil
+        if site.include? "twitter"
+            profile_hash[:twitter] = site
+        elsif site.include? "linkedin"
+            profile_hash[:linkedin] = site
+        elsif site.include? "github"
+          profile_hash[:github] = site
+        else
+          profile_hash[:blog] = site
+        end
+      end
+  
+    quote = profile_page.css("div.profile-quote").text
+      profile_hash[:profile_quote] = quote
+
+    bio = profile_page.css("div.description-holder p").text
+      profile_hash[:bio] = bio
+
     end
+    profile_hash
+  end
 end
-
-# scrape information from index and instantiate students
-
-# => {:name => "Abby Smith", :location => "Brooklyn, NY", :profile_url => "students/abby-smith.html"}
-
-
-
-# <div class="card-text-container">
-# <h4 class="student-name">Ryan Johnson</h4>
-# <p class="student-location">New York, NY</p>
-# </div>
-
-  # kickstarter.css("li.project.grid_4").each do |project|
-  #   title = project.css("h2.bbcard_name strong a").text
-  #   projects[title.to_sym] = {
-  #     :image_link => project.css("div.project-thumbnail a img").attribute("src").value,
-  #     :description => project.css("p.bbcard_blurb").text,
-  #     :location => project.css("ul.project-meta span.location-name").text,
-  #     :percent_funded => project.css("ul.project-stats li.first.funded strong").text.gsub("%","").to_i
-  #   }
