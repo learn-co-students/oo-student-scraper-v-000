@@ -19,24 +19,27 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     page = Nokogiri::HTML(open(profile_url))
     student_details = {}
-    page.css("div.main-wrapper.profile").each do |d|
-      binding.pry
-        if d.css("div.social-icon-container a").attribute("href").value.include?('twitter')
-          student_details[:twitter] = d.css("div.social-icon-container a").attribute("href").value
+    page.css("div.social-icon-container a").each do |d|
+        if d.attribute("href").value.include?('twitter')
+          student_details[:twitter] = d.attribute("href").value
 
-        elsif d.css("a + a").attribute("href").value.include?("linkedin")
-          student_details[:linkedin] = d.css("a + a").attribute("href").value
+        elsif d.attribute("href").value.include?("linkedin")
+          student_details[:linkedin] = d.attribute("href").value
 
-        elsif d.css("a + a + a").attribute("href").value.include?("github")
-        student_details[:github] = d.css("a + a + a").attribute("href").value
+        elsif d.attribute("href").value.include?("github")
+        student_details[:github] = d.attribute("href").value
 
-        elsif d.css("a + a + a + a").attribute("href").value.nil?
-          student_details[:blog] = d.css("a + a + a + a").attribute("href").value
+        elsif d.attribute("href").value.include?("http")
+          student_details[:blog] = d.attribute("href").value
         end
-        student_details[:profile_quote] = d.css("div.profile-quote").text
-        student_details[:bio] = d.css("div.description-holder p").text
      end
+     student_details[:profile_quote] = page.css("div.profile-quote").text
+     student_details[:bio] = page.css("div.description-holder p").text
      student_details
   end
 
 end
+
+
+# puts e.attribute("href")
+# end
