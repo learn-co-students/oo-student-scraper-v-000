@@ -1,23 +1,26 @@
 class Student
+  attr_accessor :name, :location, :profile_url, :bio, :twitter, :linkedin, :github, :blog, :profile_quote
 
-  attr_accessor :name, :location, :twitter, :linkedin, :github, :blog, :profile_quote, :bio, :profile_url 
-
-  @@all = []
-
-  def initialize(student_hash)
-    
+  def intialize
   end
 
-  def self.create_from_collection(students_array)
-    
+  def index_hash
+    {
+      name: self.name,
+      location: self.location,
+      profile_url: self.profile_url,
+    }
   end
 
-  def add_student_attributes(attributes_hash)
-    
+  def profile_hash
+    {
+      bio: self.bio,
+      twitter: self.twitter,
+      linkedin: self.linkedin,
+      github: self.github,
+      blog: self.blog,
+      profile_quote: self.profile_quote
+    }
   end
 
-  def self.all
-    
-  end
 end
-

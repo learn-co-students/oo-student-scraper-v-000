@@ -6,6 +6,8 @@ require 'colorize'
 class CommandLineInteface
   BASE_PATH = "./fixtures/student-site/"
 
+
+  
   def run
     make_students
     add_attributes_to_students
