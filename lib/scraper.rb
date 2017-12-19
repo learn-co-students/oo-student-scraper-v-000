@@ -20,14 +20,21 @@ class Scraper
     page = Nokogiri::HTML(open(profile_url))
     student_details = {}
     page.css("div.main-wrapper.profile").each do |d|
-      student_details = {
-        :twitter => d.css("div.social-icon-container a").attribute("href").value,
-        :linkedin => d.css("a + a").attribute("href").value,
-        :github => d.css("a + a + a").attribute("href").value,
-        :blog => d.css("a + a + a + a").attribute("href").value,
-        :profile_quote => d.css("div.profile-quote").text,
-        :bio => d.css("div.description-holder p").text
-     }
+      binding.pry
+        if d.css("div.social-icon-container a").attribute("href").value.include?('twitter')
+          student_details[:twitter] = d.css("div.social-icon-container a").attribute("href").value
+
+        elsif d.css("a + a").attribute("href").value.include?("linkedin")
+          student_details[:linkedin] = d.css("a + a").attribute("href").value
+
+        elsif d.css("a + a + a").attribute("href").value.include?("github")
+        student_details[:github] = d.css("a + a + a").attribute("href").value
+
+        elsif d.css("a + a + a + a").attribute("href").value.nil?
+          student_details[:blog] = d.css("a + a + a + a").attribute("href").value
+        end
+        student_details[:profile_quote] = d.css("div.profile-quote").text
+        student_details[:bio] = d.css("div.description-holder p").text
      end
      student_details
   end
