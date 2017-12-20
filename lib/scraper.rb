@@ -37,9 +37,4 @@ class Scraper
      student_details[:bio] = page.css("div.description-holder p").text
      student_details
   end
-
 end
-
-
-# puts e.attribute("href")
-# end
