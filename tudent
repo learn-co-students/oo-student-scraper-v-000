@@ -1,0 +1,25 @@
+
+[1mFrom:[0m /home/rschmelter/oo-student-scraper-v-000/lib/scraper.rb @ line 38 Scraper.scrape_profile_page:
+
+    [1;34m20[0m: [32mdef[0m [1;36mself[0m.[1;34mscrape_profile_page[0m(profile_url)
+    [1;34m21[0m:   html = open(profile_url)
+    [1;34m22[0m:   doc = [1;34;4mNokogiri[0m::HTML(html)
+    [1;34m23[0m: 
+    [1;34m24[0m:   student = {[33m:twitter[0m => [31m[1;31m"[0m[31mnone[1;31m"[0m[31m[0m, [33m:linkedin[0m => [31m[1;31m"[0m[31mnone[1;31m"[0m[31m[0m, [33m:github[0m => [31m[1;31m"[0m[31mnone[1;31m"[0m[31m[0m, [33m:blog[0m => [31m[1;31m"[0m[31mnone[1;31m"[0m[31m[0m, [33m:profile_quote[0m => [31m[1;31m"[0m[31mnone[1;31m"[0m[31m[0m, [33m:bio[0m => [31m[1;31m"[0m[31mnone[1;31m"[0m[31m[0m}
+    [1;34m25[0m:   i = [1;34m0[0m
+    [1;34m26[0m: 
+    [1;34m27[0m:   doc.css([31m[1;31m"[0m[31m.social-icon-container[1;31m"[0m[31m[0m).each [32mdo[0m |social|
+    [1;34m28[0m:       [32mif[0m social.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m).attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value.split([31m[1;31m"[0m[31m.com[1;31m"[0m[31m[0m).include?([31m[1;31m"[0m[31mhttps://twitter[1;31m"[0m[31m[0m)
+    [1;34m29[0m:         student[[33m:twitter[0m] = social.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m).attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value
+    [1;34m30[0m:       [32melsif[0m social.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m).attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value.split([31m[1;31m"[0m[31m.com[1;31m"[0m[31m[0m).include?([31m[1;31m"[0m[31mhttps://www.linkedin[1;31m"[0m[31m[0m)
+    [1;34m31[0m:         student[[33m:linkedin[0m] = social.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m).attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value
+    [1;34m32[0m:       [32melsif[0m social.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m).attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value.split([31m[1;31m"[0m[31m.com[1;31m"[0m[31m[0m).include?([31m[1;31m"[0m[31mhttps://github[1;31m"[0m[31m[0m)
+    [1;34m33[0m:         student[[33m:github[0m] = social.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m).attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value
+    [1;34m34[0m:       [32melse[0m
+    [1;34m35[0m:         [1;36mnil[0m
+    [1;34m36[0m:       [32mend[0m
+    [1;34m37[0m:     [32mend[0m
+ => [1;34m38[0m:     binding.pry
+    [1;34m39[0m: 
+    [1;34m40[0m: [32mend[0m
+
