@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/command_line_interface.rb"
+
+fixture_url = "./fixtures/student-site/index.html"
+
+binding.pry
