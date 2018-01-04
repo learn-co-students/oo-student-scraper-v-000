@@ -46,7 +46,12 @@ class Scraper
 
     # Extract the profile quote and bio
     student_data[:profile_quote] = profile_page.at('.profile-quote').inner_html
-    student_data[:bio] = profile_page.at('.bio-content .description-holder p').inner_html
+
+    # some of the bios are not wrapped in a paragraph tag
+    # e.g. Jelson Rodriquez
+    bio_element = profile_page.at('.bio-content .description-holder p')
+    bio_element = profile_page.at('.bio-content .description-holder') unless bio_element
+    student_data[:bio] = bio_element.inner_html
 
     student_data
 
