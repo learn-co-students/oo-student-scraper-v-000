@@ -27,23 +27,19 @@ class Scraper
     scraped_student = {}
     doc = Nokogiri::HTML(open(profile_url))
 
-    socials = doc.css('div.social-icon-container').collect do |social|
-      social.css('a').attribute('href').value
+    doc.css('div.social-icon-container a').each do |social|
+      link = social.attribute('href').value
+      type = social.css('img').attribute('src').value
+      title = type[/..\/assets\/img\/([^|]+)-icon.png/i, 1]
+      title = (title == "rss" ? "blog" : title)
+      scraped_student[title.to_s.to_sym] = link
     end
 
     profile_quote = doc.css('div.vitals-text-container .profile-quote').text
     bio = doc.css('div.details-container .bio-block .description-holder').text
 
-    socials.each do |social|
-      # parse social_sym from social_val
-  		# 	add social_sym to scraped_student hash
-  		# 	assign social_sym = social_val
-      puts "#{social}"
-    end
-
     scraped_student[:profile_quote] = profile_quote.strip
     scraped_student[:bio]           = bio.strip
-
     scraped_student
   end
 
