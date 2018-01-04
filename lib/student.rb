@@ -1,7 +1,4 @@
 class Student
-  #attr_accessor :twitter, :linkedin, :github, :blog, :profile_quote, :bio
-  # attr_accessor :name, :location, :profile_url
-
   @@all = []
 
   def initialize(student_hash)
