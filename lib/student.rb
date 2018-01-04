@@ -14,7 +14,7 @@ class Student
   end
 
   def add_student_attributes(attributes_hash)
-    
+    add_accessors(attributes_hash)
   end
 
   def self.all
@@ -23,7 +23,7 @@ class Student
 
   def add_accessors(hash)
     own_methods = self.methods - Object.methods
-    
+
     hash.each_pair do |k, v|
       key_setter = "#{k}=".to_sym
 
