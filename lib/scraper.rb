@@ -7,8 +7,8 @@ attr_accessor :name, :location, :profile_url
 
 def self.scrape_index_page(index_url)
   doc = Nokogiri::HTML(open(index_url))
+  students = [{}]
   doc.css("div.roster-cards-container").each do |student_value|
-  students = []
   student = {}
     student_value.css("div.student-card").each do |student_attr|
       student = {
@@ -16,7 +16,6 @@ def self.scrape_index_page(index_url)
       :location => student_attr.search("p.student-location").text,
       :profile_url => student_attr.search("a").attribute("href").value
       }
-      binding.pry
       students<<student
     end
   students
