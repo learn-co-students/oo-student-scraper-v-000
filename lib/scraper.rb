@@ -18,12 +18,31 @@ def self.scrape_index_page(index_url)
       }
       scraped_students<<student
     end
-  scraped_students
   end
-  binding.pry
+  scraped_students
 end
 
   def self.scrape_profile_page(profile_url)
+    doc = Nokogiri::HTML(open(profile_url))
+    doc.css("div.vitals-container").each do |social_content|
+      social.css("div.social-icon-container").each do |social|
+        social_link = social.search("a").attribute("href").value
+        binding.pry
+        case object
+        when condition
 
+        end
+
+        end
+
+    end
+    #student_profiles = []
+    #:twitter =>
+    #:linkedin =>
+    #:github =>
+    #:blog =>
+    #:profile_quote =>
+    #:bio =>
   end
+end
 end
