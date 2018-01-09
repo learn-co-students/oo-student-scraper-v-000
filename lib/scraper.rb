@@ -45,8 +45,4 @@ end
       student[:bio] = doc.css("div.details-container").css('p').text
     student
     end
-end
-
-    #:blog =>
-    #:profile_quote =>
-    #:bio =>
+  end
