@@ -1,0 +1,28 @@
+
+[1mFrom:[0m /home/yosayon-42338/code/labs/oo-student-scraper-v-000/lib/scraper.rb @ line 28 Scraper.scrape_index_page:
+
+     [1;34m6[0m:   [32mdef[0m [1;36mself[0m.[1;34mscrape_index_page[0m(index_url)
+     [1;34m7[0m:     doc = [1;34;4mNokogiri[0m::HTML(open(index_url))
+     [1;34m8[0m:     scraped_student = [1;34;4mArray[0m.new
+     [1;34m9[0m:     [1;34m#binding.pry[0m
+    [1;34m10[0m: 
+    [1;34m11[0m:     [1;34m#the roster cards container contains all of the student cards[0m
+    [1;34m12[0m:     doc.css([31m[1;31m"[0m[31mdiv.roster-cards-container[1;31m"[0m[31m[0m).each [32mdo[0m |container|
+    [1;34m13[0m:       [1;34m#iterate over each student card to locate name, loc, and url[0m
+    [1;34m14[0m:       container.css([31m[1;31m"[0m[31mdiv.student-card a[1;31m"[0m[31m[0m).each_with_index [32mdo[0m |card,i|
+    [1;34m15[0m:         name = card.css([31m[1;31m"[0m[31mh4.student-name[1;31m"[0m[31m[0m).text
+    [1;34m16[0m:         location = card.css([31m[1;31m"[0m[31m.student-location[1;31m"[0m[31m[0m).text
+    [1;34m17[0m:         profile_url = card.attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value
+    [1;34m18[0m:         [1;34m#finally, shovel this hash into the existing array[0m
+    [1;34m19[0m:         [1;34m#once this process is done, it will iterate over the next student card inside the container[0m
+    [1;34m20[0m:         scraped_student << {[33m:number[0m => [31m[1;31m"[0m[31m#{i+1}[0m[31m[1;31m"[0m[31m[0m,[33m:name[0m => name, [33m:location[0m => location, [33m:profile_url[0m => profile_url}
+    [1;34m21[0m:       [32mend[0m
+    [1;34m22[0m:     [32mend[0m
+    [1;34m23[0m: 
+    [1;34m24[0m:     scraped_student.each [32mdo[0m |student|
+    [1;34m25[0m:       puts [31m[1;31m"[0m[31m#{student}[0m[31m[1;31m"[0m[31m[0m
+    [1;34m26[0m:     [32mend[0m
+    [1;34m27[0m: scraped_student
+ => [1;34m28[0m: binding.pry
+    [1;34m29[0m: [32mend[0m
+
