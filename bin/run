@@ -4,3 +4,17 @@ require_relative "../lib/command_line_interface.rb"
 
 
 CommandLineInteface.new.run
+
+
+##Related Labs
+# scraping-flatiron-code-along-v-000
+# scraping-kickstarter-v-000
+# oo-email-parser-v-000
+# mass-assignment-v-000
+
+##Test play
+# ruby bin/run
+
+##Specs
+# rspec spec/scraper_spec.rb
+# rspec spec/student_spec.rb
