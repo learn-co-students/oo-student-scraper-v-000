@@ -28,8 +28,8 @@ class Scraper
     page.css("div .social-icon-container a").each do | el |
       if el['href'].include?("twitter")
         student_hash[:twitter] = el['href']
-      elsif el['href'].include?("facebook")
-        student_hash[:facebook] = el['href']
+      # elsif el['href'].include?("facebook")
+      #   student_hash[:facebook] = el['href']
       elsif el['href'].include?("github")
         student_hash[:github] = el['href']
       elsif el['href'].include?("linkedin")
