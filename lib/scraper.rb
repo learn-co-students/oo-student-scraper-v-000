@@ -8,29 +8,19 @@ class Scraper
     @doc = Nokogiri::HTML(open(index_url))
   end
 
-  def call
-    box.each do |box_doc|
-      scrape_index_page(box_doc)
-    end
-  end
-
-  def box
-    @box ||= @doc.search("div.student-card")
-  end
-
   def self.scrape_index_page(index_url)
     @doc = Nokogiri::HTML(open(index_url))
-    @box ||= @doc.search("div.student-card")
-      binding.pry
-    scraped_students = []
-    @box.each do |student|
-      student = {
-          :name =>  @box.search("h4.student-name").text,
-          :location => @box.search("p.student-location").text,
-          :profile_url => @box.search("div.student-card a").attribute("href").text,
-        }
-        scraped_students << student
-      end
+    @box ||= @doc.search(".student-card")
+    students = []
+      @box.each do |student|
+        student_hash = {
+            :name =>  student.search("h4").text,
+            :location => student.search("p").text,
+            :profile_url => student.search("a").attribute("href").value,
+          }
+          students << student_hash
+        end
+    students
   end
 
 
