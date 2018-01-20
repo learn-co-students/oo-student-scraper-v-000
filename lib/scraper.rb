@@ -20,14 +20,17 @@ class Scraper
 
   def self.scrape_index_page(index_url)
     @doc = Nokogiri::HTML(open(index_url))
-    binding.pry
-    properties = {
-      :name => @doc.search("h4.student-name").text,
-      :location => @doc.search("p.student-location").text,
-      :profile_url => @doc.search("div.student-card a").attribute("href").text,
-    }
-
-    properties
+    @box ||= @doc.search("div.student-card")
+      binding.pry
+    scraped_students = []
+    @box.each do |student|
+      student = {
+          :name =>  @box.search("h4.student-name").text,
+          :location => @box.search("p.student-location").text,
+          :profile_url => @box.search("div.student-card a").attribute("href").text,
+        }
+        scraped_students << student
+      end
   end
 
 
