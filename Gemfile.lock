@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     coderay (1.1.1)
+    colorize (0.8.1)
     diff-lcs (1.2.5)
     method_source (0.8.2)
     mini_portile (0.6.2)
@@ -11,6 +12,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    rake (12.3.0)
+    require_all (1.5.0)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
@@ -30,9 +33,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  colorize
   nokogiri (= 1.6.6.2)
   pry
+  rake
+  require_all
   rspec
 
 BUNDLED WITH
-   1.12.5
+   1.16.1
