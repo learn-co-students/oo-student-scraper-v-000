@@ -25,7 +25,13 @@ class Scraper
 
 
     def self.scrape_profile_page(profile_url)
-
+      @profile = Nokogiri::HTML(open(profile_url))
+      binding.pry
+      # Social Media and Blog are all in the same area, and are all a tags, but don't really have a lot to differentiate as far as classes go. will probably need to point to the src? no idea really
+      # ("a").attribute("href").value => gives the social media URLs
+      # blog
+      # :profile_quote => @profile.search(".profile-quote").text
+      # :bio => @profile.search("p").text
     end
 
 
