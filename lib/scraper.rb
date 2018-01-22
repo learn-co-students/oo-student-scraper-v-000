@@ -2,7 +2,7 @@ require 'open-uri'
 require 'pry'
 
 class Scraper
-  attr_accessor :name, :location, :profile_url
+  attr_accessor :name, :location, :profile_url, :twitter, :linkedin, :blog, :github
 
   def initialize(index_url)
     @doc = Nokogiri::HTML(open(index_url))
@@ -25,14 +25,25 @@ class Scraper
 
 
     def self.scrape_profile_page(profile_url)
-      @profile = Nokogiri::HTML(open(profile_url))
-      binding.pry
-      # Social Media and Blog are all in the same area, and are all a tags, but don't really have a lot to differentiate as far as classes go. will probably need to point to the src? no idea really
-      # ("a").attribute("href").value => gives the social media URLs
-      # blog
-      # :profile_quote => @profile.search(".profile-quote").text
-      # :bio => @profile.search("p").text
+      profile = Nokogiri::HTML(open(profile_url))
+      student_hash = {}
+      profile.search(".vitals-container").each do |student|
+        student_hash[:profile_quote] = student.search(".profile-quote").text
+        student_hash[:bio] = student.search("p").text,
+        student.search(".social-icon-container a").each do |type|
+          link = type.attr("href")
+          if link.include? "twitter"
+            student_hash[:twitter] = link
+          elsif link.include? "linkedin"
+            student_hash[:linkedin] = link
+          elsif link.include? "github"
+            student_hash[:github] = link
+          else
+            student_hash[:blog] = link
+          end
+        end
+      end
+      student_hash
     end
-
 
 end
