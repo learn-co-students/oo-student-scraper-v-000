@@ -51,7 +51,7 @@ class Scraper
 # pull quote text
     @profile_hash[:profile_quote] = student_profile.css(".vitals-text-container .profile-quote").text
 
-    ### WORKING ON DOUBLE QUOTES AND SLASHES AND SHIT ###
+    ### WORKING ON DOUBLE QUOTES AND SLASHES ###
 
 # pull bio text
     @profile_hash[:bio] = doc.css(".details-container p").text
