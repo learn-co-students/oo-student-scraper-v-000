@@ -5,6 +5,7 @@ class Scraper
   attr_accessor :name, :location, :profile_url, :twitter, :linkedin, :blog, :github
 
   def initialize(index_url)
+    @index_url = index_url
     @doc = Nokogiri::HTML(open(index_url))
   end
 
@@ -42,11 +43,6 @@ class Scraper
           end
         end
       student_hash
-    end
-
-    def self.scrape_from_hash(attributes_hash)
-# take in a hash of attributes and set those equal to a symbol/key in a new hash
-# this provides the translation between the incoming set of key/values and the ones that I actaully care about and need to use
     end
 
 end
