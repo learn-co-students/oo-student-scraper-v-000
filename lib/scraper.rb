@@ -27,11 +27,10 @@ class Scraper
     def self.scrape_profile_page(profile_url)
       profile = Nokogiri::HTML(open(profile_url))
       student_hash = {}
-      profile.search(".vitals-container").each do |student|
-        student_hash[:profile_quote] = student.search(".profile-quote").text
-        student_hash[:bio] = student.search("p").text,
-        student.search(".social-icon-container a").each do |type|
-          link = type.attr("href")
+      student_hash[:profile_quote] = profile.search(".profile-quote").text
+      student_hash[:bio] = profile.search("p").text
+      profile.search(".social-icon-container a").each do |type|
+        link = type.attr("href")
           if link.include? "twitter"
             student_hash[:twitter] = link
           elsif link.include? "linkedin"
@@ -42,7 +41,6 @@ class Scraper
             student_hash[:blog] = link
           end
         end
-      end
       student_hash
     end
 
