@@ -1,8 +1,6 @@
 require 'open-uri'
 require 'pry'
 
-require 'nokogiri' # remove later
-
 class Scraper
 
   @students_array = []
@@ -67,5 +65,5 @@ class Scraper
   def all
     @students_array
   end
-  
+
 end

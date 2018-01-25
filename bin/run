@@ -3,10 +3,10 @@
 require_relative "../lib/command_line_interface.rb"
 
 
-# CommandLineInteface.new.run
+CommandLineInteface.new.run
 
-require_relative '../lib/scraper.rb'
-
-require 'irb'
-
-IRB.start
+# require_relative '../lib/scraper.rb'
+#
+# require 'irb'
+#
+# IRB.start
