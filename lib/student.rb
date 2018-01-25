@@ -5,19 +5,33 @@ class Student
   @@all = []
 
   def initialize(student_hash)
+    self.send(student_hash)
+  end
 
+  def send(student_hash)
+    @name = student_hash[:name]
+    @location = student_hash[:location]
+    @profile_url = student_hash[:profile_url]
+    @@all << self
   end
 
   def self.create_from_collection(students_array)
-    # The keys of the individual student hashes should be :name, :location and :profile_url.
-    html = open(students_array)
+    students_array.each do |student_hash|
+      Student.new(student_hash)
+    end
   end
 
   def add_student_attributes(attributes_hash)
-
+    @twitter = attributes_hash[:twitter]
+    @linkedin = attributes_hash[:linkedin]
+    @gihub = attributes_hash[:gihub]
+    @blog = attributes_hash[:blog]
+    @profile_quote = attributes_hash[:profile_quote]
+    @bio = attributes_hash[:bio]
   end
 
   def self.all
-
+    @@all
   end
+  
 end

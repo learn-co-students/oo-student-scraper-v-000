@@ -29,10 +29,8 @@ class Scraper
     doc = Nokogiri::HTML(open(profile_url))
     @profile_hash = {:twitter => nil, :linkedin => nil, :github => nil, :blog => nil, :profile_quote => nil, :bio => nil}
 
-
-    student_profile = doc.css(".vitals-container")
-
 # pull url text from any .css("a")
+    student_profile = doc.css(".vitals-container")
     social_info = student_profile.css("div.social-icon-container")
 
     social_info.css("a").each do |code|
@@ -42,22 +40,32 @@ class Scraper
         @profile_hash[:linkedin] = code["href"]
       elsif code["href"].match(/(github)/)
         @profile_hash[:github] = code["href"]
-      elsif code["href"].match(/(blog)/)
+      else
         @profile_hash[:blog] = code["href"]
       end
 
     end
 
 # pull quote text
-    @profile_hash[:profile_quote] = student_profile.css(".vitals-text-container .profile-quote").text
-
-    ### WORKING ON DOUBLE QUOTES AND SLASHES ###
+    @profile_hash[:profile_quote] = doc.css('div.profile-quote').text
 
 # pull bio text
-    @profile_hash[:bio] = doc.css(".details-container p").text
+     @profile_hash[:bio] = doc.css("div.description-holder p").text
 
-    @profile_hash
+# remove any nil keys
+     hash = @profile_hash
+     hash.each do |key, value|
+       if value == nil
+         hash.delete(key)
+       end
+     end
+
+     @profile_hash
 
   end
 
+  def all
+    @students_array
+  end
+  
 end
