@@ -39,7 +39,11 @@ class Scraper
     social = profile.css(".social-icon-container a")
     social.each do |platform|
       attribute = platform.attributes["href"].value.split(/https*:\/\/w*\.*|\./)[1]
-      profile_info[attribute.to_sym] = platform.attributes["href"].value
+      if attribute == "linkedin" || attribute == "twitter" || attribute == "github"
+        profile_info[attribute.to_sym] = platform.attributes["href"].value
+      else
+        profile_info[:blog] = platform.attributes["href"].value
+      end
 
     end
 
