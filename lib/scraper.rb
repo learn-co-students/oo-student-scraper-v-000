@@ -32,11 +32,14 @@ class Scraper
 
     profile = Nokogiri::HTML(open(profile_url))
     binding.pry
-    # profile_info = {}
+    profile_info = Hash.new.tap do |profile|
+      profile[:linkedin] = profile.css(".social-icon-container a:nth-child(2)").first.attributes["href"].value
+    end
+    binding.pry
     #   binding.pry
-      #linkedin: profile.css("")
-      # github:profile.css("")
-      # blog:profile.css("")
+      #linkedin: profile.css(".social-icon-container a:nth-child(2)").first.attributes["href"].value
+      # github:profile.css(".social-icon-container a:nth-child(3)").first.attributes["href"].value
+      # blog:profile.css(".social-icon-container a:last-child").first.attributes["href"].value
       # profile_quote:profile.css(".profile-quote").text
       # bio:profile.css(".description-holder p").text
 
