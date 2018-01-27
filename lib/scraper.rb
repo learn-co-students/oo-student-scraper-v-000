@@ -32,14 +32,17 @@ class Scraper
 
     profile = Nokogiri::HTML(open(profile_url))
 
-      profile_info = {}
+    profile_info = {}
+    profile_info[:profile_quote] = profile.css(".profile-quote").text
+    profile_info[:bio] = profile.css(".description-holder p").text
 
     social = profile.css(".social-icon-container a")
     social.each do |platform|
-      attribute = platform.attributes["href"].value.split(".")[0].split("//")[1]
+      attribute = platform.attributes["href"].value.split(/https*:\/\/w*\.*|\./)[1]
       profile_info[attribute] = platform.attributes["href"].value
-       binding.pry
+       
     end
+    binding.pry
 
 
      #
@@ -47,8 +50,7 @@ class Scraper
     #   profile_info[:linkedin] = profile.css(".social-icon-container a:nth-child(2)").first.attributes["href"].value
     #   profile_info[:github] = profile.css(".social-icon-container a:nth-child(3)").first.attributes["href"].value
     #   profile_info[:blog] = profile.css(".social-icon-container a:last-child").first.attributes["href"].value
-    #   profile_info[:profile_quote] = profile.css(".profile-quote").text
-    #   profile_info[:bio] = profile.css(".description-holder p").text
+
     #   binding.pry
     profile_info
 
