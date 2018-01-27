@@ -42,7 +42,7 @@ class Scraper
       profile_info[:attribute] = platform.attributes["href"].value
 
     end
-    binding.pry
+    
 
 
      #
