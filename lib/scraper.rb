@@ -33,14 +33,16 @@ class Scraper
     profile = Nokogiri::HTML(open(profile_url))
 
 
-    profile_info = Hash.new.tap do |p|
-      p[:linkedin] = profile.css(".social-icon-container a:nth-child(2)").first.attributes["href"].value
-      p[:github] = profile.css(".social-icon-container a:nth-child(3)").first.attributes["href"].value
-      p[:blog] = profile.css(".social-icon-container a:last-child").first.attributes["href"].value
-      p[:profile_quote] = profile.css(".profile-quote").text
-      p[:bio] = profile.css(".description-holder p").text
-    end
-    binding.pry
+    profile_info = {}
+     profile_info[:twitter] = profile.css(".social-icon-container a:first-child").first.attributes["href"].value
+      profile_info[:linkedin] = profile.css(".social-icon-container a:nth-child(2)").first.attributes["href"].value
+      profile_info[:github] = profile.css(".social-icon-container a:nth-child(3)").first.attributes["href"].value
+      profile_info[:blog] = profile.css(".social-icon-container a:last-child").first.attributes["href"].value
+      profile_info[:profile_quote] = profile.css(".profile-quote").text
+      profile_info[:bio] = profile.css(".description-holder p").text
+      binding.pry
+    profile_info
+
     #   binding.pry
       #linkedin: profile.css(".social-icon-container a:nth-child(2)").first.attributes["href"].value
       # github:profile.css(".social-icon-container a:nth-child(3)").first.attributes["href"].value
