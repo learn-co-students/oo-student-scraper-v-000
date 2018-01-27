@@ -30,6 +30,16 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
 
+    profile = Nokogiri::HTML(open(profile_url))
+    binding.pry
+    # profile_info = {}
+    #   binding.pry
+      #linkedin: profile.css("")
+      # github:profile.css("")
+      # blog:profile.css("")
+      # profile_quote:profile.css(".profile-quote").text
+      # bio:profile.css(".description-holder p").text
+
 
   end
 
