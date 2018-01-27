@@ -12,12 +12,13 @@ class Scraper
 
     students.each do |student|
       student_hash = {}
-      student_hash.name = student.css(".student-name").text
-      student_hash.location = student.css(".student-location").text
-      binding.pry
+      #binding.pry
+      student_hash[:name] = student.css(".student-name").text
+      student_hash[:location] = student.css(".student-location").text
+
       students_collection << student_hash
     end
-
+binding.pry
     #for each student: doc.css(/.student-card)
       #create a hash with
         #name:
