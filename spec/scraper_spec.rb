@@ -1,4 +1,5 @@
 require "spec_helper"
+require 'pry'
 
 describe "Scraper" do
 
@@ -25,6 +26,7 @@ describe "Scraper" do
     it "is a class method that scrapes the student index page ('./fixtures/student-site/index.html') and a returns an array of hashes in which each hash represents one student" do
       index_url = "./fixtures/student-site/index.html"
       scraped_students = Scraper.scrape_index_page(index_url)
+      # binding.pry
       expect(scraped_students).to be_a(Array)
       expect(scraped_students.first).to have_key(:location)
       expect(scraped_students.first).to have_key(:name)
@@ -43,6 +45,7 @@ describe "Scraper" do
     it "can handle profile pages without all of the social links" do
       profile_url = "./fixtures/student-site/students/david-kim.html"
       scraped_student = Scraper.scrape_profile_page(profile_url)
+      # binding.pry
       expect(scraped_student).to be_a(Hash)
       expect(scraped_student).to match(student_david_hash)
     end
