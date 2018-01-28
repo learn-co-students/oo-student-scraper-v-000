@@ -36,6 +36,10 @@ class CommandLineInteface
       puts "  blog:".colorize(:light_blue) + " #{student.blog}"
       puts "----------------------".colorize(:green)
     end
+
+    Student.all.each do |student|
+      puts (student.blog)
+    end
   end
 
 end
