@@ -10,7 +10,7 @@ class Scraper
 
     students.inject([]) do |acc, student|
       student_hash = {}
-      student_hash[:profile_url] = student.css("a[href]").first.attributes["href"].value
+      student_hash[:profile_url] = student.css("a[href]").first.attr("href")
       student_hash[:name] = student.css(".student-name").text
       student_hash[:location] = student.css(".student-location").text
       acc << student_hash
@@ -26,11 +26,11 @@ class Scraper
 
     social = profile.css(".social-icon-container a")
     social.each do |platform|
-      attribute = platform.attributes["href"].value.split(/https*:\/\/w*\.*|\./)[1]
+      attribute = platform.attr("href").split(/https*:\/\/w*\.*|\./)[1]
       if attribute == "linkedin" || attribute == "twitter" || attribute == "github"
-        profile_info[attribute.to_sym] = platform.attributes["href"].value
+        profile_info[attribute.to_sym] = platform.attr("href")
       else
-        profile_info[:blog] = platform.attributes["href"].value
+        profile_info[:blog] = platform.attr("href")
       end
 
     end
