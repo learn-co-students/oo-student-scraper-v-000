@@ -26,6 +26,7 @@ class Scraper
     hash[:bio] = doc.css(".bio-block.details-block .description-holder").text.delete("\n").lstrip.rstrip
     hash[:profile_quote] = doc.css(".vitals-container .profile-quote").text
 
+
     doc = doc.css("div.vitals-container")
     counter = 1
     while counter < 8
@@ -49,8 +50,9 @@ class Scraper
         hash[:linkedin] = value
       when value.include?('facebook')
       when value.include?('youtube')
-      when a.include?('.com')
-        hash[:blog] = a
+      when value.include?('instagram')
+      when value.include?(".com")
+        hash[:blog] = value
       end
       counter = counter + 2
     end
