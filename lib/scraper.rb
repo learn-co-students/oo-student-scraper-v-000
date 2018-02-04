@@ -15,7 +15,7 @@ class Scraper
         students << {name: student_name, location: student_location, profile_url: student_profile_link}
       end
     end
-    studentss
+    students
   end
 
 
@@ -34,8 +34,11 @@ class Scraper
       else
         student[:blog] = link
       end
-
     end
+    student[:profile_quote] = profile.css(".profile-quote").text
+    student[:bio] = profile.css("div.description-holder p").text
+    binding.pry
+    student
   end
 
 end
