@@ -36,13 +36,8 @@ class Scraper
       end
     end
     student[:profile_quote] = profile.css(".profile-quote").text
-    student[:bio] = profile.css("div.description-holder p").text
-    binding.pry
+    student[:bio] = profile.css(".description-holder p").text
     student
   end
 
 end
-
-
-profile_url = "./fixtures/student-site/students/joe-burgess.html"
-scraped_student = Scraper.scrape_profile_page(profile_url)
