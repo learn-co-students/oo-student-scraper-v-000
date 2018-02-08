@@ -16,10 +16,8 @@ describe "Scraper" do
 
   let!(:student_david_hash) {{:linkedin=>"https://www.linkedin.com/in/david-kim-38221690",
  :github=>"https://github.com/davdkm",
- :profile_quote=>
-  "\"Yeah, well, you know, that's just, like, your opinion, man.\" - The Dude",
- :bio=>
-  "I'm a southern California native seeking to find work as a full stack web developer. I enjoying tinkering with computers and learning new things!"}}
+ :profile_quote=>"\"Yeah, well, you know, that's just, like, your opinion, man.\" - The Dude",
+ :bio=>"I'm a southern California native seeking to find work as a full stack web developer. I enjoying tinkering with computers and learning new things!"}}
 
   describe "#scrape_index_page" do
     it "is a class method that scrapes the student index page ('./fixtures/student-site/index.html') and a returns an array of hashes in which each hash represents one student" do
