@@ -25,7 +25,7 @@ class Scraper
     doc = Nokogiri::HTML(html)
     sm = []
     att = {} 
-    doc.css(".social-icon-container").css("a").each do |x|
+    doc.css(".vitals-container").css("a").each do |x|
           if x[:href].include? "twitter"
               att[:twitter] = x[:href]
             elsif x[:href].include? "linkedin"
