@@ -6,8 +6,6 @@ require 'pry'
 class Scraper
 
   @@all = []
-  @@allprofiles = []
-  @student_hash = {}
 
   def self.scrape_index_page(index_url)
     html = open(index_url)
