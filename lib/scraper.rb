@@ -1,30 +1,29 @@
 require 'open-uri'
+require 'nokogiri'
 require 'pry'
 
+
 class Scraper
-  def initialize
-    @student_hash = {}
-  
-  end
+
+  @@all = []
 
   def self.scrape_index_page(index_url)
     html = open(index_url)
     doc = Nokogiri::HTML(html)
-
-    #name
+    
     names = doc.css(".student-name")
+    locations = doc.css(".student-location")
     names.each{ |name| 
-      @student_hash[:name] = name
+      student_hash = {}
+      student_hash[:name] = name.text
+      student_hash[:location] = location.text
+      student_hash << @@all
     }
     
-    #location
-    locations = doc.css(".student-location")
-    locations.each{|location|
-      @student_hash[:location] = location
-    }
-    binding.pry
     #profile_url
+    binding.pry
   end
+  #binding.pry
 
   def self.scrape_profile_page(profile_url)
     
