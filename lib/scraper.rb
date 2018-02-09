@@ -49,16 +49,22 @@ class Scraper
     # doc.css(".social-icon-container a")[0]["href"]
     
     allsocial = doc.css(".social-icon-container")
-    
-  #this works
-    allsocial.each{ |item| 
-      profile_hash = {}
-      network = item.css("a").attribute("href").value[/([^\/])+\./].chomp(".").to_sym
+    #item.css("a").attribute("href").value[/([^\/])+\./].delete("www").delete(".").to_sym
       
-      profile_hash[network] = item.css("a").attribute("href").value
+    
+    profile_hash = {}
+    allsocial.each{ |item| 
+      network = item.css("a").attribute("href").value
+      if network.include?("www.")
+        name = network[/([^www\.])+\./].chomp(".").to_sym
+      else
+        name = network[/([^\/])+\./].chomp(".").to_sym
+      end
+      profile_hash[name] = network
       @@allprofiles << profile_hash
     }
     binding.pry
+    
     
     
   end
