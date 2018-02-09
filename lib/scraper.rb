@@ -8,6 +8,7 @@ class Scraper
   @@all = []
   @@allprofiles = []
   @student_hash = {}
+  @profile_hash = {}
 
   def self.scrape_index_page(index_url)
     html = open(index_url)
@@ -44,10 +45,21 @@ class Scraper
     doc = Nokogiri::HTML(html)
     #social = doc.css(".social-icon-container")
     #need to extract each
-    regexex = (/([^\/])+\./).chomp(".")
-    doc.css(".social-icon-container a")[0]["href"]
+    # regexex = (/([^\/])+\./).chomp(".")
+    # doc.css(".social-icon-container a")[0]["href"]
     
+    allsocial = doc.css(".social-icon-container")
+    
+  #this works
+    allsocial.each{ |item| 
+      profile_hash = {}
+      network = item.css("a").attribute("href").value[/([^\/])+\./].chomp(".").to_sym
+      
+      profile_hash[network] = item.css("a").attribute("href").value
+      @@allprofiles << profile_hash
+    }
     binding.pry
+    
     
   end
 
