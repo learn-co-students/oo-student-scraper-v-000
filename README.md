@@ -1,5 +1,3 @@
-git rebase test
-
 # Object Oriented Student Scraper
 
 ## Objectives
