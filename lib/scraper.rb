@@ -6,6 +6,7 @@ require 'pry'
 class Scraper
 
   @@all = []
+  @@allprofiles = []
   @student_hash = {}
 
   def self.scrape_index_page(index_url)
@@ -25,8 +26,6 @@ class Scraper
       @@all << student_hash
     }
     
-    binding.pry
-    
     #profile_url
     
     #location
@@ -40,6 +39,15 @@ class Scraper
   #binding.pry
 
   def self.scrape_profile_page(profile_url)
+    #:twitter, :linkedin, :github, :blog, :profile_quote, :bio
+    html = open(profile_url)
+    doc = Nokogiri::HTML(html)
+    #social = doc.css(".social-icon-container")
+    #need to extract each
+    regexex = (/([^\/])+\./).chomp(".")
+    doc.css(".social-icon-container a")[0]["href"]
+    
+    binding.pry
     
   end
 
