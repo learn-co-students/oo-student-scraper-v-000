@@ -12,7 +12,14 @@ class Scraper
     doc = get_page(index_url)
     binding.pry
     doc = Nokogiri::HTML(open(index_url))
-    doc.css(".student-card")[0]
+
+    students = {}
+    doc.css(".student-card").each do |student|
+      student = {
+        :name => doc.css(".student-card h4.").text,
+        :location => doc.css(".student-card p").text,
+        :profile_url => 
+      }
 
 
     ###URL LINK
