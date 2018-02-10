@@ -35,7 +35,7 @@ class Scraper
     individual_student_attributes = {}
     list_of_links = doc.css(".vitals-container .social-icon-container a").collect {|thing| thing["href"]}
     profile_quote = doc.css(".vitals-container .vitals-text-container .profile-quote").text
-    bio = doc.css(".details-container .description-holder").text
+    bio = doc.css(".details-container .description-holder p").text
 binding.pry
     # doc.css(".vitals-container .social-icon-container a")
     #   (put doc line here).each do |thing|
