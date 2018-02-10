@@ -32,33 +32,29 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     html = File.read(profile_url)
     doc = Nokogiri::HTML(html)
-    individual_student_attributes = {}
-    list_of_links = doc.css(".vitals-container .social-icon-container a").collect {|thing| thing["href"]}
-    profile_quote = doc.css(".vitals-container .vitals-text-container .profile-quote").text
-    bio = doc.css(".details-container .description-holder p").text
-binding.pry
-    # doc.css(".vitals-container .social-icon-container a")
-    #   (put doc line here).each do |thing|
-    #   if thing.include?("linkedin")
-    #     linkedin =
-    #   elsif thing.include?("twitter")
-    #     twitter =
-    #   elsif thing.include?("github")
-    #     github =
-    #   end
+    individual_student_attributes_hash = {}
 
-    # :linkedin
-    # :github
-    # :blog
-    # :profile_quote
-    # :bio
+    list_of_links = doc.css(".vitals-container .social-icon-container a").collect {|thing| thing["href"]}
+
+    profile_quote = doc.css(".vitals-container .vitals-text-container .profile-quote").text
+      individual_student_attributes_hash[:profile_quote] = profile_quote
+    bio = doc.css(".details-container .description-holder p").text
+      individual_student_attributes_hash[:bio] = bio
+
+#binding.pry
+    list-of-links.each do |link|
+      if link.include?("linkedin")
+        individual_student_attributes_hash[:linkedin] = link
+      elsif link.include?("twitter")
+        individual_student_attributes_hash[:twitter] = link
+      elsif link.include?("github")
+        individual_student_attributes_hash[:github] = link
+      elsif link.include?("blog")
+        individual_student_attributes_hash[:blog] = link
+    end
+
+    individual_student_attributes_hash
 
   end
 
 end
-
-#@@students = []
-#@@students = doc.css(".roster-cards-container .student-card")
-#Onestudent = doc.css(".roster-cards-container .student-card").first.css("h4").text
-#Onelocation = doc.css(".roster-cards-container .student-card").first.css("p").text
-#Onestudenturl = doc.css(".roster-cards-container .student-card").first.css("a")[0]["href"]
