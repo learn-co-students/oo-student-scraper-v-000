@@ -20,12 +20,16 @@ class Student
   end
 
   def add_student_attributes(attributes_hash)
-    @twitter = attributes_hash[:twitter]
-    @linkedin = attributes_hash[:linkedin]
-    @github = attributes_hash[:github]
-    @blog = attributes_hash[:blog]
-    @profile_quote = attributes_hash[:profile_quote]
-    @bio = attributes_hash[:bio]
+    #binding.pry
+    attributes_hash.each_pair do |key, value|
+      self.send("#{key}=", value)
+    end
+    # @twitter = attributes_hash[:twitter]
+    # @linkedin = attributes_hash[:linkedin]
+    # @github = attributes_hash[:github]
+    # @blog = attributes_hash[:blog]
+    # @profile_quote = attributes_hash[:profile_quote]
+    # @bio = attributes_hash[:bio]
 
     self
   end
