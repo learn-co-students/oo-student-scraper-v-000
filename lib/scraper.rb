@@ -44,6 +44,8 @@ class Scraper
         individual_student_attributes_hash[:twitter] = link
       elsif link.include?("github")
         individual_student_attributes_hash[:github] = link
+      elsif 
+        individual_student_attributes_hash[:blog] = link
       end
 
     end
@@ -58,6 +60,3 @@ class Scraper
   end
 
 end
-
-# elsif link.include?("blog")
-#   individual_student_attributes_hash[:blog] = link
