@@ -20,19 +20,8 @@ class Scraper
       students
   end
 
-
-
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
-    #   profile_hash = { # First try was too basic and didn't check if anything was missing
-    #     :twitter => doc.css("div.social-icon-container a")[0]['href'],
-    #     :linkedin => doc.css("div.social-icon-container a")[1]['href'],
-    #     :github => doc.css("div.social-icon-container a")[2]['href'],
-    #     :blog => doc.css("div.social-icon-container a")[3]['href'],
-    #     :profile_quote => doc.css("div.profile-quote").text,
-    #     :bio => doc.css("div.description-holder p").text
-    #   }
-
       profile_hash = {}
       # iterate over the social icons to add them in the hash with the correct key:
       doc.css("div.social-icon-container a").each do |link|
