@@ -33,10 +33,19 @@ class Scraper
     html = File.read(profile_url)
     doc = Nokogiri::HTML(html)
     individual_student_attributes = {}
-
-    doc.css(".vitals_container")
-
-      linkedin =
+    list_of_links = doc.css(".vitals-container .social-icon-container a").collect {|thing| thing["href"]}
+    profile_quote = doc.css(".vitals-container .vitals-text-container .profile-quote").text
+    bio = doc.css(".details-container .description-holder").text
+binding.pry
+    # doc.css(".vitals-container .social-icon-container a")
+    #   (put doc line here).each do |thing|
+    #   if thing.include?("linkedin")
+    #     linkedin =
+    #   elsif thing.include?("twitter")
+    #     twitter =
+    #   elsif thing.include?("github")
+    #     github =
+    #   end
 
     # :linkedin
     # :github
