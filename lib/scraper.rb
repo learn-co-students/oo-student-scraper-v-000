@@ -36,25 +36,28 @@ class Scraper
 
     list_of_links = doc.css(".vitals-container .social-icon-container a").collect {|thing| thing["href"]}
 
-    profile_quote = doc.css(".vitals-container .vitals-text-container .profile-quote").text
-      individual_student_attributes_hash[:profile_quote] = profile_quote
-    bio = doc.css(".details-container .description-holder p").text
-      individual_student_attributes_hash[:bio] = bio
-
 #binding.pry
-    list-of-links.each do |link|
+    list_of_links.each do |link|
       if link.include?("linkedin")
         individual_student_attributes_hash[:linkedin] = link
       elsif link.include?("twitter")
         individual_student_attributes_hash[:twitter] = link
       elsif link.include?("github")
         individual_student_attributes_hash[:github] = link
-      elsif link.include?("blog")
-        individual_student_attributes_hash[:blog] = link
+      end
+
     end
+
+    profile_quote = doc.css(".vitals-container .vitals-text-container .profile-quote").text
+      individual_student_attributes_hash[:profile_quote] = profile_quote
+    bio = doc.css(".details-container .description-holder p").text
+      individual_student_attributes_hash[:bio] = bio
 
     individual_student_attributes_hash
 
   end
 
 end
+
+# elsif link.include?("blog")
+#   individual_student_attributes_hash[:blog] = link
