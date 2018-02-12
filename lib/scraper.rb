@@ -17,7 +17,6 @@ require 'nokogiri'
         name = "#{name}.html"
         studs_param << name.downcase
       end
-      binding.pry
       studs_param
     end
     def self.scrape_index_page(index_url)
@@ -30,8 +29,8 @@ require 'nokogiri'
         stu[:name] = param.gsub("-", " ").gsub(".html", "").split.map(&:capitalize).join(' ')
         stu[:location] = doc.css(".vitals-text-container h2").text binding.pry
         students_hashes << stu
-      end students_hashes
-      binding.pry
+      end
+      students_hashes
     end
     def self.scrape_profile_page(profile_url)
     end
