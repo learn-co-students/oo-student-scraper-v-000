@@ -30,6 +30,7 @@ require 'nokogiri'
         stu[:location] = doc.css(".vitals-text-container h2").text binding.pry
         students_hashes << stu
       end
+      binding.pry
       students_hashes
     end
     def self.scrape_profile_page(profile_url)
