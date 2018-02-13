@@ -46,43 +46,55 @@ class Scraper
       doc= Nokogiri::HTML(html)
       elems= doc.xpath("//*[@href]")
       hash= {}
-      binding.pry
+      #binding.pry
 
       hash[:profile_quote]= doc.css(".profile-quote").text  #quote
       hash[:bio]= doc.css("p").text #bio
 
-      if elems[4].attr("href").include?("twitter")
-        hash[:twitter]= elems[4].attr("href")
-      elsif elems[4].attr("href").include?("linkedin")
-        hash[:linkedin]= elems[4].attr("href")
-      elsif elems[4].attr("href").include?("github")
-        hash[:github]= elems[4].attr("href")
-      else
-        hash[:blog]= elems[4].attr("href")
-      end
-
-      if elems[5].attr("href").include?("linkedin")
-        hash[:linkedin]= elems[5].attr("href")
-      elsif elems[5].attr("href").include?("twitter")
-        hash[:twitter]= elems[5].attr("href")
-      else
-        hash[:blog]= elems[5].attr("href")
-      end
-
-      if elems[6] != nil
-        if elems[6].attr("href").include?("github")
-          #binding.pry
-        hash[:github]= elems[6].attr("href")
-        else
-        hash[:blog]= elems[6].attr("href")
+      elems.each_with_index do |link, i|
+        if link.attr("href").include?("twitter")
+          hash[:twitter]= elems[i].attr("href")
+        elsif link.attr("href").include?("linkedin")
+          hash[:linkedin]= elems[i].attr("href")
+        elsif link.attr("href").include?("github")
+          hash[:github]= elems[i].attr("href")
+        elsif link.attr("href").include?(".com")
+          hash[:blog]= elems[i].attr("href")
         end
       end
 
-      if elems[7] != nil
-        if elems[7].attr("href").include?(".com")
-          #hash[:blog]= elems[7].attr("href")
-        end
-      end
+      # if elems[4].attr("href").include?("twitter")
+      #   hash[:twitter]= elems[4].attr("href")
+      # elsif elems[4].attr("href").include?("linkedin")
+      #   hash[:linkedin]= elems[4].attr("href")
+      # elsif elems[4].attr("href").include?("github")
+      #   hash[:github]= elems[4].attr("href")
+      # else
+      #   hash[:blog]= elems[4].attr("href")
+      # end
+      #
+      # if elems[5].attr("href").include?("linkedin")
+      #   hash[:linkedin]= elems[5].attr("href")
+      # elsif elems[5].attr("href").include?("twitter")
+      #   hash[:twitter]= elems[5].attr("href")
+      # else
+      #   hash[:blog]= elems[5].attr("href")
+      # end
+      #
+      # if elems[6] != nil
+      #   if elems[6].attr("href").include?("github")
+      #     #binding.pry
+      #   hash[:github]= elems[6].attr("href")
+      #   else
+      #   hash[:blog]= elems[6].attr("href")
+      #   end
+      # end
+      #
+      # if elems[7] != nil
+      #   if elems[7].attr("href").include?(".com")
+      #     hash[:blog]= elems[7].attr("href")
+      #   end
+      # end
 
       #
       hash
