@@ -5,12 +5,12 @@ class Student
   @@all = []
 
   def initialize(student_hash)
-    @name= name
-    @location= location
-    @proile_url= profile_url
+    @name= student_hash[:name]
+    @location= student_hash[:location]
+    #@proile_url= profile_url
 
-
-    @@all < self
+    @@all << self
+  #  binding.pry
   end
 
   def self.create_from_collection(students_array)
@@ -20,14 +20,16 @@ class Student
   end
 
   def add_student_attributes(attributes_hash)
-    attributes_hash.each do |attribute|
-      @twitter= twitter
-      @linkedin= linkedin
-      @github= github
-      @blog= blog
-      @profile_quote= profile_quote
-      @bio= bio
-    end
+    attributes_hash.each {|key, value| self.send(("#{key}="), value)}
+
+    # attributes_hash.each do |attribute|
+    #   @twitter= twitter
+    #   @linkedin= linkedin
+    #   @github= github
+    #   @blog= blog
+    #   @profile_quote= profile_quote
+    #   @bio= bio
+    # end
     self
   end
 
