@@ -30,6 +30,11 @@ class Scraper
       result[:github] = link if link.match(/.+github.+/)
       result[:twitter] = link if link.match(/.+twitter.+/)
       result[:linkedin] = link if link.match(/.+linkedin.+/)
+      result[:blog] = link if element
+        .css('img')
+        .attribute('src')
+        .text
+        .match(/.+rss.+/)
     end
 
     result[:profile_quote] = doc.css('.profile-quote').text
