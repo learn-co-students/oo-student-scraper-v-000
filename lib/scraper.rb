@@ -6,8 +6,7 @@ class Scraper
 # doc = Nokogiri::HTML(html)
 
   def self.scrape_index_page(index_url)
-    html = File.read(index_url)
-    doc = Nokogiri::HTML(html)
+    doc = Nokogiri::HTML(open(index_url))
     student_array = []
     doc.css("div.roster-cards-container").each do |card|
       card.css("div.student-card a").each do |individual|
@@ -21,18 +20,25 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    html = File.read(profile_url)
-    doc = Nokogiri::HTML(html)
-    media_links = []
+    doc = Nokogiri::HTML(open(profile_url))
+    media_links = {}
     doc.css("div.social-icon-container").each do |link|
-      twitter = link.css("a")[0].values[0]
-      linkedin = link.css("a")[1].values[0]
-      github = link.css("a")[2].values[0]
-      blog = link.css("a")[3].values[0]
-      media_links << {:twitter => twitter, :linkedin => linkedin, :github => github, :blog => blog}
-    end
-    #binding.pry
+      media_links[:bio] = doc.css("div.description-holder p").text
+      media_links[:profile_quote] = doc.css("div.profile-quote").text
+        link.css("a").each do |i|
+          if i.attributes["href"].value.include?("twitter")
+            media_links[:twitter] = i.attributes["href"].value
+          elsif i.attributes["href"].value.include?("linkedin")
+            media_links[:linkedin] = i.attributes["href"].value
+          elsif i.attributes["href"].value.include?("github")
+            media_links[:github] = i.attributes["href"].value
+          elsif i.attributes["href"].value.include?("http")
+            media_links[:blog] = i.attributes["href"].value
+          end
+        end
+      end
     media_links
   end
+
 
 end
