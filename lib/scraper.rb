@@ -19,19 +19,27 @@ class Scraper
     students
   end
 
-  def self.scrape_profile_page(profile_url)  # :twitter, :linkedin, :github, :blog, :profile_quote, :bio
+  def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
 
     profile = {
-    :twitter => doc.css(".social-icon-container a").attribute("href").value,
-    # :linkedin => linkedin || nil,
-    # :github => github,
-    # :blog => blog,
     :profile_quote => doc.css(".profile-quote").text,
     :bio => doc.css(".description-holder p").text
     }
 
-    binding.pry
+    # grabs and sets the available social media links
+    doc.css(".social-icon-container a").each do |link|
+      if link.attribute("href").value.include? "twitter"
+        profile[:twitter] = link.attribute("href").value
+      elsif link.attribute("href").value.include? "linkedin"
+        profile[:linkedin] = link.attribute("href").value
+      elsif link.attribute("href").value.include? "github"
+        profile[:github] = link.attribute("href").value
+      else
+        profile[:blog] = link.attribute("href").value
+      end
+    end
 
+    profile
   end
 end
