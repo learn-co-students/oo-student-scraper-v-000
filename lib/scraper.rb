@@ -24,19 +24,24 @@ class Scraper
     details = {}
     details[:bio] = page.css(".bio-content p").text
     details[:profile_quote] = page.css(".profile-quote").text
+
     socials = []
     social = page.css(".social-icon-container").children.select(&:element?)
     social.each{|s| socials << s.attribute("href").value}
-    socials.each do |s|
-      details[:linkedin] = s if s.match('linkedin')
-      details[:github] = s if s.match('github')
-      details[:twitter] = s if s.match('twitter')
+    # socials.each do |s|
+    #   details[:linkedin] = s if s.match('linkedin')
+    #   details[:github] = s if s.match('github')
+    #   details[:twitter] = s if s.match('twitter')
+    # end
+
+    social.each do |s|
+      ss = s.attribute("href").value
+      details[:linkedin] = ss if ss.match('linkedin')
+      details[:github] = ss if ss.match('github')
+      details[:twitter] = ss if ss.match('twitter')
+      details[:blog] = ss if s.css("img").attribute('src').value == '../assets/img/rss-icon.png'
     end
-
-    t = page.css("social-icon-container").("img").src("../assets/img/rss-icon.png")
-
-    binding.pry
-
+    details
   end
 
 end
