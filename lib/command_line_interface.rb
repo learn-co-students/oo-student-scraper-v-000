@@ -13,11 +13,20 @@ class CommandLineInteface
   end
 
   def make_students
+    #students_array will return the scraped/parsed index page of all students
+    #it returns the nokogiri object(array thing)
     students_array = Scraper.scrape_index_page(BASE_PATH + 'index.html')
+    #this creates the student instances with the following attributes: :name, :location, :profile_url
     Student.create_from_collection(students_array)
   end
 
   def add_attributes_to_students
+    #this goes through each student in @@all array
+    #scrapes the profile page of each student and returns a hash for each student
+    #attributes is equal to the hash for an indiviudal student
+    #then the hash is fed into the add_student_attributes method
+    #which assigns the attributes to the individual student
+    #those attributes are: twitter url, linkedin url, github url, blog url, profile quote, bio
     Student.all.each do |student|
       attributes = Scraper.scrape_profile_page(BASE_PATH + student.profile_url)
       student.add_student_attributes(attributes)
