@@ -41,16 +41,27 @@ class Scraper
     end
 
     array.each do |link|
-      keyword = link.split("/")[2].split(".")
-      if keyword.include?("twitter")
+      if link.include?("twitter")
         social_info[:twitter] = link
-      elsif keyword.include?("linkedin")
+      elsif link.include?("linkedin")
         social_info[:linkedin] = link
-      elsif keyword.include?("github")
-        social_info[:github] = link
+      elsif link.include?("github")
+          social_info[:github] = link
       else
-        social_info[:blog] = link
+          social_info[:blog] = link
       end
+
+      
+      # keyword = link.split("/")[2].split(".")
+      # if keyword.include?("twitter")
+      #   social_info[:twitter] = link
+      # elsif keyword.include?("linkedin")
+      #   social_info[:linkedin] = link
+      # elsif keyword.include?("github")
+      #   social_info[:github] = link
+      # else
+      #   social_info[:blog] = link
+      # end
     end
 
     social_info[:profile_quote] = student.css(".vitals-text-container .profile-quote").text
