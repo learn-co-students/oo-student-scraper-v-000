@@ -16,7 +16,7 @@ class Scraper
           name = student.css(".student-name").text,
           location = student.css(".student-location").text,
           profile_url = student.attr("href")
-          all_projects << {name: name[0], location: location, profile_url: profile_url }
+          all_projects = {name: name[0], location: location, profile_url: profile_url }
       end #iterating student
     end #iterating project
     all_projects
@@ -27,25 +27,20 @@ class Scraper
     html = File.read(open(profile_url))
     profile_page = Nokogiri::HTML(html)
 
+    all_profiles = {}
+
     profile_page.css("div.social-icon-container a").each do |icon|
-      twitter = icon.attr("href") #twitter
-      bio = profile_page.css(".details-container p").children.text #bio
-      # linkedin
-      # github
-      # blog link
+      twitter = profile_page.css("div.social-icon-container a").attr("href").value
+      linkedin = profile_page.css("div.social-icon-container a")[1].attr("href")
+      github = profile_page.css("div.social-icon-container a")[2].attr("href")
+      blog = profile_page.css("div.social-icon-container a")[3].attr("href")
+      profile_quote = profile_page.css(".profile-quote").text
+      bio = profile_page.css(".details-container p").children.text
 
+      all_profiles = {:twitter => twitter, :linkedin => linkedin, :github => github, :blog => blog, :profile_quote => profile_quote, :bio => bio}
     end #each icon
-
-    profile_page.css(".vitals-container a").each do |bio| #a
-      linkedin = profile_page.css("div.social-icon-container a").attr("href").value #sometimes works, sometimes returns a twitter link
-      #profile_page.css(".vitals-container a").css("a")
-      binding.pry
-    end
-
-    profile_page.css(".vitals-text-container").each do |profile|
-      profile_quote = profile.css(".profile-quote").text #profile quote
-    end
-
+      all_profiles
   end
+
 
 end
