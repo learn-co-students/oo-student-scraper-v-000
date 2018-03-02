@@ -28,11 +28,22 @@ class Scraper
     profile_page = Nokogiri::HTML(html)
 
     profile_page.css("div.social-icon-container a").each do |icon|
-      twitter = icon.attr("href")
+      twitter = icon.attr("href") #twitter
+      bio = profile_page.css(".details-container p").children.text #bio
+      # linkedin
+      # github
+      # blog link
+
     end #each icon
 
+    profile_page.css(".vitals-container a").each do |bio| #a
+      linkedin = profile_page.css("div.social-icon-container a").attr("href").value #sometimes works, sometimes returns a twitter link
+      #profile_page.css(".vitals-container a").css("a")
+      binding.pry
+    end
+
     profile_page.css(".vitals-text-container").each do |profile|
-      profile_quote = profile.css(".profile-quote").text
+      profile_quote = profile.css(".profile-quote").text #profile quote
     end
 
   end
