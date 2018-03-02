@@ -5,8 +5,9 @@ class Student
   @@all = []
 
   def initialize(student_hash)
-    @name = student_hash[:name]
-    @location = student_hash[:location]
+    student_hash.each do |k,v|
+      self.send("#{k}=", v)
+    end
     @@all << self
   end
 
