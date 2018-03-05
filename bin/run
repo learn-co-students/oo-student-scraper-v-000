@@ -4,3 +4,5 @@ require_relative "../lib/command_line_interface.rb"
 
 
 CommandLineInteface.new.run
+
+scraped_students = Scraper.scrape_index_page(index_url)
