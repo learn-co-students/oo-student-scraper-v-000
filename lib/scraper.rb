@@ -2,15 +2,7 @@ require 'open-uri'
 require 'nokogiri'
 require 'pry'
 
-
-
 class Scraper
-
-
-
-  #name: doc.css(".student-name").first.text
-
-
   def self.scrape_index_page(index_url)
     html = open("#{index_url}")
     doc = Nokogiri::HTML(html)
@@ -42,7 +34,5 @@ class Scraper
          hash[:profile_quote] = doc.css(".profile-quote").text
          hash[:bio] = doc.css(".description-holder p").text
         hash
-
   end
-
 end
