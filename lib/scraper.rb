@@ -25,7 +25,9 @@ class Scraper
     link_array.each do |link|
       if link.include?("https:")
         website = link.scan(/\w+(?=.com)/)
-        hash[website[0].to_sym] = link
+        if website[0] != nil
+          hash[website[0].to_sym] = link
+        end
       else
         hash[:blog] = link
       end
