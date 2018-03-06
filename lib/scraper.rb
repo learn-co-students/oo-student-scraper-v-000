@@ -23,29 +23,24 @@ class Scraper
     doc = Nokogiri::HTML(open(profile_url))
       student_profile = {}
         social_links = []
-        binding.pry
-        nodeset = doc.css('a[href]')    # Get anchors w href attribute via css
+        nodeset = doc.css('a[href]')
         urls = nodeset.map {|element| element["href"]}
 
-        #urls.each do |site_url|
-
-
-
           student_profile = {
-          twitter: urls[0],
-          linkedin: urls[1],
-          github: urls[2],
-          youtube: urls[3],
+          twitter: urls[1],
+          linkedin: urls[2],
+          github: urls[3],
+          blog: urls[4],
           }
-        end
 
-        student_profile["profile_quote"] = doc.css(".profile_quote").text
-        student_profile["bio"] = doc.css("bio-content content-holder").text
-        student_profile["education"] = doc.css("education-content content-holder").text
+
+        student_profile[:profile_quote] = doc.css(".profile_quote").text
+        student_profile[:bio] = doc.css("bio-content content-holder").text
+        student_profile[:education] = doc.css("education-content content-holder").text
 
 
         binding.pry
 end
-  end
+
 
 end
