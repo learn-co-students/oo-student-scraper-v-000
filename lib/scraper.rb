@@ -4,7 +4,6 @@ require 'pry'
 class Scraper
     def self.scrape_index_page(index_url)
 
-<<<<<<< HEAD
       doc = Nokogiri::HTML(open(index_url))
       scraped_students_array = []
 
@@ -49,7 +48,6 @@ class Scraper
 
 
 
-=======
   def self.scrape_index_page(index_url)
 
       doc = Nokogiri::HTML(open(index_url))
@@ -91,5 +89,4 @@ class Scraper
     end
     student
   end
->>>>>>> abe43f8095eff476f4a67e7a3444d4b12d85f90c
 end
