@@ -91,4 +91,3 @@ class Scraper
     prof
   end
 end
-Scraper.scrape_profile_page("./fixtures/student-site/students/david-kim.html")
