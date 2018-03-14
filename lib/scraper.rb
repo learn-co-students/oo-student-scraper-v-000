@@ -1,15 +1,59 @@
 require 'open-uri'
+require 'nokogiri'
 require 'pry'
 
 class Scraper
 
   def self.scrape_index_page(index_url)
-    
+    noko_doc = Nokogiri::HTML(open(index_url))
+
+    students_array = []
+
+    cards = noko_doc.css(".student-card")
+
+    cards.each do |card|
+      students_array << {
+        :name => card.css("h4.student-name").text,
+        :location => card.css("p.student-location").text,
+        :profile_url => card.css("a").attribute("href").value
+      }
+    end
+    students_array
   end
 
+  # cards.first.css("h4.student-name").text - name
+
+  # cards.first.css("a").attribute("href").value - profile_link
+
+  # cards.first.css("p.student-location").text - location
+
   def self.scrape_profile_page(profile_url)
-    
+    data = {}
+
+    noko_doc = Nokogiri::HTML(open(profile_url))
+
+    noko_doc.css(".social-icon-container a").each do |ele_a|
+      link = ele_a.attribute("href").value
+
+      if link.include?("twitter.com")
+        data[:twitter] = link
+      elsif link.include?("facebook.com")
+        data[:facebook] = link
+      elsif link.include?("github.com")
+        data[:github] = link
+      elsif link.include?("linkedin.com")
+        data[:linkedin] = link
+      else
+        data[:blog] = link
+      end
+    end
+    data[:profile_quote] = noko_doc.css("div.profile-quote").text
+    data[:bio] = noko_doc.css("div.description-holder p").text
+    data
   end
 
 end
 
+# Scraper.scrape_index_page("../fixtures/student-site/index.html")
+
+# Scraper.scrape_profile_page("../fixtures/student-site/students/joe-burgess.html")
