@@ -5,19 +5,26 @@ class Student
   @@all = []
 
   def initialize(student_hash)
-    
+    @name = student_hash[:name]
+    @location = student_hash[:location]
+    @@all << self
   end
 
   def self.create_from_collection(students_array)
-    
+    #[{name:marine, location, nyc}, {name:joe,}]
+    students_array.each do |s|
+      Student.new(s)
+    end
   end
 
   def add_student_attributes(attributes_hash)
-    
+    attributes_hash.each do |attribute, value|
+      self.send("#{attribute}=", value)
+    end
   end
 
   def self.all
-    
+    @@all
   end
 end
 
