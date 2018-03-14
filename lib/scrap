@@ -1,0 +1,36 @@
+divs.css('a').select do |link|
+  link.attribute('href').value.slice(symbol.to_s)
+end
+links = divs.search('a')
+links.each {|val| puts val.attribute('href').value}
+
+
+keys.select do |site, value|
+	 if key.include?(site.to_s)
+	 keys[site] = key
+	 end
+end
+
+load url into node array
+url http://127.0.0.1:8080/students/ryan-johnson.html
+collect divs on page with relevant info
+div url.css('.main-wrapper .vitals-container')
+		search <a> tags and collect attribute values
+		div.search('a').each {|link| link.attribute('href').value}
+
+		''	
+select elements with class beginning with 'profile'
+links.select {|link| link.css('[class^="profile"]')}
+
+links = url.search('[class^="profile"]') find selector
+
+link.each {|a| puts a.attribute('class').value} get class names
+
+link.each {|a| puts a.text}
+
+
+
+
+info.each {|profile| profile.text}
+
+links.attribute('class').value.  ->attribute name
