@@ -1,0 +1,17 @@
+Scraper
+	- It's job is to get raw data from the website.
+	- It does it in 2 ways
+		- First the scrape_index_page should return an array of hashes, each has with some basic student info (profile URL being the most important)
+		- then we have scrape_profile_page which gets an individuals complete info.
+
+
+		scrape_index_page => [{:url => "student_1.html"}, {:url => "student_2.html"}]
+			for each url in the return value of scrape_index_page
+				we're going pass the URL to scrape_profile_page
+				scrape_profile_page is then going to return to us all the students information , a big hash {:name => }
+
+
+		Student class.
+			The student class is suppose to store the data of a student.
+
+Scraper is going to give us raw data and then make a bunch of Student instances
