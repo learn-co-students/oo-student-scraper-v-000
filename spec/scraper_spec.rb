@@ -32,6 +32,7 @@ describe "Scraper" do
     end
   end
 
+
   describe "#scrape_profile_page" do
     it "is a class method that scrapes a student's profile page and returns a hash of attributes describing an individual student" do
       profile_url = "./fixtures/student-site/students/joe-burgess.html"
