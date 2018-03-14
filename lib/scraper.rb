@@ -25,15 +25,15 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     html = Nokogiri::HTML(open(profile_url))
-    html.children
       scraped_student = {
-      :linkedin=>"https://www.linkedin.com/in/flatironschool",
-      :github=>"https://github.com/learn-co,
-      :blog=>"http://flatironschool.com",
-      :profile_quote=>"\"Forget safety. Live where you fear to live. Destroy your reputation. Be notorious.\" - Rumi",
-      :bio=> "I'm a school"
+      :twitter => html.children.css(".social-icon-container").attribute("href"[0]).value,
+      # :linkedin=>"https://www.linkedin.com/in/flatironschool",
+      # :github=>"",
+      # :blog=>"",
+      # :profile_quote=>"",
+      # :bio=> ""
       }
-      # binding.pry
+      binding.pry
 
   end
 end
