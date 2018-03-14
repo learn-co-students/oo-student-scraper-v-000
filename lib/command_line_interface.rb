@@ -3,6 +3,13 @@ require_relative "../lib/student.rb"
 require 'nokogiri'
 require 'colorize'
 
+
+#class TestInterface
+   #Scraper.scrape_index_page("./fixtures/student-site/index.html")
+#    Scraper.scrape_profile_page("./fixtures/student-site/students/jelson-rodriguez.html")
+#  Student.new({:name => "Sophie DeBenedetto", :location => "Brooklyn, NY"})
+#end  #end of TestInterface
+
 class CommandLineInteface
   BASE_PATH = "./fixtures/student-site/"
 
