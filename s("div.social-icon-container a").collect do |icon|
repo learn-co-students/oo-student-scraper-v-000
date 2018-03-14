@@ -1,0 +1,467 @@
+=> [1;34m#(Document:0x16a1840 {[0m
+  name = [31m[1;31m"[0m[31mdocument[1;31m"[0m[31m[0m,
+  children = [
+    [1;34m#(DTD:0x16db3c4 {[0m name = [31m[1;31m"[0m[31mhtml[1;31m"[0m[31m[0m }),
+    [1;34m#(Element:0x16df7f8 {[0m
+      name = [31m[1;31m"[0m[31mhtml[1;31m"[0m[31m[0m,
+      children = [
+        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m  [1;31m"[0m[31m[0m),
+        [1;34m#(Element:0x16c3990 {[0m
+          name = [31m[1;31m"[0m[31mhead[1;31m"[0m[31m[0m,
+          children = [
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0x1749b94 {[0m
+              name = [31m[1;31m"[0m[31mmeta[1;31m"[0m[31m[0m,
+              attributes = [
+                [1;34m#(Attr:0x1748ca8 {[0m name = [31m[1;31m"[0m[31mcharset[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mutf-8[1;31m"[0m[31m[0m })]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0x1847118 {[0m
+              name = [31m[1;31m"[0m[31mmeta[1;31m"[0m[31m[0m,
+              attributes = [
+                [1;34m#(Attr:0x18464d4 {[0m name = [31m[1;31m"[0m[31mname[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mviewport[1;31m"[0m[31m[0m }),
+                [1;34m#(Attr:0x18464c0 {[0m
+                  name = [31m[1;31m"[0m[31mcontent[1;31m"[0m[31m[0m,
+                  value = [31m[1;31m"[0m[31mwidth=device-width, intial-scale=1[1;31m"[0m[31m[0m
+                  })]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0x17900a8 {[0m
+              name = [31m[1;31m"[0m[31mtitle[1;31m"[0m[31m[0m,
+              children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mLearn Verified Student Roster[1;31m"[0m[31m[0m)]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0x175b77c {[0m
+              name = [31m[1;31m"[0m[31mlink[1;31m"[0m[31m[0m,
+              attributes = [
+                [1;34m#(Attr:0x175aa98 {[0m name = [31m[1;31m"[0m[31mrel[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mstylesheet[1;31m"[0m[31m[0m }),
+                [1;34m#(Attr:0x175aa84 {[0m
+                  name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m,
+                  value = [31m[1;31m"[0m[31m../css/normalize.css[1;31m"[0m[31m[0m
+                  })]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0x16c7a54 {[0m
+              name = [31m[1;31m"[0m[31mlink[1;31m"[0m[31m[0m,
+              attributes = [
+                [1;34m#(Attr:0x16c6d70 {[0m name = [31m[1;31m"[0m[31mrel[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mstylesheet[1;31m"[0m[31m[0m }),
+                [1;34m#(Attr:0x16c6d5c {[0m
+                  name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m,
+                  value = [31m[1;31m"[0m[31m../css/fonts.css[1;31m"[0m[31m[0m
+                  })]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0x17d1cc4 {[0m
+              name = [31m[1;31m"[0m[31mlink[1;31m"[0m[31m[0m,
+              attributes = [
+                [1;34m#(Attr:0x17d0fe0 {[0m name = [31m[1;31m"[0m[31mrel[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mstylesheet[1;31m"[0m[31m[0m }),
+                [1;34m#(Attr:0x17d0fcc {[0m
+                  name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m,
+                  value = [31m[1;31m"[0m[31m../css/styles.css[1;31m"[0m[31m[0m
+                  })]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m  [1;31m"[0m[31m[0m)]
+          }),
+        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m  [1;31m"[0m[31m[0m),
+        [1;34m#(Element:0x1853724 {[0m
+          name = [31m[1;31m"[0m[31mbody[1;31m"[0m[31m[0m,
+          children = [
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m),
+            [1;34m#(Element:0x185a1c8 {[0m
+              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+              attributes = [
+                [1;34m#(Attr:0x18691f0 {[0m
+                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                  value = [31m[1;31m"[0m[31mmain-wrapper profile[1;31m"[0m[31m[0m
+                  })],
+              children = [
+                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m),
+                [1;34m#(Element:0x1889504 {[0m
+                  name = [31m[1;31m"[0m[31mheader[1;31m"[0m[31m[0m,
+                  attributes = [
+                    [1;34m#(Attr:0x1888aa0 {[0m name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mheader[1;31m"[0m[31m[0m })],
+                  children = [
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0x18a7108 {[0m
+                      name = [31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0x18a67bc {[0m name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31m../[1;31m"[0m[31m[0m })],
+                      children = [
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0x18c8d08 {[0m
+                          name = [31m[1;31m"[0m[31mimg[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0x18d58dc {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mlearn-logo[1;31m"[0m[31m[0m
+                              }),
+                            [1;34m#(Attr:0x18d58c8 {[0m
+                              name = [31m[1;31m"[0m[31msrc[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mhttps://s3.amazonaws.com/learn-verified/logo.png[1;31m"[0m[31m[0m
+                              })]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m)]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m)]
+                  }),
+                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m),
+                [1;34m#(Element:0x191d59c {[0m
+                  name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                  attributes = [
+                    [1;34m#(Attr:0x191c8b8 {[0m
+                      name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                      value = [31m[1;31m"[0m[31mprofile-banner[1;31m"[0m[31m[0m
+                      }),
+                    [1;34m#(Attr:0x191c8a4 {[0m
+                      name = [31m[1;31m"[0m[31mid[1;31m"[0m[31m[0m,
+                      value = [31m[1;31m"[0m[31mdavid-kim-cover[1;31m"[0m[31m[0m
+                      })]
+                  }),
+                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m),
+                [1;34m#(Element:0x195756c {[0m
+                  name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                  attributes = [
+                    [1;34m#(Attr:0x1956888 {[0m
+                      name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                      value = [31m[1;31m"[0m[31mvitals-container[1;31m"[0m[31m[0m
+                      })],
+                  children = [
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0x1975670 {[0m
+                      name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0x1974cd4 {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mprofile-photo[1;31m"[0m[31m[0m
+                          }),
+                        [1;34m#(Attr:0x1974cc0 {[0m name = [31m[1;31m"[0m[31mid[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mdavid-kim[1;31m"[0m[31m[0m })]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0x19af0c8 {[0m
+                      name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0x19ae3e4 {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31msocial-icon-container[1;31m"[0m[31m[0m
+                          })],
+                      children = [
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0x19d52f0 {[0m
+                          name = [31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0x19ddec8 {[0m
+                              name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mhttps://www.linkedin.com/in/david-kim-38221690[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Element:0x19f2044 {[0m
+                              name = [31m[1;31m"[0m[31mimg[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0x19f995c {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31msocial-icon[1;31m"[0m[31m[0m
+                                  }),
+                                [1;34m#(Attr:0x19f9948 {[0m
+                                  name = [31m[1;31m"[0m[31msrc[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31m../assets/img/linkedin-icon.png[1;31m"[0m[31m[0m
+                                  })]
+                              })]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0x1a2f840 {[0m
+                          name = [31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0x1a2eb5c {[0m
+                              name = [31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mhttps://github.com/davdkm[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Element:0x1a44cb8 {[0m
+                              name = [31m[1;31m"[0m[31mimg[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0x1a445ec {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31msocial-icon[1;31m"[0m[31m[0m
+                                  }),
+                                [1;34m#(Attr:0x1a445d8 {[0m
+                                  name = [31m[1;31m"[0m[31msrc[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31m../assets/img/github-icon.png[1;31m"[0m[31m[0m
+                                  })]
+                              })]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m)]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0x1a97cd8 {[0m
+                      name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0x1a96ff4 {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mvitals-text-container[1;31m"[0m[31m[0m
+                          })],
+                      children = [
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0x1ab3dd4 {[0m
+                          name = [31m[1;31m"[0m[31mh1[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0x1ab29d4 {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mprofile-name[1;31m"[0m[31m[0m
+                              })],
+                          children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mDavid Kim[1;31m"[0m[31m[0m)]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0x1ae0a50 {[0m
+                          name = [31m[1;31m"[0m[31mh2[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0x1ae9d44 {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mprofile-location[1;31m"[0m[31m[0m
+                              })],
+                          children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mNorth Hills, CA[1;31m"[0m[31m[0m)]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0x1b1ddd8 {[0m
+                          name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0x1b1d0f4 {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mprofile-quote[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\"[0m[31mYeah, well, you know, that's just, like, your opinion, man.[1;35m\"[0m[31m - The Dude[1;31m"[0m[31m[0m)]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m)]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m)]
+                  }),
+                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m),
+                [1;34m#(Element:0x1b5ff58 {[0m
+                  name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                  attributes = [
+                    [1;34m#(Attr:0x1b5f1d4 {[0m
+                      name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                      value = [31m[1;31m"[0m[31mdetails-container[1;31m"[0m[31m[0m
+                      })],
+                  children = [
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0x1b748cc {[0m
+                      name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0x1b85708 {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mbio-block details-block[1;31m"[0m[31m[0m
+                          })],
+                      children = [
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0x1ba3a28 {[0m
+                          name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0x1ba2628 {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mbio-content content-holder[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0x1b9c994 {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0x1b8d55c {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mtitle-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0x1b57ce0 {[0m
+                                  name = [31m[1;31m"[0m[31mh3[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mBiography[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0x1b1c3e8 {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0x1b0b6c4 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mdescription-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0x1ae0474 {[0m
+                                  name = [31m[1;31m"[0m[31mp[1;31m"[0m[31m[0m,
+                                  children = [
+                                    [1;34m#(Text [0m[31m[1;31m"[0m[31mI'm a southern California native seeking to find work as a full stack web developer. I enjoying tinkering with computers and learning new things![1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m)]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m)]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0x1a4b9f0 {[0m
+                      name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0x1a4ad0c {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31meducation-block details-block[1;31m"[0m[31m[0m
+                          })],
+                      children = [
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0x19ffa00 {[0m
+                          name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0x19fe5d8 {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31meducation-content content-holder[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0x19d532c {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0x19c5ef4 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mtitle-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0x1984c88 {[0m
+                                  name = [31m[1;31m"[0m[31mh3[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mEducation[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0x1923384 {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0x19226a0 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mdescription-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0x18ff3e4 {[0m
+                                  name = [31m[1;31m"[0m[31mh4[1;31m"[0m[31m[0m,
+                                  children = [
+                                    [1;34m#(Text [0m[31m[1;31m"[0m[31mUniversity of Advancing Technology[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0x18c8218 {[0m
+                                  name = [31m[1;31m"[0m[31mh5[1;31m"[0m[31m[0m,
+                                  children = [
+                                    [1;34m#(Text [0m[31m[1;31m"[0m[31mBachelor of Arts in Game Design[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0x18a7784 {[0m
+                                  name = [31m[1;31m"[0m[31mh4[1;31m"[0m[31m[0m,
+                                  children = [
+                                    [1;34m#(Text [0m[31m[1;31m"[0m[31mComptia Certificatinons[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0x188ece8 {[0m
+                                  name = [31m[1;31m"[0m[31mh5[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mNetwork+[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0x1870220 {[0m
+                                  name = [31m[1;31m"[0m[31mh5[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mSecurity+[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m)]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m)]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0x17c38e0 {[0m
+                      name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0x17c2bfc {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mexperience-block details-block[1;31m"[0m[31m[0m
+                          })],
+                      children = [
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m),
+                        [1;34m#(Element:0x169b968 {[0m
+                          name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                          attributes = [
+                            [1;34m#(Attr:0x169a568 {[0m
+                              name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                              value = [31m[1;31m"[0m[31mexperience-content content-holder[1;31m"[0m[31m[0m
+                              })],
+                          children = [
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0x1791278 {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0x1bb5e44 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mtitle-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0x1b80a28 {[0m
+                                  name = [31m[1;31m"[0m[31mh3[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mExperience[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m),
+                            [1;34m#(Element:0x1b2f150 {[0m
+                              name = [31m[1;31m"[0m[31mdiv[1;31m"[0m[31m[0m,
+                              attributes = [
+                                [1;34m#(Attr:0x1b2e458 {[0m
+                                  name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                                  value = [31m[1;31m"[0m[31mdescription-holder[1;31m"[0m[31m[0m
+                                  })],
+                              children = [
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0x1af5270 {[0m
+                                  name = [31m[1;31m"[0m[31mh4[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mIT Creations[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m              [1;31m"[0m[31m[0m),
+                                [1;34m#(Element:0x1aa9eb0 {[0m
+                                  name = [31m[1;31m"[0m[31mh5[1;31m"[0m[31m[0m,
+                                  children = [ [1;34m#(Text [0m[31m[1;31m"[0m[31mLead Systems Engineer[1;31m"[0m[31m[0m)]
+                                  }),
+                                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m            [1;31m"[0m[31m[0m)]
+                              }),
+                            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m          [1;31m"[0m[31m[0m)]
+                          }),
+                        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m)]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m)]
+                  }),
+                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m),
+                [1;34m#(Element:0x1a2140c {[0m
+                  name = [31m[1;31m"[0m[31mfooter[1;31m"[0m[31m[0m,
+                  attributes = [
+                    [1;34m#(Attr:0x1a2069c {[0m name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m, value = [31m[1;31m"[0m[31mfooter[1;31m"[0m[31m[0m })],
+                  children = [
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m        [1;31m"[0m[31m[0m),
+                    [1;34m#(Element:0x19cb5fc {[0m
+                      name = [31m[1;31m"[0m[31mimg[1;31m"[0m[31m[0m,
+                      attributes = [
+                        [1;34m#(Attr:0x19cacb0 {[0m
+                          name = [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mmade-with-love[1;31m"[0m[31m[0m
+                          }),
+                        [1;34m#(Attr:0x19cac9c {[0m
+                          name = [31m[1;31m"[0m[31msrc[1;31m"[0m[31m[0m,
+                          value = [31m[1;31m"[0m[31mhttps://s3.amazonaws.com/learn-verified/made-with-love.png[1;31m"[0m[31m[0m
+                          })]
+                      }),
+                    [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m      [1;31m"[0m[31m[0m)]
+                  }),
+                [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m    [1;31m"[0m[31m[0m)]
+              }),
+            [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m  [1;31m"[0m[31m[0m)]
+          }),
+        [1;34m#(Text [0m[31m[1;31m"[0m[31m[1;35m\n[0m[31m[1;31m"[0m[31m[0m)]
+      })]
+  })
