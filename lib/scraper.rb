@@ -38,9 +38,7 @@ class Scraper
       end
     end
     scraped_student[:profile_quote] = html.css(".profile-quote").text
-    # bio_text = html.css(".description-holder").text
-    scraped_student[:bio] = html.css(".description-holder p").text.split.join(" ") #gsub("\n",'').gsub("/\s+/", " ")
-    # binding.pry
+    scraped_student[:bio] = html.css(".description-holder p").text.split.join(" ")
     scraped_student
   end
 end
