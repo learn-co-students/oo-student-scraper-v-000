@@ -1,6 +1,6 @@
 require 'open-uri'
 require 'pry'
-require_relative './scraper.rb'
+
 
 class Scraper
   attr_reader :attribute
