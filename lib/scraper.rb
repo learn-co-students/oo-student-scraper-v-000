@@ -27,16 +27,16 @@ def self.scrape_index_page(index_url)
   def self.scrape_profile_page(profile_url)
      student = {}
     page = Nokogiri::HTML(open("./fixtures/student-site/students/joe-burgess.html"))
-       binding.pry
+      #  binding.pry
     page.css("div.vitals-container").each do |first|
     # name = first.css("div.vitals-text-container h1.profile-name").text
-           binding.pry
+          #  binding.pry
         twitter = first.css("div.social-icon-container a")[0].attribute("href").value
         linkedin = first.css("div.social-icon-container a")[1].attribute("href").value
         github = first.css("div.social-icon-container a")[2].attribute("href").value
         blog = first.css("div.social-icon-container a")[3].attribute("href").value
         profile_quote = first.css("div.profile-quote").text
-        bio = first.css("div.details-container").css("div.description-holder p").text
+        bio = page.css("div.details-container").css("div.description-holder p").text
         # binding.pry
     # student[name.to_sym] = {
     # student[:name] = name
