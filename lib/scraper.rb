@@ -2,32 +2,40 @@ require 'open-uri'
 require 'pry'
 
 class Scraper
-  attr_reader :attribute, :profile_url
+  attr_reader :attribute
+  attr_accessor :students, :name, :location , :profile_url
+
 
 def self.scrape_index_page(index_url)
-  students = []
+  @students = []
 
   hash_array = Nokogiri::HTML(open("./fixtures/student-site/index.html"))
       students_array = hash_array.css(".student-card").collect do |student|
-      name = student.css("h4.student-name").text
-      location = student.css("p.student-location").text
-      profile_url = student.css("a").attribute("href").value
+      @name = student.css("h4.student-name").text
+      @location = student.css("p.student-location").text
+      @profile_url = student.css("a").attribute("href").value
       student =
-        {:name => name,
-        :location => location,
-        :profile_url => profile_url
+        {:name => @name,
+        :location => @location,
+        :profile_url => @profile_url
         }
-      students << student
+      @students << student
         # binding.pry
   end
-      students
+      @students
       # binding.pry
   end
 
   def self.scrape_profile_page(profile_url)
      student = {}
-    page = Nokogiri::HTML(open("./fixtures/student-site/students/joe-burgess.html"))
-      #  binding.pry
+     self.scrape_index_page("./fixtures/student-site/index.html")
+     profile_url = @students.collect do |student|
+       student[:profile_url].to_s
+       profile_url
+     end
+  profile_url.each do |profile|
+    page = Nokogiri::HTML(open(profile))
+
     page.css("div.vitals-container").each do |first|
     # name = first.css("div.vitals-text-container h1.profile-name").text
           #  binding.pry
@@ -87,24 +95,21 @@ def self.scrape_index_page(index_url)
         # blog = first.css("div.social-icon-container a")[3].attribute("href").value
          profile_quote = first.css("div.profile-quote").text
         bio = page.css("div.details-container").css("div.description-holder p").text
-        # binding.pry
-    # student[name.to_sym] = {
 
-      student[:bio] = bio
-      student[:blog] = blog
-      student[:github] = github
-      student[:linkedin] = linkedin
-      student[:profile_quote] = profile_quote
       student[:twitter] = twitter
+      student[:linkedin] = linkedin
+      student[:github] = github
+      student[:blog] = blog
+      student[:profile_quote] = profile_quote
+      student[:bio] = bio
+      # binding.pry
 
     student.delete_if {|key, value| value == nil }
     end
+  end
   student
 end
 end
 
 
-
-# (div.dexcription-holder).
-# Scraper.scrape_index_page("./fixtures/student-site/index.html")
-# css("div.vitals-container")
+# ./fixtures/student-site/students/joe-burgess.html
