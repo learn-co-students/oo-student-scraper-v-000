@@ -1,39 +1,32 @@
+# require_relative './scraper.rb'
+
 class Student
 
-  attr_accessor :name, :location, :twitter, :linkedin, :github, :blog, :profile_quote, :bio, :profile_url
+
+  attr_accessor :name, :location, :twitter, :linkedin, :github, :blog, :profile_quote, :bio, :profile_url, :students
 
   @@all = []
 
-  def initialize(student_hash)
-    # s = Student.new(student_hash)
-    # s.name = student_hash[:name]
-    # s.location = student_hash[:location]
-    # s.twitter = student_hash[:twitter]
-    # s.linkedin = student_hash[:linkedin]
-    # s.github = student_hash[:github]
-    # s.blog = student_hash[:blog]
-    # s.quote = student_hash[:quote]
-    # s.bio = student_hash[:bio]
-    # s.profile_url = student_hash[:profile_url]
-    #
-    # @@aall << s
-
+    def initialize(student_hash)
+      student_hash.each {|key, value| self.send(("#{key}="), value)}
+      @@all << self
   end
 
-  def self.create_from_collection(students)
-      s = Student.new(students)
+  def self.create_from_collection(student_hash)
 
-      s = students.collect do |student|
-        s.name=student[:name]
-        s.location=student[:location]
-        s
-        binding.pry
-        @@all << s
-      end
+
+        student_hash.collect do |student|
+
+        s = Student.new(student)
+
+        s.name=(student[:name])
+        s.location=(student[:location])
+        end
     end
 
   def add_student_attributes(attributes_hash)
-
+    attributes_hash.each {|key, value| self.send(("#{key}="), value)}
+   self
   end
 
   def self.all
