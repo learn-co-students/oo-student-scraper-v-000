@@ -25,7 +25,6 @@ class Student
     attributes_hash.each do |student_attribute|
       #student_attribute.each do |key, value|
       self.send("#{student_attribute[0]}=", student_attribute[1])
-      end
     end
     self
     #binding.pry
