@@ -4,9 +4,6 @@ require 'pry'
 class Scraper
 
   def self.scrape_index_page(index_url)
-
-    # To Do: ask? in what order should i return my student_hashs array
-
     student_hashs = []
     doc = Nokogiri::HTML(open(index_url))
     student_cards = doc.css('.student-card')
@@ -14,17 +11,29 @@ class Scraper
       student_hash = {}
       student_hash[:name] = student_card.css('.student-name')[0].text
       student_hash[:location] = student_card.css('.student-location')[0].text
-      student_hash[:profile_url] = student_card.css('a')[0].map{|link| link.attribute('href').to_s}
-      # binding.pry
+      student_hash[:profile_url] = student_card.css('a').map{|link| link.attribute('href').to_s}[0]
       student_hashs << student_hash
     end
-    student_hashs.sort do |student_1, student_2|
-      student_1[:name].split(' ').last <=> student_2[:name].split(' ').last
-    end
+    student_hashs
   end
 
   def self.scrape_profile_page(profile_url)
-    # data to get: name, location, twitter, linkedin, github, blog, profile_quote, bio, profile_url
+    # data to get: name, location, twitter, linkedin
+    # github, blog, profile_quote, bio, profile_url
+
+    doc = Nokogiri::HTML(open(profile_url))
+    profile_hash = {}
+    # profile_hash[:name] = doc.css('.profile-name')[0].text
+    # profile_hash[:location] = doc.css('.profile-location')[0].text
+
+    # profile_hash[:profile_url] = doc.css('a').map{|link| link.attribute('href').to_s}[0]
+    profile_hash[:twitter] = doc.css("a[href*='twitter']").map{|link| link.attribute('href').to_s}[0]
+    profile_hash[:linkedin] = doc.css("a[href*='linkedin']").map{|link| link.attribute('href').to_s}[0]
+    profile_hash[:github] = doc.css("a[href*='github']").map{|link| link.attribute('href').to_s}[0]
+    # profile_hash[:blog] = doc.css("")
+    # profile_hash[:profile_quote] = doc.css("")
+    # profile_hash[:bio] = doc.css
+    profile_hash
   end
 
 end
