@@ -12,9 +12,9 @@ class Scraper
     student_cards = doc.css('.student-card')
     student_cards.each do |student_card|
       student_hash = {}
-      student_hash[:name] = student_card.css('.student-name').text
-      student_hash[:location] = student_card.css('.student-location').text
-      student_hash[:profile_url] = student_card.css('a').map {|link| link.attribute('href').to_s}
+      student_hash[:name] = student_card.css('.student-name')[0].text
+      student_hash[:location] = student_card.css('.student-location')[0].text
+      student_hash[:profile_url] = student_card.css('a')[0].map{|link| link.attribute('href').to_s}
       # binding.pry
       student_hashs << student_hash
     end
