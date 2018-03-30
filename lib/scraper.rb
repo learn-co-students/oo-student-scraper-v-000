@@ -8,10 +8,10 @@ class Scraper
     students = []
     html = Nokogiri::HTML(index_url)
 
-    html.css('div.student-card').each { |card|
-      name = card.css('.student-name').text
-      location = card.css('.student-location').text
-      profile_url = card.css('a').attribute('href').value
+    html.css("div.student-card").each { |card|
+      name = card.css(".student-name").text
+      location = card.css(".student-location").text
+      profile_url = card.css("a").attribute("href").value
       student = { :name => name, :location => location, :profile_url => profile_url }
       students << student
     }
