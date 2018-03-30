@@ -5,17 +5,15 @@ class Scraper
 
   def self.scrape_index_page(index_url)
     student_list = []
-    html = open(index_url)
-    messy_code = Nokogiri::HTML(html)
+    messy_code = Nokogiri::HTML(open(index_url))
     #iterate through each student
     messy_code.css('.student-card').each do |student|
-      name = student.css(".card-text-container .student-name").text
-      location = student.css(".card-text-container .student-location").text
+      student_list << {
+      :name => student.css(".card-text-container .student-name").text,
+      :location => student.css(".card-text-container .student-location").text,
       #get student profile based on the name variable
-      profile_url = "students/#{name.split.join("-").downcase}.html"
-      each_student = {:name => name, :location => location, :profile_url => profile_url}
-      #add to master student_list
-      student_list << each_student
+      :profile_url => "students/#{student.css(".card-text-container .student-name").text.split.join("-").downcase}.html"
+      }
     end
     student_list
   end
@@ -23,11 +21,9 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     student_profile = {}
-    html = open(profile_url)
-    messy_code = Nokogiri::HTML(html)
-    cleaner_code = messy_code.css('.vitals-container')
+    messy_code = Nokogiri::HTML(open(profile_url))
     #grabs social links
-    cleaner_code.each do |student|
+    messy_code.css('.vitals-container').each do |student|
       student.css('.social-icon-container a').map do |link|
           if link['href'].include?('twitter')
             twitter = link['href']
@@ -45,10 +41,7 @@ class Scraper
         end
     end
    #grabs the quote
-    cleaner_code.each do |student|
-      cleaner_code = messy_code.css('.vitals-text-container')
-      student_profile.merge!(:profile_quote=> cleaner_code.css('.profile-quote').text)
-    end
+    student_profile.merge!(:profile_quote=> messy_code.css('.profile-quote').text)
     #grabs the bio
     student_profile.merge!(:bio=> messy_code.css('.description-holder p').text)
   end
