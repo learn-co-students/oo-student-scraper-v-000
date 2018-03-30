@@ -26,25 +26,32 @@ class Scraper
     student_profile = {}
     html = open(profile_url)
     messy_code = Nokogiri::HTML(html)
-    cleaner_code = messy_code.css('.vitals-container .social-icon-container')
-
-    #goes through the first div section to grab social links
+    cleaner_code = messy_code.css('.vitals-container')
+    #grabs social links
     cleaner_code.each do |student|
-      social = student.css('a').map { |link| link['href'] }
-      student_profile = {:twitter=> social[0], :linkedin=> social[1], :github=> social[2], :blog=> social[3]}
+      student.css('.social-icon-container a').map do |link|
+          if link['href'].include?('twitter')
+            twitter = link['href']
+            student_profile.merge!(:twitter=> twitter)
+          elsif link['href'].include?('github')
+            github = link['href']
+            student_profile.merge!(:github=> github)
+          elsif link['href'].include?('linkedin')
+            linkedin = link['href']
+            student_profile.merge!(:linkedin=> linkedin)
+          elsif link['href'] != nil #if an existing link isn't any of the above, it must be for the blog
+            blog = link['href']
+            student_profile.merge!(:blog=> blog)
+          end
+        end
     end
-
-   #goes through the second div section to grab the quote
+   #grabs the quote
     cleaner_code.each do |student|
-      cleaner_code = messy_code.css('.vitals-container .vitals-text-container')
+      cleaner_code = messy_code.css('.vitals-text-container')
       student_profile.merge!(:profile_quote=> cleaner_code.css('.profile-quote').text)
     end
-              binding.pry
-    #goes through the third div section to grab the bio
-     cleaner_code.each do |student|
-       cleaner_code = messy_code.search('.details-container .bio-block details-block .bio-content content-holder')
-       student_profile.merge!(:bio=> cleaner_code.css('.description-holder').text)
-     end
+    #grabs the bio
+    student_profile.merge!(:bio=> messy_code.css('.description-holder p').text)
   end
 
 end
