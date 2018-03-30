@@ -5,7 +5,7 @@ class Scraper
 
   def self.scrape_index_page(index_url)
     student_list = []
-    messy_code = Nokogiri::HTML(open(index_url))
+    messy_code = Nokogiri::HTML(index_url)
     #iterate through each student
     messy_code.css('.student-card').each do |student|
       student_list << {
