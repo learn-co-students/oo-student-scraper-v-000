@@ -8,8 +8,7 @@ class Scraper
     html = open(index_url)
     messy_code = Nokogiri::HTML(html)
     #iterate through each student
-    cleaner_code = messy_code.css('.roster-cards-container .student-card')
-    cleaner_code.each do |student|
+    messy_code.css('.student-card').each do |student|
       name = student.css(".card-text-container .student-name").text
       location = student.css(".card-text-container .student-location").text
       #get student profile based on the name variable
