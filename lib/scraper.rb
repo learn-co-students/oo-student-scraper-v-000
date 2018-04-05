@@ -77,7 +77,6 @@ class Scraper
     
     students_quote = doc.css(".profile-quote").text
     students_bio = doc.css(".description-holder p").text
-    
     students_twitter
     students_linkedin
     students_github
@@ -85,8 +84,7 @@ class Scraper
       if students_youtube = ""
         students_youtube = nil
       end
-    students_blog
-    
+    students_blog   
      out_put = {:twitter=>students_twitter[0],
                    :linkedin=>students_linkedin[0],
                    :github=>students_github[0],
@@ -94,7 +92,6 @@ class Scraper
                    :blog=>students_blog,
                    :bio=> students_bio}
      out_put.delete_if {|key, value| value == [] || value == nil}
-    
      out_put
       end
 end
