@@ -12,25 +12,35 @@ class Student
   end
 
   def self.create_from_collection(students_array)
-    student_hash = {}
-    students_array.each do |i|
-      if i == :name
-        student_hash[:name] = i
-      elsif i = :location
-        student_hash[:location] = i
-      else i == :profile_url
-        @profile_url = i && student_hash[:profile_url] = i
-        end
-        student = Student.new(student_hash)
-      end
-      student
+    students_array.each do |individual_student|
+      Student.new(individual_student)
+      @@all << self
+    end
   end
 
-  def add_student_attributes(attributes_hash)
 
+  def add_student_attributes(attributes_hash)
+    attributes_hash.each do |key, value|
+      if key == :twitter
+        self.twitter = value
+      elsif key == :linkedin
+        self.linkedin = value
+      elsif key == github
+        self.github = value
+      elsif key == :profile_quote
+        self.profile_quote = value
+      elsif key == :bio
+        self.bio = value
+      elsif key == profile_url
+        self.profile_url = value
+      else
+        self.blog = value
+      end
+    end
+    @@all << self
   end
 
   def self.all
-
+    @all
   end
 end
