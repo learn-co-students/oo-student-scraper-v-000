@@ -12,8 +12,18 @@ class Student
   end
 
   def self.create_from_collection(students_array)
-    students_array = some scraped stuff 
-
+    student_hash = {}
+    students_array.each do |i|
+      if i == :name
+        student_hash[:name] = i
+      elsif i = :location
+        student_hash[:location] = i
+      else i == :profile_url
+        @profile_url = i && student_hash[:profile_url] = i
+        end
+        student = Student.new(student_hash)
+      end
+      student
   end
 
   def add_student_attributes(attributes_hash)
