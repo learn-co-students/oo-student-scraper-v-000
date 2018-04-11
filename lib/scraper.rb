@@ -13,6 +13,7 @@ class Scraper
       student_info[:name] = card.css(".card-text-container .student-name").text
       student_info[:location] = card.css(".card-text-container .student-location").text
       student_info[:profile_url] = card.css("a[href]").first['href']
+  
       @@student_index_array << student_info
     end
     @@student_index_array
