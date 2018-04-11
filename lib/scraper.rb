@@ -10,10 +10,12 @@ class Scraper
     students = doc.css(".roster-cards-container")
     scraped_students = []
     
-    students.map do |student|
+    students.map do |student_list|
+      student_list.map do |student|
       student_hash = {name: student.css(".student-name").text, location: student.css(".student-location").text, profile_url: student.css(".view-profile-div").text}
-       scraped_students << student_hash 
     end
+       scraped_students << student_hash
+  end
     scraped_students
     
     end
