@@ -22,7 +22,10 @@ class Scraper
     profiles = array.map do |students|
       students[:profile_url]
     end
-    profiles
+   hash = profiles.map do |profile|
+      profile_hash = {linkedin: profile.css(".social-icon-container a"), github: profile.css(".social-icon-container a"), blog: profile.css(".social-icon-container a"), profile_quote: profile.css(".profile-quote")}
+    end
+    hash
   end
 
 end
