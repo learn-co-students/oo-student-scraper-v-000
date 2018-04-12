@@ -18,15 +18,15 @@ class Scraper
     end
 
   def self.scrape_profile_page(profile_url)
-    array = self.scrape_index_page(open("./fixtures/student-site/index.html"))
-    profiles = array.map do |students|
-      students[:profile_url]
-    end
-   hash = profiles.map do |profile|
-      profile_hash = {linkedin: profile.css(".social-icon-container a"), github: profile.css(".social-icon-container a"), blog: profile.css(".social-icon-container a"), profile_quote: profile.css(".profile-quote")}
-    end
-    hash
+     profile = open(profile_url)
+      doc = Nokogiri::HTML(profile)
+      quote = doc.css(".profile-quote").text
+      bio = doc.css(".bio-content p").text
+      social_icons =  doc.css(".social-icon-container")
   end
+
+
+
 
 end
 
