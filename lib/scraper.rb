@@ -18,40 +18,56 @@ class Scraper
     end
 
   def self.scrape_profile_page(profile_url)
-     profile = open(profile_url)
-      doc = Nokogiri::HTML(profile)
-      social_icons = doc.css(".social-icon-container a img")
-      link = []
-      doc.map do |profile|
-        
-        link
-        twitter_icon = ""
-        linkedin_icon = ""
-        github_icon = ""
-        blog_icon = ""
-      link.map do |each_link|
-        if each_link.include?("twitter")
-          twitter_icon = each_link
-        elsif each_link.include?("linkedin")
-          linkedin_icon = each_link 
-        elsif each_link.include?("github")
-          github_icon = each_link
-        elsif each_link.include?("")
-        end
-      end
-      if profile.include?(twitter_icon)
-          social_icons.map do |links|
-          link << links["src"]
-        end
-        
-        
-             
-        # profile_hash = {twitter: social, linkedin: social, github: social, blog: social, profile_quote: profile.css(".profile-quote").text, bio: profile.css(".bio-content p").text}
-      #end
+    profile = open(profile_url)
+    doc = Nokogiri::HTML(profile)
+    social_icons = doc.css(".social-icon-container a img")
+    icon_link = []
+    link = []
+    social_icons.map do |links|
+      icon_link << links["src"]
+    end
+    social_links = doc.css(".social-icon-container a")
+    social_links.map do |links|
+      link << links["href"]
     end
     
-    binding.pry
+    twitter_icon = ""
+    linkedin_icon = ""
+    github_icon = ""
+    blog_icon = ""
+    icon_link.map do |each_icon|
+      if each_icon.include?("twitter")
+        twitter_icon = each_link
+      elsif each_icon.include?("linkedin")
+        linkedin_icon = each_link 
+      elsif each_icon.include?("github")
+        github_icon = each_link
+      elsif each_icon.include?("rss")
+        blog_icon = each_icon
+      end
     end
+    
+    twitter_link = ""
+    linkedin_link = ""
+    github_link = ""
+    blog_link = ""
+    
+    if twitter_icon
+      twitter_link = link[icon_link.index[twitter_icon]]
+    elsif linkedin_icon
+      linkedin_link = link[icon_link.index[linkedin_icon]]
+    elsif github_icon
+      github_link = link[icon_link.index[github_icon]]
+    elsif blog_icon
+      blog_link = link[icon_link.index[blog_icon]]
+    end
+      
+        
+    profile_hash = {twitter: twitter_link, linkedin: linkedin_link, github: github_link, blog: blog_link, profile_quote: profile.css(".profile-quote").text, bio: profile.css(".bio-content p").text}
+      
+    new_hash =profile_hash.delete_if{|key, value| value == nil}
+   end
+    
 
 
 end
