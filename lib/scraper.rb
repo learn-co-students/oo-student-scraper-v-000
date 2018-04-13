@@ -37,35 +37,55 @@ class Scraper
     blog_icon = ""
     icon_link.map do |each_icon|
       if each_icon.include?("twitter")
-        twitter_icon = each_link
-      elsif each_icon.include?("linkedin")
-        linkedin_icon = each_link 
-      elsif each_icon.include?("github")
-        github_icon = each_link
-      elsif each_icon.include?("rss")
+        twitter_icon = each_icon
+      else 
+        twitter_icon = nil 
+      end
+      if each_icon.include?("linkedin")
+        linkedin_icon = each_icon
+      else 
+        linkedin_icon = nil
+      end
+      if each_icon.include?("github")
+        github_icon = each_icon
+      else 
+        github_icon = nil
+      end
+      if each_icon.include?("rss")
         blog_icon = each_icon
+      else 
+        blog_icon = nil
       end
     end
-    
-    twitter_link = ""
-    linkedin_link = ""
-    github_link = ""
-    blog_link = ""
-    
-    if twitter_icon
-      twitter_link = link[icon_link.index[twitter_icon]]
-    elsif linkedin_icon
-      linkedin_link = link[icon_link.index[linkedin_icon]]
-    elsif github_icon
-      github_link = link[icon_link.index[github_icon]]
-    elsif blog_icon
-      blog_link = link[icon_link.index[blog_icon]]
-    end
+
+  if twitter_icon != nil 
+    twitter_link = link[icon_link.index(twitter_icon)]
+  else 
+    twitter_link = nil
+  end
+  if linkedin_icon != nil
+    linkedin_link = link[icon_link.index(linkedin_icon)]
+  else 
+    linkedin_link = nil
+  end 
+  if github_icon != nil
+    github_link = link[icon_link.index(github_icon)]
+  else 
+    github_link = nil
+  end
+  if blog_icon != nil
+    blog_link = link[icon_link.index(blog_icon)]
+  else 
+    blog_link = nil
+  end
+  
+ 
+  profile_hash = {twitter: twitter_link, linkedin: linkedin_link, github: github_link, blog: blog_link, profile_quote: doc.css(".profile-quote").text, bio: doc.css(".bio-content p").text}
       
-        
-    profile_hash = {twitter: twitter_link, linkedin: linkedin_link, github: github_link, blog: blog_link, profile_quote: profile.css(".profile-quote").text, bio: profile.css(".bio-content p").text}
-      
-    new_hash =profile_hash.delete_if{|key, value| value == nil}
+    new_hash = profile_hash.delete_if{|key, value| value == nil}
+    
+    new_hash
+    
    end
     
 
