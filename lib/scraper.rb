@@ -10,17 +10,23 @@ class Scraper
   def self.scrape_index_page(index_url)
     html = open('./fixtures/student-site/index.html')
     index_page = Nokogiri::HTML(html)
-    
+    # binding.pry
     
     students = []
     
-    index_page.css('.roster-body-wrapper').each do |student|
+    index_page.css('.student-card a').map do |student|
+     
     
-        :name => index_page.css('h4').children.text,
-        :location => index_page.css('.student-location').children.text,
-        :page_url => index_page.css('.student-card a').attribute('href').value
-    end    
-    binding.pry
+     name = student.css('h4').text
+     page_url = student.attribute('href').value
+     location = student.css('p').text
+      
+      name = {:name =>  name, :location => location , :page_url => page_url}
+      
+      students << name
+    
+    end
+  # binding.pry
     students
   end
 
@@ -29,4 +35,5 @@ class Scraper
   end
 
 end
+
 
