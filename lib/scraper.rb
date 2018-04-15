@@ -3,7 +3,7 @@ require 'pry'
 
 class Scraper
   
-  attr_accessor :name, :location, :page_url
+  attr_accessor :name, :location, :profile_url
   
  
 
@@ -21,7 +21,7 @@ class Scraper
      page_url = student.attribute('href').value
      location = student.css('p').text
       
-      name = {:name =>  name, :location => location , :page_url => page_url}
+      name = {:name =>  name, :location => location , :profile_url => page_url}
       
       students << name
     
