@@ -3,7 +3,7 @@ require 'pry'
 
 class Scraper
   
-  attr_accessor :name, :location, :profile_url, :twitter
+  attr_accessor :name, :location, :profile_url, #:twitter, :github, :linkedin, :other, :bio
   
  
 
@@ -11,13 +11,10 @@ class Scraper
     html = open(index_url)
    
     index_page = Nokogiri::HTML(html)
-    # binding.pry
-    
+
     students = []
     
     index_page.css('.student-card a').map do |student|
-     
-    
      name = student.css('h4').text
      page_url = student.attribute('href').value
      location = student.css('p').text
@@ -25,9 +22,7 @@ class Scraper
       name = {:name =>  name, :location => location , :profile_url => page_url}
       
       students << name
-    
     end
-  # binding.pry
     students
   end
 
@@ -42,24 +37,24 @@ class Scraper
       i+= 1
     end
 
-     social_media.each do | account|
-       binding.pry
-       case account.include? 
-         when 'twitter'
-           twitter = account
-          when 'linkedin'
-            linkedin =  account
-          when 'github'
-            github = account
+    student={}
+    student[:bio]= profile.css(".description-holder p").text
+    student[:profile_quote] = profile.css('.profile-quote').text
+    
+    social_media.map do | account|
+        if account.include? 'twitter'
+             student[:twitter] = account
+        elsif account.include? 'linkedin'
+              student[:linkedin] =  account
+        elsif account.include? 'github'
+             student[:github] = account
           else
-            other = account
-            binding.pry
+            student[:blog] = account
         end
-        
-    end    
-     
+    end  
+     student
   end
-
+  
 end
 
 
