@@ -3,7 +3,7 @@ require 'pry'
 
 class Scraper
   
-  attr_accessor :name, :location, :profile_url
+  attr_accessor :name, :location, :profile_url, :twitter
   
  
 
@@ -35,16 +35,29 @@ class Scraper
     html = open(profile_url)
     profile = Nokogiri::HTML(html)
     
+    social_media = []
+    i = 0
+    while i < profile.css('div.social-icon-container a').length
+      social_media << profile.css('div.social-icon-container a')[i].attribute('href').value
+      i+= 1
+    end
 
-    # binding.pry
-    twitter = profile.css('div.social-icon-container a')[0].attribute('href').value
-    linkedin = profile.css('div.social-icon-container a')[1].attribute('href').value
-    github = profile.css('div.social-icon-container a')[2].attribute('href').value
-    blog = profile.css('div.social-icon-container a')[3].attribute('href').value
-    
-  
-    
-    binding.pry
+     social_media.each do | account|
+       binding.pry
+       case account.include? 
+         when 'twitter'
+           twitter = account
+          when 'linkedin'
+            linkedin =  account
+          when 'github'
+            github = account
+          else
+            other = account
+            binding.pry
+        end
+        
+    end    
+     
   end
 
 end
