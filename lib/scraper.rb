@@ -3,9 +3,8 @@ require 'pry'
 
 class Scraper
   
-  attr_accessor :name, :location, :profile_url, #:twitter, :github, :linkedin, :other, :bio
-  
- 
+  attr_accessor :name, :location, :profile_url
+
 
   def self.scrape_index_page(index_url)
     html = open(index_url)
