@@ -31,32 +31,22 @@ class Scraper
       link << links["href"]
     end
     
-    twitter_icon = ""
-    linkedin_icon = ""
-    github_icon = ""
-    blog_icon = ""
+    twitter_icon = nil
+    linkedin_icon = nil
+    github_icon = nil
+    blog_icon = nil
     icon_link.map do |each_icon|
       if each_icon.include?("twitter")
         twitter_icon = each_icon
-      else 
-        twitter_icon = nil 
-      end
-      if each_icon.include?("linkedin")
+      elsif each_icon.include?("linkedin")
         linkedin_icon = each_icon
-      else 
-        linkedin_icon = nil
-      end
-      if each_icon.include?("github")
+      elsif each_icon.include?("github")
         github_icon = each_icon
-      else 
-        github_icon = nil
-      end
-      if each_icon.include?("rss")
+      elsif each_icon.include?("rss")
         blog_icon = each_icon
-      else 
-        blog_icon = nil
       end
     end
+ 
 
   if twitter_icon != nil 
     twitter_link = link[icon_link.index(twitter_icon)]
@@ -85,9 +75,8 @@ class Scraper
     new_hash = profile_hash.delete_if{|key, value| value == nil}
     
     new_hash
-    
-   end
-    
+
+end
 
 
 end
