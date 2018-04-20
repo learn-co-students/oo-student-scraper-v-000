@@ -29,12 +29,12 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     student = {}
     doc = Nokogiri::HTML(open(profile_url))
-    ddddddddd  =  doc.css(".description-holder").text
+    ddddddddd  =  doc.css("div.bio-content.content-holder div.description-holder p").text
     puts ddddddddd
    binding.pry
-  #  student[:bio]   =   doc.css.(".bio-content .description-holder, p").text
+    student[:bio]   =   doc.css.("div.bio-content.content-holder div.description-holder p").text
     student[:profile_quote] = doc.css("profile-quote").text
-
+   puts student
     social = doc.css("social-icon-container")
     social.each do |social|
       if social.include?("linkedin")
@@ -46,10 +46,9 @@ class Scraper
       else
         student[:blog] = link
       end
-      puts "student"
-      put student
+  #    puts "student"
   end
-    puts student
+  #  puts student
 end
 end
 #Scraper.scrape_index_page("fixtures/student-site/index.html")
