@@ -5,29 +5,52 @@ require 'pry'
 class Scraper
 
   def self.scrape_index_page(index_url)
+    studnt = []
     doc = Nokogiri::HTML(open(index_url))
     scraper_doc   = doc.css(".student-card a")
 
   #  binding.pry
        scraper_doc.each do |student|
-
-         name = student.css(".student-name").text
-         location = student.css(".student-location").text
-          profile_url = student.attr("href")
-          puts "name                     "  + name
-          puts  "location                "  + location
-          puts  profile_url
+         studnt <<
+         {
+         :name =>  student.css(".student-name").text,
+         :location =>  student.css(".student-location").text,
+          :profile_url =>  student.attr("href")
+        }
+      #    puts "name                     "  + name
+      #    puts  "location                "  + location
+      #    puts  profile_url
 
 #
     end
-#
+    puts studnt
   end
 
   def self.scrape_profile_page(profile_url)
+    student = {}
     doc = Nokogiri::HTML(open(profile_url))
+    ddddddddd  =  doc.css(".description-holder").text
+    puts ddddddddd
+   binding.pry
+  #  student[:bio]   =   doc.css.(".bio-content .description-holder, p").text
+    student[:profile_quote] = doc.css("profile-quote").text
 
+    social = doc.css("social-icon-container")
+    social.each do |social|
+      if social.include?("linkedin")
+        student[:linkedin] = link
+      elsif social.include?("github")
+        student[:github] = link
+      elsif social.include?("twitter")
+        student[:twitter] = link
+      else
+        student[:blog] = link
+      end
+      puts "student"
+      put student
   end
-
+    puts student
 end
-
-Scraper.scrape_index_page("fixtures/student-site/index.html")
+end
+#Scraper.scrape_index_page("fixtures/student-site/index.html")
+Scraper.scrape_profile_page("fixtures/student-site/students/ryan-johnson.html")
