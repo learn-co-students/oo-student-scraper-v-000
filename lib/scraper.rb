@@ -44,7 +44,7 @@ class Scraper
       student[:blog] = linkurl
     end
   end
-  puts student
+  student
 end
 end
 #Scraper.scrape_index_page("fixtures/student-site/index.html")
