@@ -16,46 +16,36 @@ class Scraper
           :profile_url =>  student_row.attr("href")
         }
     end
-      puts student
+      student
   end
 
   def self.scrape_profile_page(profile_url)
     student = {}
     doc = Nokogiri::HTML(open(profile_url))
-    ddddddddd  =  doc.css("div.bio-content.content-holder div.description-holder p").text
-  # binding.pry
-   student[:bio]   =   doc.css("div.bio-content.content-holder div.description-holder p").text
-   links = doc.css(".social-icon-container").children.css("a").map { |el| el.attribute('href').value
-    puts links
-     }
-    puts links
+    student[:bio]   =   doc.css("div.bio-content.content-holder div.description-holder p").text
+    student[:profile_quote] = doc.css(".profile-quote").text
 
-  student[:profile_quote] = doc.css(".profile-quote").text
-  # puts student
     social_link = doc.css(".social-icon-container a")
-    puts social_link
-    ddd = []
-    social_link.each do |social|
-    #S   puts social
-       puts " "
 
-       ddd << social.attr("href")
-       puts ddd
-     end
-      ddd.each do |dd|
-      if dd.include?("linkedin")
-        student[:linkedin] = dd
-      elsif dd.include?("github")
-        student[:github] = dd
-      elsif dd.include?("twitter")
-        student[:twitter] = dd
-      else
-        student[:blog] = dd
-      end
-  #    puts "student"
+    # Extract all URL of all social links
+    social_link_array = []
+    social_link.each do |social|
+      social_link_array << social.attr("href")
+    end
+
+    social_link_array.each do |linkurl|
+    if linkurl.include?("linkedin")
+      student[:linkedin] = linkurl
+    elsif linkurl.include?("github")
+      student[:github] = linkurl
+    elsif linkurl.include?("twitter")
+      student[:twitter] = linkurl
+    else
+      student[:blog] = linkurl
+    end
   end
   puts student
 end
 end
-Scraper.scrape_index_page("fixtures/student-site/index.html")
-#Scraper.scrape_profile_page("fixtures/student-site/students/ryan-johnson.html")
+#Scraper.scrape_index_page("fixtures/student-site/index.html")
+Scraper.scrape_profile_page("fixtures/student-site/students/ryan-johnson.html")
