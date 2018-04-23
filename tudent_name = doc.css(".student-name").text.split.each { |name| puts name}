@@ -1,0 +1,26 @@
+
+[1mFrom:[0m /home/Pamela454/oo-student-scraper-v-000/lib/scraper.rb @ line 11 Scraper.scrape_index_page:
+
+     [1;34m9[0m: [32mdef[0m [1;36mself[0m.[1;34mscrape_index_page[0m(index_url) [1;34m#scrapes the index page[0m
+    [1;34m10[0m:   doc = [1;34;4mNokogiri[0m::HTML(open([31m[1;31m'[0m[31m./fixtures/student-site/index.html[1;31m'[0m[31m[0m))
+ => [1;34m11[0m:   binding.pry
+    [1;34m12[0m:   [1;34m#return an array of hashes[0m
+    [1;34m13[0m:   [1;34m#each hash is a student[0m
+    [1;34m14[0m:   [1;34m#each student has a name, location, and link[0m
+    [1;34m15[0m:   student_index_array = []
+    [1;34m16[0m:   single_student = {}
+    [1;34m17[0m:   [1;34m#initially create a hash for each student. Then put them in an array.[0m
+    [1;34m18[0m: 
+    [1;34m19[0m:   doc.([31m[1;31m"[0m[31mstudent-card[1;31m"[0m[31m[0m).each [32mdo[0m | card |
+    [1;34m20[0m:     student_name = doc.css([31m[1;31m"[0m[31m.student-name[1;31m"[0m[31m[0m).text.split.each { |name| puts name}
+    [1;34m21[0m:     student_location = doc.css([31m[1;31m"[0m[31m.student-location[1;31m"[0m[31m[0m).text.scan([35m[1;35m/[0m[35m[A-Z][a-z]+[1;35m/[0m[35m[0m).each { |location| puts location }
+    [1;34m22[0m:     student_url = doc.css([31m[1;31m"[0m[31m.student-card[1;31m"[0m[31m[0m).css.([31m[1;31m"[0m[31ma[attr=href][1;31m"[0m[31m[0m).each { | u | puts u }
+    [1;34m23[0m: 
+    [1;34m24[0m:   [32mend[0m
+    [1;34m25[0m: 
+    [1;34m26[0m:   single_student[[33m:name[0m]
+    [1;34m27[0m:   single_student[[33m:location[0m]
+    [1;34m28[0m:   single_student[[33m:profile_url[0m]
+    [1;34m29[0m:   [1;34m#puts link("[href]").each[0m
+    [1;34m30[0m: [32mend[0m
+
