@@ -42,7 +42,6 @@ class Scraper
     student_hash[:profile_quote] = document.css(".profile-quote").text
     student_hash[:bio] = document.css("p")[0].text
     student_hash
-    binding.pry
   end
 
 
