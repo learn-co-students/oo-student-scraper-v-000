@@ -25,31 +25,22 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     profile = Nokogiri::HTML(open(profile_url))
 
-    # scraped_student = {
-    #   bio: profile.search(".bio-block .description-holder p").text,
-
-    #   blog: profile_url,
-
-    #   github: "",
-
-    #   linkedin: "",
-
-    #   profile_quote: profile.search(".profile-quote").text,
-
-    #   twitter: ""
-    # }
     scraped_student = {
-      
+      bio: profile.search(".bio-block .description-holder p").text,
+      blog: profile_url,
+      profile_quote: profile.search(".profile-quote").text,
     }
+    
     profile.search(".social-icon-container a").each do |link|
       if link.attribute('href').include? "github.com"
-        binding.pry
-        link.attribute('href').to_s
+        scraped_student[:github] = link.attribute('href').to_s
       elsif link.attribute('href').include? "linkedin.com"
-
+        scraped_student[:linkedin] = link.attribute('href').to_s
+      elsif link.attribute('href').include? "twitter.com"
+        scraped_student[:twitter] = link.attribute('href').to_s
       end
     end
-    hash[:key] = "value"
+    
     scraped_student
   end
 
