@@ -20,7 +20,24 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
+    html = open(profile_url)
+    document = Nokogiri::HTML(html)
+    student_hash = Hash.new
     
+    i = 0 
+    while i < 6
+    if document.css("a")[i]["href"].match(/.*twitter.com.*/) 
+        student_hash[:twitter] = url
+    end 
+  end
+    # student_hash[:twitter] =
+    # student_hash[:linkedin] = 
+    # student_hash[:github] =
+    # student_hash[:blog] = 
+    # student_hash[:profile_quote] = document.css(".profile-quote").text
+    # student_hash[:bio] = document.css("p")[0].text
+    # student_hash
+    binding.pry
   end
 
 end
