@@ -29,18 +29,27 @@ class Scraper
       bio: profile.search(".bio-block .description-holder p").text,
       blog: profile_url,
       profile_quote: profile.search(".profile-quote").text,
+      github: 
+        profile.search(".social-icon-container a").each do |link|
+          
+          if link.attribute('href').include? "github.com"
+            link.attribute('href')
+          end
+        end,
+      linkedin: 
+        profile.search(".social-icon-container a").each do |link|
+          if link.attribute('href').include? "linkedin.com"
+            link.attribute('href')
+          end
+        end,
+      twitter: 
+        profile.search(".social-icon-container a").each do |link|
+          if link.attribute('href').include? "twitter.com"
+            link.attribute('href')
+          end
+        end
     }
-    
-    profile.search(".social-icon-container a").each do |link|
-      if link.attribute('href').include? "github.com"
-        scraped_student[:github] = link.attribute('href').to_s
-      elsif link.attribute('href').include? "linkedin.com"
-        scraped_student[:linkedin] = link.attribute('href').to_s
-      elsif link.attribute('href').include? "twitter.com"
-        scraped_student[:twitter] = link.attribute('href').to_s
-      end
-    end
-    
+  
     scraped_student
   end
 
