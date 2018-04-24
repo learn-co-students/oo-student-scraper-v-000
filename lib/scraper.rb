@@ -24,14 +24,14 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     profile = Nokogiri::HTML(open(profile_url))
-
+#comment
     scraped_student = {
       bio: profile.search(".bio-block .description-holder p").text,
       blog: profile_url,
       profile_quote: profile.search(".profile-quote").text,
       github: 
         profile.search(".social-icon-container a").each do |link|
-          
+
           if link.attribute('href').include? "github.com"
             link.attribute('href')
           end
