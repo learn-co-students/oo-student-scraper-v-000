@@ -24,32 +24,34 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     profile = Nokogiri::HTML(open(profile_url))
+
 #comment
     scraped_student = {
-      bio: profile.search(".bio-block .description-holder p").text,
-      blog: profile_url,
-      profile_quote: profile.search(".profile-quote").text,
-      github: 
-        profile.search(".social-icon-container a").each do |link|
+      # bio: profile.search(".bio-block .description-holder p").text,
+      # blog: profile_url,
+      # profile_quote: profile.search(".profile-quote").text,
+      # github: "",
+      # linkedin: "",
+      # twitter: ""
 
-          if link.attribute('href').include? "github.com"
-            link.attribute('href')
-          end
-        end,
-      linkedin: 
-        profile.search(".social-icon-container a").each do |link|
-          if link.attribute('href').include? "linkedin.com"
-            link.attribute('href')
-          end
-        end,
-      twitter: 
-        profile.search(".social-icon-container a").each do |link|
-          if link.attribute('href').include? "twitter.com"
-            link.attribute('href')
-          end
-        end
     }
-  
+    scraped_student[:bio] = profile.search(".bio-block .description-holder p").text
+
+    scraped_student[:profile_quote] = profile.search(".profile-quote").text
+
+    
+    profile.search(".social-icon-container a").each do |link|
+      if link['href'].include? "github.com"
+        scraped_student[:github] = link['href']
+      elsif link['href'].include? "linkedin.com"
+        scraped_student[:linkedin] = link['href']
+      elsif link['href'].include? "twitter.com"
+        scraped_student[:twitter] = link['href']
+      else 
+        scraped_student[:blog] = link['href']
+      end
+    end
+
     scraped_student
   end
 
