@@ -16,7 +16,6 @@ class Scraper
      student_hashes << temp_hash
       end 
    student_hashes
-   #binding.pry
   end
 
   def self.scrape_profile_page(profile_url)
@@ -25,20 +24,29 @@ class Scraper
     student_hash = Hash.new
     
     i = 0 
-    while i < 6
-    if document.css("a")[i]["href"].match(/.*twitter.com.*/) 
-        student_hash[:twitter] = url
-    end 
-  end
-    # student_hash[:twitter] =
-    # student_hash[:linkedin] = 
-    # student_hash[:github] =
-    # student_hash[:blog] = 
-    # student_hash[:profile_quote] = document.css(".profile-quote").text
-    # student_hash[:bio] = document.css("p")[0].text
-    # student_hash
+    while i < 8
     binding.pry
+    current_link = document.css("a")[i]["href"]
+    if current_link != ""
+      if current_link.match(/.*twitter.com.*/) 
+        student_hash[:twitter] = current_link
+      elsif current_link.match(/.*linkedin.com.*/) 
+        student_hash[:linkedin] = current_link
+      elsif current_link.match(/.*github.com.*/) 
+        student_hash[:github] = current_link
+      else 
+         student_hash[:blog] = document.css("a")[i]["href"]
+      end 
+      i += 1
+    end
+  end 
+    
+    student_hash[:profile_quote] = document.css(".profile-quote").text
+    student_hash[:bio] = document.css("p")[0].text
+    student_hash
   end
 
+
 end
+
 
