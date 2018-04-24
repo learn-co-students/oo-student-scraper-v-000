@@ -23,10 +23,10 @@ class Scraper
     document = Nokogiri::HTML(html)
     student_hash = Hash.new
  
-     i = 1
-    while i < 8
+    i = 1
+    while i <= 8
+    if document.css("a")[i] != nil
     current_link = document.css("a")[i]["href"]
-    if current_link != ""
       if current_link.match(/.*twitter.com.*/) 
         student_hash[:twitter] = current_link
       elsif current_link.match(/.*linkedin.com.*/) 
@@ -42,6 +42,7 @@ class Scraper
     student_hash[:profile_quote] = document.css(".profile-quote").text
     student_hash[:bio] = document.css("p")[0].text
     student_hash
+    binding.pry
   end
 
 
