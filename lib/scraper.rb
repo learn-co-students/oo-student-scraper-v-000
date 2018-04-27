@@ -1,4 +1,4 @@
-require pry
+#require pry
 require_relative '../config.rb'
 
 
@@ -24,20 +24,22 @@ class Scraper
 
     page = Nokogiri::HTML(open(profile_url))
     social_links = page.css(".vitals-container").css("a")
+    #binding.pry
 
     social_links.each do |link|
-      href = link.css("a").attribute('href').to_s
+      href = link.attribute('href').to_s
 
-      key = link_type(href)
+      key = self.link_type(href)
       rtn[key] = href
     end
     rtn
   end
-private
 
-  def link_type(link_text)
+private
+  def self.link_type(link_text)
     return :twitter if link_text.match?(/\A^http:\/\/.?twitter.com\/[.]*/)
     return :github if link_text.match?(/\A^http:\/\/.?github.com\/[.]*/)
     return :linkedin if link_text.match?(/\A^http:\/\/.?linkedin.com\/[.]*/)
+    nil
   end
 end
