@@ -36,7 +36,7 @@ class Scraper
     quote = page.css(".vitals-text-container").css(".profile-quote").text
     rtn[:profile_quote] = quote
 
-    bio = page.css(".bio-content content-holder").css(".description-holder").css("p").text
+    bio = page.css("p").text
     rtn[:bio] = bio
 
     rtn
