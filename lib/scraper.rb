@@ -12,7 +12,7 @@ class Scraper
       add = {}
       add[:name] = card.css(".student-name").text
       add[:location] = card.css(".student-location").text
-      add[:url] = card.css("a").attribute('href').to_s
+      add[:profile_url] = card.css("a").attribute('href').to_s
       rtn << add
     end
     rtn
