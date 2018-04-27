@@ -3,7 +3,7 @@ require_relative '../config.rb'
 
 class Scraper
 
-  def self.scrape_index_page(index_url = "http://192.241.157.192:47859/fixtures/student-site/")
+  def self.scrape_index_page(index_url)
     rtn = []
 
     page = Nokogiri::HTML(open(index_url))
@@ -12,7 +12,7 @@ class Scraper
       add = {}
       add[:name] = card.css(".student-name").text
       add[:location] = card.css(".student-location").text
-      add[:url] = card.css("a").url
+      add[:url] = card.css("a").attribute('href').to_s
       rtn << add
     end
     rtn
