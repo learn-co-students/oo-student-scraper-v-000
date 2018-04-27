@@ -44,8 +44,7 @@ class Scraper
 
 private
   def self.link_type(link)
-    uniq = link.attribute('src').to_s
-    puts uniq
+    uniq = link.css("img").attribute('src').value.to_s
 
     return :twitter if !!uniq.match(/\A^.*twitter-icon\.png$\z/i)
     return :github if !!uniq.match(/\A^.*github-icon\.png$\z/i)
