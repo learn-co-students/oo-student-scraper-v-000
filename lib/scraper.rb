@@ -37,9 +37,9 @@ class Scraper
 
 private
   def self.link_type(link_text)
-    return :twitter if link_text.match?(/\A^http:\/\/.?twitter.com\/[.]*/)
-    return :github if link_text.match?(/\A^http:\/\/.?github.com\/[.]*/)
-    return :linkedin if link_text.match?(/\A^http:\/\/.?linkedin.com\/[.]*/)
+    return :twitter if !!link_text.match(/\A^http:\/\/.?twitter.com\/[.]*/)
+    return :github if !!link_text.match(/\A^http:\/\/.?github.com\/[.]*/)
+    return :linkedin if !!link_text.match(/\A^http:\/\/.?linkedin.com\/[.]*/)
     nil
   end
 end
