@@ -24,7 +24,9 @@ class Student
 
 private
   def set_from_hash(stud_hash, stud = self)
+    puts "Stud: " + stud_hash[:name].to_s
     stud_hash.each_pair do |k, v|
+      puts "Key: " + k.to_s
       stud.send(("#{k.to_s}="), v)
     end
   end

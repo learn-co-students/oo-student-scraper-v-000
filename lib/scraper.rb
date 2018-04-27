@@ -14,12 +14,12 @@ class Scraper
       add[:name] = card.css(".student-name").text
       add[:location] = card.css(".student-location").text
       add[:profile_url] = card.css("a").attribute('href').to_s
-      rtn << add
+      rtn << add if !!add[:name]
     end
     rtn
   end
 
-  def self.scrape_profile_page(profile_url  = "http://159.89.225.105:46862/fixtures/student-site/students/heber-sandoval.html")
+  def self.scrape_profile_page(profile_url)
     rtn = {}
 
     page = Nokogiri::HTML(open(profile_url))
@@ -30,7 +30,7 @@ class Scraper
       href = link.attribute('href').to_s
 
       key = self.link_type(link)
-      rtn[key] = href
+      rtn[key] = href if !!key
     end
 
     quote = page.css(".vitals-text-container").css(".profile-quote").text
