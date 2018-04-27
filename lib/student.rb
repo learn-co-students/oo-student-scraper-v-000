@@ -6,17 +6,7 @@ class Student
 
   def initialize(student_hash)
     self.class.all << self
-
     set_from_hash(student_hash)
-    # self.name = student_hash[:name]
-    # self.location = student_hash[:location]
-    # self.twitter = student_hash[:twitter]
-    # self.linkedin = student_hash[:linkedin]
-    # self.github = student_hash[:github]
-    # self.blog = student_hash[:blog]
-    # self.profile_url = student_hash[:profile_url]
-    # self.bio = student_hash[:bio]
-    # self.profile_quote = student_hash[:profile_quote]
   end
 
   def self.create_from_collection(students_array)
@@ -25,6 +15,7 @@ class Student
 
   def add_student_attributes(attributes_hash)
     set_from_hash(attributes_hash)
+    self
   end
 
   def self.all
@@ -34,8 +25,7 @@ class Student
 private
   def set_from_hash(stud_hash, stud = self)
     stud_hash.each_pair do |k, v|
-      puts "Key: " + k
-      stud.send(("#{key}="), v)
+      stud.send(("#{k.to_s}="), v)
     end
   end
 end
