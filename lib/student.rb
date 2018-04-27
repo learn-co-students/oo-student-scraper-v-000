@@ -13,7 +13,7 @@ class Student
     self.github = student_hash[:github]
     self.blog = student_hash[:blog]
     self.profile_url = student_hash[:profile_url]
-    self.bio =  = student_hash[:bio]
+    self.bio = student_hash[:bio]
     self.profile_quote = student_hash[:profile_quote]
   end
 
