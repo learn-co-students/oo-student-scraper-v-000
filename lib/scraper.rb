@@ -18,7 +18,7 @@ class Scraper
     rtn
   end
 
-  def self.scrape_profile_page(profile_url)
+  def self.scrape_profile_page(profile_url  = "http://192.241.157.192:47859/fixtures/student-site/students/ryan-johnson.html")
 
   end
 
