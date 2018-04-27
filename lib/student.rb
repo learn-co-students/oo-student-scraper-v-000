@@ -29,4 +29,11 @@ class Student
   def self.all
     @@all
   end
+
+private
+  def set_from_hash(stud_hash, stud = self)
+    stud_hash.each_pair do |k, v|
+      stud.send k.to_s + "=", v
+    end
+  end
 end
