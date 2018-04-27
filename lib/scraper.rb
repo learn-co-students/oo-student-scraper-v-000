@@ -29,17 +29,28 @@ class Scraper
     social_links.each do |link|
       href = link.attribute('href').to_s
 
-      key = self.link_type(href)
+      key = self.link_type(link)
       rtn[key] = href
     end
+
+    quote = page.css(".vitals-text-container").css(".profile-quote").text
+    rtn[:profile_quote] = quote
+
+    bio = page.css(".bio-content content-holder").css(".description-holder").css("p").text
+    rtn[:bio] = bio
+
     rtn
   end
 
 private
-  def self.link_type(link_text)
-    return :twitter if !!link_text.match(/\A^http:\/\/.?twitter.com\/[.]*/)
-    return :github if !!link_text.match(/\A^http:\/\/.?github.com\/[.]*/)
-    return :linkedin if !!link_text.match(/\A^http:\/\/.?linkedin.com\/[.]*/)
+  def self.link_type(link)
+    uniq = link.attribute('src').to_s
+    puts uniq
+
+    return :twitter if !!uniq.match(/\A^.*twitter-icon\.png$\z/i)
+    return :github if !!uniq.match(/\A^.*github-icon\.png$\z/i)
+    return :linkedin if !!uniq.match(/\A^.*linkedin-icon\.png$\z/i)
+    return :blog if !!uniq.match(/\A^.*rss-icon\.png$\z/i)
     nil
   end
 end
