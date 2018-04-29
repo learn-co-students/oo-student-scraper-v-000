@@ -13,8 +13,9 @@ class Student
   @@all = []
 
   def initialize(student_hash)
-    @name = student_hash[:name]
-    @location = student_hash[:location]
+    student_hash.each do |attribute, value|
+      self.send("#{attribute}=", value)
+    end
     @@all << self
   end
 
@@ -23,9 +24,10 @@ class Student
   end
 
   def add_student_attributes(attributes_hash)
-     attributes_hash.each do |attr, value|
+    attributes_hash.each do |attr, value|
       self.send("#{attr}=", value)
     end
+    self
   end
 
   def self.all
