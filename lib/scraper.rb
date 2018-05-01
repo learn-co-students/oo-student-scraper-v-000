@@ -28,13 +28,14 @@ end
   def self.scrape_profile_page(profile_url)
     student_hash = {}
     doc = Nokogiri::HTML(open(profile_url))
-    binding.pry
+    #binding.pry
+    #doc.css(".social-icon-container a").attribute("//twitter.com/").value
     doc.css(".social-icon-container").each do |social|
       if social != nil
-        student_hash[:twitter] = social.css("a")[0].attribute("href").value 
-        student_hash[:linkedin] = social.css("a")[1].attribute("href").value 
-        student_hash[:github] = social.css("a")[2].attribute("href").value 
-        student_hash[:blog] = social.css("a")[3].attribute("href").value 
+        student_hash[:twitter] = social.css("a")[0].text
+        student_hash[:linkedin] = social.css("a")[1].attr("href").value 
+        student_hash[:github] = social.css("a")[2].attr("href").value 
+        student_hash[:blog] = social.css("a")[3].attr("href").value 
       end
     doc.css(".vitals-text-container").each do |quote|
       if quote != nil 
@@ -44,7 +45,7 @@ end
       if bio != nil
         student_hash[:bio] = bio.css(".bio-content p").text 
       end
-        end
+     end
       end
     end
     student_hash
