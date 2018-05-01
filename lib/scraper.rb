@@ -8,6 +8,9 @@ class Scraper
     Nokogiri::HTML(open("./fixtures/student-site/index.html"))
   end
   
+  def self.get_page_2
+    Nokogiri::HTML(open("./fixtures/student-site/students/joe-burgess.html"))
+  end
   def self.scrape_index_page(index_url)
     doc = self.get_page
     array = []
@@ -21,22 +24,29 @@ class Scraper
   end
   array
 end
+
   def self.scrape_profile_page(profile_url)
+    student_hash = {}
+    doc = Nokogiri::HTML(open(profile_url))
     binding.pry
-    doc = Nokogiri::HTML(open("./fixtures/student-site/students/joe-burgess.html"))
-    doc.css(".student-card").each do |student|
-      hash_profile = {
-        :linkedin => student.css("a").attribute("href").value
-
-        # ("https://linkedin.com"),
-        # :github => student.css("https://github.com"),
-        # :blog => student.css("http://flatironschool.com"),
-        # :profile_quote => student.css("p").text,
-        # :bio => student.css("p").text
-      }
+    doc.css(".social-icon-container").each do |social|
+      if social != nil
+        student_hash[:twitter] = social.css("a")[0].attribute("href").value 
+        student_hash[:linkedin] = social.css("a")[1].attribute("href").value 
+        student_hash[:github] = social.css("a")[2].attribute("href").value 
+        student_hash[:blog] = social.css("a")[3].attribute("href").value 
+      end
+    doc.css(".vitals-text-container").each do |quote|
+      if quote != nil 
+        student_hash[:profile_quote] = quote.css(".profile-quote").text 
+      end
+    doc.css(".details-container").each do |bio|
+      if bio != nil
+        student_hash[:bio] = bio.css(".bio-content p").text 
+      end
+        end
+      end
     end
-hash_profile
+    student_hash
   end
-
 end
-
