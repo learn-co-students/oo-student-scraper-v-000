@@ -35,13 +35,19 @@ class Scraper
     #initializes student_profile as a has
     scraped_student = {}
 
-    #scrapes the bio and assigns to student
+    #scrape the bio and profile quote from vitals-container
     scraped_student[:bio] = infos.css('.details-container').css('p').text
+    scraped_student[:profile_quote] = infos.css('.vitals-container').css('.profile-quote').text
 
     #assign all the social media attributes
+
     infos.css('.vitals-container').each do |attribute|
 
-      scraped_student[:profile_quote] = attribute.css('.profile-quote').text
+
+
+      #go through each social media link and add attribute
+      social_medias = attribute.css
+
       scraped_student[:twitter] = attribute.css('a')[0]['href']
       scraped_student[:linkedin] = attribute.css('a')[1]['href']
       scraped_student[:github] = attribute.css('a')[2]['href'] unless attribute.css('a')[2] == nil
