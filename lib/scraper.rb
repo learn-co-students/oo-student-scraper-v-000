@@ -50,19 +50,18 @@ class Scraper
       #gets the domain name from the host
       host.start_with?('www.') ? domain = host.split('.')[1] : domain = host.split('.')[0]
 
-      #assigns the attribute of the domain to the url
-      scraped_student[domain.to_sym] = url
+      #checks if domain is in known social media types
+      known_domains = ['twitter', 'github', 'linkedin']
+
+      if known_domains.include?(domain)
+        #assigns the attribute of the domain to the url
+        scraped_student[domain.to_sym] = url
+      else
+        #assigns blog attribute
+        scraped_student[:blog] = url
+      end
     end
 
-
-
-      #go through each social media link and add attribute
-      # social_medias = attribute.css
-      #
-      # scraped_student[:twitter] = attribute.css('a')[0]['href']
-      # scraped_student[:linkedin] = attribute.css('a')[1]['href']
-      # scraped_student[:github] = attribute.css('a')[2]['href'] unless attribute.css('a')[2] == nil
-      # scraped_student[:blog] = attribute.css('a')[3]['href'] unless attribute.css('a')[3] == nil
 
     scraped_student
   end
