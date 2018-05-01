@@ -40,19 +40,30 @@ class Scraper
     scraped_student[:profile_quote] = infos.css('.vitals-container').css('.profile-quote').text
 
     #assign all the social media attributes
+    infos.css('.social-icon-container').css('a').each do |icon|
+      #return the url
+      url = icon['href']
 
-    infos.css('.vitals-container').each do |attribute|
+      #return just the host for example "http://twitter.com" -> 'twitter.com'
+      host = URI.parse(url).host
+
+      #gets the domain name from the host
+      host.start_with?('www.') ? domain = host.split('.')[1] : domain = host.split('.')[0]
+
+      #assigns the attribute of the domain to the url
+      scraped_student[domain.to_sym] = url
+    end
 
 
 
       #go through each social media link and add attribute
-      social_medias = attribute.css
+      # social_medias = attribute.css
+      #
+      # scraped_student[:twitter] = attribute.css('a')[0]['href']
+      # scraped_student[:linkedin] = attribute.css('a')[1]['href']
+      # scraped_student[:github] = attribute.css('a')[2]['href'] unless attribute.css('a')[2] == nil
+      # scraped_student[:blog] = attribute.css('a')[3]['href'] unless attribute.css('a')[3] == nil
 
-      scraped_student[:twitter] = attribute.css('a')[0]['href']
-      scraped_student[:linkedin] = attribute.css('a')[1]['href']
-      scraped_student[:github] = attribute.css('a')[2]['href'] unless attribute.css('a')[2] == nil
-      scraped_student[:blog] = attribute.css('a')[3]['href'] unless attribute.css('a')[3] == nil
-    end
     scraped_student
   end
 
