@@ -60,6 +60,8 @@ class Scraper
         #assigns blog attribute
         scraped_student[:blog] = url
       end
+
+
     end
 
 
