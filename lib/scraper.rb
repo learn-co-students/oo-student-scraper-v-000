@@ -30,24 +30,26 @@ end
     doc = Nokogiri::HTML(open(profile_url))
     #binding.pry
     #doc.css(".social-icon-container a").attribute("//twitter.com/").value
-    doc.css(".social-icon-container").each do |social|
-      if social != nil
-        student_hash[:twitter] = social.css("a")[0].text
-        student_hash[:linkedin] = social.css("a")[1].attr("href").value 
-        student_hash[:github] = social.css("a")[2].attr("href").value 
-        student_hash[:blog] = social.css("a")[3].attr("href").value 
+    #binding.pry
+      doc.css(".social-icon-container").children.css("a").each do |social|
+      #binding.pry
+      if social.attr("href").include?("twitter")
+        student_hash[:twitter] = social.attr("href")
+      elsif social.attr("href").include?("linkedin")
+        student_hash[:linkedin] = social.attr("href") 
+      elsif social.attr("href").include?("github")
+        student_hash[:github] = social.attr("href")
+      else 
+        student_hash[:blog] = social.attr("href")
       end
-    doc.css(".vitals-text-container").each do |quote|
-      if quote != nil 
+      #if (".vitals-text-container")
+      doc.css(".vitals-text-container").each do |quote|
         student_hash[:profile_quote] = quote.css(".profile-quote").text 
-      end
-    doc.css(".details-container").each do |bio|
-      if bio != nil
+      doc.css(".details-container").each do |bio|
         student_hash[:bio] = bio.css(".bio-content p").text 
       end
-     end
-      end
     end
-    student_hash
   end
+      student_hash
+end
 end
