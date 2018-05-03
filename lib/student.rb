@@ -5,15 +5,17 @@ class Student
   @@all = []
 
   def initialize(student_hash)
-    self.send("name=", student_hash[:name])
-    self.send("location=", student_hash[:location])
-    self.send("twitter=", student_hash[:twitter])
-    self.send("linkedin=", student_hash[:linkedin])
-    self.send("github=", student_hash[:github])
-    self.send("blog=", student_hash[:blog])
-    self.send("profile_quote=", student_hash[:profile_quote])
-    self.send("bio=", student_hash[:bio])
-    self.send("profile_url=", student_hash[:profile_url])
+    # self.send("name=", student_hash[:name])
+    # self.send("location=", student_hash[:location])
+    # self.send("twitter=", student_hash[:twitter])
+    # self.send("linkedin=", student_hash[:linkedin])
+    # self.send("github=", student_hash[:github])
+    # self.send("blog=", student_hash[:blog])
+    # self.send("profile_quote=", student_hash[:profile_quote])
+    # self.send("bio=", student_hash[:bio])
+    # self.send("profile_url=", student_hash[:profile_url])
+
+    student_hash.each{|k, v| self.send("#{k}", v)}
 
     @@all << self
   end
