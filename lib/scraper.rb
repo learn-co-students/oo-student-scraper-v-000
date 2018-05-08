@@ -4,10 +4,23 @@ require 'pry'
 class Scraper
 
   def self.scrape_index_page(index_url)
-    
+    html = open(index_url)
+    page = Nokogiri::HTML(html)
+    students = []
+    page.css("div.roster-cards-container").each do |student_card|
+    binding.pry
+      student = {
+        :name => student_card.css("div.student-name")
+        # :location =>
+        # :profile_url =>
+      }
+      students << student
+    end
+    students
   end
 
   def self.scrape_profile_page(profile_url)
+
     
   end
 
