@@ -12,7 +12,7 @@ class Scraper
       student = {
         :name => student_card.css("div.student-name")
         :location => student_card.css("p.student-location")
-        :profile_url =>("div.view-profile-div")
+        :profile_url => student_card.css("div.view-profile-div")
       }
       students << student
     end
