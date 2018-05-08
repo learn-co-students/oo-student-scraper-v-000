@@ -11,8 +11,8 @@ class Scraper
     binding.pry
       student = {
         :name => student_card.css("div.student-name")
-        # :location =>
-        # :profile_url =>
+        :location => student_card.css("p.student-location")
+        :profile_url =>("div.view-profile-div")
       }
       students << student
     end
