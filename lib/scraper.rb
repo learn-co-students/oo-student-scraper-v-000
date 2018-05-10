@@ -30,9 +30,10 @@ class Scraper
         :github => social_link.css("a").select{|link| link["href"].include?("github")}
       }
     end
-    
-      binding.pry
-    end
+    social_links[:profile_quote] => ("div.vitals-text-container div")
+    social_links[:bio] => page.css("div.description-holder p")
+    social_links
+    binding.pry
   end
         
       
