@@ -25,12 +25,13 @@ class Scraper
     social_links = page.css("div.social-icon-container a")
     social_link_hash = {}
     social_links.each do |social_link|
-      if social_link
-      social_link_hash[:twitter] = {
-        :twitter => social_link.select{|link| link["href"].include?("twitter")},
-        :linkedin => social_link.css("a").select{|link| link["href"].include?("linkedin")},
-        :github => social_link.css("a").select{|link| link["href"].include?("github")}
-      }
+      if social_link.attribute('href').value.include?("twitter")
+        social_link_hash[:twitter] = social_link.attribute('href').value
+      elsif social_link.attribute('href').value.include?("linkedin")
+        social_link_hash[:linkedin] = social_link.attribute('href').value
+      elsif social_link.attribute('href').value.include?("github")
+        social_link_hash[:github] = social_link.attribute('href').value
+      end
     end
     social_link_hash[:profile_quote] = page.css("div.vitals-text-container div")
     social_link_hash[:bio] = page.css("div.description-holder p")
