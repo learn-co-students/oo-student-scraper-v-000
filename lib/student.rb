@@ -16,15 +16,13 @@ class Student
   end
 
   def add_student_attributes(attributes_hash)
-    binding.pry
-    @blog = student_hash[:blog]
-    @twitter = student_hash[:twitter]
-    @linkedin = student_hash[:linkedin]
-    @profile_url = student_hash[:profile_url]
-    @profile_quote = student_hash[:profile_quote]
-    @github = student_hash[:github]
-    @bio = student_hash[:bio]
-
+    @blog = attributes_hash[:blog]
+    @twitter = attributes_hash[:twitter]
+    @linkedin = attributes_hash[:linkedin]
+    @profile_url = attributes_hash[:profile_url]
+    @profile_quote = attributes_hash[:profile_quote]
+    @github = attributes_hash[:github]
+    @bio = attributes_hash[:bio]
   end
 
   def self.all
