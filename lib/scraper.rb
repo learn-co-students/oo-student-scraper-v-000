@@ -40,6 +40,9 @@ class Scraper
           social_link_hash[:blog] = social_link.attribute('href').value
         end
         i += 1
+        elsif social_link.attribute('href').value.include?(student_name)
+          social_link_hash[:blog] = social_link.attribute('href').value
+        end
       end
     end
     social_link_hash[:profile_quote] = page.css("div.vitals-text-container div").text
