@@ -25,7 +25,6 @@ class Scraper
     social_links = page.css("div.social-icon-container a")
     social_link_hash = {}
     page.css(".social-icon-container")
-    student_name = page.css("div.vitals-text-container h1")
     i = 0
     while i < social_links.css("a").length
       social_links.each do |social_link|
@@ -40,9 +39,6 @@ class Scraper
           social_link_hash[:blog] = social_link.attribute('href').value
         end
         i += 1
-        elsif social_link.attribute('href').value.include?(student_name)
-          social_link_hash[:blog] = social_link.attribute('href').value
-        end
       end
     end
     social_link_hash[:profile_quote] = page.css("div.vitals-text-container div").text
