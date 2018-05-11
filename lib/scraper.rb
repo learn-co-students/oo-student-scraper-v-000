@@ -36,7 +36,7 @@ class Scraper
           #binding.pry
         elsif social_link.attribute('href').value.include?("github")
           social_link_hash[:github] = social_link.attribute('href').value
-        elsif social_link.attribute('href').value.include?(student_name)
+        elsif social_link.attribute('href').value.include?("div.vitals-text-container h1")
           social_link_hash[:blog] = social_link.attribute('href').value
         end
         i += 1
