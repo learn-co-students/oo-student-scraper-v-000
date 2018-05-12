@@ -11,7 +11,7 @@ class Student
 
   def self.create_from_collection(students_array)
     students_array.each do |student|
-      student = Student.new(students_array)
+      student = Student.new(students_array[0])
     end
   end
 
