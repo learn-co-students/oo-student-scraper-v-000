@@ -4,7 +4,7 @@ require 'open-uri'
 class Scraper
   attr_accessor :twitter, :linkedin, :github, :blog, :profile_quote, :bio
 
-  def self.scrape_index_page(index_url)
+	def self.scrape_index_page(index_url)
     students = []
     name = ""
     location = ""
@@ -19,7 +19,7 @@ class Scraper
     location: i.css("p.student-location").text, 
     profile_url: "http://127.0.0.1:4000/fixtures/student-site/#{i.css("a").first["href"]}"
    }
-      end
+    end
     students
   end
 

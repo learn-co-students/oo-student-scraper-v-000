@@ -5,8 +5,8 @@ require 'colorize'
 
 class CommandLineInteface
   BASE_URL = "http://127.0.0.1:4000/"
-
-  def run
+ 
+  def run   
     make_students
     add_attributes_to_students
     display_students
