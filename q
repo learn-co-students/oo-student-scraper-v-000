@@ -1,0 +1,28 @@
+
+[1mFrom:[0m /home/s-nicas/oo-student-scraper-v-000/lib/scraper.rb @ line 39 Scraper.scrape_profile_page:
+
+    [1;34m19[0m:   [32mdef[0m [1;36mself[0m.[1;34mscrape_profile_page[0m(profile_url)
+    [1;34m20[0m:     social_profile = {}
+    [1;34m21[0m:     profile = [1;34;4mNokogiri[0m::HTML(open(profile_url))
+    [1;34m22[0m:     social = profile.css([31m[1;31m"[0m[31m.social-icon-container[1;31m"[0m[31m[0m).css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m)
+    [1;34m23[0m: 
+    [1;34m24[0m:       social.each [32mdo[0m |link|
+    [1;34m25[0m:         [32mif[0m link.attributes[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m].value.include?([31m[1;31m"[0m[31mtwitter[1;31m"[0m[31m[0m)
+    [1;34m26[0m:           social_profile[[33m:twitter[0m] = link.attributes[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m].value
+    [1;34m27[0m:         [32melsif[0m link.attributes[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m].value.include?([31m[1;31m"[0m[31mlinkedin[1;31m"[0m[31m[0m)
+    [1;34m28[0m:           social_profile[[33m:linkedin[0m] = link.attributes[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m].value
+    [1;34m29[0m:         [32melsif[0m link.attributes[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m].value.include?([31m[1;31m"[0m[31mgithub[1;31m"[0m[31m[0m)
+    [1;34m30[0m:           social_profile[[33m:github[0m] = link.attributes[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m].value
+    [1;34m31[0m:         [32melsif[0m link.attributes[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m].value.include?([31m[1;31m"[0m[31mblog[1;31m"[0m[31m[0m)
+    [1;34m32[0m:           social_profile[[33m:blog[0m] = link.attributes[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m].value
+    [1;34m33[0m:         [32melse[0m link.attributes[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m].value.include?([31m[1;31m"[0m[31mgithub[1;31m"[0m[31m[0m)
+    [1;34m34[0m:             social_profile[[33m:profile_quote[0m] = link.attributes[[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m].value
+    [1;34m35[0m:         [32mend[0m
+    [1;34m36[0m:       [32mend[0m
+    [1;34m37[0m:       social_profile[[33m:profile_quote[0m] = profile.css([31m[1;31m"[0m[31m.profile-quote[1;31m"[0m[31m[0m).text
+    [1;34m38[0m:       social_profile[[33m:bio[0m] =  profile.css([31m[1;31m"[0m[31m.description-holder[1;31m"[0m[31m[0m).css([31m[1;31m"[0m[31mp[1;31m"[0m[31m[0m).text
+ => [1;34m39[0m: binding.pry
+    [1;34m40[0m:     social_profile
+    [1;34m41[0m: 
+    [1;34m42[0m:   [32mend[0m
+
