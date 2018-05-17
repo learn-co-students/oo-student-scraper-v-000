@@ -3,6 +3,7 @@ require 'pry'
 
 class Scraper
 
+  attr_accessor :index_url, :profile_url
 
   def self.scrape_index_page(index_url)
     index_url = "./fixtures/student-site/index.html"
@@ -19,10 +20,10 @@ class Scraper
     end
     scraped_students
   end
-
+#binding.pry
   def self.scrape_profile_page(profile_url)
-    profile_url = "./fixtures/student-site/students/" + self.scrape_index_page(index_url)[3]
-    binding.pry
+    profile_url = "./fixtures/student-site/students/" + self.scrape_index_page(@index_url)[3]
+
   end
 
 end
