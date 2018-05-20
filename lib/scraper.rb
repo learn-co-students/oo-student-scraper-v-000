@@ -21,12 +21,12 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    profile_url = "./fixtures/student-site/students/joe-burgess.html"
+    #profile_url = "./fixtures/student-site/students/joe-burgess.html"
     scraped_student = {}
     html = File.read(profile_url)
     doc = Nokogiri::HTML(html)
     details = doc.css("div.vitals-container")
-    binding.pry
+    #binding.pry
     scraped_student[:student_joe_hash] = {
       :twitter => details.css("div.social-icon-container a").attr("href").value,
       :linkedin => details.css("div.social-icon-container a a").attr("href").value,
@@ -34,9 +34,7 @@ class Scraper
       :blog => details.css("div.social-icon-container a a a a").attr("href").value,
       :profile_quote => details.css("div.vital-text-container div.profile-quote").text,
       :bio => doc.css("div.details-container div.bio-block div.bio-content div.description-holder p").text
-
     }
-
   end
 
 end
