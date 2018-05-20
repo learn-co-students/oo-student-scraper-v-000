@@ -26,15 +26,21 @@ class Scraper
     html = File.read(profile_url)
     doc = Nokogiri::HTML(html)
     details = doc.css("div.vitals-container")
-    #binding.pry
-    scraped_student[:student_joe_hash] = {
-      :twitter => details.css("div.social-icon-container a").attr("href").value,
-      :linkedin => details.css("div.social-icon-container a a").attr("href").value,
-      :github => details.css("div.social-icon-container a a a").attr("href").value,
-      :blog => details.css("div.social-icon-container a a a a").attr("href").value,
-      :profile_quote => details.css("div.vital-text-container div.profile-quote").text,
-      :bio => doc.css("div.details-container div.bio-block div.bio-content div.description-holder p").text
-    }
+    links_array = details.css("div.social-icon-container a")
+    links_array.each do |link|
+      if link.attributes["href"].value.include?("twitter")
+        scraped_student[:twitter] = link.attributes["href"].value
+      elsif link.attributes["href"].value.include?("linkedin")
+        scraped_student[:linkedin] = link.attributes["href"].value
+      elsif link.attributes["href"].value.include?("github")
+        scraped_student[:github] = link.attributes["href"].value
+      else
+        scraped_student[:blog] = link.attributes["href"].value
+      end
+    end
+    scraped_student[:profile_quote] = details.css("div.profile-quote").text
+    scraped_student[:bio] = doc.css("div.details-container div.bio-block div.bio-content div.description-holder p").text
+    scraped_student
   end
 
 end
