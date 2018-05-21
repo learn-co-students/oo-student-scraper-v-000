@@ -8,13 +8,11 @@ class Scraper
     students = []
     #  html = File.read('fixtures/student-site/index.html')
      doc = Nokogiri::HTML(html)
-     doc.css("div.roster-cards-container").each do |student_card|
-       student_card.css(".student-card a").each do |student|
+     doc.css(".student-card a").each do |student|
          name = student.css(".student-name").text
          location = student.css(".student-location").text
          profile_url = student.attr("href")
          students << {name: name, location: location, profile_url: profile_url}
-       end
      end
      students
    end
@@ -35,7 +33,7 @@ else
 end
 end
 student[:profile_quote] = profile_page.css(".profile-quote").text if profile_page.css(".profile-quote")
-student[:bio] = profile_page.css("div.bio-content.content-holder div.description-holder p").text if profile_page.css("div.bio-content.content-holder div.description-holder p")
+student[:bio] = profile_page.css("div.description-holder p").text if profile_page.css("div.description-holder p")
 student
 end
 
