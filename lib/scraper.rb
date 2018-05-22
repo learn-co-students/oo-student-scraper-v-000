@@ -24,43 +24,48 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     student_prof = Nokogiri::HTML(open(profile_url))
     
-    student_hash = {}
-  
+    student_hash_2 = {}
     
-    student_hash = {
+    # hash[:key] = value
     
-    student_prof.css("div.social-icon-container").css("a").each do |s_icon|
+    
       
-    
+      student_prof.css("div.social-icon-container").css("a").each do |s_icon|
       
       if s_icon.attribute("href").value.gsub(/http(s)?:\/\/(www.)?|.(com|net|co.uk|us)+.*/,"") == "twitter"
-      :twitter => s_icon.attribute("href").value,
-       else 
-      :twitter => "",
+        #binding.pry
+        student_hash_2[:twitter] = s_icon.attribute("href").value
+       #else 
+      #:twitter => "",
       end
       
-      if s_icon.attribute("href").value.gsub(/http(s)?:\/\/(www.)?|.(com|net|co.uk|us)+.*/,"") == "linkedin"
-      :linkedin => s_icon.attribute("href").value,
-       else 
-      :linkedin => "",
-      end
+    end
+    
+    
       
-      if s_icon.attribute("href").value.gsub(/http(s)?:\/\/(www.)?|.(com|net|co.uk|us)+.*/,"") == "github"
-      :github => s_icon.attribute("href").value,
-       else 
-      :github => "",
-      end
+      #if s_icon.attribute("href").value.gsub(/http(s)?:\/\#/(www.)?|.(com|net|co.uk|us)+.*/,"") == "linkedin"
+      #:linkedin => s_icon.attribute("href").value,
+       #else 
+      #:linkedin => "",
+      #end
+      
+      #if s_icon.attribute("href").value.gsub(/http(s)?:\/\/(www.)?|.(com|net|co.uk|us)+.*/,"") == "github"
+      #:github => s_icon.attribute("href").value,
+       #else 
+      #:github => "",
+      #end
       
       #if s_icon.attribute("href").value.gsub(/http(s)?:\/\/(www.)?|.(com|net|co.uk|us)+.*/,"") == "blog"
       #:github => s_icon.attribute("href").value
       # else 
       #:github => ""
       
-      end
+      
     
-     :profile_quote => student_prof.css("div.profile-quote").text,
-     :bio => student_prof.css("div.bio-content p").text
-    }
+     #:profile_quote => student_prof.css("div.profile-quote").text,
+     #:bio => student_prof.css("div.bio-content p").text
+    
+    
     
     #binding.pry
   end
