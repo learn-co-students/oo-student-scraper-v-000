@@ -14,13 +14,14 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
-    student = doc.css('div.social-icon-container')
-    #linkedin
-    #github
+    links = doc.css('div.social-icon-container')
+    linkedin = links.xpath("a[contains(@href, 'linkedin')]")[0]['href']
+    github = links.xpath("a[contains(@href, 'github')]")[0]['href']
+    binding.pry
     #blog
     #profile_quote
     #bio
-    binding.pry
+    #binding.pry
   end
 
 end
