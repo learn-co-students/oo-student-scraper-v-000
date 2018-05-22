@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'pry'
+require 'nokogiri'
 
 class Scraper
 
@@ -10,10 +11,10 @@ class Scraper
    
      learn_ver.css("div.student-card").each do |student|
        student_hash = {}
-       student_hash ={
-        :name => 
-        :location =>
-        :profile_url => 
+       student_hash = {
+        :name => student.css("div.card-text-container h4").text,
+        :location =>student.css("div.card-text-container p").text,
+        :profile_url => student.css("a").attribute("href").value
       }
       students << student_hash
     end
