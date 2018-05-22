@@ -17,11 +17,10 @@ class Scraper
     links = doc.css('div.social-icon-container')
     linkedin = links.xpath("a[contains(@href, 'linkedin')]")[0]['href']
     github = links.xpath("a[contains(@href, 'github')]")[0]['href']
+    #blog =
+    profile_quote = doc.css('div.profile-quote').text
+    bio = doc.css('div.description-holder p').text
     binding.pry
-    #blog
-    #profile_quote
-    #bio
-    #binding.pry
   end
 
 end
