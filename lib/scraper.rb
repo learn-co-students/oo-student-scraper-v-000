@@ -22,7 +22,7 @@ class Scraper
 		student_profile = []
 		student_details_hash = {}
 
-		links = profile_page.css(".social-icon-container a").each do |link|
+		profile_page.css(".social-icon-container a").each do |link|
 			student_profile << link["href"]
 		end
 
@@ -34,6 +34,7 @@ class Scraper
 			elsif link.include?("github")
 				student_details_hash[:github] = link
 			else
+
 				student_details_hash[:blog] = link
 			end
 		end
