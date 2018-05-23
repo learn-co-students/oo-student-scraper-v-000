@@ -31,10 +31,10 @@ class Scraper
     
     student_hash_2 = {}
     
-        student_hash_2[:twitter] = ""
-        student_hash_2[:linkedin] = ""
-        student_hash_2[:github] = ""
-        student_hash_2[:blog] = ""
+        #student_hash_2[:twitter] = ""
+        #student_hash_2[:linkedin] = ""
+        #student_hash_2[:github] = ""
+        #student_hash_2[:blog] = ""
     
       student_prof.css("div.social-icon-container").css("a").each do |s_icon|
        
@@ -42,86 +42,32 @@ class Scraper
     
       
         if temp == "twitter"
-          student_hash_2[:twitter] = s_icon.attribute("href").value
-        end
+          student_hash_2[:twitter] = s_icon.attribute("href").value if s_icon.attribute("href").value
         
-        if temp == "linkedin"
-          student_hash_2[:linkedin] = s_icon.attribute("href").value
-        end
+        elsif temp == "linkedin"
+          student_hash_2[:linkedin] = s_icon.attribute("href").value if s_icon.attribute("href").value
         
-        if temp == "github"
-          student_hash_2[:github] = s_icon.attribute("href").value
-        end
+        elsif temp == "github"
+          student_hash_2[:github] = s_icon.attribute("href").value if s_icon.attribute("href").value
         
-        if temp == "blog"
-          student_hash_2[:blog] = s_icon.attribute("href").value
+        else 
+          student_hash_2[:blog] = s_icon.attribute("href").value if s_icon.attribute("href").value
         end
       
       end
     
     
-        student_hash_2[:profile_quote] = student_prof.css("div.profile-quote").text,
+        
+        student_hash_2[:profile_quote] = student_prof.css("div.profile-quote").text
         
         student_hash_2[:bio] = student_prof.css("div.bio-content p").text
     
-        
+        #binding.pry
       
       student_hash_2
     
       
-      #if s_icon.attribute("href").value.gsub(/http(s)?:\/\#/(www.)?|.(com|net|co.uk|us)+.*/,"") == "linkedin"
-      #:linkedin => s_icon.attribute("href").value,
-       #else 
-      #:linkedin => "",
-      #end
       
-      #if s_icon.attribute("href").value.gsub(/http(s)?:\/\/(www.)?|.(com|net|co.uk|us)+.*/,"") == "github"
-      #:github => s_icon.attribute("href").value,
-       #else 
-      #:github => "",
-      #end
-
-    
-    
-    #student_prof.css("div.social-icon-container").css("a").each do |s_icon|
-    #s_icon.attribute("href").value #link
-    #s_icon.attribute("href").value.gsub(/http(s)?:\/\/(www.)?|.(com|net|co.uk|us)+.*/,"") #title to symbol
-      
-      # if s_icon.attribute("href").value.gsub(/http(s)?:\/\/(www.)?|.(com|net|co.uk|us)+.*/,"") == "twitter"
-      #:twitter => s_icon.attribute("href").value
-      # else 
-      #:twitter => ""
-      
-      #if s_icon.attribute("href").value.gsub(/http(s)?:\/\/(www.)?|.(com|net|co.uk|us)+.*/,"") == "linkedin"
-      #:linkedin => s_icon.attribute("href").value
-      # else 
-      #:linkedin => ""
-      
-      #if s_icon.attribute("href").value.gsub(/http(s)?:\/\/(www.)?|.(com|net|co.uk|us)+.*/,"") == "github"
-      #:github => s_icon.attribute("href").value
-      # else 
-      #:github => ""
-      
-      #if s_icon.attribute("href").value.gsub(/http(s)?:\/\/(www.)?|.(com|net|co.uk|us)+.*/,"") == "blog"
-      #:github => s_icon.attribute("href").value
-      # else 
-      #:github => ""
-
-      
-      #if s_icon.attribute("href").value.gsub(/http(s)?:\/\/(www.)?|.(com|net|co.uk|us)+.*/,"") == "blog"
-      #:github => s_icon.attribute("href").value
-      # else 
-      #:github => ""
-      
-      
-    
-     #:profile_quote => student_prof.css("div.profile-quote").text,
-     #:bio => student_prof.css("div.bio-content p").text
-    
-    # :profile_quote => student_prof.css("div.profile-quote").text,
-    # :bio => student_prof.css("div.bio-content p").text
-    
-    #binding.pry
   end
 
 end
