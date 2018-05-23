@@ -35,24 +35,38 @@ class Scraper
         student_hash_2[:linkedin] = ""
         student_hash_2[:github] = ""
         student_hash_2[:blog] = ""
-
-    # hash[:key] = value
     
-    
-      
       student_prof.css("div.social-icon-container").css("a").each do |s_icon|
-        
-        
-      
+       
        temp = s_icon.attribute("href").value.gsub(/http(s)?:\/\/(www.)?|.(com|net|co.uk|us)+.*/,"")
     
       
-      if temp == "twitter"
-        student_hash_2[:twitter] = s_icon.attribute("href").value
-      end
+        if temp == "twitter"
+          student_hash_2[:twitter] = s_icon.attribute("href").value
+        end
+        
+        if temp == "linkedin"
+          student_hash_2[:linkedin] = s_icon.attribute("href").value
+        end
+        
+        if temp == "github"
+          student_hash_2[:github] = s_icon.attribute("href").value
+        end
+        
+        if temp == "blog"
+          student_hash_2[:blog] = s_icon.attribute("href").value
+        end
       
-    end
+      end
     
+    
+        student_hash_2[:profile_quote] = student_prof.css("div.profile-quote").text,
+        
+        student_hash_2[:bio] = student_prof.css("div.bio-content p").text
+    
+        
+      
+      student_hash_2
     
       
       #if s_icon.attribute("href").value.gsub(/http(s)?:\/\#/(www.)?|.(com|net|co.uk|us)+.*/,"") == "linkedin"
