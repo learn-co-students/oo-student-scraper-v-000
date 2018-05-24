@@ -21,8 +21,7 @@ class Student
   def add_student_attributes(attributes_hash)
     attributes_hash.each do |key,value|
       self.send(("#{key}="),value)
-      student = self.new(Scraper.scrape_profile_page)
-      student
+    end 
   end
 
   def self.all
