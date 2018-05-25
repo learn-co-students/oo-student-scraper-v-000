@@ -27,10 +27,20 @@ class Scraper
     doc = Nokogiri::HTML(html)
     student = doc.css("div .social-icon-container").children.css("a").map{|tag| tag.attribute("href").value}
     student.each do |link|
-      
+      # if link.include?("linkedin")
+      #   profile_hash[:linkedin] = link
+      # elsif link.include?("twitter")
+      #   profile_hash[:twitter] = link
+      # elsif link.include?("github")
+      #   profile_hash[:github] = link
+      # elsif link.include?("blog")
+      #   profile_hash[:blog] = link
 
     binding.pry
+      # end
+
     end
+    #profile_hash
   end
 
 end
