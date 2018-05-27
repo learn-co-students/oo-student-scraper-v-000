@@ -11,6 +11,10 @@ class Scraper
     
     binding.pry 
     
+    # :name = profiles.css(".student-name").text
+    # :location = profiles.css(".student-location").text
+    # :profile_url = 
+    
   end
 
   def self.scrape_profile_page(profile_url)
