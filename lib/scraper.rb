@@ -37,15 +37,15 @@ class Scraper
         profile[:linkedin] = link
       elsif link.include?("github")
         profile[:github] = link
-      else
+      elsif link
         profile[:blog] = link
+      else
       end
       
       counter += 1
     end
     
     binding.pry
-    
     student = {}
     
     
