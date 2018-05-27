@@ -11,9 +11,9 @@ class Scraper
     
     page.css(".student-card").each do |profile|
       new_profile = {
-        :name => profile.css(".student-name").text
-        :location => profile.css(".student-location").text
-        :profile_url => profile.first.css("a").attribute("href").value
+        :name => profile.css(".student-name").text,
+        :location => profile.css(".student-location").text,
+        :profile_url => profile.css("a").attribute("href").value
         }
       profiles << new_profile
     end
@@ -21,7 +21,16 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
+    page = Nokogiri::HTML(open(profile_url))
     
+    student = {}
+    
+    # :twitter => 
+    # :linkedin => 
+    # :github =>
+    # :blog => 
+    # :profile_quote => 
+    # :bio => 
   end
 
 end
