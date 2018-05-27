@@ -26,6 +26,9 @@ class Scraper
     
     profile = {}
     
+    profile[:profile_quote] = page.css(".profile-quote").text
+    profile[:bio] = page.css(".description-holder p").text
+    
     counter = 0
     
     while counter < 8 do 
@@ -47,18 +50,8 @@ class Scraper
     end
     
     binding.pry
-    student = {}
     
-    
-    
-    # :twitter => social.css("a").first.attribute("href").value
-    # :linkedin => 
-    # :github =>
-    # :blog => 
-    # :profile_quote => 
-    # :bio => 
-    
-    # social = 
+    profile
   end
 
 end
