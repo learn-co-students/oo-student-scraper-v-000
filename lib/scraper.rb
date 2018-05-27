@@ -23,7 +23,6 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     page = Nokogiri::HTML(open(profile_url))
     social = page.css(".social-icon-container")
-    
     profile = {}
     
     profile[:profile_quote] = page.css(".profile-quote").text
@@ -45,14 +44,11 @@ class Scraper
         profile[:blog] = link
       else
       end
-      
+  
       counter += 1
     end
     
-    binding.pry
-    
     profile
   end
-
 end
 
