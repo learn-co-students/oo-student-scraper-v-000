@@ -29,7 +29,8 @@ class Scraper
     counter = 0
     
     while counter < 8 do 
-      link = social.css("a")[counter].attribute("href").value 
+      
+      link = social.css("a")[counter].attribute("href").value unless social.css("a")[counter] == nil
       
       if link.include?("twitter")
         profile[:twitter] = link
