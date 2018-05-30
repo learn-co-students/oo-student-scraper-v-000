@@ -9,11 +9,17 @@ class Scraper
 
     students = []
 
-    index_page.css("selector").each do |student|
+    #students: index_page.css(".student-card")
+    #name: student.css(".student-name").text
+    #location:student.css(".student-location").text
+    #profile_url: student.css("a").attribute("href").value
+
+    index_page.css(".student-card").each do |student|
+      binding.pry
       students << {
-        :name => student.css("selector").text
-        :location => student.css("selector").text
-        :profile_url => student.css("selector").text
+        :name => student.css("selector").text,
+        :location => student.css("selector").text,
+        :profile_url => student.css("selector").attribute("href").value
       }
     end
     students
@@ -23,11 +29,11 @@ class Scraper
     profile_page = Nokogiri::HTML(open(profile_url))
 
     student = {
-      :twitter => profile_page.css("selector").text
-      :linkedin => profile_page.css("selector").text
-      :github => profile_page.css("selector").text
-      :blog => profile_page.css("selector").text
-      :profile_quote => profile_page.css("selector").text
+      :twitter => profile_page.css("selector").text,
+      :linkedin => profile_page.css("selector").text,
+      :github => profile_page.css("selector").text,
+      :blog => profile_page.css("selector").text,
+      :profile_quote => profile_page.css("selector").text,
       :bio => profile_page.css("selector").text
     }
     student
