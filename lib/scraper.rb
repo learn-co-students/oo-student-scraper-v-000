@@ -26,27 +26,29 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     profile_page = Nokogiri::HTML(open(profile_url))
-
-    binding.pry
-    
-    #twitter: profile_page.css(".social-icon-container a").attribute("href").value
-    #linkedin: profile_page.css(".social-icon-container a +a").attribute("href").value
-    #github: profile_page.css(".social-icon-container a +a +a").attribute("href").value
-    #blog: profile_page.css(".social-icon-container a +a +a +a").attribute("href").value
-
-    # the above require that all students have them same social media accounts to share and that they are in the same order, no bueno
+    student ={}
     
     #profile_quote: profile_page.css(".profile-quote").text
     #bio: profile_page.css(".description-holder p").text
 
-    student = {
-      :twitter => profile_page.css("selector").text,
-      :linkedin => profile_page.css("selector").text,
-      :github => profile_page.css("selector").text,
-      :blog => profile_page.css("selector").text,
-      :profile_quote => profile_page.css(".profile-quote").text,
-      :bio => profile_page.css(".description-holder p").text
-    }
+    student[:profile_quote] = profile_page.css(".profile-quote").text
+    student[:bio] = profile_page.css(".description-holder p").text
+
+    # need to iterate through links to select blog href, may as well use it to assign github, linkedin, & twitter values too
+    links = profile_page.css(".social-icon-container").children.css("a").map { |x| x.attribute('href').value}
+
+    links.each do |link|
+      if link.include?('twitter')
+        student[:twitter]= link
+      elsif link.include?('linkedin')
+        student[:linkedin] = link
+      elsif link.include?('github')
+        student[:github] = link
+      else
+        student[:blog] = link
+      end
+    end
+    
     student
   end
 
