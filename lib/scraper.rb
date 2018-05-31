@@ -26,14 +26,16 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     profile_page = Nokogiri::HTML(open(profile_url))
+
     binding.pry
+    
     #twitter: profile_page.css(".social-icon-container a").attribute("href").value
     #linkedin: profile_page.css(".social-icon-container a +a").attribute("href").value
     #github: profile_page.css(".social-icon-container a +a +a").attribute("href").value
     #blog: profile_page.css(".social-icon-container a +a +a +a").attribute("href").value
 
     # the above require that all students have them same social media accounts to share and that they are in the same order, no bueno
-
+    
     #profile_quote: profile_page.css(".profile-quote").text
     #bio: profile_page.css(".description-holder p").text
 
