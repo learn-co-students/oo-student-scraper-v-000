@@ -17,7 +17,6 @@ class Scraper
       student_hash[:profile_url] = student.css("a").attribute("href").value
       all_students << student_hash
     end
-
     return all_students
   end
 
@@ -33,7 +32,7 @@ class Scraper
 
     student_profile.each do |profile|
       social = profile.attributes["href"].value
-      
+
       if social.include?("twitter")
         student[:twitter] = social
       elsif social.include?("linkedin")
