@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'pry'
+require "nokogiri"
 
 class Scraper
 
@@ -44,3 +45,5 @@ class Scraper
   end
 
 end
+
+binding.pry
