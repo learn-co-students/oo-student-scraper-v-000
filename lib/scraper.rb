@@ -9,16 +9,20 @@ class Scraper
     index_url = Nokogiri::HTML(html)
     # binding.pry
     index_url.css("div.student-card").map{|card|
+
       student = {
         :name => card.css("h4.student-name").text,
         :location => card.css("p.student-location").text,
         :profile_url => card.css("a").attribute("href").value
+
       }
+      
       student
     }
   end
 
   def self.scrape_profile_page(profile_url)
+
     html = File.read(profile_url)
     profile_url = Nokogiri::HTML(html)
     links = profile_url.css("div.social-icon-container").css("a").map{|li| li.attribute("href").value}
