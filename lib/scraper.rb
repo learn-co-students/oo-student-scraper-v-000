@@ -21,7 +21,7 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     profile = Nokogiri::HTML(File.read(profile_url))
-
+    # can't handle nil attributes
     twitter = profile.css('a')[1].attribute('href').value
     linkedin = profile.css('a')[2].attribute('href').value
     github = profile.css('a')[3].attribute('href').value
