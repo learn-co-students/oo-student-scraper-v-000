@@ -1,13 +1,12 @@
 require 'open-uri'
 require 'pry'
-require 'nokogiri'
+# require 'nokogiri'
 
 class Scraper
-
   def self.scrape_index_page(index_url)
     flatiron = Nokogiri::HTML(File.read(index_url))
     students = []
-    
+
     flatiron.css('div.student-card').each { |student|
       person = {
         name: student.css('h4.student-name').text,
@@ -21,44 +20,32 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     profile = Nokogiri::HTML(File.read(profile_url))
-    
-    # can't handle nil attributes
-    
-    twitter = profile.css('a')[1].attribute('href').value if profile.css('a')[1] != nil
-    linkedin = profile.css('a')[2].attribute('href').value if profile.css('a')[2] != nil
-    github = profile.css('a')[3].attribute('href').value if profile.css('a')[3] != nil
-    blog = profile.css('a')[4].attribute('href').value if profile.css('a')[4] != nil
-    profile_quote = profile.css('div.profile-quote').text
-    bio = profile.css('div.description-holder')[0].text.strip
-
     profile_data = {}
-    
-    if twitter != nil
-      profile_data[:twitter] = twitter
+
+    profile.css('a').each { |link|
+      url = link.attribute('href').value
+
+      if url.include? 'twitter'
+        profile_data[:twitter] = url
+      elsif url.include? 'linkedin'
+        profile_data[:linkedin] = url
+      elsif url.include? 'github'
+        profile_data[:github] = url
+      elsif !url.include? '../'
+        profile_data[:blog] = url
+      end
+    }
+
+    quote = profile.css('div.profile-quote').text
+    if quote != ''
+      profile_data[:profile_quote] = quote
     end
-    
-    if linkedin != nil
-      profile_data[:linkedin] = linkedin
-    end
-    
-    if github != nil
-      profile_data[:github] = github
-    end
-    
-    if blog != nil
-      profile_data[:blog] = blog
-    end
-    
-    if profile_quote != nil
-      profile_data[:profile_quote] = profile_quote
-    end
-    
-    if bio != nil
+
+    bio = profile.css('div.description-holder')[0].text.strip
+    if bio != ''
       profile_data[:bio] = bio
     end
 
     profile_data
   end
-
 end
-
