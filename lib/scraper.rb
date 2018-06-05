@@ -24,10 +24,10 @@ class Scraper
     
     # can't handle nil attributes
     
-    twitter = profile.css('a')[1].attribute('href').value
-    linkedin = profile.css('a')[2].attribute('href').value
-    github = profile.css('a')[3].attribute('href').value
-    blog = profile.css('a')[4].attribute('href').value
+    twitter = profile.css('a')[1].attribute('href').value if profile.css('a')[1] != nil
+    linkedin = profile.css('a')[2].attribute('href').value if profile.css('a')[2] != nil
+    github = profile.css('a')[3].attribute('href').value if profile.css('a')[3] != nil
+    blog = profile.css('a')[4].attribute('href').value if profile.css('a')[4] != nil
     profile_quote = profile.css('div.profile-quote').text
     bio = profile.css('div.description-holder')[0].text.strip
 
