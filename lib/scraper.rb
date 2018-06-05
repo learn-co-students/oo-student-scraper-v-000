@@ -1,6 +1,5 @@
 require 'open-uri'
 require 'pry'
-# require 'nokogiri'
 
 class Scraper
   def self.scrape_index_page(index_url)
@@ -20,6 +19,8 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     profile = Nokogiri::HTML(File.read(profile_url))
+    quote = profile.css('div.profile-quote').text.strip
+    bio = profile.css('div.description-holder')[0].text.strip
     profile_data = {}
 
     profile.css('a').each { |link|
@@ -31,17 +32,15 @@ class Scraper
         profile_data[:linkedin] = url
       elsif url.include? 'github'
         profile_data[:github] = url
-      elsif !url.include? '../'
+      elsif url.match(/^[\/#\.]/) == nil && url.match(/.*facebook.*/i) == nil && url.match(/.*instagram.*/i) == nil
         profile_data[:blog] = url
       end
     }
 
-    quote = profile.css('div.profile-quote').text
     if quote != ''
       profile_data[:profile_quote] = quote
     end
 
-    bio = profile.css('div.description-holder')[0].text.strip
     if bio != ''
       profile_data[:bio] = bio
     end
