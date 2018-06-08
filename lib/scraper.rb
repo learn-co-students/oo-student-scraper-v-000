@@ -20,43 +20,25 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     html = Nokogiri::HTML(open(profile_url))
-    attributes = {}
-    social_link = html.css('div.social-icon-container')
+    profile = {}
+    social_link = html.css('.social-icon-container a').map {|element| element.attribute('href').value}
     
-    link_index = 0
-    
-    if social_link.css('a')[link_index]
-      scraped_link = social_link.css('a')[link_index].attribute('href').value
-      if scraped_link.include?('twitter')
-        attributes[:twitter] = social_link.css('a')[link_index].attribute('href').value
-        link_index += 1 
+    social_link.each do |href|
+      if href.include?('twitter')
+        profile[:twitter] = href
+      elsif href.include?('linkedin')
+        profile[:linkedin] = href
+      elsif href.include?('github')
+        profile[:github] = href
+      else
+        profile[:blog] = href
       end
     end
     
-    if social_link.css('a')[link_index]
-      scraped_link = social_link.css('a')[link_index].attribute('href').value
-      if scraped_link.include?('linkedin')
-        attributes[:linkedin] = social_link.css('a')[link_index].attribute('href').value
-        link_index += 1
-      end
-    end
-   
-    if social_link.css('a')[link_index]
-      scraped_link = social_link.css('a')[link_index].attribute('href').value
-      if scraped_link.include?('github')
-        attributes[:github] = social_link.css('a')[link_index].attribute('href').value
-        link_index += 1
-      end
-    end
+    profile[:profile_quote] = html.css('div.profile-quote').text
+    profile[:bio] = html.css('div.description-holder p').text
     
-    if social_link.css('a')[link_index]
-      attributes[:blog] = social_link.css('a')[link_index].attribute('href').value
-    end
-    
-    attributes[:profile_quote] = html.css('div.profile-quote').text
-    attributes[:bio] = html.css('div.description-holder p').text
-    
-    attributes
+    profile
     
   end
 
