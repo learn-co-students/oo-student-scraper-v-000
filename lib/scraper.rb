@@ -21,22 +21,22 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     profile = Nokogiri::HTML(open(profile_url))
-    
+
     attributes = {}
     
-    profile.css('div.social-icon-container').each do |attr|
+    profile.css('div.vitals-container').each do |attr|
       attributes = {
-        :twitter => attr.css('div.social-icon-container a')[0].attribute('href').value, 
-        :linkedin => attr.css('div.social-icon-container a')[1].attribute('href').value,
-        :github => attr.css('div.social-icon-container a')[2].attribute('href').value,
-        :blog => attr.css('div.social-icon-container a')[3].attribute('href').value,
+        :twitter => attr.css('a')[0].attribute('href').value, 
+        :linkedin => attr.css('a')[1].attribute('href').value,
+        :github => attr.css('a')[2].attribute('href').value,
+        :blog => attr.css('a')[3].attribute('href').value,
         :profile_quote => attr.css('div.profile-quote').text,
         :bio => attr.css('div.description-holder p').text
      
       }
-      
+      binding.pry
     end
-    
+    attributes
   end
 
 end
