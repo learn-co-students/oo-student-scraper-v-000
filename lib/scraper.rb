@@ -24,13 +24,14 @@ class Scraper
     attributes = {}
     profile = html.css('div.vitals-container')
     
-    attributes = {
-      :twitter => profile.css('a')[0].attribute('href').value, 
-      :linkedin => profile.css('a')[1].attribute('href').value,
-      :github => profile.css('a')[2].attribute('href').value,
-      :blog => profile.css('a')[3].attribute('href').value,
-      :profile_quote => profile.css('div.profile-quote').text,
-      :bio => html.css('div.description-holder p').text
+    attributes.tap do |attr|
+      attr[:twitter] = profile.css('a')[0].attribute('href').value if profile.css('a')[0].attribute('href').value
+        #:twitter => profile.css('a')[0].attribute('href').value,
+      attr[:linkedin] = profile.css('a')[1].attribute('href').value if profile.css('a')[1].attribute('href').value
+      attr[:github] = profile.css('a')[2].attribute('href').value if profile.css('a')[2].attribute('href').value
+      attr[:blog] = profile.css('a')[3].attribute('href').value if profile.css('a')[3].attribute('href').value
+      attr[:profile_quote] = profile.css('div.profile-quote').text if profile.css('div.profile-quote').text
+      attr[:bio] = html.css('div.description-holder p').text if html.css('div.description-holder p').text
     }
     attributes
   end
