@@ -8,13 +8,15 @@ class Scraper
     html = open(index_url) #=> index_url = "../fixtures/student-site/index.html"
     list = Nokogiri::HTML(html)
 
+    # This block returns a list of student names
     names = list.css(".student-name")
     names_array = []
     names.each do |item|
       names_array << item.text
     end
     names_array
-    
+
+    # This block returns a list of locations.
     locations = list.css(".student-location")
     location_array = []
     locations.each do |item|
@@ -22,6 +24,7 @@ class Scraper
     end
     location_array
 
+    # This block returns a list of student HTML pages.
     webpages = list.css(".student-card a[href]")
     webpage_array = []
     webpages.select do |item|
@@ -83,22 +86,20 @@ class Scraper
     students_linkedin
     students_github
     students_youtube
-      if students_youtube == ""
-        students_youtube == nil
+      if students_youtube = ""
+        students_youtube = nil
       end
     students_blog
 
+    # This needs to be an iteration where it starts with <<output = {}>>
     out_put = {:twitter=>students_twitter[0],
                :linkedin=>students_linkedin[0],
                :github=>students_github[0],
                :profile_quote=>students_quote,
                :blog=>students_blog,
                :bio=> students_bio}
- #              binding.pry
     out_put.delete_if {|key, value| value == [] || value == nil}
 
     out_put
   end
 end
-
-
