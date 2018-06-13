@@ -14,7 +14,7 @@ class Scraper
     doc.css("div.student-card").each do |c|
       student = Hash.new
       student[:name] = c.css("h4.student-name").text
-      student[:location] = c.css("div.student-card p.student-location").text
+      student[:location] = c.css("p.student-location").text
       student[:profile_url] = "url"
       students_array << student
     end
