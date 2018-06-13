@@ -12,13 +12,16 @@ class Scraper
     students_array = []
     doc = Nokogiri::HTML(open(index_url))
     doc.css("div.student-card").each do |c|
-      name = c.css("h4.student-name").text
-      location = c.css("div.student-card p.student-location").text
-      profile_url =
+      student = Hash.new
+      student[:name] = c.css("h4.student-name").text
+      student[:location] = c.css("div.student-card p.student-location").text
+      student[:profile_url] = "url"
+      students_array << student
     end
-    :name => doc.css("div.student-card h4.student-name").text
-    :location => doc.css("div.student-card p.student-location").text
-    :profile_url => doc.css("").text
+    students_array
+    # :name => doc.css("div.student-card h4.student-name").text
+    # :location => doc.css("div.student-card p.student-location").text
+    # :profile_url => doc.css("div.student-card a href").text
   end
 
   def self.scrape_profile_page(profile_url)
