@@ -15,7 +15,7 @@ class Scraper
       student = Hash.new
       student[:name] = c.css("h4.student-name").text
       student[:location] = c.css("p.student-location").text
-      student[:profile_url] = "url"
+      student[:profile_url] = c.css("a[href]").first['href']
       students_array << student
     end
     students_array
