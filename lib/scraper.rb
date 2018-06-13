@@ -22,11 +22,13 @@ class Scraper
     # in which the key/value pairs describe an individual student.
     # Some students don't have a twitter or some other social link.
     # Be sure to be able to handle that.
-    student = Hash.new
     doc = Nokogiri::HTML(open(profile_url))
+
+    student = Hash.new
     # doc.xpath("/html/body/div[1]/div[2]/div[2]/a[1]")
     # ==> twitter
-    student[:linkedin] =
+    student[:twitter] = doc.xpath("/html/body/div[1]/div[2]/div[2]/a[1]").attribute('href').value
+    student[:linkedin] = doc.xpath("/html/body/div[1]/div[2]/div[2]/a[2]").attribute('href').value
     student[:github] =
     student[:blog] =
     student[:profile_quote] =
