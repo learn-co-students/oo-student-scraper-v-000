@@ -9,17 +9,18 @@ class Scraper
 
   def self.scrape_index_page(index_url)
     doc = Nokogiri::HTML(open(index_url))
-
-    student_card = doc.css(".student_card")
+    student_container = doc.css(".roster-cards-container")
     students = []
-    student_card.collect do |student_card_xml|
+    student_container.each do |student_card|
+      student_card.css(".student-card").each do |student|
       students << {
-      :name => student_card_xml.css("h4.student-name").text,
-      :location => student_card_xml.css("p.student-location").text,
-      :profile_url => "./fixtures/student-site/" + student_card_xml.css("a").attribute("href").value
+      :name => student.css("h4.student-name").text,
+      :location => student.css("p.student-location").text,
+      :profile_url => student.css("a").attribute("href").value
     }
     end
-    binding.pry
+    end
+    students
   end
 
   def self.scrape_profile_page(profile_url)
