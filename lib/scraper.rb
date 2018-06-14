@@ -22,8 +22,8 @@ class Scraper
 
     student_hash = Hash.new
 
-    # Some students don't have a twitter or some other social link.
-    # Be sure to be able to handle that.
+    # # Some students don't have a twitter or some other social link.
+    # # Be sure to be able to handle that.
     # this is a bit hard-coded :(
     social_count = doc.xpath("/html/body/div[1]/div[2]/div[2]/a").count
 
@@ -48,6 +48,37 @@ class Scraper
 
     student_hash
   end
+
+  # Here is a much more elegant version!
+  # Check out the .children modifier
+  # and the if link.include?() option,
+  # and the if (thing returns true) option:
+
+  # def self.scrape_profile_page(profile_slug)
+  #   student = {}
+  #   profile_page = Nokogiri::HTML(open(profile_slug))
+  #   links = profile_page.css(".social-icon-container").children.css("a").map { |el| el.attribute('href').value}
+  #   links.each do |link|
+  #     if link.include?("linkedin")
+  #       student[:linkedin] = link
+  #     elsif link.include?("github")
+  #       student[:github] = link
+  #     elsif link.include?("twitter")
+  #       student[:twitter] = link
+  #     else
+  #       student[:blog] = link
+  #     end
+  #   end
+  #   # student[:twitter] = profile_page.css(".social-icon-container").children.css("a")[0].attribute("href").value
+  #   # # if profile_page.css(".social-icon-container").children.css("a")[0]
+  #   # student[:linkedin] = profile_page.css(".social-icon-container").children.css("a")[1].attribute("href").value if profile_page.css(".social-icon-container").children.css("a")[1]
+  #   # student[:github] = profile_page.css(".social-icon-container").children.css("a")[2].attribute("href").value if profile_page.css(".social-icon-container").children.css("a")[2]
+  #   # student[:blog] = profile_page.css(".social-icon-container").children.css("a")[3].attribute("href").value if profile_page.css(".social-icon-container").children.css("a")[3]
+  #   student[:profile_quote] = profile_page.css(".profile-quote").text if profile_page.css(".profile-quote")
+  #   student[:bio] = profile_page.css("div.bio-content.content-holder div.description-holder p").text if profile_page.css("div.bio-content.content-holder div.description-holder p")
+  #
+  #   student
+  # end
 
 end
 
