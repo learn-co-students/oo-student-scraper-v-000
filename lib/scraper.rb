@@ -18,22 +18,37 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    # The return value of this method should be a hash
-    # in which the key/value pairs describe an individual student.
-    # Some students don't have a twitter or some other social link.
-    # Be sure to be able to handle that.
     doc = Nokogiri::HTML(open(profile_url))
 
-    student = Hash.new
-    # doc.xpath("/html/body/div[1]/div[2]/div[2]/a[1]")
-    # ==> twitter
-    student[:twitter] = doc.xpath("/html/body/div[1]/div[2]/div[2]/a[1]").attribute('href').value
-    student[:linkedin] = doc.xpath("/html/body/div[1]/div[2]/div[2]/a[2]").attribute('href').value
-    student[:github] =
-    student[:blog] =
-    student[:profile_quote] =
-    student[:bio] =
+    student_hash = Hash.new
 
+    # Some students don't have a twitter or some other social link.
+    # Be sure to be able to handle that.
+    # this is a bit hard-coded :(
+    social_count = doc.xpath("/html/body/div[1]/div[2]/div[2]/a").count
+
+    case social_count
+    when 2
+      student_hash = {
+        linkedin: doc.xpath("/html/body/div[1]/div[2]/div[2]/a[1]").attribute('href').value,
+        github: doc.xpath("/html/body/div[1]/div[2]/div[2]/a[2]").attribute('href').value,
+        profile_quote: doc.xpath("/html/body/div[1]/div[2]/div[3]/div").text,
+        bio: doc.xpath("//p").text
+      }
+    else
+      student_hash = {
+        twitter: doc.xpath("/html/body/div[1]/div[2]/div[2]/a[1]").attribute('href').value,
+        linkedin: doc.xpath("/html/body/div[1]/div[2]/div[2]/a[2]").attribute('href').value,
+        github: doc.xpath("/html/body/div[1]/div[2]/div[2]/a[3]").attribute('href').value,
+        blog: doc.xpath("/html/body/div[1]/div[2]/div[2]/a[4]").attribute('href').value,
+        profile_quote: doc.xpath("/html/body/div[1]/div[2]/div[3]/div").text,
+        bio: doc.xpath("//p").text
+      }
+    end
+
+    student_hash
   end
 
 end
+
+# Scraper.scrape_profile_page("./fixtures/student-site/students/aaron-enser.html")
