@@ -26,16 +26,16 @@ class Scraper
     github_handle = ""
     social_links = doc.css(".social-icon-container").css("a")
     binding.pry
-    social_links.each do |links|
-      social_icon = links.attribute("href").value
-      if social_icon.include?("twitter")
-        twitter_handle = social_icon
-      elsif social_icon.include?("linkedin")
-        linkedin_handle = social_icon
-      elsif social_icon.include?("github")
-        github_handle = social_icon
-      end
-    end
+    #social_links.each do |links|
+    #  social_icon = links.attribute("href").value
+    #  if social_icon.include?("twitter")
+    #    twitter_handle = social_icon
+    #  elsif social_icon.include?("linkedin")
+    #    linkedin_handle = social_icon
+    #  elsif social_icon.include?("github")
+    #    github_handle = social_icon
+    #  end
+    #end
     #student_info = {
     #  :twitter => social_links.css("a").attribute("href").value
     #  <img class="social-icon" src="../assets/img/twitter-icon.png">
