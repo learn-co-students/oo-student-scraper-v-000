@@ -19,11 +19,13 @@ class Scraper
     students
   end
 
+
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
     twitter_handle = ""
     linkedin_handle = ""
     github_handle = ""
+    blog_handle = ""
     social_links = doc.css(".social-icon-container").css("a")
     social_links.each do |links|
       social_icon = links.attribute("href").value
@@ -33,18 +35,19 @@ class Scraper
         linkedin_handle = social_icon
       elsif social_icon.include?("github")
         github_handle = social_icon
+      else
+        blog_handle = social_icon
       end
     end
     student_info = {
-      :twitter => twitter_handle
-      :linkedin => linkedin_handle
-      :github => github_handle
-      :blog =>
-      :profile_quote =>
-      :bio =>
+      :twitter => twitter_handle,
+      :linkedin => linkedin_handle,
+      :github => github_handle,
+      :blog => blog_handle,
+      :profile_quote => doc.css(".profile-quote").text,
+      :bio => doc.css(".description-holder").css("p").text
     }
-    #student_info  end
-
+    student_info
 end
 
 Scraper.scrape_index_page("./fixtures/student-site/index.html")
