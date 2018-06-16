@@ -40,15 +40,14 @@ class Scraper
       end
     end
     student_info = {
-      :twitter => twitter_handle,
-      :linkedin => linkedin_handle,
-      :github => github_handle,
-      :blog => blog_handle,
       :profile_quote => doc.css(".profile-quote").text,
       :bio => doc.css(".description-holder").css("p").text
     }
+    student_info[:twitter] = twitter_handle unless twitter_handle == ""
+    student_info[:linkedin] = linkedin_handle unless linkedin_handle == ""
+    student_info[:github] = github_handle unless github_handle == ""
+    student_info[:blog] = blog_handle unless blog_handle == ""
     student_info
-end
+  end
 
-Scraper.scrape_index_page("./fixtures/student-site/index.html")
-Scraper.scrape_profile_page("./fixtures/student-site/students/ryan-johnson.html")
+end
