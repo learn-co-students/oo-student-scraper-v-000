@@ -1,6 +1,5 @@
 require 'open-uri'
 require 'pry'
-require "nokogiri"
 
 class Scraper
 
@@ -8,9 +7,9 @@ class Scraper
       html = File.read("fixtures/student-site/index.html")
       student_scraper = Nokogiri::HTML(html)
 
-      students = []
+      student = []
 
-      students = {:name => student_scraper.css(".student-name").css("h4").text,
+      student << students = {:name => student_scraper.css(".student-name").css("h4").text,
       :location => student_scraper.css(".student-location").text,
       :profile_url => student_scraper.css(".fixtures/student-site/index.html").text}
   end
