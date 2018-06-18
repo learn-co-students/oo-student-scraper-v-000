@@ -35,9 +35,9 @@ class Scraper
       end
     end
     
-    hash[:profile_quote] = Nokogiri::HTML(open(profile_url)).css(".vitals-text-container").css(".profile-quote").text
+    hash[:profile_quote] = Nokogiri::HTML(open(profile_url)).css(".profile-quote").text if Nokogiri::HTML(open(profile_url)).css(".profile-quote")
     
-    hash[:bio] = Nokogiri::HTML(open(profile_url)).css(".description-holder").css("p").text
+    hash[:bio] = Nokogiri::HTML(open(profile_url)).css("div.bio-content.content-holder div.description-holder p").text if Nokogiri::HTML(open(profile_url)).css("div.bio-content.content-holder div.description-holder p")
     
     hash
   end
