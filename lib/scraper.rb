@@ -9,9 +9,9 @@ class Scraper
 
       student = []
 
-      student << students = {:name => student_scraper.css(".student-name").css("h4").text,
-      :location => student_scraper.css(".student-location").text,
-      :profile_url => student_scraper.css(".fixtures/student-site/index.html").text}
+      student << students = {:name => student_scraper.css(".student-name").first.css("h4").text,
+      :location => student_scraper.css(".student-location").first.text,
+      :profile_url => student_scraper.css(".fixtures/student-site/index.html").first.text}
   end
 
   def self.scrape_profile_page(profile_url)
