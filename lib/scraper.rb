@@ -10,8 +10,8 @@ class Scraper
     students = {}
     doc.css(".student-card").each do|scrape|
      students = {
-      :name => scrape.css("h4").text,
-      :location => scrape.css("p").text,
+      name: "scrape.css("h4").text",
+      location: "scrape.css("p").text",
      }
       #binding.pry
     end
