@@ -13,9 +13,9 @@ class Scraper
       :name => scrape.css("h4").text,
       :location => scrape.css("p").text,
      }
-      binding.pry
+      #binding.pry
     end
-    
+    students
     
   end
 
