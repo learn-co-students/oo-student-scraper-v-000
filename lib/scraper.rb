@@ -87,7 +87,6 @@ class Scraper
       end
     students_blog
 
-    # This needs to be an iteration where it starts with <<output = {}>>
     out_put = {:twitter=>students_twitter[0],
                :linkedin=>students_linkedin[0],
                :github=>students_github[0],
