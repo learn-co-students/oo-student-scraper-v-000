@@ -5,11 +5,12 @@ require 'pry'
 class Scraper
 
   def self.scrape_index_page(index_url)
+
     html = File.read(index_url)
     doc = Nokogiri::HTML(html)
     students = {}
     students_a = []
-    
+
     doc.css("div .student-card").each do |student|
     students = {
       :name => student.css("h4").text,
@@ -17,11 +18,8 @@ class Scraper
       :profile_url => student.css('a').first['href']
       }
       students_a << students
-     #binding.pry
-    end
-  
-    students_a
-   #binding.pry
+  end
+      students_a
   end
 
   def self.scrape_profile_page(profile_url)
@@ -37,7 +35,7 @@ class Scraper
       :profile_quote => doc.css('div.profile-quote').text,
       :bio => doc.css('div.description-holder p').text
         }
-     #binding.pry    
+        
     end
     profile.delete_if{|k, v| v.empty?}
   #binding.pry
