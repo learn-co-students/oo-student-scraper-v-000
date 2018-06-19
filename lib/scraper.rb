@@ -35,8 +35,7 @@ class Scraper
       :profile_quote => doc.css('div.profile-quote').text,
       :bio => doc.css('div.description-holder p').text
         }
-        
+         profile.delete_if{|k, v| v.empty?}
     end
-    profile.delete_if{|k, v| v.empty?}
-  #binding.pry
+   
    end
