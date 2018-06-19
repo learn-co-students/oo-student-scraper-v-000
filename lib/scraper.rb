@@ -25,6 +25,8 @@ class Scraper
     linkedin_handle = ""
     github_handle = ""
     blog_handle = ""
+    instagram_handle = ""
+    facebook_handle = ""
     social_links = doc.css(".social-icon-container").css("a")
     social_links.each do |links|
       social_icon = links.attribute("href").value
@@ -34,6 +36,10 @@ class Scraper
         linkedin_handle = social_icon
       elsif social_icon.include?("github")
         github_handle = social_icon
+      elsif social_icon.include?("instagram")
+        instagram_handle = social_icon
+      elsif social_icon.include?("facebook")
+        facebook_handle = social_icon
       else
         blog_handle = social_icon
       end

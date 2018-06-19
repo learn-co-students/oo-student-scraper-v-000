@@ -18,7 +18,6 @@ class Student
   end
 
   def add_student_attributes(attributes_hash)
-    #shouldn't this check that the student doesn't already exist, and if it does, at the attributes to the correct student?
     attributes_hash.each do |k, v|
       self.send("#{k}=", v)
     end
