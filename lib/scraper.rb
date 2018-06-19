@@ -10,22 +10,35 @@ class Scraper
     students = {}
     students_a = []
     
-    doc.css("div .student-card").collect do |student|
-     students = {
+    doc.css("div .student-card").each do |student|
+    students = {
       :name => student.css("h4").text,
       :location => student.css("p").text,
+      :profile_url => student.css('a').first['href']
       }
-    #  binding.pry
+      students_a << students
+     #binding.pry
     end
-    
-    students_a << students
+  
     students_a
    #binding.pry
   end
 
   def self.scrape_profile_page(profile_url)
     
-  end
-
-end
-
+    html = File.read(profile_url)
+    doc = Nokogiri::HTML(html)
+    social_media = doc.css('div .social-icon-container').css('a') 
+    profile = {
+      :twitter => social_media.map { |link| link.attribute('href').value.scan(/[\S]+twitter[\S]+/)}.join(""),
+      :linkedin => social_media.map { |link| link.attribute('href').value.scan(/[\S]+linkedin[\S]+/)}.join(""),
+      :github => social_media.map { |link| link.attribute('href').value.scan(/[\S]+github[\S]+/)}.join(""),
+      :blog => social_media.map { |link| link.attribute('href').value.scan(/https?:..[^twg][\S]+/)}.join(""),
+      :profile_quote => doc.css('div.profile-quote').text,
+      :bio => doc.css('div.description-holder p').text
+        }
+     #binding.pry    
+    end
+    profile.delete_if{|k, v| v.empty?}
+  #binding.pry
+   end
