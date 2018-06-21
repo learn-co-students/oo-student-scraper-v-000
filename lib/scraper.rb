@@ -33,8 +33,8 @@ class Scraper
       profile_hash[:linkedin] = x.css(".vitals-container .social-icon-container a")[1]["href"]
       profile_hash[:github] =x.css(".vitals-container .social-icon-container a")[2]["href"]
       profile_hash[:blog] = x.css(".vitals-container .social-icon-container a")[3]["href"]
-      profile_hash[:profile_quote] = 
-      profile_hash[:bio] =
+      profile_hash[:profile_quote] = x.css(".vitals-container .vitals-text-container .profile-quote").text
+      profile_hash[:bio] = x.css(".details-container .description-holder p").text
 
       # --GETS ALL SOCIAL MEDIA LINKS--
       # social_media_links = x.css(".vitals-container .social-icon-container a")
