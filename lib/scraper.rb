@@ -31,21 +31,39 @@ class Scraper
     # profile_hash[:bio] = []
     html = open(profile_url)
     doc = Nokogiri::HTML(html)
-
     info_area = doc.css(".main-wrapper")
-    info_area.each do |x|
-      profile_hash[:twitter] = x.css(".vitals-container .social-icon-container a").first["href"]
-      profile_hash[:linkedin] = x.css(".vitals-container .social-icon-container a")[1]["href"]
-      profile_hash[:github] =x.css(".vitals-container .social-icon-container a")[2]["href"]
-      profile_hash[:blog] = x.css(".vitals-container .social-icon-container a")[3]["href"]
-      profile_hash[:profile_quote] = x.css(".vitals-container .vitals-text-container .profile-quote").text
-      profile_hash[:bio] = x.css(".details-container .description-holder p").text
 
       # --GETS ALL SOCIAL MEDIA LINKS--
-      # social_media_links = x.css(".vitals-container .social-icon-container a")
-      # social_media_links.each do |x|
-      #   x["href"]
+
+      links_array = []
+      social_media_links = {}
+       info_area.each do |x|
+        space = x.css(".vitals-container .social-icon-container a")
+      space.each do |x|
+      links_array << x["href"]
      end
+     end
+     links_array.each do |x|
+       if x.include?("twitter")
+         profile_hash[:twitter] = x
+      elsif x.include?("linkedin")
+        profile_hash[:linkedin] = x
+      elsif x.include?("github")
+        profile_hash[:github] = x
+      elsif x.include?("youtube")
+        profile_hash[:youtube] = x
+      end
+    end
+
+   #--GETS BLOG, QUOTE, BIO --
+
+    info_area.each do |x|
+      if x.css(".vitals-container .social-icon-container a")[3]["href"].include?("http")
+        profile_hash[:blog] = x.css(".vitals-container .social-icon-container a")[3]["href"]
+      end
+      profile_hash[:profile_quote] = x.css(".vitals-container .vitals-text-container .profile-quote").text
+      profile_hash[:bio] = x.css(".details-container .description-holder p").text
+    end
     profile_hash
   end
 
