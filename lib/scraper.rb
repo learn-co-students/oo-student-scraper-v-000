@@ -23,21 +23,15 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     profile_hash = {}
-    # profile_hash[:twitter] = []
-    # profile_hash[:linkedin] = []
-    # profile_hash[:github] = []
-    # profile_hash[:blog] = []
-    # profile_hash[:profile_quote] = []
-    # profile_hash[:bio] = []
     html = open(profile_url)
     doc = Nokogiri::HTML(html)
-    info_area = doc.css(".main-wrapper")
+    main_wrapper = doc.css(".main-wrapper")
 
       # --GETS ALL SOCIAL MEDIA LINKS--
 
       links_array = []
       social_media_links = {}
-       info_area.each do |x|
+       main_wrapper.each do |x|
         space = x.css(".vitals-container .social-icon-container a")
       space.each do |x|
       links_array << x["href"]
@@ -57,9 +51,11 @@ class Scraper
 
    #--GETS BLOG, QUOTE, BIO --
 
-    info_area.each do |x|
-      if x.css(".vitals-container .social-icon-container a")[3]["href"].include?("http")
-        profile_hash[:blog] = x.css(".vitals-container .social-icon-container a")[3]["href"]
+    main_wrapper.each do |x|
+      if x.css(".vitals-container .social-icon-container a")[3]
+        if x.css(".vitals-container .social-icon-container a")[3]["href"].include?("http")
+          profile_hash[:blog] = x.css(".vitals-container .social-icon-container a")[3]["href"]
+      end
       end
       profile_hash[:profile_quote] = x.css(".vitals-container .vitals-text-container .profile-quote").text
       profile_hash[:bio] = x.css(".details-container .description-holder p").text
