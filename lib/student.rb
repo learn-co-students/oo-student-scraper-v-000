@@ -12,17 +12,19 @@ class Student
 
 
     def self.create_from_collection(students_array)
+
     # iterate over each of the students_array create_from_collection
-    students_array.each do |student|
+      students_array.each do |student|
       #we want it to create a new student. & passed in each individual student
       Student.new(student)  # called it.
     end
     end
 
     def add_student_attributes(attributes_hash)
-    #iterating over an hash... key track of keys and value..
+    #iterating over an hash... keep  track of keys and value..
     # Do something with the key and value}
     attributes_hash.each {|key, value| self.send(("#{key}="), value)} #example in the Mass Assignment and Metaprogramming
+
     end
 
 
