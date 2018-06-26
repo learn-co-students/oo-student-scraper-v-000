@@ -4,7 +4,7 @@ require 'pry'
 class Scraper
 
   def self.scrape_index_page(index_url)
-  	#{:name => "Abby Smith", :location => "Brooklyn, NY", :profile_url => "students/abby-smith.html"}
+
     html = File.read(index_url)
 
     scrape_index_page = Nokogiri::HTML(html)
@@ -29,13 +29,6 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    # return value is a hash in which the key/value pairs are:
-    # :twitter => https://twitter.com/empireofryan
-    # :linkedin => https://www.linkedin.com/in/ryan-johnson-321629ab
-    # :github => https://github.com/empireofryan
-    # :blog => 
-    # :profile_quote => 
-    # :bio =>
 
     html = File.read(profile_url)
 
