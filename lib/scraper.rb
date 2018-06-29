@@ -10,11 +10,11 @@ class Scraper
     html = File.read(index_url)
     index_page = Nokogiri::HTML(html)
     index_page.css(".student-card").collect do |student|
-      return {
+       {
         :name => student.css(".student-name").text,
         :location => student.css(".student-location").text,
         :profile_url => student.css("a").attr("href").value
-      }
+       }
     end
   end
 
