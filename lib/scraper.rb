@@ -28,10 +28,11 @@ class Scraper
 
     social_link_tags.each do |social_link_tag|
       social_site_url = social_link_tag.attr("href") # here is the url
-      social_site_name = url.match(/\/\/[w]{3}?\.?(\w+).com/).captures[0] # site name
+      social_site_name = social_site_url.match(/\/\/[w]{3}?\.?(\w+).com/).captures[0] # site name
 
-      if ['github', 'linkedin', 'twitter'].includes?(social_site_name)
-        profile_details[social_site_name] = social_site_url
+      if ['github', 'linkedin', 'twitter'].include?(social_site_name)
+        profile_details[social_site_name.to_sym] = social_site_url
+
       else
         profile_details[:blog] = social_site_url
       end
@@ -40,6 +41,7 @@ class Scraper
 
     profile_details[:profile_quote] = profile_page.css(".profile-quote").text
     profile_details[:bio] = profile_page.css(".bio-block").css("p").text
+
     return profile_details
 
   end
