@@ -1,0 +1,24 @@
+
+[1mFrom:[0m /home/DeedaG/oo-student-scraper-v-000/lib/scraper.rb @ line 44 Scraper.scrape_profile_page:
+
+    [1;34m29[0m:  [32mdef[0m [1;36mself[0m.[1;34mscrape_profile_page[0m(profile_url)
+    [1;34m30[0m:    profile_page = [1;34;4mNokogiri[0m::HTML(open(profile_url))
+    [1;34m31[0m:    [1;34m#binding.pry[0m
+    [1;34m32[0m:    student_profile = {}
+    [1;34m33[0m: 
+    [1;34m34[0m:  profile_page.css([31m[1;31m"[0m[31m.social-icon-container[1;31m"[0m[31m[0m).each [32mdo[0m |information|
+    [1;34m35[0m: 
+    [1;34m36[0m:    student_profile[[33m:twitter[0m] = information.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m)[[1;34m0[0m].attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value [32mif[0m information.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m)[[1;34m0[0m].attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value
+    [1;34m37[0m:    student_profile[[33m:linkedin[0m] = information.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m)[[1;34m1[0m].attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value [32mif[0m information.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m)[[1;34m1[0m].attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value
+    [1;34m38[0m:    student_profile[[33m:github[0m] = information.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m)[[1;34m2[0m].attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value [32mif[0m information.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m)[[1;34m2[0m].attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value
+    [1;34m39[0m:    student_profile[[33m:blog[0m] = information.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m)[[1;34m3[0m].attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value [32mif[0m information.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m)[[1;34m3[0m].attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value
+    [1;34m40[0m: [32mend[0m
+    [1;34m41[0m:    student_profile[[33m:profile_quote[0m] = profile_page.css([31m[1;31m"[0m[31m.profile_quote[1;31m"[0m[31m[0m).text [32mif[0m profile_page.css([31m[1;31m"[0m[31mprofile_quote[1;31m"[0m[31m[0m)
+    [1;34m42[0m:    student_profile[[33m:bio[0m] = profile_page.css([31m[1;31m"[0m[31mdiv.bio-content.content-holder div.description-holder p[1;31m"[0m[31m[0m).text
+    [1;34m43[0m: 
+ => [1;34m44[0m:  binding.pry
+    [1;34m45[0m: 
+    [1;34m46[0m:  student_profile
+    [1;34m47[0m: 
+    [1;34m48[0m: [32mend[0m
+
