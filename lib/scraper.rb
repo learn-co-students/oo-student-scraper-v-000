@@ -16,24 +16,28 @@ class Scraper
       scraped_students << hash
     end
     scraped_students
-  end
+end
 
-  def self.scrape_profile_page(profile_url)
-    html = open(profile_url)
-    doc = Nokogiri::HTML(html)
-    profile_data = doc.css(".main_wrapper profile")
-    scraped_student = {}
-    profile_data.each do |profile|
-      hash = Hash.new
-      hash[:twitter] = ""
-      hash[:linkedin] = ""
-      hash[:profile_quote] = ""
-      hash[:github] = ""
-      hash[:blog] = ""
-      hash[:bio] = ""
-      scraped_student << hash
+def self.scrape_profile_page(profile_url)
+  content = {}
+  profile_page = Nokogiri::HTML(open(profile_url))
+  profile_page.css("div.social-icon-container").each do |links|
+    content[:bio] = profile_page.css("div.description-holder p").text
+    content[:profile_quote] = profile_page.css("div.profile-quote").text
+
+    links.css("a").each do |link|
+      if link.attributes["href"].value.include?("twitter")
+        content[:twitter] = link.attributes["href"].value
+      elsif link.attributes["href"].value.include?("linkedin")
+        content[:linkedin] = link.attributes["href"].value
+      elsif link.attributes["href"].value.include?("github")
+        content[:github] = link.attributes["href"].value
+      elsif link.attributes["href"].value.include?("http")
+        content[:blog] = link.attributes["href"].value
+      end
     end
-    scraped_student
   end
+  content
+end
 
 end
