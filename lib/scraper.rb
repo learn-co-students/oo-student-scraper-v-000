@@ -22,7 +22,9 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     #profile_url = "./fixtures/student-site/students/joe-burgess.html" 
-    twitter, linkedin, github, blog = nil
+    
+    student = {}
+    twitter, linkedin, github, blog, profile_quote, bio = nil
     
     doc = Nokogiri::HTML(open(profile_url))
 
@@ -44,15 +46,20 @@ class Scraper
       end
     }
 
-    profile_quote = doc.css("div.profile-quote").text
-    bio = doc.css("div.bio-block div.description-holder").text.strip
+    profile_quote = doc.css("div.profile-quote").text if doc.css("div.profile-quote")
+    
+    bio = doc.css("div.bio-block div.description-holder").text.strip if doc.css("div.bio-block div.description-holder")
 
     #binding.pry
-
-
-    scrapedProfile = {:twitter =>twitter, :linkedin =>linkedin, :github =>github, :blog =>blog, :profile_quote =>profile_quote, :bio =>bio}
-
-
+    
+    student[:twitter] = twitter if twitter
+    student[:linkedin] = linkedin if linkedin
+    student[:github] = github if github
+    student[:blog] = blog if blog
+    student[:profile_quote] = profile_quote if profile_quote
+    student[:bio] = bio if bio
+    
+    student
 
   end
 
