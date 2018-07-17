@@ -40,7 +40,6 @@ class Scraper
 
     student[:profile_quote] = profile_page.css(".profile-quote").text
     student[:bio] = profile_page.css(".description-holder p").text
-binding.pry
     student
   end
 
