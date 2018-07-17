@@ -28,9 +28,9 @@ class Scraper
 
     links.each do |link|
       if link.include?("linkedin")
-         student[:linkedin] << link
+         student[linkedin, "#{link}"] #<- I'm trying to store key and a value in student hash, but it's not happening.
       elsif link.include?("twitter")
-        link = student[:twitter]
+        link = student[:twitter] #<- I'm trying to store key and a value in student hash, but it's not happening.
       elsif link.include?("github")
         link = student[:github]
       else
