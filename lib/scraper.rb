@@ -11,19 +11,15 @@ class Scraper
       student_scrape = []
       
       doc.css("div.student-card").each do |student| 
-        binding.pry
+    
         student_scrape << { 
-          :name => student.css("div.student-card").text,  
+          :name => student.css("h4.student-name").text,  
           :location => student.css("p.student-location").text,
-
-# :profile_url => "./fixture/student-site/" 
-# {student.css("a").attribute("href").value 
-  
-}
-                           
-end 
-student_scrape
-   end
+          :profile_url => student.css("a").attribute("href").value
+                           }
+          end 
+      student_scrape
+  end
  
   
   
