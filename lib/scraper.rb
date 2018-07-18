@@ -19,7 +19,6 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    #twitter = doc.css(".social-icon-container a")
     doc = Nokogiri::HTML(open(profile_url))
     hash = {}
     doc.css(".social-icon-container a").each do |link|
