@@ -24,22 +24,25 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     profile_page = Nokogiri::HTML(open(profile_url))
     student = {}
-    links = profile_page.css(".social-icon-container a").map { |link| link['href'] } # <- this returns an array of social links
+
+
+    links = profile_page.css(".social-icon-container").children.css("a").map {|e| e.attribute("href").value}
 
     links.each do |link|
+# binding.pry
       if link.include?("linkedin")
-         student[linkedin, "#{link}"] #<- I'm trying to store key and a value in student hash, but it's not happening.
+        student[:linkedin] = link
       elsif link.include?("twitter")
-        link = student[:twitter] #<- I'm trying to store key and a value in student hash, but it's not happening.
+        student[:twitter] = link  
       elsif link.include?("github")
-        link = student[:github]
+        student[:github] = link
       else
-        link = student[:blog]
+        student[:blog] = link
       end
     end
 
-    student[:profile_quote] = profile_page.css(".profile-quote").text
-    student[:bio] = profile_page.css(".description-holder p").text
+    student[:profile_quote] = profile_page.css(".profile-quote").text if profile_page.css(".profile-quote").text
+    student[:bio] = profile_page.css(".description-holder p").text if profile_page.css(".description-holder p").text
     student
   end
 
