@@ -26,10 +26,10 @@ class Scraper
     profile.css(".social-icon-container a").each do |link|
       url = link.attribute("href").text
 
-      student[:twitter] =  url if url.include?("twitter")
+      student[:twitter] = url if url.include?("twitter")
       student[:linkedin] = url if url.include?("linkedin")
       student[:github] = url if url.include?("github")
-      student[:blog]= url if link.css("img").attribute("src").text.include?("rss")
+      student[:blog] = url if link.css("img").attribute("src").text.include?("rss")
     end
     student[:profile_quote] = profile.css(".profile-quote").text
     student[:bio] = profile.css(".bio-content .description-holder p").text
