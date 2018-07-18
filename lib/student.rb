@@ -16,16 +16,16 @@ class Student
 
   def self.create_from_collection(students_array)
     students_array.map do |new_student|
-      # binding.pry
-      @name = new_student[:name]  #<- returns "Alex Patriquin"
-      # new_student[:name] == name
-      self.new(name)
+      @@all << self.new(new_student)
     end
-    @@all << self
   end
 
   def add_student_attributes(attributes_hash)
-
+    self.bio = attributes_hash[:bio]
+    self.blog = attributes_hash[:blog]
+    self.linkedin = attributes_hash[:linkedin]
+    self.profile_quote = attributes_hash[:profile_quote]
+    self.twitter = attributes_hash[:twitter]
   end
 
   def self.all
