@@ -15,7 +15,7 @@ class Scraper
         student_scrape << { 
           :name => student.css("h4.student-name").text,  
           :location => student.css("p.student-location").text,
-          :profile_url => student.css("a").attribute("href").value
+          :profile_url =>  "./fixture/student-site/" + student.css("a").attribute("href").value
                            }
           end 
       student_scrape
@@ -25,7 +25,13 @@ class Scraper
   
   def self.scrape_profile_page(profile_url)
     
+  
+  
   end
+
+
+
+
 
 end
 
