@@ -9,9 +9,10 @@ class Scraper
   #post-index_url.css(".student-card")
 
   def self.scrape_index_page(index_url)
-    index_url= Nokogiri::HTML(open("./fixtures/student-site/index.html"))
-    index_url.css(".student-card").map do |profile|
-        {name: profile.css("h4.student-name").text,
+    doc= Nokogiri::HTML(open(index_url))
+    doc.css(".student-card").map do |profile|
+      {
+        name: profile.css("h4.student-name").text,
         location: profile.css("p.student-location").text,
         profile_url: profile.css("a")[0]["href"]
       }
@@ -20,23 +21,21 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
-    hash = {}
+    student = {}
     doc.css(".social-icon-container a").each do |link|
       href = link.attr('href')
       if href.include?('twitter')
-        hash[:twitter] = href
+        student[:twitter] = href
       elsif href.include?('linkedin')
-        hash[:linkedin] = href
+        student[:linkedin] = href
       elsif href.include?('github')
-        hash[:github] = href
+        student[:github] = href
       else
-        hash[:blog] = href
+        student[:blog] = href
       end
     end
-    p_quote = doc.css(".vitals-text-container .profile-quote").text
-    the_bio = doc.css(".details-container .description-holder p").text
-    hash[:profile_quote] = p_quote
-    hash[:bio] = the_bio
-    hash
+    student[:profile_quote] = doc.css(".vitals-text-container .profile-quote").text
+    student[:bio] = doc.css(".details-container .description-holder p").text
+    student
   end
 end
