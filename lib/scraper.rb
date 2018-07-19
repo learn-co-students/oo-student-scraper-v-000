@@ -29,19 +29,24 @@ def self.scrape_profile_page(profile_url)
     student_page = {}
   
     doc.css("div.social-icon-container a").each do |link| 
-        
-      if link.include?("twitter")
+        # binding.pry
+      
+      if link["href"].include?("twitter")
        student_page[:twitter] = link["href"]
-       
-      elsif link.include?("linkedin") 
+      
+      elsif link["href"].include?("linkedin") 
        student_page[:linkedin] = link["href"]
    
-      elsif link.include?("github")
+      elsif link["href"].include?("github")
        student_page[:github] = link["href"]
+    
+  else student_page[:blog] = link["href"]
+    
     end 
      
      student_page[:profile_quote] = doc.css("div.profile-quote").text if doc.css("div.profile-quote")
-    student_page[:bio] = doc.css("div.description-holder").text if doc.css("div.description-holder") 
+   
+    student_page[:bio] = doc.css("div.description-holder p").text if doc.css("div.description-holder") 
      
 
  end 
