@@ -26,8 +26,8 @@ class Scraper
           linkedin: "something",
           github: "something",
           blog: "something",
-          profile_quote: "something",
-          bio: profile.css("div.vitals-text-container.profile-quote").text
+          profile_quote: profile.css("div.vitals-text-container div.profile-quote").text,
+          bio: profile.css("div.details-container div div div.description-holder p").text
         }
         binding.pry
       end
