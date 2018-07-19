@@ -14,28 +14,33 @@ class Scraper
         profile_url: student.css("a").first["href"]
       }
     end
+
+
+
     student_hash_index
   end
 
   def self.scrape_profile_page(profile_url)
     profile_scrape = Nokogiri::HTML(open(profile_url)).css("div.main-wrapper.profile")
 
-    student_hash_profile = []
-    profile_scrape.each do |profile|
+      student_hash_profile = {}
+      profile_scrape.each do |profile|
       social_links = profile.css("div div.social-icon-container a").map {|link| link.attribute("href").to_s}
-      linkedin = social_links.find{|link| link.match(/.*\blinkedin.*/)}
-      github = social_links.find{|link| /.*\bgithub.*/}
-      twitter = social_links.find{|link| /.*\twitter.*/}
-      blog = social_links.find{|link| link != linkedin && link != github && link != twitter}
-        student_hash_profile <<{
-          linkedin: profile.css("div div.social-icon-container a"),
-          github: "something",
-          blog: "something",
+      linkedin_link = social_links.find{|link| link.match(/.*\blinkedin.*/)}
+      github_link = social_links.find{|link| link.match(/.*github.*/)}
+      twitter_link = social_links.find{|link| link.match(/.*\btwitter.*/)}
+      blog_link = social_links.find{|link| link != linkedin_link && link != github_link && link != twitter_link}
+        student_hash_profile = {
+          twitter: twitter_link,
+          linkedin: linkedin_link,
+          github: github_link,
+          blog: blog_link,
           profile_quote: profile.css("div.vitals-text-container div.profile-quote").text,
           bio: profile.css("div.details-container div div div.description-holder p").text
-        }
-        binding.pry
+        }.delete_if{|key,value| value == nil}
+
       end
-  end
+      student_hash_profile
+      end
 
 end
