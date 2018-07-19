@@ -1,11 +1,6 @@
-## Worked on by Maurice Argoetti, Srija Kumar and Brandon Green
-## TOGETHER = pair programming
-
-require 'open-uri'
-
-
-
-require 'pry'
+## Flatiron School - Student Scraper Lab
+## Contributors: Maurice Argoetti, Srija Kumar and Brandon Green, Lynie McClimon, Heidi Hlavinka, Alicia Yu and Cory Veten
+## PAIR PROGRAMMING FTW
 
 class Scraper
   def self.scrape_index_page(index_url)
