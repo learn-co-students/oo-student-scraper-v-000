@@ -1,0 +1,33 @@
+
+[1mFrom:[0m /home/freeWillee/oo-student-scraper-v-000/lib/scraper.rb @ line 33 Scraper.scrape_index_page:
+
+     [1;34m7[0m: [32mdef[0m [1;36mself[0m.[1;34mscrape_index_page[0m(index_url)
+     [1;34m8[0m:   [1;34m# fixed url for purposes of this test: "./fixtures/student-site/index.html"[0m
+     [1;34m9[0m: [1;34m# [[0m
+    [1;34m10[0m:   [1;34m# {:name => "Abby Smith", :location => "Brooklyn, NY", :profile_url => "students/abby-smith.html"},[0m
+    [1;34m11[0m:   [1;34m# {:name => "Joe Jones", :location => "Paris, France", :profile_url => "students/joe-jonas.html"},[0m
+    [1;34m12[0m:   [1;34m# {:name => "Carlos Rodriguez", :location => "New York, NY", :profile_url => "students/carlos-rodriguez.html"},[0m
+    [1;34m13[0m:   [1;34m# {:name => "Lorenzo Oro", :location => "Los Angeles, CA", :profile_url => "students/lorenzo-oro.html"},[0m
+    [1;34m14[0m:   [1;34m# {:name => "Marisa Royer", :location => "Tampa, FL", :profile_url => "students/marisa-royer.html"}[0m
+    [1;34m15[0m: [1;34m# ][0m
+    [1;34m16[0m: 
+    [1;34m17[0m:   [1;34m#name css: doc.css(".student-card").css(".student-name").text[0m
+    [1;34m18[0m:   [1;34m#location css: doc.css(".student-card").css(".student-location").text[0m
+    [1;34m19[0m:   [1;34m#profile url css: doc.css(".student-card").css("a")[0]["href"][0m
+    [1;34m20[0m: 
+    [1;34m21[0m:   [1;34m#grab html using open-uri[0m
+    [1;34m22[0m:   html = open([31m[1;31m"[0m[31m./fixtures/student-site/index.html[1;31m"[0m[31m[0m)
+    [1;34m23[0m:   [1;34m#use nokogiri HTML method to convert string to NodeSet; save into a variable, doc[0m
+    [1;34m24[0m:   doc = [1;34;4mNokogiri[0m::HTML(html)
+    [1;34m25[0m:   binding.pry
+    [1;34m26[0m:   scraped_array = []
+    [1;34m27[0m:   doc.css([31m[1;31m"[0m[31m.student-card[1;31m"[0m[31m[0m).each [32mdo[0m |card|
+    [1;34m28[0m:     student_hash = {}
+    [1;34m29[0m:     student_hash[[33m:name[0m] = card.css([31m[1;31m"[0m[31m.student-name[1;31m"[0m[31m[0m).text
+    [1;34m30[0m:     student_hash[[33m:location[0m] = card.css([31m[1;31m"[0m[31m.student-location[1;31m"[0m[31m[0m).text
+    [1;34m31[0m:     student_hash[[33m:profile_url[0m] = card.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m)[[1;34m0[0m][[31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m]
+    [1;34m32[0m:   [32mend[0m
+ => [1;34m33[0m:   binding.pry
+    [1;34m34[0m:   student_hash
+    [1;34m35[0m: [32mend[0m
+
