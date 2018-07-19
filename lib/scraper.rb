@@ -1,26 +1,37 @@
+require 'nokogiri'
 require 'open-uri'
 require 'pry'
-require 'nokogiri'
 
 class Scraper
-# @@all = []
 
   def self.scrape_index_page(index_url)
-    learn = Nokogiri::HTML(open(index_url))
-    learn.css("div.student-card a").each do |card|
-      name = card.css("h4").text
-      location = card.css("p").text
-      profile_url = card.attr("href")
-      student_hash = {name: name, location: location, profile_url: profile_url}
-      @@all << student_hash
+    doc= Nokogiri::HTML(open(index_url))
+    doc.css(".student-card").map do |profile|
+      {
+        name: profile.css("h4.student-name").text,
+        location: profile.css("p.student-location").text,
+        profile_url: profile.css("a")[0]["href"]
+      }
     end
-      @@all
   end
 
   def self.scrape_profile_page(profile_url)
-    student_hash = {}
-    learn = Nokogiri::HTML(open(index_url))
-
+    doc = Nokogiri::HTML(open(profile_url))
+    student = {}
+    doc.css(".social-icon-container a").each do |link|
+      href = link.attr('href')
+      if href.include?('twitter')
+        student[:twitter] = href
+      elsif href.include?('linkedin')
+        student[:linkedin] = href
+      elsif href.include?('github')
+        student[:github] = href
+      else
+        student[:blog] = href
+      end
+    end
+    student[:profile_quote] = doc.css(".vitals-text-container .profile-quote").text
+    student[:bio] = doc.css(".details-container .description-holder p").text
+    student
   end
-
 end
