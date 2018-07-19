@@ -22,8 +22,13 @@ class Scraper
 
     student_hash_profile = []
     profile_scrape.each do |profile|
+      social_links = profile.css("div div.social-icon-container a").map {|link| link.attribute("href").to_s}
+      linkedin = social_links.find{|link| link.match(/.*\blinkedin.*/)}
+      github = social_links.find{|link| /.*\bgithub.*/}
+      twitter = social_links.find{|link| /.*\twitter.*/}
+      blog = social_links.find{|link| link != linkedin && link != github && link != twitter}
         student_hash_profile <<{
-          linkedin: "something",
+          linkedin: profile.css("div div.social-icon-container a"),
           github: "something",
           blog: "something",
           profile_quote: profile.css("div.vitals-text-container div.profile-quote").text,
