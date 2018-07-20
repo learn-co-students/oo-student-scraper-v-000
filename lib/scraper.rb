@@ -19,8 +19,14 @@ class Scraper
     
     card_name = cards[0].css('.student-name').text #this works for name
     card_location = cards[0].css(".student-location").text #this works for location
-    card_url = cards[0].css("#{.attr('href')}")
+    #card_url = cards[0].css("#{.attr('href')}")
     binding.pry
+    
+    items.each do |item|
+      card_name = item.css('.student-name').text
+      card_location = item.css('.student-location').text
+      students << {name: card_name, location: card_location}
+    end
 
     
     students
