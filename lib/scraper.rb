@@ -26,8 +26,8 @@ class Scraper
     #doc.css("a href").value
     #end
     student_profiles = student_data.each do |student|
-      student.css(".student-card a").attribute("href").value
-      
+      student.css("a").attribute("href").value
+
     end
 
 
