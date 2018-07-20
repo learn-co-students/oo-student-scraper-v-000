@@ -6,24 +6,32 @@ class Scraper
 
   def self.scrape_index_page(index_url)
     doc = Nokogiri::HTML(open(index_url))
+    students = {}
+    student_data = doc.css(".roster-cards-container")
+
+    student_names = student_data.css("h4.student-name").each do |student|
+      student.text
+
+
+    end
+
+
     #doc.css("div.student-card").each do |student|
     #doc.css("a href").value
-
     #end
-      students = {}
+
       #:name => student.css("h4.student-name").text,
-
-      #:location => student.css("p.student-location").text,
-
-
-
+    student_locations = student_data.css("p.student-location").each do |student|
+      student.text
+      binding.pry
+    end
+    #doc.css("a href").value
+    #end
     #doc.css("div.student-card a").attribute("href").value
     #locations = doc.css("p.student-location").first.text
-
-    doc.css("div.student-card")
-    binding.pry
+    #doc.css("div.student-card")
   end
-  #names = doc.css("h4.student-name").text
+
   def self.scrape_profile_page(profile_url)
 
   end
