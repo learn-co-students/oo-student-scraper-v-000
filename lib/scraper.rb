@@ -11,9 +11,10 @@ class Scraper
     students = []
 
     scraper.css("div.roster-body-wrapper").each do |home|
-      home.css("div.roster-cards-container").each do |profile|
-        students << {:name => profile.css("h4.student-name").text,
-          :location => profile.css("p.student-location").text,
+      home.css("div.roster-cards-container").each_with_index do |profile, index|
+        binding.pry
+        students << {:name => profile.css("h4.student-name")[index].children.text,
+          :location => profile.css("p.student-location")[index].children.text,
           :profile_url => profile.children.css("a").attr("href").value
         }
     end
