@@ -11,8 +11,6 @@ class Scraper
 
     student_names = student_data.css("h4.student-name").each do |student|
       student.text
-
-
     end
 
 
@@ -23,11 +21,11 @@ class Scraper
       #:name => student.css("h4.student-name").text,
     student_locations = student_data.css("p.student-location").each do |student|
       student.text
-      binding.pry
     end
     #doc.css("a href").value
     #end
-    #doc.css("div.student-card a").attribute("href").value
+    student_profiles = student_data.css(".student-card a href").value
+    binding.pry
     #locations = doc.css("p.student-location").first.text
     #doc.css("div.student-card")
   end
