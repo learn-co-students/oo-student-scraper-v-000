@@ -27,7 +27,7 @@ class Scraper
       attributes[:twitter] = valid_link if valid_link.include?("twitter")
       attributes[:linkedin] = valid_link if valid_link.include?("linkedin")
       attributes[:github] = valid_link if valid_link.include?("github")
-      attributes[:blog] = valid_link if link.css(".img").attribute(".src").value.include?("rss")
+      attributes[:blog] = valid_link if link.css("img").attribute("src").text.include?("rss")
     end
     attributes[:profile_quote] = profile.css(".profile-quote").text
     attributes[:bio] = profile.css("p").text
