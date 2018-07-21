@@ -20,47 +20,16 @@ class Scraper
   end
 
 
-
-
-    #student_data.css("h4.student-name").each do |student|
-    #  students[:name] = student.text
-
-
-    #student_data.css("p.student-location").each do |student|
-    #  students[:location] = student.text
-
-
-    #student_data.css(".student-card a").each do |student|
-    #  students[:profile_url] = student.attribute("href").value
-
-  #end
-    #student_profiles = student_data.css(".student-card")
-    #student_urls = student_profiles.css("a").attribute("href").value
-
-
-    #doc.css("div.student-card").each do |student|
-    #doc.css("a href").value
-    #end
-
-      #:name => student.css("h4.student-name").text,
-
-
-    #doc.css("a href").value
-    #end
-    #student_profiles = student_data.css("a").attribute("href")
-
-
-
-
-
-
-    #locations = doc.css("p.student-location").first.text
-    #doc.css("div.student-card")
-
-
-
   def self.scrape_profile_page(profile_url)
+    profile_page = Nokogiri::HTML(open(profile_url))
+    profile_page.css(".social-icon-container a").each do |icon|
+      icon.attribute("href").value
+      binding.pry
+    end
 
+    binding.pry
+    profile_quote = profile_page.css(".profile-quote").text.strip
+    binding.pry
   end
 
 end
