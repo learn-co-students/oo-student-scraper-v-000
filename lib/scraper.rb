@@ -9,21 +9,21 @@ class Scraper
 
     student_data = doc.css(".roster-cards-container")
 
-    student = {}
+    students = {}
     student_data.css("h4.student-name").each do |student|
-      student_names[:name] = student.text
-      binding.pry
+      students[:name] = student.text
+
     end
-    student_locations = []
+
     student_data.css("p.student-location").each do |student|
-      student_locations << student.text
+      students[:location] = student.text
     end
-    student_urls = []
+
     student_data.css(".student-card a").each do |student|
-      student_urls << student.attribute("href").value
+      students[:profile_url] = student.attribute("href").value
 
     end
-
+    binding.pry
   #end
     #student_profiles = student_data.css(".student-card")
     #student_urls = student_profiles.css("a").attribute("href").value
