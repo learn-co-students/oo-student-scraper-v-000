@@ -15,29 +15,24 @@ class Scraper
         students << {name: student_name, location: student_location, profile_url: student_profile_link}
       end
     end
-    students        
-    binding.pry
+    students
 
-      end
-    end
+  end
 
 
 
-    student_data
-    student_data.css("h4.student-name").each do |student|
-      students[:name] = student.text
 
-    end
+    #student_data.css("h4.student-name").each do |student|
+    #  students[:name] = student.text
 
-    student_data.css("p.student-location").each do |student|
-      students[:location] = student.text
-    end
 
-    student_data.css(".student-card a").each do |student|
-      students[:profile_url] = student.attribute("href").value
+    #student_data.css("p.student-location").each do |student|
+    #  students[:location] = student.text
 
-    end
-    binding.pry
+
+    #student_data.css(".student-card a").each do |student|
+    #  students[:profile_url] = student.attribute("href").value
+
   #end
     #student_profiles = student_data.css(".student-card")
     #student_urls = student_profiles.css("a").attribute("href").value
@@ -61,7 +56,7 @@ class Scraper
 
     #locations = doc.css("p.student-location").first.text
     #doc.css("div.student-card")
-  end
+
 
 
   def self.scrape_profile_page(profile_url)
