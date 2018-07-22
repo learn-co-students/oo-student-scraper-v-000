@@ -22,13 +22,15 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     profile_page = Nokogiri::HTML(open(profile_url))
+    
     profile_page.css(".social-icon-container a").each do |icon|
       icon.attribute("href").value
-      binding.pry
+
     end
 
-    binding.pry
-    profile_quote = profile_page.css(".profile-quote").text.strip
+
+    profile_quote = profile_page.css(".profile-quote")
+    bio = profile_page.css(".details-container p").text
     binding.pry
   end
 
