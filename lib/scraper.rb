@@ -22,16 +22,31 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     profile_page = Nokogiri::HTML(open(profile_url))
-    
+
     profile_page.css(".social-icon-container a").each do |icon|
-      icon.attribute("href").value
+
+      if icon.css(".social-icon").attribute("src").value == "../assets/img/twitter-icon.png"
+        icon.attribute("href").value
+      elsif icon.css(".social-icon").attribute("src").value == "../assets/img/linkedin-icon.png"
+        icon.attribute("href").value
+        binding.pry
+      end
+
+
+      #icon.css(".img").attribute("src").value #== "../assets/img/twitter-icon-png"
+
+        #twitter = icon.attribute("href").value
 
     end
 
+    #profile_page.css("div.social-icon-container a img").attribute("src").value = "../assets/img/twitter-icon-png"
 
-    profile_quote = profile_page.css(".profile-quote")
-    bio = profile_page.css(".details-container p").text
-    binding.pry
+      #icon.attribute("href").value = twitter_link
+
+
+    #profile_quote = profile_page.css(".profile-quote").text
+    #bio = profile_page.css(".details-container p").text
+
   end
 
 end
