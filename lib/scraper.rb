@@ -22,24 +22,24 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     profile_page = Nokogiri::HTML(open(profile_url))
-    quote = profile_page.css(".profile-quote").text
-    bio_para = profile_page.css(".details-container p").text
-    student_data = []
+    student_data = {}
+
+    student_data = {}
     profile_page.css(".social-icon-container").each do |icon|
       #binding.pry
       if icon.css(".social-icon").attribute("src").value == "../assets/img/twitter-icon.png"
-        twitter_link = icon.attribute("href").value unless icon.attribute("href") == nil
+        student_data[:twitter] = icon.attribute("href").value if icon.attribute("href")
 
       elsif icon.css(".social-icon").attribute("src").value == "../assets/img/linkedin-icon.png"
-        linkedin_link = icon.attribute("href").value
+        student_data[:linkedin] = icon.attribute("href").value if icon.attribute("href")
       elsif icon.css(".social-icon").attribute("src").value == "../assets/img/github-icon.png"
-        github_link = icon.attribute("href").value
+        student_data[:github] = icon.attribute("href").value if icon.attribute("href")
       elsif icon.css(".social-icon").attribute("src").value == "../assets/img/rss-icon.png"
-        blog_link = icon.attribute("href").value
+        student_data[:blog] = icon.attribute("href").value if icon.attribute("href")
       end
-      student_data << {twitter: twitter_link, linkedin: linkedin_link, github: github_link, blog: blog_link, profile_quote: quote, bio: bio_para}
     end
-
+    student_data[:profile_quote] = profile_page.css(".profile-quote").text if profile_page.css(".profile-quote")
+    student_data[:bio] = profile_page.css(".details-container p").text if profile_page.css(".details-container p")
 
     student_data
 
