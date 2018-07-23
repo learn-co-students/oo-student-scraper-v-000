@@ -23,13 +23,17 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     profile_page = Nokogiri::HTML(open(profile_url))
 
-    profile_page.css(".social-icon-container a").each do |icon|
+    icon = profile_page.css(".social-icon-container a")
 
-      if icon.css(".social-icon").attribute("src").value == "../assets/img/twitter-icon.png"
-        icon.attribute("href").value
-      elsif icon.css(".social-icon").attribute("src").value == "../assets/img/linkedin-icon.png"
-        icon.attribute("href").value
-        binding.pry
+    if icon.css(".social-icon").attribute("src").value == "../assets/img/twitter-icon.png"
+      icon.attribute("href").value = twitter_link
+    elsif icon.css(".social-icon").attribute("src").value == "../assets/img/linkedin-icon.png"
+      icon.attribute("href").value = linkedin_link
+    elsif icon.css(".social-icon").attribute("src").value == "../assets/img/github-icon.png"
+      icon.attribute("href").value = github_link
+    elsif icon.css(".social-icon").attribute("src").value == "../assets/img/rss-icon.png"
+       icon.attribute("href").value = blog_link
+
       end
 
 
@@ -37,7 +41,7 @@ class Scraper
 
         #twitter = icon.attribute("href").value
 
-    end
+
 
     #profile_page.css("div.social-icon-container a img").attribute("src").value = "../assets/img/twitter-icon-png"
 
