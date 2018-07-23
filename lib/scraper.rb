@@ -3,7 +3,7 @@ require 'open-uri'
 require 'pry'
 
 class Scraper
-
+  attr_accessor :twitter_link
   def self.scrape_index_page(index_url)
     index_page = Nokogiri::HTML(open(index_url))
     students = []
@@ -22,17 +22,18 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     profile_page = Nokogiri::HTML(open(profile_url))
-    student_profile = []
-    icon = profile_page.css(".social-icon-container a")
-
-    if icon.css(".social-icon").attribute("src").value == "../assets/img/twitter-icon.png"
-      icon.attribute("href").value = twitter_link
-    elsif icon.css(".social-icon").attribute("src").value == "../assets/img/linkedin-icon.png"
-      icon.attribute("href").value = linkedin_link
-    elsif icon.css(".social-icon").attribute("src").value == "../assets/img/github-icon.png"
-      icon.attribute("href").value = github_link
-    elsif icon.css(".social-icon").attribute("src").value == "../assets/img/rss-icon.png"
-       icon.attribute("href").value = blog_link
+    student_data = []
+    profile_page.css(".social-icon-container a").each do |icon|
+      if icon.css(".social-icon").attribute("src").value == "../assets/img/twitter-icon.png"
+        twitter_link = icon.attribute("href").value
+        student_data << twitter_link
+      elsif icon.css(".social-icon").attribute("src").value == "../assets/img/linkedin-icon.png"
+        linkedin_link = icon.attribute("href").value
+      elsif icon.css(".social-icon").attribute("src").value == "../assets/img/github-icon.png"
+        github_link = icon.attribute("href").value
+      elsif icon.css(".social-icon").attribute("src").value == "../assets/img/rss-icon.png"
+        blog_link = icon.attribute("href").value
+      end
     end
 
     quote = profile_page.css(".profile-quote").text
@@ -40,6 +41,6 @@ class Scraper
     student_profile << {twitter: twitter_link, linkedin: linkedin_link, github: github_link, blog: blog_link, profile_quote: quote, bio: bio_para}
 
     student_profile
-    binding.pry
+
     end
 end
