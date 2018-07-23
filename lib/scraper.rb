@@ -22,11 +22,13 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     profile_page = Nokogiri::HTML(open(profile_url))
+    quote = profile_page.css(".profile-quote").text
+    bio_para = profile_page.css(".details-container p").text
     student_data = []
     profile_page.css(".social-icon-container a").each do |icon|
       if icon.css(".social-icon").attribute("src").value == "../assets/img/twitter-icon.png"
         twitter_link = icon.attribute("href").value
-        student_data << twitter_link
+        
       elsif icon.css(".social-icon").attribute("src").value == "../assets/img/linkedin-icon.png"
         linkedin_link = icon.attribute("href").value
       elsif icon.css(".social-icon").attribute("src").value == "../assets/img/github-icon.png"
@@ -34,13 +36,12 @@ class Scraper
       elsif icon.css(".social-icon").attribute("src").value == "../assets/img/rss-icon.png"
         blog_link = icon.attribute("href").value
       end
+
+      student_data << {twitter: twitter_link, linkedin: linkedin_link, github: github_link, blog: blog_link, profile_quote: quote, bio: bio_para}
     end
 
-    quote = profile_page.css(".profile-quote").text
-    bio_para = profile_page.css(".details-container p").text
-    student_profile << {twitter: twitter_link, linkedin: linkedin_link, github: github_link, blog: blog_link, profile_quote: quote, bio: bio_para}
 
-    student_profile
+    student_data
 
     end
 end
