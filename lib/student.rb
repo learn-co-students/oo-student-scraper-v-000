@@ -1,6 +1,7 @@
 class Student
 
-  attr_accessor :name, :location, :twitter, :linkedin, :github, :blog, :profile_quote, :bio, :profile_url
+  attr_accessor :name, :location, :twitter, :linkedin, :github, :blog, :profile_quote, :bio, :profile_url, :scraper
+
 
   @@all = []
 
@@ -10,10 +11,12 @@ class Student
   end
 
   def self.create_from_collection(students_array)
-
+    student = Student.new(name)
+    @@all << student
   end
 
   def add_student_attributes(attributes_hash)
+    Scraper.scraped_student
 
   end
 
@@ -23,7 +26,8 @@ class Student
   end
 
   def new(student_hash)
-    new_student = Student.neww
+    new_student = Student.new
+    student_hash[:name] = "new_student.name"
     @@all << new_student
 end
 end

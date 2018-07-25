@@ -26,21 +26,19 @@ class Scraper
     scraped_student[:profile_quote] = doc.css(".profile-quote")[0].text
     scraped_student[:bio] = doc.css(".description-holder p").text
     links_array = doc.css(".vitals-container a")
-  #  binding.pry
-    counter = 0
-      while counter < links_array.length
-        if counter == 0
-          scraped_student[:twitter] = links_array[counter].attributes["href"].value
-        elsif counter == 1
-          scraped_student[:linkedin] = links_array[counter].attributes["href"].value
-        elsif counter == 2
-          scraped_student[:github] = links_array[counter].attributes["href"].value
-        elsif counter == 3
-          scraped_student[:blog] = links_array[counter].attributes["href"].value
-        else
-        end
-      counter += 1
+    links_array.each do |link|
+      link_url = link.attributes["href"].value
+      if link_url.include?("twitter")
+        scraped_student[:twitter] = link_url
+      elsif link_url.include?("linkedin")
+        scraped_student[:linkedin] = link_url
+      elsif link_url.include?("github")
+        scraped_student[:github] = link_url
+      else
+        scraped_student[:blog] = link_url
+  #binding.pry
       end
+    end
     scraped_student
   end
 end
