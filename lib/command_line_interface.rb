@@ -12,6 +12,8 @@ class CommandLineInteface
     display_students
   end
 
+#map the student index page to variable , for each elements in this create a new student , then map over that and
+#say for each student scrape the profile url
   def make_students
     students_array = Scraper.scrape_index_page(BASE_PATH + 'index.html')
     Student.create_from_collection(students_array)
