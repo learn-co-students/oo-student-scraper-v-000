@@ -1,4 +1,4 @@
-# Object Oriented Student Scraper
+open fixtures/student-site/index.html# Object Oriented Student Scraper
 
 ## Objectives
 
