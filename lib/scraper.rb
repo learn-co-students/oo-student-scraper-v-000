@@ -5,8 +5,9 @@ require 'pry'
 class Scraper
 
   def self.scrape_index_page(index_url)
-    html = File.read(index_url)
-    htmlcode= Nokogiri::HTML(html)
+
+    htmlcode= Nokogiri::HTML(open(index_url))
+
     profiles= []
     htmlcode.css('.student-card').each { |dat|
 
@@ -20,8 +21,7 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    html = File.read(profile_url)
-    htmlcode= Nokogiri::HTML(html)
+    htmlcode= Nokogiri::HTML(open(profile_url))
     profile_url= []
 
     #get all the values
@@ -47,6 +47,7 @@ class Scraper
                               if !chr.css("a").attribute("href").value.include?("twitter.com") &&  !chr.css("a").attribute("href").value.include?("linkedin.com") && !chr.css("a").attribute("href").value.include?("github.com")
                                 blog = chr.css("a").attribute("href").value
                               end
+                              binding.pry
                           }
 
 
