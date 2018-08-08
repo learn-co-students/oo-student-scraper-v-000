@@ -57,9 +57,8 @@ class Scraper
                     :github=>  gith,
                     :blog=> blog,
 
-                    :profile_quote => " p",
-                    :bio=>    "p "          }
-          hash.delete_if{|k,v| v.nil? }
+                    :profile_quote => " ",
+                    :bio=>    " "          }.reject {|k,v| v == " "   }
 
                  binding.pry
          return hash
