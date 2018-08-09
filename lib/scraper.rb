@@ -59,7 +59,7 @@ class Scraper
                       :github=>  gt,
                       :blog=> bl,
                       :profile_quote => quote,
-                      :bio=>    bio          }.reject {|k,v| v == " "   }
+                      :bio=>    bio          }.reject {|k,v| v == " " || v ==  nil  }
 
              return hash
 
