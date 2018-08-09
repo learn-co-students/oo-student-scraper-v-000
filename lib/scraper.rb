@@ -22,50 +22,47 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     htmlcode= Nokogiri::HTML(open(profile_url))
-    profile_url= []
-
-    #get all the values
-    htmlcode.css('.profile').each { |dat|
-                       twitter = ' '
-                       ink = ' '
-                       gith = ' '
-                       blog = ' '
-
-                   #get social status
-                      dat.css(".vitals-container .social-icon-container").each { |chr|
-                              # puts chr.css("a").attribute("href").value
-
-                              if chr.css("a").attribute("href").value.include?("twitter.com")
-                                 twitter = chr.css("a").attribute("href").value
-                              end
-                              if chr.css("a").attribute("href").value.include?("linkedin.com")
-                                 ink = chr.css("a").attribute("href").value
-                              end
-                              if chr.css("a").attribute("href").value.include?("github.com")
-                                gith = chr.css("a").attribute("href").value
-                              end
-                              if !chr.css("a").attribute("href").value.include?("twitter.com") &&  !chr.css("a").attribute("href").value.include?("linkedin.com") && !chr.css("a").attribute("href").value.include?("github.com")
-                                blog = chr.css("a").attribute("href").value
-                              end
-                              binding.pry
-                          }
+    sm= []
+    quote = ' '
+    bio = ' '
+    tw,ink,gt,bl = ' '
 
 
+              htmlcode.css(".social-icon-container a").each { |val|
+                sm << val.attribute('href').value
+              }
+              sm.each {|s|
 
-          hash = {
-                    :twitter =>  twitter,
-                    :linkedin => ink,
-                    :github=>  gith,
-                    :blog=> blog,
+                 if s.include?("twitter.com")
+                   tw = s
+                 end
+                 if s.include?("linkedin.com")
+                   ink = s
+                 end
+                 if s.include?("github.com")
+                   gt = s
+                 end
+                 if !s.include?("twitter.com") && !s.include?("github.com") && !s.include?("linkedin.com")
+                   bl = s
+                 end
 
-                    :profile_quote => " ",
-                    :bio=>    " "          }.reject {|k,v| v == " "   }
+               }
 
-                 binding.pry
-         return hash
+            quote =  htmlcode.css('.vitals-text-container .profile-quote').text
+
+            bio  = htmlcode.css('div.bio-block p').text
 
 
-        }#get all the values
-  end
+            hash = {
+                      :twitter =>  tw,
+                      :linkedin => ink,
+                      :github=>  gt,
+                      :blog=> bl,
+                      :profile_quote => quote,
+                      :bio=>    bio          }.reject {|k,v| v == " "   }
+
+             return hash
+
+     end
 
 end
