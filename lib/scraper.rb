@@ -6,8 +6,8 @@ class Scraper
   
 
   def self.scrape_index_page(index_url)
-    url = './fixtures/student-site/index.html'
-    doc = Nokogiri::HTML(open(url))
+    
+    doc = Nokogiri::HTML(open(index_url))
     
     student_list = []
     
@@ -32,43 +32,18 @@ class Scraper
   
 
   def self.scrape_profile_page(profile_url)
-      # profile_url = './fixtures/student-site/students/ann-lee.html'
+      
       page = Nokogiri::HTML(open(profile_url))
       
-    # <div class="profile-banner" id="aaron-enser-cover"></div>
-    #   <div class="vitals-container">
-    #     <div class="profile-photo" id="aaron-enser-card"></div>
-    #     <div class="social-icon-container">
-    #       <a href="http://www.github.com/aenser"><img class="social-icon" src="../assets/img/github-icon.png"/></a>
-    #       <a href="https://www.linkedin.com/in/aaron-enser-96a756a6"><img class="social-icon" src="../assets/img/linkedin-icon.png"/></a>
-    #       <a href="https://facebook.com/aaronenser"><img class="social-icon" src="../assets/img/facebook.png"/></a>
-    #     </div>
-    #     <div class="vitals-text-container">
-    #       <h1 class="profile-name">Aaron Enser</h1>
-    #       <h2 class="profile-location">Scottsdale, AZ</h2>
-    #       <div class="profile-quote">“When you realize there is nothing lacking, the whole world belongs to you." -Lao Tzu"</div>
-    #     </div>
-    #   </div>
-    #   <div class="details-container">
-    #     <div class="bio-block details-block">
-    #       <div class="bio-content content-holder">
-    #         <div class="title-holder">
-    #           <h3>Biography</h3>
-    #         </div>
-    #         <div class="description-holder">
-    #           <p>I love traveling, new experiences, meeting new people, reading, languages, and now coding.</p>
-    #         </div>
-    #       </div>
-    #     </div>
+    
         profile = {}
-        page.css(".vitals-container").css(".social-icon-container").each do |item|
+        page.css(".vitals-container").css(".social-icon-container").css('a').map do |a|
         
-      
-            link = item.css('a').map { |a| a['href']}.flatten[0] unless item.css('a').nil?
+            link =  a['href'] unless a.nil?
             
             key = self.get_host_without_www(link)
             
-            if key == page.css(".vitals-text-container").css(".profile-name").text.gsub(/\s+/, '').downcase
+            unless ["linkedin", "twitter", 'facebook', 'github'].include? key
               profile[:blog] = link
             else
               profile[key.to_sym] = link
@@ -90,8 +65,5 @@ class Scraper
     host[0] == 'www' ? host[1] : host[0]
   end
   
-  puts self.get_host_without_www("https://github.com/aplee29")
-  puts Nokogiri::HTML(open('./fixtures/student-site/students/ann-lee.html')).css(".vitals-text-container").css(".profile-name").text.gsub(/\s+/, '').downcase
-  puts Nokogiri::HTML(open('./fixtures/student-site/students/ann-lee.html')).css(".details-container").css(".description-holder")[0].css('p').text
 end
 
