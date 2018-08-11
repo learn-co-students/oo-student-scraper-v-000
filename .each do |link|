@@ -1,0 +1,33 @@
+
+[1mFrom:[0m /home/BekahHW/oo-student-scraper-v-000/lib/scraper.rb @ line 31 Scraper.scrape_profile_page:
+
+    [1;34m25[0m:   [32mdef[0m [1;36mself[0m.[1;34mscrape_profile_page[0m(profile_url)
+    [1;34m26[0m: 
+    [1;34m27[0m:     student = {}
+    [1;34m28[0m: 
+    [1;34m29[0m:     profile_page =  [1;34;4mNokogiri[0m::HTML(open(profile_url))
+    [1;34m30[0m:     links = profile_page.css([31m[1;31m"[0m[31m.social-icon-container[1;31m"[0m[31m[0m).children.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m).map [32mdo[0m |icon| icon.attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value
+ => [1;34m31[0m:         binding.pry
+    [1;34m32[0m:     links.each [32mdo[0m |link|
+    [1;34m33[0m:       [32mif[0m link.include?([31m[1;31m"[0m[31mlinkedin[1;31m"[0m[31m[0m)
+    [1;34m34[0m:         student[[33m:linkedin[0m] = link
+    [1;34m35[0m:       [32melsif[0m link.include?([31m[1;31m"[0m[31mtwitter[1;31m"[0m[31m[0m)
+    [1;34m36[0m:         student[[33m:twitter[0m] = link
+    [1;34m37[0m:       [32melsif[0m link.include?(github)
+    [1;34m38[0m:         student[[33m:github[0m] = link
+    [1;34m39[0m:       [32melse[0m 
+    [1;34m40[0m:         student[[33m:blog[0m] = link
+    [1;34m41[0m:       [32mend[0m
+    [1;34m42[0m:     [32mend[0m
+    [1;34m43[0m:       [1;34m# if link.include?("profile_quote")[0m
+    [1;34m44[0m:       [1;34m#   student[:profile_quote] = [0m
+    [1;34m45[0m:         
+    [1;34m46[0m:       [1;34m# title = icon.css(".social-icon a").text[0m
+    [1;34m47[0m:       
+    [1;34m48[0m:       [1;34m# students[title.to_sym] = {[0m
+    [1;34m49[0m:       [1;34m#   :linkedIn =>[0m
+    [1;34m50[0m:       [1;34m# }[0m
+    [1;34m51[0m:   [32mend[0m
+    [1;34m52[0m: student
+    [1;34m53[0m: [32mend[0m
+
