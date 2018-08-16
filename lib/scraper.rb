@@ -22,20 +22,20 @@ class Scraper
       end
 
   def self.scrape_profile_page(profile_url)
-    html = (open("http://165.227.16.205:46452/fixtures/student-site/students/matt-preiser.html"))
+    html = (open(profile_url))
     doc = Nokogiri::HTML(html)
     student_links = []
     student_data = {}
       doc.css('.social-icon-container a').each do |link|
       if link.attributes['href'].value.include?("twitter")
             student_data[:twitter] = link.attributes['href'].value
-      end
+          end
       if link.attributes['href'].value.include?("linkedin")
             student_data[:linkedin] = link.attributes['href'].value
+          end
       if  link.attributes['href'].value.include?("github")
            student_data[:github] = link.attributes['href'].value
         end
-      end
 
         binding.pry
 
