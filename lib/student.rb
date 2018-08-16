@@ -20,6 +20,7 @@ class Student
   end
 
   def self.all
+    binding.pry
     @@all
   end
 end
