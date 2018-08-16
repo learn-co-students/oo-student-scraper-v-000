@@ -29,11 +29,14 @@ class Scraper
     # doc.css(".social-icon-container a").map {|link| link['href']}[0] => Twitter Profile link, string
     # doc.css(".social-icon-container a").map {|link| link['href']}[1] => Linkedin Profile link, string
     # doc.css(".social-icon-container a").map {|link| link['href']}[2] => Github Profile link, string
-    # doc.css(".social-icon-container a").map {|link| link['href']}[3] => Youtube Profile link, string
+    # doc.css(".profile-quote").text => Returns profile quote, string
+    # doc.css(".description-holder p").text => Returns profile bio, string
+
+    # People who have blogs: Yoshi Tamaoki, Seth Goldberg, Morgan VanYperen, Scotty Runyan, Mitul Mistry, Danny Dawson, Joe Burgess
 
     binding.pry
   end
 
 end
 
-Scraper.scrape_profile_page("http://165.227.16.205:49641/fixtures/student-site/students/ryan-johnson.html")
+Scraper.scrape_profile_page("http://165.227.16.205:49641/fixtures/student-site/students/adrian-prieto.html")
