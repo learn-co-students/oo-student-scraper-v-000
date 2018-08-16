@@ -30,7 +30,7 @@ class Scraper
     profile_hash[:profile_quote] = doc.css(".profile-quote").text
     profile_hash[:bio] = doc.css(".description-holder p").text
 
-    doc.css(".social-icon-container a").each do |social|
+    doc.css(".social-icon-container a").map {|link| link['href']}.each do |social|
       if social.include?("linkedin")
         profile_hash[:linkedin] = social
       elsif social.include?("twitter")
@@ -39,7 +39,6 @@ class Scraper
         profile_hash[:github] = social
       end
     end
-  end
 
 
     # doc.css(".social-icon-container a").map {|link| link['href']}[0] => Twitter Profile link, string
