@@ -37,6 +37,8 @@ class Scraper
         profile_hash[:twitter] = social
       elsif social.include?("github")
         profile_hash[:github] = social
+      else
+        profile_hash[:blog] = social
       end
     end
 
@@ -49,9 +51,11 @@ class Scraper
 
     # People who have blogs: Yoshi Tamaoki, Seth Goldberg, Morgan VanYperen, Scotty Runyan, Mitul Mistry, Danny Dawson, Joe Burgess
 
-    binding.pry
+    #binding.pry
+
+    profile_hash
   end
 
 end
 
-Scraper.scrape_profile_page("http://165.227.16.205:49641/fixtures/student-site/students/joe-burgess.html")
+Scraper.scrape_profile_page("http://165.227.31.208:60779/fixtures/student-site/students/joe-burgess.html")
