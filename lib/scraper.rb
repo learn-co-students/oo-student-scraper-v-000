@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'pry'
 require 'nokogiri'
+#all cards: div.roster-cards-container
 doc = Nokogiri::HTML(open("./fixtures/student-site/index.html"))
 binding.pry
 class Scraper
