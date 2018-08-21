@@ -13,12 +13,6 @@ require 'nokogiri'
 #social_icon_container.css("a")
 # student_profile.css("div.social-icon-container a").collect{ |icon| icon.attribute("href").value }
 
-#twitter_url:
-#linkedin_url:
-#github_url:
-#blog_url:
-
-#bio:
 class Scraper
 
   def self.scrape_index_page(index_url)

@@ -10,14 +10,14 @@ class Student
     @@all << self
   end
 
-  def self.create_from_collection(students_array)
+  def self.create_from_collection(students_array) #this is an array of student hashes
     students_array.each do |student|
-      new_s = Student.new(student)
+      new_s = Student.new(student) #you pass in the hash as an argument to instantiate a Student object.
     end
 
   end
 
-  def add_student_attributes(attributes_hash)
+  def add_student_attributes(attributes_hash) #this is the hash collected from the scrape_profile_page scraper method.
     self.twitter = attributes_hash[:twitter]
     self.linkedin = attributes_hash[:linkedin]
     self.github = attributes_hash[:github]
