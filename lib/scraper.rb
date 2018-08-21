@@ -58,4 +58,4 @@ class Scraper
 
 end
 
-Scraper.scrape_profile_page("http://165.227.31.208:60779/fixtures/student-site/students/joe-burgess.html")
+#Scraper.scrape_profile_page("http://165.227.31.208:60779/fixtures/student-site/students/joe-burgess.html")
