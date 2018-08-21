@@ -3,23 +3,24 @@ require 'pry'
 
 class Scraper
 
-  def self.scrape_index_page(index_url = "./fixtures/student-site/index.html") #responsible for scraping the index page that lists all of the students
+  def self.scrape_index_page(index_url = "./fixtures/student-site/index.html") 
     index_page = Nokogiri::HTML (open(index_url))
-    scraped_students = [ ]
-    binding.pry
-    index_page.css("roster-cards-container").each do |card|
-      student_hash = {} 
-      
-      student_hash[:name] = card.css("student-card").css ("card-text-container").css("h4")
-      
-      student_hash[:location] = card.css("student-card").css ("card-text-container").css("p")
-      
-      student_hash[:profile_url] = card.css("student-card").css ("card-text-container").css("href")
-      
-      students.push(student_hash)
-      
-      
+    
+    scraped_students = []
+    
+    index_page.css(".roster-cards-container").each do |cards|
+      cards.css(".student-card").each do |card|
+        student_hash = {} 
+        student_hash[:name] = card.css(".student-name").text
+        student_hash[:location] = card.css(".student-location").text
+        binding.pry
+        student_hash[:profile_url] = card.css("href")
+        scraped_students << student_hash
+      end
     end
+    
+      scraped_students
+    
   end
 
   def self.scrape_profile_page(profile_url) #responsible for scraping an individual student's profile page to get further information about that student.
