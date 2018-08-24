@@ -3,7 +3,7 @@ require 'pry'
 
 class Scraper
 
-  def self.scrape_index_page(index_url = "./fixtures/student-site/index.html")
+  def self.scrape_index_page(index_url)
     index_page = Nokogiri::HTML (open(index_url))
 
     scraped_students = []
@@ -25,7 +25,6 @@ class Scraper
   def self.scrape_profile_page(profile_url) #responsible for scraping an individual student's profile page to get further information about that student.
     profile_page = Nokogiri::HTML(open(profile_url))
     scraped_student = {}
-
     links = profile_page.css(".social-icon-container").children.css("a").map { |link| link.attribute('href').value}
     links.each do |link|
       if link.include?("linkedin")
