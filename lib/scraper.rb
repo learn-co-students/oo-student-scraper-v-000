@@ -10,7 +10,6 @@ class Scraper
     
     index_page.css("div.student-card").each do 
       |student_card| 
-      
       student_name = student_card.css("h4.student-name").text
       student_location = student_card.css("p.student-location").text
       student_profile = student_card.css("a").attribute("href").value
@@ -28,16 +27,3 @@ class Scraper
   end
 
 end
-
-# <div class="student-card" id="eric-chu-card">
-#   <a href="students/eric-chu.html">
-#       <div class="view-profile-div">
-#         <h3 class="view-profile-text">View Profile</h3>
-#       </div>
-#       <div class="card-text-container">
-#         <h4 class="student-name">Eric Chu</h4>
-#         <p class="student-location">Glenelg, MD</p>
-#       </div>
-#   </a>
-# </div>
-
