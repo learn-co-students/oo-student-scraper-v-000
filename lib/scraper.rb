@@ -30,7 +30,7 @@ class Scraper
            student_profile_hash[:blog] = doc.css(".social-icon-container").css("a")[3].attribute("href").value
         end
        end
-    
+    binding.pry
     student_profile_hash[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
     student_profile_hash[:bio] = doc.css(".description-holder").css("p").text
     student_profile_hash
