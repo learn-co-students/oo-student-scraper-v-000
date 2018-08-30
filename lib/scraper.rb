@@ -23,7 +23,32 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
+    profile_page = Nokogiri::HTML(File.read(profile_url))
     
+    students_profile = {}
+    profile_page.css("div.vitals-container").each do |student_info|
+      urls = []
+      student_info.css("a").attribute("href").value.map {|url| urls << url}
+      twitter_info = student_info.css("a").attribute("href").value 
+      binding.pry
+    # <div class="vitals-container">
+    #     <div class="profile-photo" id="ryan-johnson-card"></div>
+    #     <div class="social-icon-container">
+    #       <a href="https://twitter.com/empireofryan"><img class="social-icon" src="../assets/img/twitter-icon.png"></a>
+    #       <a href="https://www.linkedin.com/in/ryan-johnson-321629ab"><img class="social-icon" src="../assets/img/linkedin-icon.png"></a>
+    #       <a href="https://github.com/empireofryan"><img class="social-icon" src="../assets/img/github-icon.png"></a>
+    #       <a href="https://www.youtube.com/watch?v=C22ufOqDyaE"><img class="social-icon" src="../assets/img/rss-icon.png"></a>
+    #     </div>
+    #     <div class="vitals-text-container">
+    #       <h1 class="profile-name">Ryan Johnson</h1>
+    #       <h2 class="profile-location">New York, NY</h2>
+    #       <div class="profile-quote">"The mind is everything. What we think we become." - Buddha</div>
+    #     </div>
+    #   </div>
+    end
+  end
+
+end
   end
 
 end
