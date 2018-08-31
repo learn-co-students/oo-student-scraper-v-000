@@ -1,10 +1,9 @@
 require 'open-uri'
-require 'pry'
 
 class Scraper
   
   def self.scrape_index_page(index_url)
-    index_page = Nokogiri::HTML(File.open(index_url))
+    index_page = Nokogiri::HTML(File.read(index_url))
     
     scraped_students = []
     
@@ -31,7 +30,7 @@ class Scraper
     
     profile_page.css("div.vitals-container").each do |student_info|
       
-      students_profile[:profile_quote] = student_info.css("div.profile-quote").text
+      students_profile[:profile_quote] = student_info.css("div.profile-quote").text.strip
       
       student_info.css("div.social-icon-container a").each do |social_acct|
         
@@ -46,7 +45,6 @@ class Scraper
           
         else
           students_profile[:blog] = social_acct.attribute("href").value
-          
         end
       end
     end
