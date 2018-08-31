@@ -26,29 +26,32 @@ class Scraper
     profile_page = Nokogiri::HTML(File.read(profile_url))
     
     students_profile = {}
+    
+    students_profile[:bio] = profile_page.css("div.bio-content.content-holder div.description-holder").text.strip 
+    
     profile_page.css("div.vitals-container").each do |student_info|
-      urls = []
-      student_info.css("a").attribute("href").value.map {|url| urls << url}
-      twitter_info = student_info.css("a").attribute("href").value 
-      binding.pry
-    # <div class="vitals-container">
-    #     <div class="profile-photo" id="ryan-johnson-card"></div>
-    #     <div class="social-icon-container">
-    #       <a href="https://twitter.com/empireofryan"><img class="social-icon" src="../assets/img/twitter-icon.png"></a>
-    #       <a href="https://www.linkedin.com/in/ryan-johnson-321629ab"><img class="social-icon" src="../assets/img/linkedin-icon.png"></a>
-    #       <a href="https://github.com/empireofryan"><img class="social-icon" src="../assets/img/github-icon.png"></a>
-    #       <a href="https://www.youtube.com/watch?v=C22ufOqDyaE"><img class="social-icon" src="../assets/img/rss-icon.png"></a>
-    #     </div>
-    #     <div class="vitals-text-container">
-    #       <h1 class="profile-name">Ryan Johnson</h1>
-    #       <h2 class="profile-location">New York, NY</h2>
-    #       <div class="profile-quote">"The mind is everything. What we think we become." - Buddha</div>
-    #     </div>
-    #   </div>
+      
+      students_profile[:profile_quote] = student_info.css("div.profile-quote").text
+      
+      student_info.css("div.social-icon-container a").each do |social_acct|
+        
+        if social_acct.attribute("href").value.include?('twitter')
+          students_profile[:twitter] = social_acct.attribute("href").value
+         
+        elsif social_acct.attribute("href").value.include?('linkedin')
+          students_profile[:linkedin] = social_acct.attribute("href").value
+          
+        elsif social_acct.attribute("href").value.include?('github')
+          students_profile[:github] = social_acct.attribute("href").value
+          
+        else
+          students_profile[:blog] = social_acct.attribute("href").value
+          
+        end
+      end
     end
+    students_profile
   end
 
-end
-  end
 
 end
