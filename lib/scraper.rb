@@ -22,13 +22,13 @@ class Scraper
      doc.css(".social-icon-container").css("a").each do |social_account|
        #binding.pry
          if social_account.attribute("href").value.include?("twitter")
-        student_profile_hash[:twitter] = doc.css(".social-icon-container").css("a").attribute("href").value
-         elsif social_account.attribute("href").value.include?("linkedlin")
-           student_profile_hash[:linkedin] = doc.css(".social-icon-container").css("a").attribute("href").value
+        student_profile_hash[:twitter] = social_account.attribute("href").value
+         elsif social_account.attribute("href").value.include?("linkedin")
+           student_profile_hash[:linkedin] = social_account.attribute("href").value
          elsif social_account.attribute("href").value.include?("github")
-           student_profile_hash[:github] = doc.css(".social-icon-container").css("a").attribute("href").value
-         elsif social_account.attribute("href").value.include?("blog")
-           student_profile_hash[:blog] = doc.css(".social-icon-container").css("a").attribute("href").value
+           student_profile_hash[:github] = social_account.attribute("href").value
+         elsif social_account.attribute("href").value.include?(".com")
+           student_profile_hash[:blog] = social_account.attribute("href").value
          end
          #binding.pry
        end
