@@ -31,14 +31,15 @@ class Scraper
   end
 
   def self.add_to_social_hash(url, hash)
-    if url.attribute("href").value.include?("twitter")
-      hash[:twitter] = url.attribute("href").value
-    elsif url.attribute("href").value.include?("linkedin")
-      hash[:linkedin] = url.attribute("href").value
-    elsif url.attribute("href").value.include?("github")
-      hash[:github] = url.attribute("href").value
+    value = url.attribute("href").value
+    if value.include?("twitter")
+      hash[:twitter] = value
+    elsif value.include?("linkedin")
+      hash[:linkedin] = value
+    elsif value.include?("github")
+      hash[:github] = value
     else
-      hash[:blog] = url.attribute("href").value
+      hash[:blog] = value
     end
   end
   
