@@ -9,21 +9,12 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    
     doc = Nokogiri::HTML(open(profile_url))
     urls = doc.css(".social-icon-container").css("a")
-    
-    social_links = {}
-    self.create_social_pairs_hash(urls, social_links)
-    
-    social_links.merge({ profile_quote: doc.css(".profile-quote").text,
+    self.create_social_hash(urls).merge(
+      { profile_quote: doc.css(".profile-quote").text,
       bio: doc.css(".description-holder").css("p").text })
-    
-  
   end
-
-
-
 
 #private
   
@@ -33,10 +24,11 @@ class Scraper
       profile_url: student_card.css("a").attribute("href").value }
   end
 
-  def self.create_social_pairs_hash(urls, social_hash)
+  def self.create_social_hash(urls)
     #think about #tap for this
-    urls.each { |e| add_to_social_hash(e, social_hash)}
-    social_hash
+    hash = {}
+    urls.each { |e| add_to_social_hash(e, hash)}
+    hash
   end
 
   def self.add_to_social_hash(url, hash)
@@ -51,13 +43,5 @@ class Scraper
     end
   end
   
-  def self.url_includes?(url, name)
-    url.attribute("href").value.include?(name)
-  end
-  
-  def self.add_to_hash(url, name)
-   hash[name.to_sym] = url.attribute("href").value
-  end
-
 end
 
