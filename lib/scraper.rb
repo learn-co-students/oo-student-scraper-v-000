@@ -50,6 +50,14 @@ class Scraper
       hash[:blog] = url.attribute("href").value
     end
   end
+  
+  def self.url_includes?(url, name)
+    url.attribute("href").value.include?(name)
+  end
+  
+  def self.add_to_hash(url, name)
+   hash[name.to_sym] = url.attribute("href").value
+  end
 
 end
 
