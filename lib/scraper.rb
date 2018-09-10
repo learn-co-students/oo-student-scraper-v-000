@@ -29,13 +29,6 @@ class Scraper
       urls.each { |e| add_to_social_hash(e, h)} 
     end
   end
- 
-  def self.create_social_hash_1(urls)
-    #think about #tap for this
-    hash = {}
-    urls.each { |e| add_to_social_hash(e, hash)}
-    hash
-  end
 
   def self.add_to_social_hash(url, hash)
     if url.attribute("href").value.include?("twitter")
@@ -50,4 +43,3 @@ class Scraper
   end
   
 end
-
