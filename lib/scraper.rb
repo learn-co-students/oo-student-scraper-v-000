@@ -13,27 +13,13 @@ class Scraper
     doc = Nokogiri::HTML(open(profile_url))
     urls = doc.css(".social-icon-container").css("a")
     
-    { twitter: urls[0].attribute("href").value,
-      linkedin: urls[1].attribute("href").value,
-      github: urls[2].attribute("href").value,
-      blog: urls[3].attribute("href").value,
-      profile_quote: doc.css(".profile-quote").text,
-      bio: doc.css(".description-holder").css("p").text }
+    social_links = {}
+    self.create_social_pairs_hash(urls, social_links)
     
-  #  twitter_url = doc.css(".social-icon-container").css("a").attribute("href").value
-  #  all_url = doc.css(".social-icon-container").css("a")
-  #  tu = all_url[0].attribute("href").value
-  #  lu = all_url[1].attribute("href").value
- #   gu = all_url[2].attribute("href").value
- #   bu = all_url[3].attribute("href").value
+    social_links.merge({ profile_quote: doc.css(".profile-quote").text,
+      bio: doc.css(".description-holder").css("p").text })
     
- #   profile_quote = doc.css(".profile-quote").text
-    
-  #  bio = doc.css(".description-holder").css("p").text
-    
-    
-  #  binding.pry
-    
+  
   end
 
 
@@ -42,11 +28,27 @@ class Scraper
 #private
   
   def self.create_student_hash(student_card)
-    
     { name: student_card.css('.student-name').text,
       location: student_card.css('.student-location').text, 
       profile_url: student_card.css("a").attribute("href").value }
-  
+  end
+
+  def self.create_social_pairs_hash(urls, social_hash)
+    #think about #tap for this
+    urls.each { |e| add_to_social_hash(e, social_hash)}
+    social_hash
+  end
+
+  def self.add_to_social_hash(url, hash)
+    if url.attribute("href").value.include?("twitter")
+      hash[:twitter] = url.attribute("href").value
+    elsif url.attribute("href").value.include?("linkedin")
+      hash[:linkedin] = url.attribute("href").value
+    elsif url.attribute("href").value.include?("github")
+      hash[:github] = url.attribute("href").value
+    else
+      hash[:blog] = url.attribute("href").value
+    end
   end
 
 end
