@@ -44,7 +44,7 @@ class Scraper
         :bio => kicks.css(".description-holder").css("div p").text
         }
       }
-      binding.pry
+      profiles.reduce Hash.new, :merge
 
   end
 
