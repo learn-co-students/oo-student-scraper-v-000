@@ -15,33 +15,32 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    @student_profile = html(profile_url).css(".profile")
-    twitter = get_social("twitter")
-    linkedin = get_social("linkedin")
-    github = get_social("github")
-    blog = get_social("rss")
+    student_profile = html(profile_url).css(".profile")
 
+    student_profile_hash = {}
     student_profile_hash =
     {
-      profile_quote: @student_profile.css(".profile-quote").text,
-      bio: @student_profile.css(".bio-content p").text
+      profile_quote: student_profile.css(".profile-quote").text,
+      bio: student_profile.css(".bio-content p").text
     }
-    student_profile_hash[:twitter] = twitter unless twitter.nil?
-    student_profile_hash[:linkedin] = linkedin unless linkedin.nil?
-    student_profile_hash[:github] = github unless github.nil?
-    student_profile_hash[:blog] = blog unless blog.nil?
+    student_profile.css(".social-icon-container a").each do | social |
+      social_link = social.attribute('href').value
+      
+      if /twitter/.match(social_link)
+        student_profile_hash[:twitter] = social_link
+      elsif /linkedin/.match(social_link)
+        student_profile_hash[:linkedin] = social_link
+      elsif /github/.match(social_link)
+        student_profile_hash[:github] = social_link
+      else
+        student_profile_hash[:blog] = social_link
+      end
+    end
+
     student_profile_hash
   end
 
   def self.html(url)
     Nokogiri::HTML(open(url))
-  end
-
-  def self.get_social(platform)
-    rule = Regexp.new(platform,'i')
-    handle = @student_profile.css(".social-icon-container a").find { |s| rule.match(s.css('.social-icon').attribute("src").value)}
-    if !handle.nil?
-      handle.attribute("href").value
-    end
   end
 end
