@@ -1,20 +1,25 @@
 require 'open-uri'
 require 'pry'
 
-# doc = Nokogiri::HTML("http://165.227.133.20:40811/fixtures/student-site/")
 
 class Scraper
 
   def self.scrape_index_page(index_url)
-    students = []
-    index_url = "http://165.227.133.20:40811/fixtures/student-site/"
     html = open(index_url)
     doc = Nokogiri::HTML(html)
-    doc.css(".student-card")[0].css("h4.student-name")[0].children[0].text
-    # binding.pry
-   
-    students
+    scraped_students = []
+    doc.css("div.roster-cards-container").each do |card|
+      card.css(".student-card").each do |student|
+        name = student.css(".card-text-container h4").text
+        location = student.css("p.student-location").text
+        profile_url = student.css("a").attr("href").text
+        scraped_students << {:name => name, :location => location, :profile_url => profile_url}
+      end
+    end
+   scraped_students 
   end
+  
+  
 
   def self.scrape_profile_page(profile_url)
     
