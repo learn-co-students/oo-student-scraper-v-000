@@ -9,20 +9,19 @@ class Student
     @@all << self
   end
 
-  # def initialize(attributes)
-  #   attributes.each {|key, value| self.send(("#{key}="), value)}
-  # end
 
   def self.create_from_collection(students_array)
-    student = Student.new
-    student.send("#{method_name}=", value)
+    students_array.each do |student|
+      new_student = Student.new(student)
+      @@all << new_student
+    end
   end
 
   def add_student_attributes(attributes_hash)
-
+    attributes_hash.each {|key, value| self.send(("#{key}="), value)}
   end
 
   def self.all
-
+    @@all
   end
 end
