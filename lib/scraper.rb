@@ -30,7 +30,7 @@ class Scraper
     profile_quote = doc.css(".profile-quote").text
     bio = doc.css("div.description-holder p").text
 
-    scraped_student = {profile_quote: profile_quote, bio: bio} #, twitter: twitter, github: github, linkedin: linkedin, blog: blog}
+    scraped_student = {profile_quote: profile_quote, bio: bio}
 
     doc.css("div.social-icon-container a").each do |container_element|
       social_media_links = []
@@ -46,7 +46,6 @@ class Scraper
             scraped_student[:linkedin] = container_element.attr("href")
             social_media_links << container_element.attr("href")
           end
-          # fix this to capture blog
             unless social_media_links.include?(container_element.attr("href"))
               scraped_student[:blog] = container_element.attr("href")
             end
