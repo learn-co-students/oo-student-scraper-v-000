@@ -12,6 +12,7 @@ class Scraper
         name = student.css(".card-text-container h4").text
         location = student.css("p.student-location").text
         profile_url = student.css("a").attr("href").text
+        
         scraped_students << {:name => name, :location => location, :profile_url => profile_url}
       end
     end
@@ -26,22 +27,23 @@ class Scraper
     scraped_students = {}
     doc.css(".social-icon-container a").each do |link|
        if link["href"].include?("twitter.com")
-         link["href"]
+          twitter_url = link["href"]
        elsif link["href"].include?("linkedin.com")
-          link["href"]
+          linkedin_url = link["href"]
        elsif link["href"].include?("github.com")
-          link["href"]
-      elsif link["href"].include?("github.com")
-          link["href"]
+          github_url = link["href"]
+       elsif link["href"].include?(".com")
+          blog_url = link["href"]
        end 
+       
         scraped_students << {
           :twitter_url => twitter_url, 
           :linkedin_url => linkedin_url, 
           :github_url => github_url, 
-          # :blog_url => blog_url, 
-          # :profile_quote => profile_quote, 
-          # :bio => bio
-         }
+          :blog_url => blog_url, 
+          :profile_quote => profile_quote, 
+          :bio => bio
+        }
     end
    scraped_students 
   end
