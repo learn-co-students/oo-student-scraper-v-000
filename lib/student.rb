@@ -8,16 +8,21 @@ class Student
   def initialize(student_hash)
     student_hash.each do |k,v|
       self.send("#{k}=", v)
-  end  
+    end 
     @@all << self
   end
 
   def self.create_from_collection(students_array)
-    
+    students_array.each do |key|
+      Student.new(key)
+    end
   end
 
   def add_student_attributes(attributes_hash)
-    
+    attributes_hash.each do |k,v|
+      self.send("#{k}=", v)
+    end
+    self
   end
 
   def self.all
