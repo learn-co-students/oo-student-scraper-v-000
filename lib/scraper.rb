@@ -18,7 +18,10 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-
+    student_profile = Nokogiri::HTML(open("./fixtures/student-site/students/ryan-johnson.html"))
+    scraped_student = {}
+    student_links = student_profile.css(".social-icon-container").children.css("a").attribute("href").value
+    binding.pry
   end
 
 end
