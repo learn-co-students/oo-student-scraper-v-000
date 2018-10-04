@@ -32,6 +32,7 @@ class Scraper
     profile_hash = {}
     
     profile_hash[:bio] = profile_page.css("div.bio-content.content-holder div.description-holder").text.strip
+
     profile_page.css("div.vitals-container").each do
     |student_info|
       
