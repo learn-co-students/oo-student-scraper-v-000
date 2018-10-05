@@ -2,7 +2,6 @@ require 'open-uri'
 require 'pry'
 
 class Scraper
-
   def self.scrape_index_page(url)
     html = File.read(url)
     index = Nokogiri::HTML(html)
