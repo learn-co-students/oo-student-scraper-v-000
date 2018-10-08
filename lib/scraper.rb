@@ -36,12 +36,28 @@ class Scraper
     
     
     student_profile.css(".profile").each do |info|
+      # binding.pry
       # need to set default properties if they're missing info
+      count = info.css(".vitals-container .social-icon-container a").count
+      @social = info.css(".vitals-container .social-icon-container a")[count]["href"]
+      
+      while count > 0 do
+        if @social.match(/twitter/) != nil
+          @twitter = @social
+        elsif @social.match(/linkedin/) != nil
+          @linkedin = @social
+        elsif @social.match(/github/) != nil
+          @github = @social
+        else
+          @blog = @social
+        end
+      end
+
       student_profile_hash = {
-        :twitter => info.css(".vitals-container .social-icon-container a")[0]["href"],
-        :linkedin => info.css(".vitals-container .social-icon-container a")[1]["href"],
-        :github => info.css(".vitals-container .social-icon-container a")[2]["href"],
-        :blog => info.css(".vitals-container .social-icon-container a")[3]["href"],
+        :twitter => @twitter,
+        :linkedin => @linkedin,
+        :github => @github,
+        :blog => @blog,
         :profile_quote => info.css(".vitals-container .vitals-text-container .profile-quote").text,
         :bio => info.css(".details-container .bio-block .bio-content .description-holder p").text
       }
