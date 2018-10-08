@@ -12,7 +12,6 @@ class Scraper
     students.each do |student|
       hash = {:name => student.css(".card-text-container h4").text, :location => student.css(".card-text-container p").text, :profile_url => student.css("@href").first.value}
       hash_ary_all << hash
-      #binding.pry
     end
     hash_ary_all
   end
