@@ -32,16 +32,21 @@ class Scraper
     # profile_url = "./fixtures/student-site/#{profile}"
 
     student_profile = Nokogiri::HTML(open(profile_url))
-
-    student_profile_hash = {
-      :twitter => ,
-      :linkedin => ,
-      :github => ,
-      :blog => ,
-      :profile_quote => ,
-      :bio => 
-    }
-
+    student_profile_hash = {}
+    
+    
+    student_profile.css(".profile").each do |info|
+      # need to set default properties if they're missing info
+      student_profile_hash = {
+        :twitter => info.css(".vitals-container .social-icon-container a")[0]["href"],
+        :linkedin => info.css(".vitals-container .social-icon-container a")[1]["href"],
+        :github => info.css(".vitals-container .social-icon-container a")[2]["href"],
+        :blog => info.css(".vitals-container .social-icon-container a")[3]["href"],
+        :profile_quote => info.css(".vitals-container .vitals-text-container .profile-quote").text,
+        :bio => info.css(".details-container .bio-block .bio-content .description-holder p").text
+      }
+    end
+    student_profile_hash
   end
 
 end
