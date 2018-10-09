@@ -36,31 +36,27 @@ class Scraper
     
     
     student_profile.css(".profile").each do |info|
+
       count = info.css(".vitals-container .social-icon-container a").count
       
       i = 0
       while i < count do
-        @social = info.css(".vitals-container .social-icon-container a")[i]["href"]
-        if @social.match(/twitter/) && @social != nil
-          @twitter = @social
-        elsif @social.match(/linkedin/) && @social != nil
-          @linkedin = @social
-        elsif @social.match(/github/) && @social != nil
-          @github = @social
-        else
-          @blog = @social
+        social = info.css(".vitals-container .social-icon-container a")[i]["href"]
+        if social.match(/twitter/)
+          student_profile_hash[:twitter] = social
+        elsif social.match(/linkedin/)
+          student_profile_hash[:linkedin] = social
+        elsif social.match(/github/)
+          student_profile_hash[:github] = social
+        elsif social != nil
+          student_profile_hash[:blog] = social
         end
         i += 1
       end
 
-      student_profile_hash = {
-        :twitter => @twitter,
-        :linkedin => @linkedin,
-        :github => @github,
-        :blog => @blog,
-        :profile_quote => info.css(".vitals-container .vitals-text-container .profile-quote").text,
-        :bio => info.css(".details-container .bio-block .bio-content .description-holder p").text
-      }
+      student_profile_hash[:profile_quote] = info.css(".vitals-container .vitals-text-container .profile-quote").text
+      student_profile_hash[:bio] = info.css(".details-container .bio-block .bio-content .description-holder p").text
+
     end
     student_profile_hash
   end
