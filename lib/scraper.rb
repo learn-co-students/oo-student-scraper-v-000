@@ -33,16 +33,16 @@ class Scraper
     
     student_profile.css(".profile").each do |info|
 
-      social = info.css(".vitals-container .social-icon-container a")
+      social = info.css(".vitals-container .social-icon-container")
 
-      social.attribute("href").value.each do |link|
-        if social.match(/twitter/)
+      social.css("a").attribute("href").each do |link|
+        if link.value.match(/twitter/)
           student_profile_hash[:twitter] = link
-        elsif link.match(/linkedin/)
+        elsif link.value.match(/linkedin/)
           student_profile_hash[:linkedin] = link
-        elsif link.match(/github/)
+        elsif link.value.match(/github/)
           student_profile_hash[:github] = link
-        elsif link != nil
+        elsif link.value != nil
           student_profile_hash[:blog] = link
         end
       end
