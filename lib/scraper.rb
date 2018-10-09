@@ -20,20 +20,12 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    # @@student_info.each do |student|
-    #   i = 0
-    #   profile = student[i][:profile_url]
-    #   # all method code in here
-    #   i += 1
-    # end
-    # profile_url = "./fixtures/student-site/#{profile}"
-
     student_profile = Nokogiri::HTML(open(profile_url))
     student_profile_hash = {}
     
     student_profile.css(".profile").each do |info|
 
-      social = info.css(".vitals-container .social-icon-container a")
+      social = info.css(".social-icon-container a")
       social.each do |links|
         link = links.attribute("href").value
         if link.match(/twitter/)
@@ -47,11 +39,46 @@ class Scraper
         end
       end
 
-      student_profile_hash[:profile_quote] = info.css(".vitals-container .vitals-text-container .profile-quote").text
+      student_profile_hash[:profile_quote] = info.css(".profile-quote").text
       student_profile_hash[:bio] = info.css(".description-holder p").text
 
     end
     student_profile_hash
+
+    ## Method for scraping ALL student profiles ##
+    # student_profile_hash = {}
+    # @@student_info.each do |student|
+    #   profile_link = student[:profile_url]
+    #   profile_url = "./fixtures/student-site/#{profile_link}"
+
+    #   student_profile = Nokogiri::HTML(open(profile_url))
+      
+      
+    #   student_profile.css(".profile").each do |info|
+
+    #     social = info.css(".social-icon-container a")
+    #     social.each do |links|
+    #       link = links.attribute("href").value
+    #       if link.match(/twitter/)
+    #         student_profile_hash[:twitter] = link
+    #       elsif link.match(/linkedin/)
+    #         student_profile_hash[:linkedin] = link
+    #       elsif link.match(/github/)
+    #         student_profile_hash[:github] = link
+    #       elsif link != nil
+    #         student_profile_hash[:blog] = link
+    #       end
+    #     end
+
+    #     student_profile_hash[:profile_quote] = info.css(".profile-quote").text
+    #     student_profile_hash[:bio] = info.css(".description-holder p").text
+
+    #   end
+    #   student_profile_hash
+
+    # end
+    # student_profile_hash
+
   end
 
 end
