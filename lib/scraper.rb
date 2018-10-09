@@ -22,21 +22,18 @@ class Scraper
     doc = Nokogiri::HTML(html)
     icons = doc.css(".vitals-container .social-icon-container @href")
     icons.each do |icon|
-      #binding.pry
-      case icon
-       when icon.text.include?"twitter"
-         hash_ary_single = {:twitter => icon.text}
-       when icon.text.include?"linkedin"
-         hash_ary_single = {:linkedin => icon.text}
-       when icon.text.include?"github"
-         hash_ary_single = {:github => icon.text}
-       when icon.text.include?"http"
-         hash_ary_single = {:blog => icon.text}
+      if icon.text.include?"twitter"
+         hash_ary_single[:twitter] = icon.text
+      elsif icon.text.include?"linkedin"
+         hash_ary_single[:linkedin] = icon.text
+      elsif icon.text.include?"github"
+         hash_ary_single[:github] = icon.text
+      elsif icon.text.include?"http"
+         hash_ary_single[:blog] = icon.text
       end
     end
-    bio = doc.css(".details-container .bio-block .bio-content .description-holder p").text
-    quote = doc.css(".vitals-container .vitals-text-container .profile-quote").text
-    hash_ary_single = {:bio => bio, :profile_quote => quote}
+    hash_ary_single[:bio] = doc.css(".details-container .bio-block .bio-content .description-holder p").text
+    hash_ary_single[:profile_quote] = doc.css(".vitals-container .vitals-text-container .profile-quote").text
     hash_ary_single
   end
 
