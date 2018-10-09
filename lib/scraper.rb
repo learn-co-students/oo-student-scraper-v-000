@@ -36,21 +36,21 @@ class Scraper
     
     
     student_profile.css(".profile").each do |info|
-      # binding.pry
-      # need to set default properties if they're missing info
       count = info.css(".vitals-container .social-icon-container a").count
-      @social = info.css(".vitals-container .social-icon-container a")[count]["href"]
       
-      while count > 0 do
-        if @social.match(/twitter/) != nil
+      i = 0
+      while i < count do
+        @social = info.css(".vitals-container .social-icon-container a")[i]["href"]
+        if @social.match(/twitter/) && @social != nil
           @twitter = @social
-        elsif @social.match(/linkedin/) != nil
+        elsif @social.match(/linkedin/) && @social != nil
           @linkedin = @social
-        elsif @social.match(/github/) != nil
+        elsif @social.match(/github/) && @social != nil
           @github = @social
         else
           @blog = @social
         end
+        i += 1
       end
 
       student_profile_hash = {
