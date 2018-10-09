@@ -27,13 +27,13 @@ class CommandLineInteface
   def display_students
     Student.all.each do |student|
       puts "#{student.name.upcase}".colorize(:blue)
-      puts "  location:".colorize(:light_blue) + " #{student.location}"
-      puts "  profile quote:".colorize(:light_blue) + " #{student.profile_quote}"
-      puts "  bio:".colorize(:light_blue) + " #{student.bio}"
-      puts "  twitter:".colorize(:light_blue) + " #{student.twitter}"
-      puts "  linkedin:".colorize(:light_blue) + " #{student.linkedin}"
-      puts "  github:".colorize(:light_blue) + " #{student.github}"
-      puts "  blog:".colorize(:light_blue) + " #{student.blog}"
+      puts "  location:".colorize(:light_blue) + " #{student.location}" unless student.location == nil
+      puts "  profile quote:".colorize(:light_blue) + " #{student.profile_quote}" unless student.profile_quote == nil
+      puts "  bio:".colorize(:light_blue) + " #{student.bio}" unless student.bio == nil
+      puts "  twitter:".colorize(:light_blue) + " #{student.twitter}" unless student.twitter == nil
+      puts "  linkedin:".colorize(:light_blue) + " #{student.linkedin}" unless student.linkedin == nil
+      puts "  github:".colorize(:light_blue) + " #{student.github}" unless student.github == nil
+      puts "  blog:".colorize(:light_blue) + " #{student.blog}" unless student.blog == nil
       puts "----------------------".colorize(:green)
     end
   end
