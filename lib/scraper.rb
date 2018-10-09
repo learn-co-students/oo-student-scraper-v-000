@@ -48,7 +48,7 @@ class Scraper
       end
 
       student_profile_hash[:profile_quote] = info.css(".vitals-container .vitals-text-container .profile-quote").text
-      student_profile_hash[:bio] = info.css(".details-container .bio-block .bio-content .description-holder p").text
+      student_profile_hash[:bio] = info.css(".description-holder p").text
 
     end
     student_profile_hash
