@@ -36,5 +36,4 @@ class Scraper
     hash_ary_single[:profile_quote] = doc.css(".vitals-container .vitals-text-container .profile-quote").text
     hash_ary_single
   end
-
 end
