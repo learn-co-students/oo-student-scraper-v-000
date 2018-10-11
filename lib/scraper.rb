@@ -42,8 +42,9 @@ class Scraper
       end
     end
       
-   
-        
+      hash[:profile_quote] = doc.css("div.profile-quote").text
+ 
+      hash[:bio] = doc.css("div.bio-content.content-holder p").text
     hash
   end
 
