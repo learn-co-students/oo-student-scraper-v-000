@@ -11,11 +11,20 @@ require 'pry'
   end
 
   def self.create_from_collection(students_array)
-    
+    students_array.each do |hash|
+       Student.new(hash)
+    end 
   end
 
   def add_student_attributes(attributes_hash)
+    attributes_hash.each do |attribute|
     
+     t = attribute[0].to_s + '='
+     s = t.to_sym 
+     self.send(s, attribute[1])
+
+    end 
+    self 
   end
 
   def self.all
