@@ -1,10 +1,11 @@
 require 'open-uri'
 require 'pry'
+require 'nokogiri'
 
 class Scraper
 
   def self.scrape_index_page(index_url)
-    html = open("http://159.89.225.105:56893/fixtures/student-site/")
+    html = open(index_url)
     doc = Nokogiri::HTML(html)
     binding.pry
   end
