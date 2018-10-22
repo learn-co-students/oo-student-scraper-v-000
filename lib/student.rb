@@ -20,5 +20,3 @@ class Student
 
   end
 end
-
-#test
