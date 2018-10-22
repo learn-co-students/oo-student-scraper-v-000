@@ -24,16 +24,18 @@ class Scraper
     websites.each {|s|
       url = s.attribute("href").value
       v = URI.parse(url).host.gsub(".com", "").gsub("www.", "")
-      binding.pry
+
 
       # v.include? "twitter", h2[v.to_sym] = url
+
+      h2[v.to_sym] = url
       }
       h2
 
     # h2.each {|k,v|
     #   v.include?(profile.css(".profile-name").text.downcase.split.first) ? k = :blog : nil}
-    #
-    # binding.pry
+
+
 
 
 
