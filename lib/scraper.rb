@@ -24,20 +24,9 @@ class Scraper
     websites.each {|s|
       url = s.attribute("href").value
       v = URI.parse(url).host.gsub(".com", "").gsub("www.", "")
-      binding.pry
-
-
-      # v.include? "twitter", h2[v.to_sym] = url
-
-      h2[v.to_sym] = url
-      }
+      v.include?("github") || v.include?("twitter") || v.include?("linkedin") ?
+        h2[v.to_sym] = url : h2[:blog] = url}
       h2
-
-
-
-
-
-
 
   end
 end
