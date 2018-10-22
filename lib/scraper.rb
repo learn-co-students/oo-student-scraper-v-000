@@ -33,8 +33,7 @@ class Scraper
       }
       h2
 
-    # h2.each {|k,v|
-    #   v.include?(profile.css(".profile-name").text.downcase.split.first) ? k = :blog : nil}
+
 
 
 
