@@ -28,17 +28,23 @@ class Scraper
    
     scraped_student = {}
     
-        scraped_student[:twitter] = profile_page.css("div.social-icon-container a")[0].attribute("href").value if profile_page.css("div.social-icon-container a")[0].attribute("href").value
+    links = profile_page.css("div.social-icon-container").children.css("a").map {|element| element.attribute("href").value}
+    
+    links.each do |link|
+      if link.include?("twitter")
+        scraped_student[:twitter] = link 
+      elsif link.include?("github")
+        scraped_student[:github] = link
+        elsif link.include?("linkedin")
+        scraped_student[:linkedin] = link 
+      else 
+        scraped_student[:blog] = link
+      end
+    end 
+    
+        scraped_student[:profile_quote] = profile_page.css("div.profile-quote").text if profile_page.css("div.profile-quote")
         
-        scraped_student[:linkedin] = profile_page.css("div.social-icon-container a")[1].attribute("href").value if profile_page.css("div.social-icon-container a")[1].attribute("href").value
-        
-        scraped_student[:github] = profile_page.css(".social-icon-container").children.css("a")[2].attribute("href").value if profile_page.css(".social-icon-container").children.css("a")[2].attribute("href").value
-        
-        scraped_student[:blog] = profile_page.css("div.social-icon-container a")[3].attribute("href").value if profile_page.css("div.social-icon-container a")[3].attribute("href").value
-        
-        scraped_student[:profile_quote] = profile_page.css("div.profile-quote").text 
-        
-        scraped_student[:bio] = profile_page.css("div.details-container .description-holder p").text 
+        scraped_student[:bio] = profile_page.css("div.details-container .description-holder p").text if profile_page.css("div.details-container .description-holder p")
       
   scraped_student
   end
