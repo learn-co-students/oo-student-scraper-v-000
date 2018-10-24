@@ -9,13 +9,13 @@ class Scraper
    
    scraped_students = [] 
    
-  index_page.css("div.roster-cards-container").each_with_index do |card, index|
+  index_page.css("div.roster-cards-container").each do |card|
+    card.css("").each do |student|
       student = {
-    :name => card.css("h4.student-name")[index].text, 
-    :location => card.css(".student-location")[index].text, 
-    :profile_url => card.css("div.student-card a").attribute("href").value
+    :name => student.css("h4.student-name").text, 
+    :location => student.css(".student-location").text, 
+    :profile_url => student.css("div.student-card a").attribute("href").value
    }
-    
     scraped_students << student 
     end 
   scraped_students
