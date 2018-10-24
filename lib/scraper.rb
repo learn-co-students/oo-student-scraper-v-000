@@ -38,7 +38,7 @@ class Scraper
    #profile_quote: profile_page.css("div.profile-quote").text 
    #bio: profile_page.css("div.description-holder p").text 
     scraped_student = {}
-    profile_page.css("div.vitals-container").each do |details|
+    profile_page.css("body").each do |details|
       
       scraped_student = {
         :twitter => details.css("div.social-icon-container a")[0].attribute("href").value, 
@@ -46,7 +46,7 @@ class Scraper
         :github => details.css("div.social-icon-container a")[2].attribute("href").value,
         :blog => details.css("div.social-icon-container a")[3].attribute("href").value,
         :profile_quote => details.css("div.profile-quote").text, 
-        :bio => details.css("div.description-holder p").text 
+        :bio => details.css("div.details-container .description-holder p").text 
       }
     
    end
