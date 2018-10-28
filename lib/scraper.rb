@@ -23,9 +23,10 @@ class Scraper
     html = Nokogiri::HTML(open(profile_url))
     media = {}
     html.css("div.vitals-container").each do |social|
-        # binding.pry
         
       profile_quote = social.css(".profile-quote").text
+      bio = social.css("description-holder p").text
+        binding.pry
       twitter, linkedin, github, youtube, blog = nil
       
       social.css(".social-icon-container a").each do |type|
