@@ -11,18 +11,17 @@ class Scraper
       student.css(".student-card a").each do |stud|
         profile_url = "#{stud.attr("href")}"    
         name = stud.css(".student-name").text
-        location = stud.css("location").text
-        
+        location = stud.css(".student-location").text
+        # binding.pry
         student = {:name => name, :location => location, :profile_url => profile_url}
-        student.default = ""
         student_hash << student
-      
       end
     end
       student_hash
   end
 
   def self.scrape_profile_page(profile_url)
+    html = Nokogiri::HTML(open(profile_url))
     
   end
 
