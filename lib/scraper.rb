@@ -47,7 +47,7 @@ class Scraper
         media[:blog] = blog
         media[:profile_quote] = profile_quote
         end
-        binding.pry
+        # binding.pry
       end
       media
     end
