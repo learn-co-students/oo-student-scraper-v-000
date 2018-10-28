@@ -14,11 +14,8 @@ class Scraper
         location = stud.css("location").text
         
         student = {:name => name, :location => location, :profile_url => profile_url}
+        student.default = ""
         student_hash << student
-        
-    # binding.pry
-      # student = Hash.new
-      # student = {"location" => person.css(".student-location").text, "name" => person.css(".student-name").text, "profile_url" =>person.css("a href").text}
       
       end
     end
