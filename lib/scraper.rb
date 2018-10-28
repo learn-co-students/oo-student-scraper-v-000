@@ -23,9 +23,10 @@ class Scraper
     html = Nokogiri::HTML(open(profile_url))
     media = {}
     html.css("div.vitals-container").each do |social|
-      social.css(".vitals-text-container div").each do |quote|
-        profile_quote = quote.css(".profile-quote").text
-      end
+        # binding.pry
+        
+      profile_quote = social.css(".profile-quote").text
+      twitter, linkedin, github, youtube, blog = nil
       
       social.css(".social-icon-container a").each do |type|
         social_type = type.attr("href")
@@ -37,20 +38,20 @@ class Scraper
           github = social_type
         elsif social_type.include?("youtube")
           youtube = social_type
-        elsif social_type.include?("blog")
+        else
           blog = social_type
-      
-        media[:twitter] = twitter
-        media[:linkedin] = linkedin
-        media[:github] = github
-        media[:youtube] = youtube
-        media[:blog] = blog
-        media[:profile_quote] = profile_quote
         end
-        # binding.pry
       end
-      media
+      
+    media[:twitter] = twitter
+    media[:linkedin] = linkedin
+    media[:github] = github
+    media[:youtube] = youtube
+    media[:profile_quote] = profile_quote
+    media[:blog] = blog
+    media[:bio] = bio
     end
+  media
   end
 
 end
