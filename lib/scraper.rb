@@ -37,8 +37,6 @@ class Scraper
           linkedin = social_type
         elsif social_type.include?("github")
           github = social_type
-        elsif social_type.include?("youtube")
-          youtube = social_type
         else
           blog = social_type
         end
@@ -47,12 +45,10 @@ class Scraper
     media[:twitter] = twitter
     media[:linkedin] = linkedin
     media[:github] = github
-    media[:youtube] = youtube
     media[:profile_quote] = profile_quote
     media[:blog] = blog
     media[:bio] = bio
     end
-    # binding.pry
   media
   end
 
