@@ -33,20 +33,20 @@ class Scraper
         social_type = type.attr("href")
         if social_type.include?("twitter")
           twitter = social_type
+          media[:twitter] = twitter
         elsif social_type.include?("linkedin")
           linkedin = social_type
+          media[:linkedin] = linkedin
         elsif social_type.include?("github")
           github = social_type
+          media[:github] = github
         else
           blog = social_type
+          media[:blog] = blog
         end
       end
       
-    media[:twitter] = twitter
-    media[:linkedin] = linkedin
-    media[:github] = github
     media[:profile_quote] = profile_quote
-    media[:blog] = blog
     media[:bio] = bio
     end
   media
