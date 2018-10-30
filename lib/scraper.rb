@@ -6,54 +6,46 @@ class Scraper
 
   def self.scrape_index_page(index_url)
     html = open(index_url)
-    doc = Nokogiri::HTML(html)
+    index = Nokogiri::HTML(html)
     student_list = []
     
-      doc.css(".student_card").each do |student|
+      index.css(".student-card").each do |student|
         student_list <<
         {:name => student.css(".student-name").text,
         :location => student.css(".student-location").text,
-        :profile_url => student.attribute("href").value}
+        :profile_url => student.css("a").attribute("href").value}
+        
       end
-      binding.pry
     student_list
     
   end
   
 
   def self.scrape_profile_page(profile_url)
-    
+    html = open(profile_url)
+    profile = Nokogiri::HTML(html)
+    student_page = {}
+   
+      profile.css(".social-icon-container a").each do |a|
+        
+        if (a.attribute("href").value).include?("twitter")
+          student_page[:twitter] = a.attribute("href").value
+        elsif (a.attribute("href").value).include?("linkedin")
+          student_page[:linkedin] = a.attribute("href").value
+        elsif (a.attribute("href").value).include?("github")  
+          student_page[:github] = a.attribute("href").value
+        else 
+          student_page[:blog] = a.attribute("href").value
+        end
+      
+      end
+    student_page[:profile_quote] = profile.css(".profile-quote").text
+    student_page[:bio] = profile.css(".description-holder p").text
+    student_page
+   
   end
 
 end
 
 
 
-# projects: kickstarter.css("li.project.grid_4")
-# title: project.css("h2.bbcard_name strong a").text
-# image link: project.css("div.project-thumbnail a img").attribute("src").value
-# description: project.css("p.bbcard_blurb").text
-# location: project.css("ul.project-meta span.location-name").text
-# percent_funded: project.css("ul.project-stats li.first.funded strong").text.gsub("%","").to_i
-
-=begin
-def create_project_hash
-  # write your code here
-  html = File.read('fixtures/kickstarter.html')
-  doc = Nokogiri::HTML(html)
-  projects = {}
-  
-  kickstarter.css("li.project.grid_4").each do |project|
-    title = project.css("h2.bbcard_name strong a").text
-    projects[title.to_sym] = {
-      :image_link => project.css("div.project-thumbnail a img").attribute("src").value,
-      :description => project.css("p.bbcard_blurb").text,
-      :location => project.css("ul.project-meta span.location-name").text,
-      :percent_funded => project.css("ul.project-stats li.first.funded strong").text.gsub("%","").to_i
-    }
-  end
-  
-  projects
-end
-create_project_hash
-=end
