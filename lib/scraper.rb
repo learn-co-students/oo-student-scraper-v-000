@@ -5,18 +5,19 @@ require 'pry'
 class Scraper
 
   def self.scrape_index_page(index_url)
-    html = File.read('fixtures/student_site/index.html')
-    kickstarter = Nokogiri::HTML(html)
+    html = open(index_url)
+    doc = Nokogiri::HTML(html)
     student_list = []
     
-      doc.css("div.student_card a").each do |student|
+      doc.css(".student_card").each do |student|
         student_list <<
-        {:name => student.css("h4.student-name").text,
-        :location => student.css("p.student-location").text,
+        {:name => student.css(".student-name").text,
+        :location => student.css(".student-location").text,
         :profile_url => student.attribute("href").value}
       end
+      binding.pry
     student_list
-    binding.pry
+    
   end
   
 
@@ -26,8 +27,7 @@ class Scraper
 
 end
 
-page = Scraper.new
-page.scrape_index_page('fixtures/student_site/index.html')
+
 
 # projects: kickstarter.css("li.project.grid_4")
 # title: project.css("h2.bbcard_name strong a").text
