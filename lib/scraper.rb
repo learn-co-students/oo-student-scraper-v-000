@@ -34,15 +34,18 @@ class Scraper
       
       profile_page = Nokogiri::HTML(open(profile_url))
       student = {}
-      # .css twitter_url 
+      # .css twitter_url   .css retrieves specific info from HTML doc
       # .css linkedin_url
       # .css github_url 
       # .css blog_url
       # .css profile_quote_url
       # .css bio
       
-      links = profile_page.css
-    #<a href="/empireofryan" class="ProfileHeaderCard-nameLink u-textInheritColor js-nav">Ryan Johnson</a>
+      links = profile_page.css(".social_link_container").map {|'href'|.value}
+      
+      # Some iteration here
+      
+  
   
   
   
