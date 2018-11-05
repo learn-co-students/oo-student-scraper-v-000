@@ -15,9 +15,8 @@ class Scraper
       student_name = student.css('.student-name').text
       student_location = student.css('.student-location').text
           
-        #binding.pry
       
-      student_profile_url = "#{student.attr('href')}"
+      student_profile_url = "#{student.attr('href')}" # The href attribute provides addresss information for links
       
       #student_profile_url = "students/#{student_name.gsub(' ', '-').downcase}.html"
         
@@ -30,6 +29,17 @@ class Scraper
   
         students
     end
+    
+  
+  def scrape_profile_page(profile_url) 
+      binding.pry
+    <a href="/empireofryan" class="ProfileHeaderCard-nameLink u-textInheritColor js-nav">Ryan Johnson</a>
+
+  
+  end 
+    
+    
+    
 end   
  
 
