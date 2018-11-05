@@ -41,15 +41,32 @@ class Scraper
       # .css profile_quote_url
       # .css bio
       
-      links = profile_page.css(".social_link_container").map {|'href'|.value}
+      link = profile_page.css(".social_link_container").map {|'href'|value}
       
-      # Some iteration here
       
-  
-  
-  
-  
-  
+      link.each do |link| 
+        if link.include?("twitter")
+          :twitter => link
+          
+        if link.include?("linkedin")
+          :linkedin => link
+          
+        if link.include?("github") 
+          :github => link 
+        
+        if link.include?("blog_url") 
+          :blog_url => link 
+        
+        if link.include?("profile_quote") 
+          :profile_quote => link 
+          
+        if link.include?("bio") 
+          :bio => link 
+          
+          end
+          #How to code if missing a social media link
+      
+ 
   end
 
 end 
