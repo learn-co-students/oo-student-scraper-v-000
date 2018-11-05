@@ -29,38 +29,35 @@ class Scraper
         students
     end
     
- ********* 
+
   def self.scrape_profile_page(profile_url) 
       
       profile_page = Nokogiri::HTML(open(profile_url))
-      student = {}
-      
-      binding.pry
-      link = profile_page.css(".social-icon-container").map {|'href'|value}
-      
-      
-      # link.each do |link| 
-      #   if link.include?("twitter")
-      #     :twitter => link
-          
-      #   if link.include?("linkedin")
-      #     :linkedin => link
-          
-      #   if link.include?("github") 
-      #     :github => link 
+      student_profile = {}
+       
+       #binding.pry
+       
+      links = profile_page.css("div.main-wrapper.profile.social-icon-container a").each do |social|
+        if social.attribute("href").value.include? (twitter") 
+          student_profile[:twitter] = social.attribute("href").value 
         
-      #   if link.include?("blog_url") 
-      #     :blog_url => link 
+        if social.attribute("href").value.include?("linkedin") 
+          student_profile[:linkedin] = social.attribute("href").value 
         
-      #   if link.include?("profile_quote") 
-      #     :profile_quote => link 
+        if social.attribute("href").value.include? ("github") 
+          student_profile[:github] = social.attributes("href").value 
           
-      #   if link.include?("bio") 
-      #     :bio => link 
+        if social.attribute("href").value.include? ("blog_url") 
+          student_profile[:blog_url] = social.attributes("href").value 
           
-      #     end
-      #     #How to code if missing a social media link
+        if social.attribute("href").value.include?("profile_quote")
+          student_profile[:profile_quote] = social.attributes("href").value 
+          
+        
+    
       
+      
+      end
  
   end
 
