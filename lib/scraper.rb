@@ -35,7 +35,6 @@ class Scraper
       profile_page = Nokogiri::HTML(open(profile_url))
       flatiron_profile_url = {}
        
-           #binding.pry
        
       profile_page.css("div.main-wrapper.profile.social-icon-container a").each do |social|
         if social.attribute("href").value.include? ("twitter") 
@@ -56,12 +55,14 @@ class Scraper
       end 
         
        
-        flatiron_profile_url[:profile_quote] = profile_page.css(".profile-quote").text.chomp if profile_page.css(".profile_quote")
+        flatiron_profile_url[:profile_quote] = profile_page.css(".profile-quote").text if profile_page.css(".profile_quote")
         flatiron_profile_url[:bio] = profile_page.css("p").text
-        binding.pry
+        #binding.pry
         flatiron_profile_url 
-          
-      end 
+        #profile_page
+        #scrape_profile_page(profile_url) 
+      end
+        flatiron_profile_url
 end 
         
           
