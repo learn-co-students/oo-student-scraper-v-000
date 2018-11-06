@@ -22,7 +22,18 @@ class Scraper
       
 
   def self.scrape_profile_page(profile_url)
+    #=> attributes needed: twitter, linkedin, github, blog, profile quote, bio
     #=> responsible for scraping an individual student's profile page to get further info about that student
+    html = open(profile_url)
+    parsed_page = Nokogiri::HTML(html)
+    student = {
+      :linkedin => 
+      :github =>
+      :blog =>
+      :profile_quote =>
+      :bio =>
+    }
+    
   end
 
 end
@@ -30,13 +41,4 @@ end
 
 
     
-#     def make_courses
-      
-#       all_courses = self.get_courses
-#       all_courses.each do |noko_course|
-#         course = Course.new
-#         course.title = noko_course.css("h2").text
-#         course.schedule = noko_course.css(".date").text
-#         course.description = noko_course.css("p").text
-#       end 
-#     end
+
