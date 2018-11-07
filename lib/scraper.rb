@@ -15,13 +15,15 @@ attr_accessor :name, :location, :profile_url
       student_name = student_card.css(".student-name").text
       student_location = student_card.css(".student-location").text
       student_url = student_card.css("a").attribute("href").text
-      binding.pry
-  end
 
+      student_card.each do |student|
+        student_name
+        student_location
+        student_url
+        #students << { name location etc...}
+        binding.pry
 
+      end
+      end
 
-  def self.scrape_profile_page(profile_url)
-
-  end
-
-end
+    end #ends class
