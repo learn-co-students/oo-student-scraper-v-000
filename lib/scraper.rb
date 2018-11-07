@@ -14,6 +14,7 @@ attr_accessor :name, :location, :profile_url
       student_card = index.css(".student-card")
       student_name = student_card.css(".student-name").text
       student_location = student_card.css(".student-location").text
+      student_url = student_card.css("href=").text
       binding.pry
   end
 
