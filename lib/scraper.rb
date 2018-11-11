@@ -10,10 +10,12 @@ class Scraper
     roster = Nokogiri::HTML(html)
     students = {}
     roster.css(".roster-cards-container").each do |student|
-      student_info = student.css(".student-card"). = {
+      student_header = student.css(".student-card").text
+      students[student_header.to_sym] = {
         :name => variable.css(".roster-cards-container").css("h4").text,
         :location => variable.css(".roster-cards-container").css("p").text,
-        :profile_url => variable.css(".roster-cards-container").css("a").attribute("href").value (only gets first...)Y
+        :profile_url => variable.css(".roster-cards-container").css("a").attribute("href").value
+        binding.pry
       }
     end
     students
