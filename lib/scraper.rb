@@ -26,30 +26,32 @@ attr_accessor :name, :location, :profile_url, :twitter, :linkedin, :github, :blo
       end
 
       def self.scrape_profile_page(profile_url)
-        individual_student = []
+        individual_student = {}
         html = open(profile_url)
         index = Nokogiri::HTML(html)
-        #student_biodeets = index.css(".description-holder").text
         student_biodeets = index.css(".social-icon-container").children.css("a")
 
         student_biodeets.each do |student|
-          links = student.valuess
-            if links.include? 'twitter'
-              links == twitter
-            elsif links.include? 'linkedin'
-              links == linkedin
-            elsif links.include? 'github'
-              links == github
+          links = student.values
+            if links.include?("twitter")
+              individual_student[:twitter] = links
+            elsif links.include?("linkedin")
+              individual_student[:linkedin] = links
+            elsif links.include?("github")
+              individual_student[:github] = links
             else
-              links == blog_name
-            end #ends if
+              individual_student[:blog] = links
+              end #ends if
           end #ends iteration
 
-      #   individual_student << {twitter: twitter, linkedin: linkedin, github: github}
+        #profile quote
+        individual_student[:profile_quote] = index.css(".profile-quote").text
+        #bio
+       individual_student[:bio] = index.css(".description-holder p").text
 
-        return individual_student
+       individual_student
+       binding.pry
       end #ends method
-
 
 
     end #ends class
