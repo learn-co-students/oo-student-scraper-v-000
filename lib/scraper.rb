@@ -30,23 +30,26 @@ attr_accessor :name, :location, :profile_url, :twitter, :linkedin, :github, :blo
         html = open(profile_url)
         index = Nokogiri::HTML(html)
         #student_biodeets = index.css(".description-holder").text
-        student_biodeets = index.css(".main-wrapper.profile")
+        student_biodeets = index.css(".social-icon-container").children.css("a")
 
         student_biodeets.each do |student|
-          twitter = student.attibute("social-icon-container")
-          #linkedin = student.css("p").text
-          #github = student.css("p").text
-          #student_experience = student.css("p").text
-          #blog_name = student.css("h4").text
-          #profile_quote = student.css("h5").text
-          #bio = student.css("h5").text
-          binding.pry
+          links = student.valuess
+            if links.include? 'twitter'
+              links == twitter
+            elsif links.include? 'linkedin'
+              links == linkedin
+            elsif links.include? 'github'
+              links == github
+            else
+              links == blog_name
+            end #ends if
+          end #ends iteration
 
-        #  individual_student << {twitter: twitter, linkedin: linkedin, github: github, :blog blog_name,
-        #    :profile_quote profile_quote, bio: bio}
-        end
-        #  return individual_student
+      #   individual_student << {twitter: twitter, linkedin: linkedin, github: github}
+
+        return individual_student
       end #ends method
+
 
 
     end #ends class
