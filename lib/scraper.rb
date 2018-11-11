@@ -32,7 +32,7 @@ attr_accessor :name, :location, :profile_url, :twitter, :linkedin, :github, :blo
         student_biodeets = index.css(".social-icon-container").children.css("a")
 
         student_biodeets.each do |student|
-          links = student.values
+          links = student.values[0]
             if links.include?("twitter")
               individual_student[:twitter] = links
             elsif links.include?("linkedin")
@@ -50,7 +50,6 @@ attr_accessor :name, :location, :profile_url, :twitter, :linkedin, :github, :blo
        individual_student[:bio] = index.css(".description-holder p").text
 
        individual_student
-       binding.pry
       end #ends method
 
 
