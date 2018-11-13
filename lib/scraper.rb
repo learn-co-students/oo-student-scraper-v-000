@@ -38,19 +38,16 @@ class Scraper
     #roster.css(".roster-cards-container").each do |student|
     #roster.css(".student-card").each do |student|
       #student_header = i#student.css("div.id").text
-      #binding.pry
-      profile = {
-        :twitter => ,
-        :linkedin => ,
-        :github => ,
-        :blog => ,
-        :profile_quote => ,
-        :bio => 
-        binding.pry
-      }
+      binding.pry
+      #profile = {
+      #  :twitter => roster.css(".social-icon-container").css("a").attribute("href").value, all? any?
+      #  :linkedin => ,
+      #  :github => ,
+      #  :blog => ,
+      #  :profile_quote => roster.css(".vitals-text-container").css(".profile_quote").text,
+      #  :bio => roster.css(".details-container").css("p").text
+      #}
       #i+=1
-    end
-    profile
     #binding.pry
   end
 
