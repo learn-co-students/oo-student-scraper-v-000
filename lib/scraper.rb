@@ -8,13 +8,13 @@ class Scraper
   def self.scrape_index_page(index_url)
     html = File.read(index_url)
     roster = Nokogiri::HTML(html)
-    students = {}
+    students = []
     i = 1
     #roster.css(".roster-cards-container").each do |student|
     roster.css(".student-card").each do |student|
       student_header = i#student.css("div.id").text
       #binding.pry
-      students[student_header] = {
+      students = {
         :name => student.css("h4").text,
         :location => student.css("p").text,
         :profile_url => student.css("a").attribute("href").value
@@ -40,15 +40,17 @@ class Scraper
         socials << social_media.attribute("href").value
       end
       profile = {
-        :twitter => socials.detect{ |site| site.include? 'twitter'},
+        #:twitter => socials.detect{ |site| site.include? 'twitter'},
         :linkedin => socials.detect{ |site| site.include? 'linkedin'},
         :github => socials.detect{ |site| site.include? 'github'},
-        #:blog => if socials.detect {|site| site.include? 'twitter' == false && site.include? 'linkedin' == false && site.include? 'github' == false},
+        :blog => socials[3],
         :profile_quote => roster.css(".vitals-text-container").css(".profile-quote").text,
         :bio => roster.css(".details-container").css("p").text
       }
-    binding.pry
+      if socials.detect{ |site| site.include? 'twitter'} != nil
+        profile[:twitter =>socials.detect{ |site| site.include? 'twitter'}]
+      end
+      binding.pry
   end
-
 end
-Scraper.scrape_profile_page('./fixtures/student-site/students/ryan-johnson.html')
+Scraper.scrape_profile_page('./fixtures/student-site/students/alvin-lu.html')
