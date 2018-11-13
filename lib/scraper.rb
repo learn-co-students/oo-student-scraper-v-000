@@ -34,21 +34,20 @@ class Scraper
     html = File.read(profile_url)
     roster = Nokogiri::HTML(html)
     profile = {}
-    i = 1
-    #roster.css(".roster-cards-container").each do |student|
-    #roster.css(".student-card").each do |student|
-      #student_header = i#student.css("div.id").text
-      binding.pry
-      #profile = {
-      #  :twitter => roster.css(".social-icon-container").css("a").attribute("href").value, all? any?
-      #  :linkedin => ,
-      #  :github => ,
-      #  :blog => ,
-      #  :profile_quote => roster.css(".vitals-text-container").css(".profile_quote").text,
-      #  :bio => roster.css(".details-container").css("p").text
-      #}
-      #i+=1
     #binding.pry
+      socials = []
+      roster.css(".social-icon-container").css("a").each do |social_media|
+        socials << social_media.attribute("href").value
+      end
+      profile = {
+        :twitter => socials.detect{ |site| site.include? 'twitter'},
+        :linkedin => socials.detect{ |site| site.include? 'linkedin'},
+        :github => socials.detect{ |site| site.include? 'github'},
+        #:blog => if socials.detect {|site| site.include? 'twitter' == false && site.include? 'linkedin' == false && site.include? 'github' == false},
+        :profile_quote => roster.css(".vitals-text-container").css(".profile-quote").text,
+        :bio => roster.css(".details-container").css("p").text
+      }
+    binding.pry
   end
 
 end
