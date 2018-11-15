@@ -9,17 +9,15 @@ class Scraper
     html = File.read(index_url)
     roster = Nokogiri::HTML(html)
     students = []
-    i = 1
     #roster.css(".roster-cards-container").each do |student|
     roster.css(".student-card").each do |student|
-      student_header = i#student.css("div.id").text
+      #student.css("div.id").text
       #binding.pry
-      students = {
+      students << {
         :name => student.css("h4").text,
         :location => student.css("p").text,
         :profile_url => student.css("a").attribute("href").value
       }
-      i+=1
     end
     students
     #binding.pry
@@ -41,16 +39,26 @@ class Scraper
       end
       profile = {
         #:twitter => socials.detect{ |site| site.include? 'twitter'},
-        :linkedin => socials.detect{ |site| site.include? 'linkedin'},
-        :github => socials.detect{ |site| site.include? 'github'},
-        :blog => socials[3],
+        #:linkedin => socials.detect{ |site| site.include? 'linkedin'},
+        #:github => socials.detect{ |site| site.include? 'github'},
+        #:blog => socials[3],
         :profile_quote => roster.css(".vitals-text-container").css(".profile-quote").text,
         :bio => roster.css(".details-container").css("p").text
       }
       if socials.detect{ |site| site.include? 'twitter'} != nil
-        profile[:twitter =>socials.detect{ |site| site.include? 'twitter'}]
+        profile[:twitter] = socials.detect{ |site| site.include? 'twitter'}
       end
-      binding.pry
+      if socials.detect{ |site| site.include? 'linkedin'} != nil
+        profile[:linkedin] = socials.detect{ |site| site.include? 'linkedin'}
+      end
+      if socials.detect{ |site| site.include? 'github'} != nil
+        profile[:github] = socials.detect{|site| site.include? 'github'}
+      end
+      if socials.count >= 4
+        profile[:blog] = socials[3]
+      end
+      profile
+      #binding.pry
   end
 end
-Scraper.scrape_profile_page('./fixtures/student-site/students/alvin-lu.html')
+#Scraper.scrape_profile_page('./fixtures/student-site/students/alvin-lu.html')
