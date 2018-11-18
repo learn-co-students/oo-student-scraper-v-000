@@ -44,26 +44,25 @@ students
             if link.attributes["href"].value.include?("linkedin")
               # linkedin is
               profiles[:linkedin] = link.attributes["href"].value
-              binding.pry
+            #  binding.pry
             elsif link.attributes["href"].value.include?("github")
               profiles[:github] = link.attributes["href"].value
                #binding.pry
             elsif link.attributes["href"].value.include?("twitter")
                profiles[:twitter] = link.attributes["href"].value
               #binding.pry
-            elsif link.attributes["href"].value.include?("blog")
-              # binding.pry
-              profiles[:blog] = link.attributes["href"].value
             else
-              puts "something"
-              #binding.pry
+
+              profiles[:blog] = link.attributes["href"].value
+            #  binding.pry
            end
 
         end
         # bio
     student_profile_page.css(".details-container").each do |sml|
-      #binding.pry
+
           profiles[:bio] = sml.css("p").children.text
+          #binding.pry
         end
     # profile_quote
     student_profile_page.css(".vitals-text-container").each do |sml|
