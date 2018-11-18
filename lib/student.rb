@@ -8,8 +8,9 @@ class Student
   #binding.pry
 
   def initialize(student_hash)
-  @name = student_hash[:name]
-  @location = student_hash[:location]
+      student_hash.each {|key, value| self.send(("#{key}="), value)}
+  # @name = student_hash[:name]
+  # @location = student_hash[:location]
   # @twitter = student_hash[:twitter]
   # @linkedin = student_hash[:linkedin]
   # @github = student_hash[:github]
@@ -30,8 +31,10 @@ class Student
 
   def add_student_attributes(attributes_hash)
     # attributes_hash.
-  #  binding.pry
+
   attributes_hash.each {|key, value| self.send(("#{key}="), value)}
+  self
+  #binding.pry
   end
 
   def self.all
