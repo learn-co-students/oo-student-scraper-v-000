@@ -20,7 +20,7 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     profiles = Hash.new
-    # binding.pry
+    binding.pry
   end
 
 end
