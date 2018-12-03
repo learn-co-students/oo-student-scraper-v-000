@@ -19,7 +19,19 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    profiles = Hash.new
+    doc = Nokogiri::HTML(open(profile_url))
+    student_profile = doc.css(".vitals-text-container")
+    student_profile.each do |profile|
+    	profile_quote = profile.css(".profile-quote").text
+    # 	twitter = 
+    # 	linkedin = 
+    # 	github = 
+    # 	blog = 
+    # 	bio = 
+    # profiles ={:twitter => twitter, :linkedin => linkedin, :github => github, :blog => blog, :profile_quote => profile_quote, :bio => bio}
+    binding.pry
+    end 
+    # profiles 
   end
 
 end
