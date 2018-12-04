@@ -9,51 +9,44 @@ class Scraper
     students = Array.new
     student_data = doc.css("div.roster-cards-container .student-card a")
     student_data.each do |card|
- 		student_name = card.css("div:nth-child(2)").css(".student-name").first.text
- 		location = card.css("div:nth-child(2)").css(".student-location").first.text
- 		profile_url  = card.attribute("href").value
- 		student_hash ={:name => student_name, :location => location, :profile_url => profile_url}
- 		students << student_hash
+   		student_name = card.css("div:nth-child(2)").css(".student-name").first.text
+   		location = card.css("div:nth-child(2)").css(".student-location").first.text
+   		profile_url  = card.attribute("href").value
+   		student_hash ={:name => student_name, :location => location, :profile_url => profile_url}
+   		students << student_hash
     end
     students
   end
 
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
+    profiles = Hash.new
+    student_bio = doc.css(".details-container")
+    student_bio.each do |biography|
+      bio = biography.css(".description-holder p").text
+      profiles[:bio] = bio
+    end
     student_profile = doc.css(".vitals-text-container")
     student_profile.each do |profile|
-    	profile_quote = profile.css(".profile-quote").text
-    # 	twitter = 
-    # 	linkedin = 
-    # 	github = 
-    # 	blog = 
-    # 	bio = 
-    # profiles ={:twitter => twitter, :linkedin => linkedin, :github => github, :blog => blog, :profile_quote => profile_quote, :bio => bio}
-    binding.pry
+      profile_quote = profile.css(".profile-quote").text
+      profiles[:profile_quote] = profile_quote
     end 
-    # profiles 
+    student_urls = doc.css(".social-icon-container a")
+    student_urls.each do |url|
+      link = url.attributes["href"].value
+      if link =~ /twitter/
+        profiles[:twitter] = link
+      elsif 
+        link =~ /linkedin/
+          profiles[:linkedin] = link
+      elsif 
+        link =~ /github/ 
+          profiles[:github] = link
+      else 
+        link =~ !(/twitter/ || /linkedin/ || /github/)
+        profiles[:blog] = link
+      end 
+    end
+    profiles
   end
-
 end
-
-# doc.css("div.roster-cards-container").first.css("h4").text
-# students = student_names.split /(?<=[a-z])(?=[A-Z])/
-
-# card.css(".student-card a")
-
-   	# student_names = card.css(".student-card a").css(".student-name").text
-    # 	student_names.split /(?<=[a-z])(?=[A-Z])/
-    # 		student_names each do |name|
-    # 		student_hash[:name] = name
-
-
-       # student_locations = doc.css("div.roster-cards-container").first.css("p").text
-
-       		# students << student_hash[:name] = student_name
- 		# students << student_hash[:location] = location 
- 		# students << student_hash[:profile_url] = profile_url
- 		# binding.pry
-
- 		# 		student_name = card.css(".student-card a").css("div:nth-child(2)").css(".student-name").first.text
- 		# location = card.css(".student-card a").css("div:nth-child(2)").css(".student-location").first.text
- 		# profile_url  = card.css(".student-card a").attribute("href").value
