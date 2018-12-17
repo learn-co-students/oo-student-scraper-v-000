@@ -12,12 +12,29 @@ class Scraper
       profile_url = student.css("a").attribute("href").value
       student_list << {:name => name, :location => location, :profile_url => profile_url}
      end 
-   
+    # binding.pry
+   student_list
   end
 
   def self.scrape_profile_page(profile_url)
-    
+    profile_info = []
+    doc = Nokogiri::HTML(open("#{profile_url}"))
+   # binding.pry
+    student_info = doc.css(".social-icon-container")
+    social_media_links = student_info.css("a").each do |l|
+      thislink = l.attribute("href").value 
+  # binding.pry
+      if thislink.include?("linkedin") 
+        profile_info << {:linkedin => thislink}
+      end
+      if thislink.include?("twitter")
+        profile_info << {:twitter => thislink}
+      end
+      binding.pry
+    end
+    binding.pry
   end
+   
 
 end
 
