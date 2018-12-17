@@ -25,12 +25,13 @@ class Scraper
       thislink = l.attribute("href").value 
   # binding.pry
       if thislink.include?("linkedin") 
-        profile_info << {:linkedin => thislink}
+        linkedin_url = thislink
       end
       if thislink.include?("twitter")
-        profile_info << {:twitter => thislink}
+       twitter_url = thislink
       end
       binding.pry
+      profile_info << {:twitter => twitter_url, :linkedin => linkedin_url}
     end
     binding.pry
   end
