@@ -1,4 +1,4 @@
-rewuire 'Nokogiri'
+require 'Nokogiri'
 require 'open-uri'
 require 'pry'
 
