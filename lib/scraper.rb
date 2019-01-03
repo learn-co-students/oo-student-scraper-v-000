@@ -24,9 +24,15 @@ class Scraper
     doc = Nokogiri::HTML.parse(html)
     profile_page = doc.css(".main-wrapper-profile")
     array = []
-    profile_page.each do
+    profile_page.each do |card|
+      student = Hash.new
+      student[:twitter] = card.css("div.vitals-container").text
+      array.push(student)
+    end
+    puts array
   end
 
 end
 
 Scraper.scrape_index_page("http://67.205.188.72:60933/fixtures/student-site/")
+Scraper.scrape_profile_page("http://67.205.188.72:60933/fixtures/student-site/students/eric-chu.html")
