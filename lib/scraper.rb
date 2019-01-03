@@ -1,33 +1,30 @@
 require 'open-uri'
 require 'pry'
 require 'nokogiri'
-require 'rest-client'
 
 class Scraper
 
   def self.scrape_index_page(index_url)
-    html = RestClient.get(index_url)
+    html = open(index_url)
     doc = Nokogiri::HTML.parse(html)
-    index_page = doc.css(".card-text-container")
-    index_page_urls = doc.css(".student-card a")
+    index_page = doc.css(".student-card a")
     array = []
     index_page.each do |card|
       student = Hash.new
-      student[:name] = card.css("h4").text
+      student[:name] = card.css("div.card-text-container h4").text
       student[:location] = card.css("p").text
+      student[:profile_url] = card['href']
       array.push(student)
     end
-    index_page_urls.each do |card|
-      url = card['href']
-      array.each do |student|
-        student[:profile_url] = url
-      end
-    end
-    puts array
+    array
   end
 
   def self.scrape_profile_page(profile_url)
-    
+    html = open(profile_url)
+    doc = Nokogiri::HTML.parse(html)
+    profile_page = doc.css(".main-wrapper-profile")
+    array = []
+    profile_page.each do
   end
 
 end
