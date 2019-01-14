@@ -3,6 +3,7 @@ require 'pry'
 
 class Scraper
 
+
   def self.scrape_index_page(index_url)
     html = open(index_url) #=> index_url = "../fixtures/student-site/index.html"
     list = Nokogiri::HTML(html)
@@ -41,6 +42,9 @@ class Scraper
     end
     master_array
   end
+    
+
+
 
   def self.scrape_profile_page(profile_url)
     html = open(profile_url)
@@ -85,7 +89,7 @@ class Scraper
     students_linkedin
     students_github
     students_youtube
-      if students_youtube = ""
+      if students_youtube == ""
         students_youtube = nil
       end
     students_blog
