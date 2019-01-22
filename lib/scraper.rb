@@ -57,7 +57,7 @@ class Scraper
     output[:github] = social
   elsif social.include?("youtube")
   else
-    output[]
+    output[:blog] = social
   end
 end
 
