@@ -20,22 +20,28 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
      doc = Nokogiri::HTML(open(profile_url))
-     student_profile = []
-     doc.css(".vitals-container").each do |vital_info|
-       vital_info.css(".vitals-text-container").each do |student_info|
-        student_name = student_info.css("h1.profile-name").text
-        student_location = student_info.css("h2.profile-location").text 
-        student_quote = student_info.css("div.profile-quote").text
-        student_bio = student_info.css(".description-holder").text
-      # binding.pry
-        # student_blog = student_info.css
-        # student_twitter = 
-        # student_github =
-        # student_linkedin = 
-        # student_profile << {name: student_name, location: student_location, profile_quote: student_quote, blog: student_blog }
-     end
-    end
-    # student_profile
+        student_quote = doc.css("div.profile-quote").text
+        student_bio = doc.css(".description-holder p").text  
+         student = {}
+        doc.css(".social-icon-container").each do |account| 
+          social_media_account = account.css("a").attr("href").value
+           if social_media_account.include?("twitter") 
+             student_twitter = social_media_account  
+             student_twitter ? student[:twitter] = student_twitter : student[:twitter] = nil
+           elsif social_media_account.include?("github")
+             student_github = social_media_account
+             student_github ? student[:github] = student_github : student[:github] = nil
+           elsif social_media_account.include?("linkedin")
+             student_linkedin = social_media_account
+             student_linkedin ? student[:linkedin] = student_linkedin : student[:linkedin] = nil
+           else 
+               student_blog = social_media_account
+               student_blog ? student[:blog] = student_blog : student[:blog] = nil
+           end
+        end
+            student_bio ? student[:bio] = student_bio : student[:bio] = nil
+           student_quote ? student[:profile_quote] = student_quote : student[:profile_quote] = nil
+         student
    end
 end
 #twitter url, linkedin url, github url, blog url, profile quote, and bio
