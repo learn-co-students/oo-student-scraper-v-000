@@ -23,9 +23,8 @@ class Scraper
         student_quote = doc.css("div.profile-quote").text
         student_bio = doc.css(".description-holder p").text  
          student = {}
-        doc.css(".social-icon-container").each do |account| 
-          binding.pry
-          social_media_account = account.css("a").attr("href").value
+        doc.css(".social-icon-container a").each do |account| 
+          social_media_account = account.attr("href")
            if social_media_account.include?("twitter") 
              student_twitter = social_media_account  
              student_twitter ? student[:twitter] = student_twitter : student[:twitter] = nil
@@ -45,4 +44,4 @@ class Scraper
          student
    end
 end
-#twitter url, linkedin url, github url, blog url, profile quote, and bio
+
