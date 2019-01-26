@@ -26,9 +26,14 @@ class Scraper
         student_name = student_info.css("h1.profile-name").text
         student_location = student_info.css("h2.profile-location").text
         student_quote = student_info.css("div.profile-quote").text
-        student_bio = student_info.css
+        # student_blog = student_info.css
+        # student_twitter = 
+        # student_github =
+        # student_linkedin = 
+        # student_profile << {name: student_name, location: student_location, profile_quote: student_quote, blog: student_blog }
      end
     end
+    # student_profile
    end
 end
 #twitter url, linkedin url, github url, blog url, profile quote, and bio
