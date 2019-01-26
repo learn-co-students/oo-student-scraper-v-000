@@ -24,6 +24,7 @@ class Scraper
         student_bio = doc.css(".description-holder p").text  
          student = {}
         doc.css(".social-icon-container").each do |account| 
+          binding.pry
           social_media_account = account.css("a").attr("href").value
            if social_media_account.include?("twitter") 
              student_twitter = social_media_account  
