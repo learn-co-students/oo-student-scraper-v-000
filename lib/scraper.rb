@@ -24,8 +24,10 @@ class Scraper
      doc.css(".vitals-container").each do |vital_info|
        vital_info.css(".vitals-text-container").each do |student_info|
         student_name = student_info.css("h1.profile-name").text
-        student_location = student_info.css("h2.profile-location").text
+        student_location = student_info.css("h2.profile-location").text 
         student_quote = student_info.css("div.profile-quote").text
+        student_bio = student_info.css(".description-holder").text
+      # binding.pry
         # student_blog = student_info.css
         # student_twitter = 
         # student_github =
