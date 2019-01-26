@@ -42,6 +42,6 @@ class Scraper
             student_bio ? student[:bio] = student_bio : student[:bio] = nil
            student_quote ? student[:profile_quote] = student_quote : student[:profile_quote] = nil
          student
-   end
+    end
 end
 
