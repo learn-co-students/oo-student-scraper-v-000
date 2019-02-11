@@ -17,19 +17,20 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    icons = {}
+    info = {}
     doc = Nokogiri::HTML(open(profile_url))
 
-    social_icon_container = doc.css(".social-icon-container")
+    social_icon_container = doc.css(".social-icon-container").css("a")
     bio_content = doc.css(".bio-content")
 
-    icons = {:twitter => "#{social_icon_container.css("a")[0]['href']}", #works
-    :linkedin => "#{social_icon_container.css("a")[1]['href']}",
-    :github => "#{social_icon_container.css("a")[2]['href']}",
-    :blog => "#{social_icon_container.css("a")[3]['href']}",
-    :profile_quote => "#{doc.css(".profile-quote").text}", #works
-    :bio => "#{bio_content.css(".description-holder").css("p").text}"} #works
-    icons
+    info[:twitter] = "#{social_icon_container.css("a")[0]['href']}"
+    info[:linkedin] = "#{social_icon_container.css("a")[1]['href']}"
+    info[:github] = "#{social_icon_container.css("a")[2]['href']}"
+    info[:blog] = "#{social_icon_container.css("a")[3]['href']}"
+    info[:profile_quote] = "#{doc.css(".profile-quote").text}"
+    info[:bio] = "#{bio_content.css(".description-holder").css("p").text}"
+
+    info
   end
 
 end
