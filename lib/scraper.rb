@@ -17,19 +17,22 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    icons = []
+    icons = {}
     doc = Nokogiri::HTML(open(profile_url))
-    social_icon_container = doc.css(".social-icon-container")
 
-    social_icon_container.each do |student|
-      icons << {:twitter => "#{student.css("a").first['href']}", #good
-      :linkedin => "#{student.css(".student-location").text}",
-      :github => "#{student.css("a").first['href']}",
-      :blog => "#{student.css("a").first['href']}",
-      :profile_quote => "#{student.css(".profile-quote").text}", #good
-      :bio => "#{student.css("description-holder").text}"} #good
-    end
+    social_icon_container = doc.css(".social-icon-container")
+    bio_content_content_holder = doc.css("bio-content content-holder")
+    details_container = doc.css("details-container")
+
+    icons = {:twitter => "#{social_icon_container.css("a").first['href']}", #works
+    :linkedin => "#{social_icon_container.css("a").text}",
+    :github => "#{social_icon_container.css("a").text}",
+    :blog => "#{social_icon_container.css("a").text}",
+    :profile_quote => "#{bio_content_content_holder.css(".profile-quote").text}", #another group
+    :bio => "#{details_container.css(".description-holder").text}"} #yet another group
+
     binding.pry
+
     icons
   end
 
