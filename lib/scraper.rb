@@ -34,9 +34,11 @@ class Scraper
       
 
       student_profile << {
+        #need to figure out how to select attributes only if they exist
         # :twitter => twitter unless twitter != undefined,
         # :linkedin => linkedin unless linkedin != undefined,
         # :github => github unless github != undefined,
+        
         :profile_quote => profile_quote,
         :bio => bio
       }
