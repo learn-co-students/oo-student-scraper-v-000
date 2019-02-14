@@ -8,9 +8,9 @@ class Scraper
     doc = Nokogiri::HTML(open(index_url))
     scraped_students = []
 
-    doc.css('div.student-card').each do |student|
-      name = student.css('h4.student-name').text
-      location = student.css('p.student-location').text
+    doc.css('.student-card').each do |student|
+      name = student.css('.student-name').text
+      location = student.css('.student-location').text
       profile_url = student.css('a').attribute('href').value
 
       student_card = {name: name, location: location, profile_url: profile_url}
@@ -22,30 +22,24 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
-    scraped_student_profiles = {}
+    student = {}
 
-    social_icons = doc.css('div.social-icon-container').each do |info|
-      info = info.css('.social-icon-container a').attribute('href').value
+    social_container = doc.css(".social-icon-container a").collect {|icon| icon.attribute("href").value}
 
-      if info.include?('linkedin')
-        linkedin: info
-      elsif info.include?('github')
-        github: info
-      elsif info.include?('blog')
-        blog: info
+      social_container.each do |link|
+        if link.include?("twitter")
+          student[:twitter] = link
+        elsif link.include?("linkedin")
+          student[:linkedin] = link
+        elsif link.include?("github")
+          student[:github] = link
+        else
+          student[:blog] = link
+        end
       end
 
-      profile_quote = 
-    end
-    # binding.pry
-
-    # linkedin:
-    # github:
-    # blog:
-    # profile_quote:
-    # bio:
-
-
+      student[:bio] = doc.css('.description-holder p').text
+      student[:profile_quote] = doc.css('.profile-quote').text
+    student
   end
-
 end
