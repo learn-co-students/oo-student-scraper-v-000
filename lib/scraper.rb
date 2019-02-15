@@ -26,10 +26,14 @@ class Scraper
     student_profile = {}
     profile_page.css(".profile").each do |div|
       # binding.pry
+      
+      div.css(".social-icon-container").each do |a|
+              binding.pry
+      end
+      
       twitter = div.css(".social-icon-container a[href*='twitter']").attribute("href").value
       linkedin = div.css(".social-icon-container a[href*='linkedin']").attribute("href").value
       github = div.css(".social-icon-container a[href*='github']").attribute("href").value
-      binding.pry
       # blog = div.css(".social-icon-container a[src*='rss']").attribute("href").value
       profile_quote = div.css(".profile-quote").text
       bio = div.css(".bio-content .description-holder p").text
