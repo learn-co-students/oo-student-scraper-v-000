@@ -45,7 +45,7 @@ class Scraper
         hash[:linkedin] = element
       elsif element.include?("github.com")
         hash[:github] = element
-      elsif element.include?("http:")
+      elsif element.include?("http")
         hash[:blog] = element
       end
     end
