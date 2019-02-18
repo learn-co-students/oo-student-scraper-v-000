@@ -21,36 +21,32 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    html = File.read(profile_url)
-    profile_page = Nokogiri::HTML(html)
-    student_profile = {}
-    profile_page.css(".profile").each do |div|
-      # binding.pry
-      
-      div.css(".social-icon-container").each do |a|
-              binding.pry
-      end
-      
-      twitter = div.css(".social-icon-container a[href*='twitter']").attribute("href").value
-      linkedin = div.css(".social-icon-container a[href*='linkedin']").attribute("href").value
-      github = div.css(".social-icon-container a[href*='github']").attribute("href").value
-      # blog = div.css(".social-icon-container a[src*='rss']").attribute("href").value
-      profile_quote = div.css(".profile-quote").text
-      bio = div.css(".bio-content .description-holder p").text
-      
-
-      student_profile = {
-        #need to figure out how to select attributes only if they exist
-        :twitter => twitter,
-        :linkedin => linkedin,
-        :github => github,
-        # :blog => blog,
-        :profile_quote => profile_quote,
-        :bio => bio
-      }
+      html = File.read(profile_url)
+      profile_page = Nokogiri::HTML(html)
+      student_profile = {}
+      profile_page.css(".profile").each do |div|
+        div.css(".social-icon-container a").each do |a|
+                # a.at_css("a[href*='rss']")
+                #=> returns nil OR returns matching element
+            if a.attribute("href").value.include?("twitter")
+              student_profile[:twitter] = a.attribute("href").value
+            # end
+            elsif a.attribute("href").value.include?("linkedin")
+              student_profile[:linkedin] = a.attribute("href").value
+            # end
+            elsif a.attribute("href").value.include?("github")
+              student_profile[:github] = a.attribute("href").value
+            # end
+            else # a.at_css("a img[src*='rss-icon']") != nil
+              # binding.pry
+              student_profile[:blog] = a.attribute("href").value
+            end
+        end
+  
+        student_profile[:profile_quote] = div.css(".profile-quote").text
+        student_profile[:bio] = div.css(".bio-content .description-holder p").text
     end
-    student_profile
-    
+   student_profile
   end
   
   # self.scrape_index_page("./fixtures/student-site/index.html")
