@@ -1,28 +1,30 @@
 
-[1mFrom:[0m /home/janejustiz/oo-student-scraper-v-000/lib/scraper.rb @ line 26 Scraper.scrape_profile_page:
+[1mFrom:[0m /home/janejustiz/oo-student-scraper-v-000/lib/scraper.rb @ line 28 Scraper.scrape_profile_page:
 
-    [1;34m19[0m: [32mdef[0m [1;36mself[0m.[1;34mscrape_profile_page[0m(profile_url)
-    [1;34m20[0m:   info = {}
-    [1;34m21[0m:   doc = [1;34;4mNokogiri[0m::HTML(open(profile_url))
-    [1;34m22[0m: 
-    [1;34m23[0m:   social_icon_container = doc.css([31m[1;31m"[0m[31m.social-icon-container[1;31m"[0m[31m[0m).css([31m[1;31m'[0m[31ma[href][1;31m'[0m[31m[0m)
-    [1;34m24[0m:   bio_content = doc.css([31m[1;31m"[0m[31m.bio-content[1;31m"[0m[31m[0m)
-    [1;34m25[0m: 
- => [1;34m26[0m:   binding.pry
+    [1;34m21[0m: [32mdef[0m [1;36mself[0m.[1;34mscrape_profile_page[0m(profile_url)
+    [1;34m22[0m:   info = {}
+    [1;34m23[0m:   doc = [1;34;4mNokogiri[0m::HTML(open(profile_url))
+    [1;34m24[0m: 
+    [1;34m25[0m:   social_icon_container = doc.css([31m[1;31m"[0m[31m.social-icon-container[1;31m"[0m[31m[0m).css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m)
+    [1;34m26[0m:   bio_content = doc.css([31m[1;31m"[0m[31m.bio-content[1;31m"[0m[31m[0m)
     [1;34m27[0m: 
-    [1;34m28[0m:   social_icon_container.each [32mdo[0m |link|
-    [1;34m29[0m:     word = link.dup.to_s
-    [1;34m30[0m:     word.delete!([31m[1;31m"[0m[31mhttps://[1;31m"[0m[31m[0m)
-    [1;34m31[0m:     array = word.split([31m[1;31m"[0m[31m.[1;31m"[0m[31m[0m)
-    [1;34m32[0m:     info[[33m:array[0m[[1;34m0[0m]] = [31m[1;31m"[0m[31m#{link}[0m[31m[1;31m"[0m[31m[0m
-    [1;34m33[0m:   [32mend[0m
-    [1;34m34[0m:   [1;34m#info[:twitter] = "#{social_icon_container.css("a")[0]['href']}"[0m
-    [1;34m35[0m:   [1;34m#info[:linkedin] = "#{social_icon_container.css("a")[1]['href']}"[0m
-    [1;34m36[0m:   [1;34m#info[:github] = "#{social_icon_container.css("a")[2]['href']}"[0m
-    [1;34m37[0m:   [1;34m#info[:blog] = "#{social_icon_container.css("a")[3]['href']}"[0m
-    [1;34m38[0m:   info[[33m:profile_quote[0m] = [31m[1;31m"[0m[31m#{doc.css([1;31m"[0m[31m.profile-quote[1;31m"[0m[31m[0m[31m).text}[0m[31m[1;31m"[0m[31m[0m
-    [1;34m39[0m:   info[[33m:bio[0m] = [31m[1;31m"[0m[31m#{bio_content.css([1;31m"[0m[31m.description-holder[1;31m"[0m[31m[0m[31m).css([1;31m"[0m[31mp[1;31m"[0m[31m[0m[31m).text}[0m[31m[1;31m"[0m[31m[0m
-    [1;34m40[0m: 
-    [1;34m41[0m:   info
-    [1;34m42[0m: [32mend[0m
+ => [1;34m28[0m:   binding.pry
+    [1;34m29[0m: 
+    [1;34m30[0m:   social_icon_container.each [32mdo[0m |link|
+    [1;34m31[0m:     [32mif[0m link.include? [31m[1;31m"[0m[31mtwitter[1;31m"[0m[31m[0m
+    [1;34m32[0m:       info[[33m:twitter[0m] = link[[31m[1;31m'[0m[31mhref[1;31m'[0m[31m[0m]
+    [1;34m33[0m:     [32melsif[0m link.include? [31m[1;31m"[0m[31mlinkedin[1;31m"[0m[31m[0m
+    [1;34m34[0m:        info[[33m:linkedin[0m] = link[[31m[1;31m'[0m[31mhref[1;31m'[0m[31m[0m]
+    [1;34m35[0m:     [32melsif[0m link.include? [31m[1;31m"[0m[31mgithub[1;31m"[0m[31m[0m
+    [1;34m36[0m:       info[[33m:github[0m] = link[[31m[1;31m'[0m[31mhref[1;31m'[0m[31m[0m]
+    [1;34m37[0m:     [1;34m#elsif link.include? students[:name][0m
+    [1;34m38[0m:     [1;34m#  info[:blog] = link['href'][0m
+    [1;34m39[0m:     [32mend[0m
+    [1;34m40[0m:   [32mend[0m
+    [1;34m41[0m: 
+    [1;34m42[0m:   info[[33m:profile_quote[0m] = [31m[1;31m"[0m[31m#{doc.css([1;31m"[0m[31m.profile-quote[1;31m"[0m[31m[0m[31m).text}[0m[31m[1;31m"[0m[31m[0m
+    [1;34m43[0m:   info[[33m:bio[0m] = [31m[1;31m"[0m[31m#{bio_content.css([1;31m"[0m[31m.description-holder[1;31m"[0m[31m[0m[31m).css([1;31m"[0m[31mp[1;31m"[0m[31m[0m[31m).text}[0m[31m[1;31m"[0m[31m[0m
+    [1;34m44[0m: 
+    [1;34m45[0m:   info
+    [1;34m46[0m: [32mend[0m
 

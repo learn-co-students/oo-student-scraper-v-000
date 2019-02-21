@@ -9,9 +9,11 @@ class Scraper
     student_card = doc.css(".student-card")
 
     student_card.each do |student|
-      students << {:name => "#{student.css(".student-name").text}",
-      :location => "#{student.css(".student-location").text}",
-      :profile_url => "#{student.css("a").first['href']}"}
+      students << {
+        :name => "#{student.css(".student-name").text}",
+        :location => "#{student.css(".student-location").text}",
+        :profile_url => "#{student.css("a").first['href']}"
+      }
     end
     students
   end
@@ -20,15 +22,21 @@ class Scraper
     info = {}
     doc = Nokogiri::HTML(open(profile_url))
 
-    social_icon_container = doc.css(".social-icon-container").css("a")
-    bio_content = doc.css(".bio-content")
+    doc.css(".social-icon-container a").each do |word|
+      link = word['href']
+      if link.include? "twitter"
+        info[:twitter] = "#{link}"
+      elsif link.include? "linkedin"
+        info[:linkedin] = "#{link}"
+      elsif link.include? "github"
+        info[:github] = "#{link}"
+      elsif link.include? doc.css("vitals-text-container h1 profile-name").text
+        info[:blog] = "#{link}"
+      end
+    end
 
-    info[:twitter] = "#{social_icon_container.css("a")[0]['href']}"
-    info[:linkedin] = "#{social_icon_container.css("a")[1]['href']}"
-    info[:github] = "#{social_icon_container.css("a")[2]['href']}"
-    info[:blog] = "#{social_icon_container.css("a")[3]['href']}"
     info[:profile_quote] = "#{doc.css(".profile-quote").text}"
-    info[:bio] = "#{bio_content.css(".description-holder").css("p").text}"
+    info[:bio] = "#{doc.css(".bio-content").css(".description-holder").css("p").text}"
 
     info
   end
