@@ -15,7 +15,6 @@ class Scraper
       :location => student_card.css(".student-location").text,
       :profile_url => student_card.css("a").attribute("href").value
     }
-    
     end
     students
   end
@@ -49,7 +48,5 @@ class Scraper
    student_profile
   end
   
-  # self.scrape_index_page("./fixtures/student-site/index.html")
-
 end
 
