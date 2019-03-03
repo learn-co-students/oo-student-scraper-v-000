@@ -7,10 +7,10 @@ class Scraper
     html = File.read(index_url)
     learn_webpage = Nokogiri::HTML(html)
     @student_info = [] 
-    learn_webpage.css().each do |student|
-      name = student.css().text
+    learn_webpage.css("div.student-card").each do |student|
+      name = student.css("h4.student-name").text
       @student_info << {:name => name}
-      location = student.css().text
+      location = student.css("p.student-location").text
       @student_info[:location] = location 
     end
     @number = 0 
