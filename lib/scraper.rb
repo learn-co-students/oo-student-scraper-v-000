@@ -11,7 +11,8 @@ class Scraper
       name = student.css("h4.student-name").text
       location = student.css("p.student-location").text
       @student_info << {:name => name, :location => location}
-      profile_url = student.css("a href").text
+      profile_url = student.css("a")['href'].text
+      #page.css('li')[1]['href']
       binding.pry 
     end
 =begin 
