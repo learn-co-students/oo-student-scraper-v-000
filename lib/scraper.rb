@@ -13,6 +13,7 @@ class Scraper
       profile_url = student.css("a")[0]['href']
       @student_info << {:name => name, :location => location, :profile_url => profile_url}
     end
+    @student_info 
   end
 
   def self.scrape_profile_page(profile_url)
