@@ -13,8 +13,12 @@ class Scraper
       location = student.css().text
       @student_info[:location] = location 
     end
+    @number = 0 
     learn_webpage.css(). each do |student|
-      profile_url = student.css().text 
+      profile_url = student.css().text
+      @student_info[@number][:profile_url] => profile_url
+      @number += 1 
+    end 
   end
 
   def self.scrape_profile_page(profile_url)
