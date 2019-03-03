@@ -9,10 +9,10 @@ class Scraper
     @student_info = [] 
     learn_webpage.css("div.student-card").each do |student|
       name = student.css("h4.student-name").text
-      @student_info << {:name => name}
       location = student.css("p.student-location").text
-      @student_info[:location] = location
-      profile_url = student.css("a href").text 
+      @student_info << {:name => name, :location => location}
+      profile_url = student.css("a href").text
+      binding.pry 
     end
 =begin 
     @number = 0 
