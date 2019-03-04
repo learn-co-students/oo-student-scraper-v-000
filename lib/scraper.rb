@@ -28,7 +28,9 @@ class Scraper
     @social_hash[:twitter] = @values.find {|icon| icon.include?"twitter"}
     @social_hash[:linkedin] = @values.find {|icon| icon.include?"linkedin"}
     @social_hash[:github] = @values.find {|icon| icon.include?"github"}
-    @social_hash[:blog] = @values.find {|icon| icon.include?"blog"} 
+    unless @values[3].empty? 
+      @social_hash[:blog] = @values[3]
+    end 
     binding.pry 
   end 
 =begin 
