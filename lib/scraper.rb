@@ -24,9 +24,18 @@ class Scraper
     profile_webpage.css("div.social-icon-container a").each do |social_icon|
       @values << social_icon['href']
     end
-    @social_hash[:twitter] = @values.find {|icon| icon.include?"twitter"}
-    @social_hash[:linkedin] = @values.find {|icon| icon.include?"linkedin"}
-    @social_hash[:github] = @values.find {|icon| icon.include?"github"}
+    twitter = @values.find {|icon| icon.include?"twitter"}
+    unless twitter == nil 
+      @social_hash[:twitter] = twitter
+    end
+    linkedin = @values.find {|icon| icon.include?"linkedin"}
+    unless linkedin == nil 
+      @social_hash[:linkedin] = linkedin 
+    end
+    github = @values.find {|icon| icon.include?"github"}
+    unless github == nil 
+      @social_hash[:github] = github 
+    end 
     unless @values[3] == nil  
       @social_hash[:blog] = @values[3]
     end
