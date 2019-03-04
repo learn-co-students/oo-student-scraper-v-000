@@ -20,12 +20,24 @@ class Scraper
     html = File.read(profile_url)
     profile_webpage = Nokogiri::HTML(html)
     social_hash = Hash.new 
-    social_hash[:twitter] = profile_webpage.css("div.social-icon-container a")[0]['href']
-    social_hash[:linkedin] = profile_webpage.css("div.social-icon-container a")[1]['href']
-    social_hash[:github] = profile_webpage.css("div.social-icon-container a")[2]['href']
-    social_hash[:blog] = profile_webpage.css("div.social-icon-container a")[3]['href']
-    social_hash[:profile_quote] = profile_webpage.css("div.profile-quote").text
-    social_hash[:bio] = profile_webpage.css("div.description-holder p").text
+    unless profile_webpage.css("div.social-icon-container a")[0]['href'].empty? 
+      social_hash[:twitter] = profile_webpage.css("div.social-icon-container a")[0]['href']
+    end
+    unless profile_webpage.css("div.social-icon-container a")[1]['href'].empty? 
+      social_hash[:linkedin] = profile_webpage.css("div.social-icon-container a")[1]['href']
+    end
+    unless profile_webpage.css("div.social-icon-container a")[2]['href'].empty? 
+      social_hash[:github] = profile_webpage.css("div.social-icon-container a")[2]['href']
+    end
+    unless profile_webpage.css("div.social-icon-container a")[3]['href'].empty? 
+      social_hash[:blog] = profile_webpage.css("div.social-icon-container a")[3]['href']
+    end 
+    unless profile_webpage.css("div.profile-quote").text.empty? 
+      social_hash[:profile_quote] = profile_webpage.css("div.profile-quote").text
+    end 
+    unless profile_webpage.css("div.description-holder p").text.empty? 
+      social_hash[:bio] = profile_webpage.css("div.description-holder p").text
+    end 
     social_hash
   end
 
