@@ -19,7 +19,7 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     html = File.read(profile_url)
     profile_webpage = Nokogiri::HTML(html)
-    social_hash = Hash.new
+    @social_hash = Hash.new
     keys = [:twitter, :linkedin, :github, :blog, :profile_quote, :bio]
     values = []
     profile_webpage.css("div.social-icon-container a").each do |social_icon|
@@ -27,10 +27,13 @@ class Scraper
     end
     i = 0
     keys.each do |key|
-      social_hash[key] = values[i]
-      i += 0 
+      @social_hash[key] = values[i]
+      i += 1 
     end 
-    social_hash
+    @social_hash[:profile_quote] = profile_webpage.css("div.profile-quote").text 
+    @social_hash[:bio} = profile_webpage.css("div.description-holder p").text 
+    @social_hash
+    binding.pry 
   end  
     
 =begin 
@@ -53,7 +56,6 @@ class Scraper
       social_hash[:bio] = profile_webpage.css("div.description-holder p").text
     end
 =end 
-    social_hash
 
 end
 
