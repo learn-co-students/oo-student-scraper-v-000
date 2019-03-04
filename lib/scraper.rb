@@ -24,6 +24,7 @@ class Scraper
     social_hash[:linkedin] = profile_webpage.css("div.social-icon-container a")[1]['href']
     social_hash[:github] = profile_webpage.css("div.social-icon-container a")[2]['href']
     social_hash[:blog] = profile_webpage.css("div.social-icon-container a")[3]['href']
+    social_hash[:profile_quote] = profile_webpage.css("div.profile-quote").text 
     binding.pry 
      
 =begin 
