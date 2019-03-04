@@ -19,27 +19,41 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     html = File.read(profile_url)
     profile_webpage = Nokogiri::HTML(html)
-    social_hash = Hash.new 
-    unless profile_webpage.css("div.social-icon-container a")[0]['href'].empty? 
-      social_hash[:twitter] = profile_webpage.css("div.social-icon-container a")[0]['href']
+    social_hash = Hash.new
+    keys = [:twitter, :linkedin, :github, :blog, :profile_quote, :bio]
+    values = []
+    profile_webpage.css("div.social-icon-container a").each do |social_icon|
+      values << social_icon['href']
     end
-    unless profile_webpage.css("div.social-icon-container a")[1]['href'].empty? 
-      social_hash[:linkedin] = profile_webpage.css("div.social-icon-container a")[1]['href']
-    end
-    unless profile_webpage.css("div.social-icon-container a")[2]['href'].empty? 
-      social_hash[:github] = profile_webpage.css("div.social-icon-container a")[2]['href']
-    end
-    unless profile_webpage.css("div.social-icon-container a")[3]['href'].empty? 
-      social_hash[:blog] = profile_webpage.css("div.social-icon-container a")[3]['href']
-    end 
-    unless profile_webpage.css("div.profile-quote").text.empty? 
-      social_hash[:profile_quote] = profile_webpage.css("div.profile-quote").text
-    end 
-    unless profile_webpage.css("div.description-holder p").text.empty? 
-      social_hash[:bio] = profile_webpage.css("div.description-holder p").text
+    i = 0
+    keys.each do |key|
+      social_hash[key] = values[i]
+      i += 0 
     end 
     social_hash
-  end
+  end  
+    
+=begin 
+    unless profile_webpage.css("div.social-icon-container a")[0].nil? 
+      social_hash[:twitter] = profile_webpage.css("div.social-icon-container a")[0]['href']
+    end
+    unless profile_webpage.css("div.social-icon-container a")[1].nil? 
+      social_hash[:linkedin] = profile_webpage.css("div.social-icon-container a")[1]['href']
+    end
+    unless profile_webpage.css("div.social-icon-container a")[2].nil? 
+      social_hash[:github] = profile_webpage.css("div.social-icon-container a")[2]['href']
+    end
+    unless profile_webpage.css("div.social-icon-container a")[3].nil? 
+      social_hash[:blog] = profile_webpage.css("div.social-icon-container a")[3]['href']
+    end 
+    unless profile_webpage.css("div.profile-quote").text.nil? 
+      social_hash[:profile_quote] = profile_webpage.css("div.profile-quote").text
+    end 
+    unless profile_webpage.css("div.description-holder p").text.nil? 
+      social_hash[:bio] = profile_webpage.css("div.description-holder p").text
+    end
+=end 
+    social_hash
 
 end
 
