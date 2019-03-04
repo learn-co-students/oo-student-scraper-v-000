@@ -21,40 +21,26 @@ class Scraper
     profile_webpage = Nokogiri::HTML(html)
     @social_hash = Hash.new
     keys = [:twitter, :linkedin, :github, :blog, :profile_quote, :bio]
-    values = []
+    @values = []
     profile_webpage.css("div.social-icon-container a").each do |social_icon|
-      values << social_icon['href']
+      @values << social_icon['href']
     end
+    @social_hash[:twitter] = @values.find {|icon| icon.include?"twitter"}
+    @social_hash[:linkedin] = @values.find {|icon| icon.include?"linkedin"}
+    @social_hash[:github] = @values.find {|icon| icon.include?"github"}
+    @social_hash[:blog] = @values.find {|icon| icon.include?"blog"} 
+    binding.pry 
+  end 
+=begin 
     i = 0
     keys.each do |key|
       @social_hash[key] = values[i]
       i += 1 
     end 
     @social_hash[:profile_quote] = profile_webpage.css("div.profile-quote").text 
-    @social_hash[:bio} = profile_webpage.css("div.description-holder p").text 
+    @social_hash[:bio] = profile_webpage.css("div.description-holder p").text 
     @social_hash
-    binding.pry 
-  end  
-    
-=begin 
-    unless profile_webpage.css("div.social-icon-container a")[0].nil? 
-      social_hash[:twitter] = profile_webpage.css("div.social-icon-container a")[0]['href']
-    end
-    unless profile_webpage.css("div.social-icon-container a")[1].nil? 
-      social_hash[:linkedin] = profile_webpage.css("div.social-icon-container a")[1]['href']
-    end
-    unless profile_webpage.css("div.social-icon-container a")[2].nil? 
-      social_hash[:github] = profile_webpage.css("div.social-icon-container a")[2]['href']
-    end
-    unless profile_webpage.css("div.social-icon-container a")[3].nil? 
-      social_hash[:blog] = profile_webpage.css("div.social-icon-container a")[3]['href']
-    end 
-    unless profile_webpage.css("div.profile-quote").text.nil? 
-      social_hash[:profile_quote] = profile_webpage.css("div.profile-quote").text
-    end 
-    unless profile_webpage.css("div.description-holder p").text.nil? 
-      social_hash[:bio] = profile_webpage.css("div.description-holder p").text
-    end
+  end
 =end 
 
 end
