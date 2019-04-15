@@ -29,16 +29,7 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     profile_page = Nokogiri::HTML(open(profile_url))
     scraped_student = {}
-=begin
-    profile_page.css("div.main-wrapper.profile").each do |detail|
-      position = profile_page.css("div.main-wrapper.profile").css("a").count
-      name = detail.css("a").attribute("href")[position + 1].value
-      scraped_student[name.to_sym] = profile_page.css("div.main-wrapper.profile").css("a").attribute("href").value
-    end
-=end
-    #position = profile_page.css("div.main-wrapper.profile").css("a").count
-    #profile_page.css("div.main-wrapper.profile").css("a").include?("twitter")
-    #profile_page.css("div.main-wrapper.profile").css("a")[1].attribute("href").value.include?("twitter")
+
     unless profile_page.css("div.main-wrapper.profile").css("a")[1].nil?
       if profile_page.css("div.main-wrapper.profile").css("a")[1].attribute("href").value.include?("twitter")
         scraped_student[:twitter] = profile_page.css("div.main-wrapper.profile").css("a")[1].attribute("href").value
@@ -87,8 +78,24 @@ class Scraper
       end
     end
 
+    scraped_student[:profile_quote] = profile_page.css("div.main-wrapper.profile").css("div.profile-quote").text
+    scraped_student[:bio] = profile_page.css("div.main-wrapper.profile").css("div.bio-content.content-holder p").text
+
+    scraped_student
+  end
+end
 
 =begin
+    profile_page.css("div.main-wrapper.profile").each do |detail|
+      position = profile_page.css("div.main-wrapper.profile").css("a").count
+      name = detail.css("a").attribute("href")[position + 1].value
+      scraped_student[name.to_sym] = profile_page.css("div.main-wrapper.profile").css("a").attribute("href").value
+    end
+
+    #position = profile_page.css("div.main-wrapper.profile").css("a").count
+    #profile_page.css("div.main-wrapper.profile").css("a").include?("twitter")
+    #profile_page.css("div.main-wrapper.profile").css("a")[1].attribute("href").value.include?("twitter")
+
       scraped_student[:linkedin] = profile_page.css("div.main-wrapper.profile").css("a")[2].attribute("href").value
       scraped_student[:github] = profile_page.css("div.main-wrapper.profile").css("a")[3].attribute("href").value
       scraped_student[:blog] = profile_page.css("div.main-wrapper.profile").css("a")[4].attribute("href").value
@@ -98,23 +105,4 @@ class Scraper
       scraped_student[:github] = profile_page.css("div.main-wrapper.profile").css("a")[2].attribute("href").value
       scraped_student[:blog] = profile_page.css("div.main-wrapper.profile").css("a")[3].attribute("href").value
     end
-
-    unless profile_page.css("div.main-wrapper.profile").css("a")[1].nil?
-      scraped_student[:twitter] = profile_page.css("div.main-wrapper.profile").css("a")[1].attribute("href").value
-    end
-    unless profile_page.css("div.main-wrapper.profile").css("a")[2].nil?
-      scraped_student[:linkedin] = profile_page.css("div.main-wrapper.profile").css("a")[2].attribute("href").value
-    end
-    unless profile_page.css("div.main-wrapper.profile").css("a")[3].nil?
-      scraped_student[:github] = profile_page.css("div.main-wrapper.profile").css("a")[3].attribute("href").value
-    end
-    unless profile_page.css("div.main-wrapper.profile").css("a")[4].nil?
-      scraped_student[:blog] = profile_page.css("div.main-wrapper.profile").css("a")[4].attribute("href").value
-    end
 =end
-    scraped_student[:profile_quote] = profile_page.css("div.main-wrapper.profile").css("div.profile-quote").text
-    scraped_student[:bio] = profile_page.css("div.main-wrapper.profile").css("div.bio-content.content-holder p").text
-
-    scraped_student
-  end
-end
