@@ -39,72 +39,92 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     profile_page = Nokogiri::HTML(open(profile_url))
     scraped_student = {}
-    binding.pry
-    unless profile_page.css("div.main-wrapper.profile").css("a")[1].nil?
-      if profile_page.css("div.main-wrapper.profile").css("a")[1].attribute("href").value.include?("twitter")
-        scraped_student[:twitter] = profile_page.css("div.main-wrapper.profile").css("a")[1].attribute("href").value
-      elsif profile_page.css("div.main-wrapper.profile").css("a")[1].attribute("href").value.include?("linkedin")
-        scraped_student[:linkedin] = profile_page.css("div.main-wrapper.profile").css("a")[1].attribute("href").value
-      elsif profile_page.css("div.main-wrapper.profile").css("a")[1].attribute("href").value.include?("github")
-        scraped_student[:github] = profile_page.css("div.main-wrapper.profile").css("a")[1].attribute("href").value
+    social_children = profile_page.css("div.social-icon-container").css("a")
+    attr_num = social_children.count
+    counter = 0
+
+    until counter > attr_num
+      unless social_children[counter].nil?
+        if social_children[counter].attribute("href").value.include?("twitter")
+          scraped_student[:twitter] = social_children[counter].attribute("href").value
+        elsif social_children[counter].attribute("href").value.include?("linkedin")
+          scraped_student[:linkedin] = social_children[counter].attribute("href").value
+        elsif social_children[counter].attribute("href").value.include?("github")
+          scraped_student[:github] = social_children[counter].attribute("href").value
+        else
+          scraped_student[:blog] = social_children[counter].attribute("href").value
+        end
+      end
+      counter += 1
+    end
+    scraped_student[:profile_quote] = profile_page.css("div.profile-quote").text
+    scraped_student[:bio] = profile_page.css("div.description-holder p").text
+
+    scraped_student
+  end
+end
+=begin
+    unless children[1].nil?
+      if children[1].attribute("href").value.include?("twitter")
+        scraped_student[:twitter] = children[1].attribute("href").value
+      elsif children[1].attribute("href").value.include?("linkedin")
+        scraped_student[:linkedin] = children[1].attribute("href").value
+      elsif children[1].attribute("href").value.include?("github")
+        scraped_student[:github] = children[1].attribute("href").value
       else
-        #body > div > div.vitals-container > div.social-icon-container > a:nth-child(4)
-          #<a href="http://joemburgess.com/"><img class="social-icon" src="../assets/img/rss-icon.png"></a>
-        scraped_student[:blog] = profile_page.css("div.main-wrapper.profile").css("a")[1].attribute("href").value
+        scraped_student[:blog] = children[1].attribute("href").value
+      end
+    end
+      #body > div > div.vitals-container > div.social-icon-container > a:nth-child(4)
+        #<a href="http://joemburgess.com/"><img class="social-icon" src="../assets/img/rss-icon.png"></a>
+    unless profile_page.css("div.social-icon-container").css("a")[2].nil?
+      if profile_page.css("div.social-icon-container").css("a")[2].attribute("href").value.include?("twitter")
+        scraped_student[:twitter] = profile_page.css("ddiv.social-icon-container").css("a")[2].attribute("href").value
+      elsif profile_page.css("div.social-icon-container").css("a")[2].attribute("href").value.include?("linkedin")
+        scraped_student[:linkedin] = profile_page.css("div.social-icon-container").css("a")[2].attribute("href").value
+      elsif profile_page.css("div.social-icon-container").css("a")[2].attribute("href").value.include?("github")
+        scraped_student[:github] = profile_page.css("div.social-icon-container").css("a")[2].attribute("href").value
+      else
+        scraped_student[:blog] = profile_page.css("div.social-icon-container").css("a")[2].attribute("href").value
       end
     end
 
-    unless profile_page.css("div.main-wrapper.profile").css("a")[2].nil?
-      if profile_page.css("div.main-wrapper.profile").css("a")[2].attribute("href").value.include?("twitter")
-        scraped_student[:twitter] = profile_page.css("div.main-wrapper.profile").css("a")[2].attribute("href").value
-      elsif profile_page.css("div.main-wrapper.profile").css("a")[2].attribute("href").value.include?("linkedin")
-        scraped_student[:linkedin] = profile_page.css("div.main-wrapper.profile").css("a")[2].attribute("href").value
-      elsif profile_page.css("div.main-wrapper.profile").css("a")[2].attribute("href").value.include?("github")
-        scraped_student[:github] = profile_page.css("div.main-wrapper.profile").css("a")[2].attribute("href").value
+    unless profile_page.css("div.social-icon-container").css("a")[3].nil?
+      if profile_page.css("div.social-icon-container").css("a")[3].attribute("href").value.include?("twitter")
+        scraped_student[:twitter] = profile_page.css("div.social-icon-container").css("a")[3].attribute("href").value
+      elsif profile_page.css("div.social-icon-container").css("a")[3].attribute("href").value.include?("linkedin")
+        scraped_student[:linkedin] = profile_page.css("div.social-icon-container").css("a")[3].attribute("href").value
+      elsif profile_page.css("div.social-icon-container").css("a")[3].attribute("href").value.include?("github")
+        scraped_student[:github] = profile_page.css("div.social-icon-container").css("a")[3].attribute("href").value
       else
-        scraped_student[:blog] = profile_page.css("div.main-wrapper.profile").css("a")[2].attribute("href").value
+        scraped_student[:blog] = profile_page.css("div.social-icon-container").css("a")[3].attribute("href").value
       end
     end
 
-    unless profile_page.css("div.main-wrapper.profile").css("a")[3].nil?
-      if profile_page.css("div.main-wrapper.profile").css("a")[3].attribute("href").value.include?("twitter")
-        scraped_student[:twitter] = profile_page.css("div.main-wrapper.profile").css("a")[3].attribute("href").value
-      elsif profile_page.css("div.main-wrapper.profile").css("a")[3].attribute("href").value.include?("linkedin")
-        scraped_student[:linkedin] = profile_page.css("div.main-wrapper.profile").css("a")[3].attribute("href").value
-      elsif profile_page.css("div.main-wrapper.profile").css("a")[3].attribute("href").value.include?("github")
-        scraped_student[:github] = profile_page.css("div.main-wrapper.profile").css("a")[3].attribute("href").value
+    unless profile_page.css("div.social-icon-container").css("a")[4].nil?
+      if profile_page.css("div.social-icon-container").css("a")[4].attribute("href").value.include?("twitter")
+        scraped_student[:twitter] = profile_page.css("div.social-icon-container").css("a")[4].attribute("href").value
+      elsif profile_page.css("div.social-icon-container").css("a")[4].attribute("href").value.include?("linkedin")
+        scraped_student[:linkedin] = profile_page.css("div.social-icon-container").css("a")[4].attribute("href").value
+      elsif profile_page.css("div.social-icon-container").css("a")[4].attribute("href").value.include?("github")
+        scraped_student[:github] = profile_page.css("div.social-icon-container").css("a")[4].attribute("href").value
       else
-        scraped_student[:blog] = profile_page.css("div.main-wrapper.profile").css("a")[3].attribute("href").value
-      end
-    end
-
-    unless profile_page.css("div.main-wrapper.profile").css("a")[4].nil?
-      if profile_page.css("div.main-wrapper.profile").css("a")[4].attribute("href").value.include?("twitter")
-        scraped_student[:twitter] = profile_page.css("div.main-wrapper.profile").css("a")[4].attribute("href").value
-      elsif profile_page.css("div.main-wrapper.profile").css("a")[4].attribute("href").value.include?("linkedin")
-        scraped_student[:linkedin] = profile_page.css("div.main-wrapper.profile").css("a")[4].attribute("href").value
-      elsif profile_page.css("div.main-wrapper.profile").css("a")[4].attribute("href").value.include?("github")
-        scraped_student[:github] = profile_page.css("div.main-wrapper.profile").css("a")[4].attribute("href").value
-      else
-        scraped_student[:blog] = profile_page.css("div.main-wrapper.profile").css("a")[4].attribute("href").value
+        scraped_student[:blog] = profile_page.css("div.social-icon-container").css("a")[4].attribute("href").value
       end
     end
 
     #body > div > div.vitals-container > div.vitals-text-container > div
       #<div class="profile-quote">"Yeah, well, you know, that's just, like, your opinion, man." - The Dude</div>
-    scraped_student[:profile_quote] = profile_page.css("div.main-wrapper.profile").css("div.profile-quote").text
+    scraped_student[:profile_quote] = profile_page.css("div.profile-quote").text
 
     #body > div > div.details-container > div.bio-block.details-block > div > div.description-holder
       #<div class="description-holder">
       #        <p>I'm a southern California native seeking to find work as a full stack web developer. I enjoying tinkering with computers and learning new things!</p>
       #      </div>
-    scraped_student[:bio] = profile_page.css("div.main-wrapper.profile").css("div.bio-content.content-holder p").text
+    scraped_student[:bio] = profile_page.css("div.description-holder p").text
 
     scraped_student
-  end
-end
 
-=begin
     profile_page.css("div.main-wrapper.profile").each do |detail|
       position = profile_page.css("div.main-wrapper.profile").css("a").count
       name = detail.css("a").attribute("href")[position + 1].value
