@@ -22,6 +22,8 @@ class Scraper
 
     scraped_students
   end
+  #profile_page.css("div.social-icon-container").css("a").children.count
+
   #body > div > div.vitals-container > div.social-icon-container
     #<div class="social-icon-container">
     #      <a href="https://www.linkedin.com/in/david-kim-38221690"><img class="social-icon" src="../assets/img/linkedin-icon.png"></a>
@@ -37,7 +39,7 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     profile_page = Nokogiri::HTML(open(profile_url))
     scraped_student = {}
-
+    binding.pry
     unless profile_page.css("div.main-wrapper.profile").css("a")[1].nil?
       if profile_page.css("div.main-wrapper.profile").css("a")[1].attribute("href").value.include?("twitter")
         scraped_student[:twitter] = profile_page.css("div.main-wrapper.profile").css("a")[1].attribute("href").value
@@ -46,6 +48,8 @@ class Scraper
       elsif profile_page.css("div.main-wrapper.profile").css("a")[1].attribute("href").value.include?("github")
         scraped_student[:github] = profile_page.css("div.main-wrapper.profile").css("a")[1].attribute("href").value
       else
+        #body > div > div.vitals-container > div.social-icon-container > a:nth-child(4)
+          #<a href="http://joemburgess.com/"><img class="social-icon" src="../assets/img/rss-icon.png"></a>
         scraped_student[:blog] = profile_page.css("div.main-wrapper.profile").css("a")[1].attribute("href").value
       end
     end
