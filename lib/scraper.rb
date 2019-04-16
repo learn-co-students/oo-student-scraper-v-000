@@ -22,6 +22,14 @@ class Scraper
 
     scraped_students
   end
+  #body > div > div.vitals-container > div.social-icon-container
+    #<div class="social-icon-container">
+    #      <a href="https://www.linkedin.com/in/david-kim-38221690"><img class="social-icon" src="../assets/img/linkedin-icon.png"></a>
+    #      <a href="https://github.com/davdkm"><img class="social-icon" src="../assets/img/github-icon.png"></a>
+    #    </div>
+
+  #body > div > div.vitals-container > div.social-icon-container > a:nth-child(1)
+    #<a href="https://www.linkedin.com/in/david-kim-38221690"><img class="social-icon" src="../assets/img/linkedin-icon.png"></a>
 
   #responsible for scraping an individual student's profile page to get further
   #information about that student. The only attributes you need to scrape from a
@@ -78,7 +86,14 @@ class Scraper
       end
     end
 
+    #body > div > div.vitals-container > div.vitals-text-container > div
+      #<div class="profile-quote">"Yeah, well, you know, that's just, like, your opinion, man." - The Dude</div>
     scraped_student[:profile_quote] = profile_page.css("div.main-wrapper.profile").css("div.profile-quote").text
+
+    #body > div > div.details-container > div.bio-block.details-block > div > div.description-holder
+      #<div class="description-holder">
+      #        <p>I'm a southern California native seeking to find work as a full stack web developer. I enjoying tinkering with computers and learning new things!</p>
+      #      </div>
     scraped_student[:bio] = profile_page.css("div.main-wrapper.profile").css("div.bio-content.content-holder p").text
 
     scraped_student
