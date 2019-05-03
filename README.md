@@ -22,7 +22,7 @@ Don't worry! We've very cleverly solved this problem for the purposes of this pr
 
 To locally view the stored web page, simply type the following into your terminal: `open fixtures/student-site/index.html`
 
-**Important if you're using the Learn IDE:** If you're using the Learn IDE you'll have to run a server to view the site. You can do this by typing `httpserver &` to run the server in the background (make sure you know how to switch this job back to the foreground so you can close the server later with `ctrl + c`). Enter the IP address this command outputs into your web browser.  Then navigate to the fixtures folder, and then the student-site folder and the page should come up! For more information on background jobs in bash, take a look at this readme: https://github.com/learn-co-curriculum/bash-background-jobs/
+**Important if you're using the Learn IDE:** If you're using the Learn IDE you'll have to run a server to view the site. You can do this by typing `httpserver &` to run the server in the background (make sure you know how to switch this job back to the foreground so you can close the server later with `ctrl + c`). Enter the IP address this command outputs into your web browser.  Then navigate to the fixtures folder, and then the student-site folder and the page should come up! For more information on background jobs in bash, take a look at this readme:
 
 ## Instructions
 
