@@ -5,6 +5,7 @@ class Student
   @@all = []
 
   def initialize(student_hash)
+    #student hash = name and location of student
     student_hash.each do |att, value|
      self.send("#{att}=", value)
    end
