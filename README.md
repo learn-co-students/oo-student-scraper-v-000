@@ -32,7 +32,7 @@ Run `bundle install` first.
 
 Let's start with the `Scraper` class in `lib/scraper.rb`. In this class you are responsible for defining two methods. The `#scrape_index_page` method is responsible for scraping the index page that lists all of the students and the `#scrape_profile_page` method is responsible for scraping an individual student's profile page to get further information about that student.
 
-#### The `#scrape_index_page` Method
+#### The `.scrape_index_page` Method
 
 This is a class method that should take in an argument of the URL of the index page, for the purposes of our test the URL will be "./fixtures/student-site/index.html". It should use Nokogiri and Open-URI to access that page. The return value of this method should be an array of hashes in which each hash represents a single student. The keys of the individual student hashes should be `:name`, `:location` and `:profile_url`.
 
@@ -51,7 +51,7 @@ Scraper.scrape_index_page(index_url)
 
 **Top-Tip:** Remember to use the element inspector in your browser's developer tools to examine each element whose value you are trying to scrape. Also remember to use `binding.pry` and experiment with different element selectors in your terminal. It takes a lot of trial and error to find the correct selectors for the desired element.
 
-#### The `#scrape_profile_page` Method
+#### The `.scrape_profile_page` Method
 
 This is a class method that should take in an argument of a student's profile URL. It should use Nokogiri and Open-URI to access that page. The return value of this method should be a hash in which the key/value pairs describe an individual student. Some students don't have a twitter or some other social link. Be sure to be able to handle that. Here is what the hash should look like:
 
@@ -78,7 +78,7 @@ We've already given you the `attr_accessors` that you are required to have for e
 
 The student class will use the information returned by the above methods from our `Scraper` class in order to create students and add attributes to individual students. However, the `Student` class shouldn't know about the `Scraper` class. This means that the `Student` class shouldn't directly interact with the `Scraper` class––it shouldn't call on the `Scraper` class in any of its methods or take in the `Scraper` class itself as an argument. Why is this? We want our program to be as flexible as possible. We can imagine any number of applications that use a `Student` model. So we don't want our `Student` model to be dependent on *how* it gets information regarding the students it creates. It should simply be ready to take in that information, regardless of its source (be it scraping, a .csv file, or a form on a website).
 
-#### The `#create_from_collection(students_array)`
+#### The `.create_from_collection(students_array)`
 
 This class method should take in an array of hashes. In fact, we will call `Student.create_from_collection` with the return value of the `Scraper.scrape_index_page` method as the argument. The `#create_from_collection` method should iterate over the array of hashes and create a new individual student using each hash. This brings us to the `#initialize` method on our `Student` class.
 
