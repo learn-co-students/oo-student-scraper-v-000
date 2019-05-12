@@ -14,21 +14,14 @@ class Scraper
     doc = Nokogiri::HTML(File.read(index_url))
     students_array = []
   # ?? not iterate, just shovel whole list 
-    students_array << doc.css("roster-cards-container")
+    doc.css(".roster-cards-container")
     binding.pry
   end    
     # .each do |student_card|  students_array << 
 
 # second layer scrape indiv student profile pages:
 # 
-  def self.scrape_profile_page(BASE_PATH + student.profile_url)
-
-
-    end
-    scraped_students
-  end
-
-  def self.scrape_profile_page(profile_url)
-
-  end
+#  def self.scrape_profile_page(profile_url)
+#
+#  end
 end
