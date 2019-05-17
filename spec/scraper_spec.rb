@@ -2,9 +2,9 @@ require "spec_helper"
 
 describe "Scraper" do
 
-  let!(:student_index_array) {[{:name=>"Joe Burgess", :location=>"New York, NY", :profile_url=>"students/joe-burgess.html"},
-                               {:name=>"Mathieu Balez", :location=>"New York, NY", :profile_url=>"students/mathieu-balez.html"},
-                               {:name=>"Diane Vu", :location=>"New York, NY", :profile_url=>"students/diane-vu.html"}]}
+  let!(:student_index_array) {[{:name=>"Joe Burgess", :location=>"New York, NY", :profile_url=>"http://159.203.91.59:30000/students/joe-burgess.html"},
+                               {:name=>"Mathieu Balez", :location=>"New York, NY", :profile_url=>"http://159.203.91.59:30000/students/mathieu-balez.html"},
+                               {:name=>"Diane Vu", :location=>"New York, NY", :profile_url=>"http://159.203.91.59:30000/students/diane-vu.html"}]}
 
   let!(:student_joe_hash) {{:twitter=>"https://twitter.com/jmburges",
                             :linkedin=>"https://www.linkedin.com/in/jmburges",
