@@ -1,14 +1,19 @@
 require 'open-uri'
 require 'pry'
+require 'nokogiri'
 
 class Scraper
 
   def self.scrape_index_page(index_url)
-   stud=[]
-   index = Nokogiri::HTML(open(index_url))
-   students = index.css(".roster-cards-container .student-card")
-    students.collect do |student|
-    stud << {:name => student.css("h4").text, :location => student.css(".student-location").text, :profile_url =>   student.css("a").attribute("href").text}
+     html = open(index_url)
+     index = Nokogiri::HTML(html)
+     stud=[]
+     index.css(".student-card a").each do |student| 
+       student_hash = {
+        :name => student.css(".student-name").text,
+        :location => student.css(".student-location").text,
+        :profile_url => student.attribute("href").value}
+        stud << student_hash
     end
     stud
   end
@@ -19,7 +24,7 @@ class Scraper
   profile = index.css(".profile")
   index.css(".social-icon-container a").each do |p|
   end
-  prof[:twitter] = p.attribute(href)
+
 end
 
 end
