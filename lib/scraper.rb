@@ -18,9 +18,9 @@ class Scraper
     doc = Nokogiri::HTML(File.read(index_url))
       doc.css('div.student-card').map do |student|
        {:name => student.css('h4').text, 
-       :location => student.css('p').text,
-       :profile_url => student.css('a').attribute('href').value}
-    end
+        :location => student.css('p').text,
+        :profile_url => student.css('a').attribute('href').value}
+     end
   end    
 
 # second layer scrape indiv student profile pages. Add these attributes:
@@ -28,10 +28,9 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     profile = Nokogiri::HTML(File.read(profile_url))
       # social_icons = []
-      p profile.css('social-icon-container')
-      # do |icon|
-      #   icon.css('a').attribute('href').value
-      
+      profile.css('div.social.psychology')
+
+            
       # social_icons << icon.css('a').attribute('href').value.include?('twitter')
       # p social_icons
   end
@@ -44,7 +43,7 @@ class Scraper
     # } 
     #  p profile_url.css('.bio-block.details-block p').text
 
-  #   {:bio => "test" 
+  #    {:bio => "test" 
   #   }
   #   end
   # end
