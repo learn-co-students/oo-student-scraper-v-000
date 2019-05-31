@@ -1,6 +1,4 @@
 require_relative "../lib/student.rb"
-require 'open-uri'
-require 'pry'
 
 class Scraper
  
@@ -26,26 +24,22 @@ class Scraper
 # Add these attributes:
 # :twitter, :linkedin, :github, :blog, :profile_quote, :bio
   def self.scrape_profile_page(profile_url)
-    profile = Nokogiri::HTML(File.read(profile_url))
     attributes = {}
-    social = profile.css('div.social-icon-container')
-      social_info = social.css('a').map 'href').each do |ref|
-        if ref.value.include?('twitter')
-          attributes[:twitter] = social_info
-        elsif ref.value.include?('linkedin')
-          attributes[:linkedin] = social_info
-        elsif ref.value.include?('github')
-          attributes[:github] = social_info      
-        elsif ref.value.include?('github')
-          attributes[:blog] = social_info
+    profile = Nokogiri::HTML(File.read(profile_url))
+      social = profile.css('div.social-icon-container').children
+        social.css('a').each do |a| ref = a.attribute('href').value
+          if ref.include?('twitter')
+            attributes[:twitter] = ref
+          elsif ref.include?('linkedin')
+            attributes[:linkedin] = ref
+          elsif ref.include?('github')
+            attributes[:github] = ref
+          elsif ref 
+            attributes[:blog] = ref
+          end
+          attributes[:profile_quote] = profile.css("div.profile-quote").text
+          attributes[:bio] = profile.css("div.bio-content.content-holder").children.css('p').text
         end
-      binding.pry
-      end  
-    attributes[:profile_quote] = profile.css("div.profile-quote").text
-   # attributes[:bio] = 
-    test = profile.css("div.bio-content.content-holder")#.children.each {|child| 'p').text
-
-    #attributes
+      attributes
   end
-  
 end # class end

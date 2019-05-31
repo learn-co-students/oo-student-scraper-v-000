@@ -1,5 +1,4 @@
 require_relative '../lib/scraper.rb'
-require 'pry'
 
 class Student
 
@@ -32,7 +31,7 @@ class Student
  
 # .add_student_attributes
 # uses second layer scraped data from Scraper.scrape_profile_page
-# of individual student profile to find social media, quote & bio
+# individual student's profile to find social media, quote & bio
 # attributes
   def add_student_attributes(attributes_hash)
     attributes_hash.each {|key, value| self.send(("#{key}="), value)}
