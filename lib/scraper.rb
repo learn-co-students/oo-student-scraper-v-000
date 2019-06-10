@@ -10,6 +10,10 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url) # scrape INDIVIDUAL student's profile
+    # use NOKOGIRI and OPEN-URI to access page
+    # return value should be a hash - key/value pairs describing individual student
+    # EDGECASE - some students do not have socialmedia linked up
+    # :twitter, :linkedin, :github, :blog, :profile_quote, :bio
 
   end
 
