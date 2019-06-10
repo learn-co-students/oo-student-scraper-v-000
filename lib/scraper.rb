@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'pry'
 
-class Scraper # does not store information- just scrapes and sends to STUDENT CLASS for storage
+class Scraper # does not store information- just scrapes
 
   def self.scrape_index_page(index_url) # scrape the INDEX page that lists all students
     # return value should be an array of hashes - each hash is a single student
