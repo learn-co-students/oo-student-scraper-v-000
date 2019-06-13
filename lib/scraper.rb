@@ -1,5 +1,9 @@
+require 'nokogiri'
+
 require 'open-uri'
-require 'pry'
+
+html = open("URL - plz put in site")
+doc = Nokogiri::HTML(html)
 
 class Scraper # does not store information- just scrapes
 
