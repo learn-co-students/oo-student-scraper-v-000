@@ -2,6 +2,7 @@ require_relative "../lib/scraper.rb"
 require_relative "../lib/student.rb"
 require 'nokogiri'
 require 'colorize'
+require 'open-uri'
 
 class CommandLineInterface
   BASE_PATH = "./fixtures/student-site/"
