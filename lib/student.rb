@@ -15,7 +15,7 @@ class Student
     student = Student.new(student_hash)
 
     student_hash.each do |hash_attribute_key, value|
-      student.send("#{hash_attribute_key}=", value)
+      student.send("#{hash_attribute_key}=", value) unless value = nil
     end
 
 #    student      <---uncomment this to have initialized student data to be returned
@@ -27,8 +27,9 @@ class Student
     # iterate over STUDENTS_ARRAY of hashes
     # create a new individual student using each hash
 
-    students_array.each do ||
-
+    students_array.each do |each_student|
+      each_student = Student.new
+      Student.all << each_student #<----I want this to be Student.save(each_student) maybe???
     end
 
     Student.all.each do |each_student|
