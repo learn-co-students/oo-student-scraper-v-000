@@ -9,9 +9,9 @@ class Scraper # does not store information- just scrapes
     html = open(index_url)
     doc = Nokogiri::HTML(html)
 
-    Student.name = <h4 class="student-name">blahblahguy</h4>
-    Student.location = <p class="student-location">blahplace</p>
-    Student.profile_url = <a href="students/blahblahname-lastname.html">..</a>
+    # Student.name = <h4 class="student-name">blahblahguy</h4>
+    # Student.location = <p class="student-location">blahplace</p>
+    # Student.profile_url = <a href="students/blahblahname-lastname.html">..</a>
 
     # return value should be an array of hashes - each hash is a single student
     # keys ---- :name, :location, :profile_url
