@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/command_line_interface.rb"
+
+fixture_url = "./fixtures/student-site/index.html"
+profile_url_complete = "./fixtures/student-site/students/joe-burgess.html"
+profile_url_incomplete = "./fixtures/student-site/students/david-kim.html"
+
+binding.pry
