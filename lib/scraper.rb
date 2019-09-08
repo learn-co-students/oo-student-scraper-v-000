@@ -17,8 +17,8 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     #BETTER SOLUTION =>
-    #doc.css.(".social-icon-container a").each do |student|
-      #link = student.attributes["href"].value
+    #doc.css.(".social-icon-container a").each do |student| #look at white bar in dev tools with students to get this
+      #link = student.attributes["href"].value #in pry with students try to access diff keys to get to this-student is just a hash
     #check if link includes github etc.
     #end
     #class method b/c not storing anything
