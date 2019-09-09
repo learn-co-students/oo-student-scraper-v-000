@@ -22,8 +22,6 @@ class Student
     end 
   end
 
-# Student #add_student_attributes uses the Scraper class to get a hash of a given students attributes and uses that hash to setadditional attributes for that student.
-
   def self.all
     @@all
   end
