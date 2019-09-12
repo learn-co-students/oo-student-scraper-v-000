@@ -40,11 +40,12 @@ describe "Scraper" do
       expect(scraped_student).to match(student_joe_hash)
     end
 
+
     it "can handle profile pages without all of the social links" do
       profile_url = "https://learn-co-curriculum.github.io/student-scraper-test-page/students/david-kim.html"
       scraped_student = Scraper.scrape_profile_page(profile_url)
       expect(scraped_student).to be_a(Hash)
-      expect(scraped_student).to match(student_david_hash)
+      expect(scraped_student).to match(student_david_hash)     
     end
   end
 end
