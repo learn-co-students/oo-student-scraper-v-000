@@ -39,3 +39,4 @@ class CommandLineInterface
   end
 
 end
+plz = CommandLineInteface.new.run
