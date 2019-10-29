@@ -39,12 +39,17 @@ class Scraper
       final_array << temp_hash
       x += 1
     end
-    #binding.pry
     final_array
   end 
 
   def self.scrape_profile_page(profile_url)
+    html = open("#{profile_url}")
+    doc = Nokogiri::HTML(html)
+    tree = doc.css(".social-icon-container")
     
+    temp_hash = Hash.new
+    temp_hash[:twitter] = tree.children[0] 
+    binding.pry
   end
 
 end
