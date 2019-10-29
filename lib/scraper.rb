@@ -8,7 +8,8 @@ class Scraper
     url_array = []
     names_array = []
     final_array = []
-    html = open("https://learn-co-curriculum.github.io/student-scraper-test-page/index.html")
+    #html = open("https://learn-co-curriculum.github.io/student-scraper-test-page/index.html")
+    html = open("#{index_url}")
     doc = Nokogiri::HTML(html)
     
     ################# name #####################
@@ -26,17 +27,19 @@ class Scraper
     #######################################
     
     x = 0
-    y = names_array.length 
+    y = names_array.length - 1
     
-    while x < y 
-      binding.pry
+    while x < y  
       temp_hash = Hash.new 
-      temp_hash[:name] = "#{names_array[x - 1]}"
-      temp_hash[:location] = "#{locations_array[x - 1]}"
-      temp_hash[:profile_url] = ".students/#{names_array[x - 1]}.html"
+      temp_hash[:name] = "#{names_array[x]}"
+      temp_hash[:location] = "#{locations_array[x]}"
+      z = names_array[x].split(" ")
+      #temp_hash[:profile_url] = "students/#{names_array[x]}.html"
+      temp_hash[:profile_url] = "students/#{z[0]}-#{z[1]}.html".downcase
       final_array << temp_hash
       x += 1
     end
+    #binding.pry
     final_array
   end 
 
