@@ -62,39 +62,9 @@ class Scraper
     temp_hash[:github] = "#{final_array[2]}"
     temp_hash[:blog] = "#{final_array[3]}"
     ###############################################
-    temp_hash[:profile_quote] = "#{}"
-    temp_hash[:bio] = "#{}"
+    temp_hash[:profile_quote] = doc.css(".profile-quote").text.strip
+    temp_hash[:bio] = doc.css(".description-holder").text
+    temp_hash
     
-    
-    final_array
-      
-    #nodeset.first.value
-    #x = 4
-    #while x > 0
-    
-    #x -= 1
-    
-    
-
- 
-#To find a link within the <div id="block2">
-
-#nodeset = doc.xpath('//div[@id="block2"]/a/@href')
-#nodeset.first.value # => "http://stackoverflow.com"
-
-#nodeset = doc.css('div#block2 a[href]')
-#nodeset.first['href'] # => "http://stackoverflow.com"
-    
-    
-    #nodeset.map {|element| element["href"]}.compact
-    
-    #tree = doc.css(".social-icon-container")
-    
-    #temp_hash = Hash.new
-    #temp_hash[:twitter] = tree.children[0] 
   end
-  
-  #nodeset.map {|element| element["href"]}.compact
-
 end
-
