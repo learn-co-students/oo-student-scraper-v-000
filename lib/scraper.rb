@@ -56,12 +56,17 @@ class Scraper
     
     final_array.each do |item|
       if item.include?("twitter")
+        temp_hash[:twitter] = "#{item}"
         elsif item.include?("linkedin")
+        temp_hash[:linkedin] = "#{item}"
         elsif item.include?("github")
+        temp_hash[:github] = "#{item}"
         elsif item.include?("blog")
-        
+        temp_hash[:blog] = "#{item}"
       end
-      if 
+    end
+    
+    if 
     
     if final_array[0].include?("twitter")
       temp_hash[:twitter] = "#{final_array[0]}"
