@@ -43,28 +43,54 @@ class Scraper
   end 
 
   def self.scrape_profile_page(profile_url)
-    binding.pry
     final_array = []
     html = open("#{profile_url}")
     doc = Nokogiri::HTML(html)
-    ####################HTMLs##########################################
     nodeset = doc.xpath('//div[@class="social-icon-container"]/a/@href')
     nodeset.each do |item|
       final_array << item.value
     end
-    ###################################################################
-    
-    ####################text#####################################
-    
     temp_hash = Hash.new
-    temp_hash[:twitter] = "#{final_array[0]}"
-    temp_hash[:linkedin] = "#{final_array[1]}"
-    temp_hash[:github] = "#{final_array[2]}"
-    temp_hash[:blog] = "#{final_array[3]}"
-    ###############################################
-    temp_hash[:profile_quote] = doc.css(".profile-quote").text.strip
-    temp_hash[:bio] = doc.css(".description-holder").text
-    temp_hash
     
+    #########################
+    
+    final_array.each do |item|
+      if item.include?("twitter")
+        elsif item.include?("linkedin")
+        elsif item.include?("github")
+        elsif item.include?("blog")
+        
+      end
+      if 
+    
+    if final_array[0].include?("twitter")
+      temp_hash[:twitter] = "#{final_array[0]}"
+    end
+    if final_array[1].include?("linkedin")
+      temp_hash[:linkedin] = "#{final_array[1]}"
+    end
+    if final_array[2].include?("github")
+      temp_hash[:github] = "#{final_array[2]}"
+    end
+    if final_array[3].include?("blog")
+      temp_hash[:blog] = "#{final_array[3]}"
+    end
+    if !!doc.css(".profile-quote").text.scan(/[a-z]/)
+      temp_hash[:profile_quote] = doc.css(".profile-quote").text.strip
+    end
+    if doc.css('p').text.scan(/[a-z]/)
+      temp_hash[:bio] = doc.css('p').text
+    end
+      
+    #########################
+
+    #temp_hash[:twitter] = "#{final_array[0]}"
+    #temp_hash[:linkedin] = "#{final_array[1]}"
+    #temp_hash[:github] = "#{final_array[2]}"
+    #temp_hash[:blog] = "#{final_array[3]}"
+    #temp_hash[:profile_quote] = doc.css(".profile-quote").text.strip
+    #binding.pry
+    #temp_hash[:bio] = doc.css('p').text
+    temp_hash
   end
 end
