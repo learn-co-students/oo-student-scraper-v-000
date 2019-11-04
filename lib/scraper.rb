@@ -45,10 +45,6 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     final_array = []
     link_array = profile_url.split(/\W/)
-    
-    
-    
-    
     html = open("#{profile_url}")
     doc = Nokogiri::HTML(html)
     nodeset = doc.xpath('//div[@class="social-icon-container"]/a/@href')
@@ -77,7 +73,6 @@ class Scraper
     if !!doc.css('p').text.scan(/[a-z]/)
       temp_hash[:bio] = doc.css('p').text
     end
-    #binding.pry
     temp_hash
   end
 end
