@@ -1,0 +1,30 @@
+
+[1mFrom:[0m /home/paaaarv/oo-student-scraper-v-000/lib/student.rb @ line 29 Student#initialize:
+
+     [1;34m7[0m: [32mdef[0m [1;34minitialize[0m(student_hash)
+     [1;34m8[0m:   student_hash.each [32mdo[0m |key, value|
+     [1;34m9[0m:     [32mif[0m key == [33m:name[0m
+    [1;34m10[0m:       [1;36mself[0m.name = value
+    [1;34m11[0m:     [32melsif[0m key == [33m:location[0m
+    [1;34m12[0m:       [1;36mself[0m.location = value
+    [1;34m13[0m:     [32melsif[0m key == [33m:twitter[0m
+    [1;34m14[0m:       [1;36mself[0m.twitter = value
+    [1;34m15[0m:     [32melsif[0m key == [33m:linkedin[0m
+    [1;34m16[0m:       [1;36mself[0m.linkedin = value
+    [1;34m17[0m:     [32melsif[0m key == [33m:github[0m
+    [1;34m18[0m:       [1;36mself[0m.github = value
+    [1;34m19[0m:     [32melsif[0m key == [33m:blog[0m
+    [1;34m20[0m:       [1;36mself[0m.blog = value
+    [1;34m21[0m:     [32melsif[0m key == [33m:profile_quote[0m
+    [1;34m22[0m:       [1;36mself[0m.profile_quote = value
+    [1;34m23[0m:     [32melsif[0m key == [33m:bio[0m
+    [1;34m24[0m:       [1;36mself[0m.bio = value
+    [1;34m25[0m:     [32melsif[0m key == [33m:profile_url[0m
+    [1;34m26[0m:       [1;36mself[0m.profile_url = value
+    [1;34m27[0m:     [32mend[0m
+    [1;34m28[0m: 
+ => [1;34m29[0m:   binding.pry
+    [1;34m30[0m: [32mend[0m
+    [1;34m31[0m: 
+    [1;34m32[0m: [32mend[0m
+
