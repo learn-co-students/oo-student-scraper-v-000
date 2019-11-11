@@ -45,4 +45,4 @@ Scraper.scrape_profile_page("https://learn-co-curriculum.github.io/student-scrap
 # github:
 # blog:
 # profile_quote: profile_quote = doc.css(".profile-quote").text
-# bio: doc.css(".description-holder").text
+# bio: doc.css(".description-holder")[0].text
