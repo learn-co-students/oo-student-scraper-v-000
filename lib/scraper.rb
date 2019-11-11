@@ -28,9 +28,27 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
 
-    bio = doc.css(".description-holder")[0].text
-  binding.pry
-  end
+    social_links = {}
+
+    social = doc.css("div.social-icon-container").children.css("a")
+    social.map do |item|
+      link = item.attribute('href').value
+      if link.include?("linkedin")
+        social_links[:linkedin] = link
+      elsif link.include?("twitter")
+        social_links[:twitter] = link
+        elsif link.include?("github")
+          social_links[:github] = link
+        else
+          social_links[:blog] = link
+        end
+        end
+
+
+  social_links[:profile_quote] = doc.css(".profile-quote").text
+  social_links[:bio] = doc.css(".description-holder p")[0].text
+  social_links
+end
 
 end
 Scraper.scrape_profile_page("https://learn-co-curriculum.github.io/student-scraper-test-page/students/ryan-johnson.html")
