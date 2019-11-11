@@ -26,13 +26,23 @@ class Scraper
 
 
   def self.scrape_profile_page(profile_url)
+    doc = Nokogiri::HTML(open(profile_url))
 
+
+  binding.pry
   end
 
 end
-Scraper.scrape_index_page("https://learn-co-curriculum.github.io/student-scraper-test-page/index.html")
+Scraper.scrape_profile_page("https://learn-co-curriculum.github.io/student-scraper-test-page/students/ryan-johnson.html")
 
 
 # student names: doc.css(".student-name").text.strip  #whitespace removed with .strip
 # location: location = doc.css(".student-location").text.strip
 # profile_url = "#{student.attr('href')}"
+
+# twitter:
+# linkedin:
+# github:
+# blog:
+# profile_quote: profile_quote = doc.css(".profile-quote").text
+# bio:
