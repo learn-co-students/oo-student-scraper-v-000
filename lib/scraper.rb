@@ -12,7 +12,9 @@ class Scraper
     page = doc.css("div.roster-cards-container")
     page.each do |student_card|
       student_card.css(".student-card a").each do |student|
-      "#{student.attr('href')}"
+      name = student.css(".student-name").text
+      location = student.css(".student-location").text
+      profile_url = "#{student.attr('href')}"
 
     binding.pry
   end
