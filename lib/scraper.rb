@@ -16,9 +16,11 @@ class Scraper
       location = student.css(".student-location").text
       profile_url = "#{student.attr('href')}"
 
-    binding.pry
-  end
-  end
+      students << {:name => name, :location => location, :profile_url => profile_url}
+
+      end
+    end
+  students
   end
 
 
