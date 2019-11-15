@@ -1,3 +1,5 @@
+require 'pry'
+
 class Student
   attr_accessor :name, :location, :twitter, :linkedin, :github, :blog, :profile_quote, :bio, :profile_url
 
@@ -5,24 +7,23 @@ class Student
 
   def initialize(student_hash)
     student_hash.each {|k,v|
-    self.send("#{k}=",v)
-  }
-  @@all << self
+      self.send("#{k}=",v)
+    }
+    @@all << self
   end
 
   def self.create_from_collection(students_array)
-    students_array.each { |s|
-      Student.new(s)
-    }
+    students_array.each {|student| Student.new(student)}
   end
 
-  def add_student_attributes(attributes)
-    attributes.each { |a,v|
-      self.send("#{a}=",v)
+  def add_student_attributes(student_hash)
+    student_hash.each {|k,v|
+      self.send("#{k}=",v)
     }
   end
 
   def self.all
     @@all
   end
+  
 end
