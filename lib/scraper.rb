@@ -12,11 +12,6 @@ class Scraper
     array = doc.css(".roster-cards-container")
     hash = Hash[array.collect { |key, value| [name, name.css(".student-name")] }
 
-    # ,
-    #   item, location.css(".student-location"), item, profile_url.css(".student-card")] }
-
-    # {:name => "Abby Smith", :location => "Brooklyn, NY", :profile_url => "students/abby-smith.html"},
-
   end
 
   # def self.scrape_profile_page(profile_url)
