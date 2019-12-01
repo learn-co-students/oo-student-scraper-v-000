@@ -10,10 +10,10 @@ class Scraper
     # hash = Hash[array.collect { |key, value| [name, name.css(".student-name")] }
     # hash = Hash[*array.flatten]
     hash = Hash[array.map {|key, value| [name, name.css(".student-name")]}]
-    binding.pry
     # a3 = [ ['apple', 1], ['banana', 2], [['orange','seedless'], 3] ]
     # h3 = Hash[*a3.flatten]
   end
+  binding.pry
 
   def self.scrape_profile_page(profile_url)
 
