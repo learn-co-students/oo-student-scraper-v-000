@@ -8,7 +8,8 @@ class Scraper
     doc = Nokogiri::HTML(open("https://learn-co-curriculum.github.io/student-scraper-test-page/index.html"))
     array = doc.css(".roster-cards-container")
     # hash = Hash[array.collect { |key, value| [name, name.css(".student-name")] }
-    hash = Hash[*array.flatten]
+    # hash = Hash[*array.flatten]
+    hash = Hash[array.map {|key, value| [key, value]}]
 
     # a3 = [ ['apple', 1], ['banana', 2], [['orange','seedless'], 3] ]
     # h3 = Hash[*a3.flatten]
