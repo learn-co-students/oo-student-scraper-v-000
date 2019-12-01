@@ -10,15 +10,15 @@ class Scraper
 
     doc = Nokogiri::HTML(open("https://learn-co-curriculum.github.io/student-scraper-test-page/index.html"))
     array = doc.css(".roster-cards-container")
-    hash = Hash[array.collect { |name, location, profile_url| [name, name.css(".student-name"),
-      location, location.css(".student-location"), profile_url, profile_url.css(".student-card")] } ]
+    hash = Hash[array.collect { |item| [item, name.css(".student-name"),
+      item, location.css(".student-location"), item, profile_url.css(".student-card")] } ]
 
     # {:name => "Abby Smith", :location => "Brooklyn, NY", :profile_url => "students/abby-smith.html"},
 
   end
 
-  def self.scrape_profile_page(profile_url)
-
-  end
+  # def self.scrape_profile_page(profile_url)
+  #
+  # end
 
 end
