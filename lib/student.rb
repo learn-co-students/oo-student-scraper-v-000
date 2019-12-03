@@ -1,3 +1,6 @@
  class Student
-   @@all = [] <--all initialized STUDENT objects
+   @@all = [] #<--all initialized STUDENT objects
+
+
  end #<-----CLASSend
+ 
