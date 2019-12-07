@@ -7,17 +7,22 @@ class Scraper
   def self.scrape_index_page(index_url)
     doc = Nokogiri::HTML(open("https://learn-co-curriculum.github.io/student-scraper-test-page/index.html"))
     # name = doc.css(".roster-cards-container").css(".student-name")
-    location = doc.css(".roster-cards-container").css(".student-location")
+    # location = doc.css(".roster-cards-container").css(".student-location")
     # profile_url = doc.css(".roster-cards-container").css("div.student-card a").map { |link| link['href']}
-    profile_url = doc.css(".roster-cards-container").css(".student-card a").map { |link| link['href']}
+    # profile = doc.css(".roster-cards-container").css(".student-card a").map { |link| link['href']}
 
-    doc.collect do |name|
+    doc.collect do |name, location, profile|
       name = doc.css(".roster-cards-container").css(".student-name").text
-      hash = { :name => name }
+      location = doc.css(".roster-cards-container").css(".student-location")
+      profile = doc.css(".roster-cards-container").css(".student-card a").map { |link| link['href']}
+
+      hash = { :name => name, :location => location, :profile => profile }
+      hash
+      # Hash.new { |hash, key| hash[key] =  }
       # { hash[name] => name }
-      # binding.pry
-    end
       binding.pry
+    end
+      # binding.pry
     # {"name:" name, "location:" location, "profile_url:" profile_url}
     # {:name => "Abby Smith", :location => "Brooklyn, NY", :profile_url => "students/abby-smith.html"}
     # hash = {}
