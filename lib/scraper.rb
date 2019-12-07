@@ -6,16 +6,18 @@ class Scraper
 
   def self.scrape_index_page(index_url)
     doc = Nokogiri::HTML(open("https://learn-co-curriculum.github.io/student-scraper-test-page/index.html"))
-    name = doc.css(".roster-cards-container").css(".student-name")
+    # name = doc.css(".roster-cards-container").css(".student-name")
     location = doc.css(".roster-cards-container").css(".student-location")
     # profile_url = doc.css(".roster-cards-container").css("div.student-card a").map { |link| link['href']}
     profile_url = doc.css(".roster-cards-container").css(".student-card a").map { |link| link['href']}
 
-    doc.collect do |hash|
-      hash = { :name => name, :location => location, :profile_url => profile_url }
+    doc.collect do |name|
+      name = doc.css(".roster-cards-container").css(".student-name").text
+      hash = { :name => name }
       # { hash[name] => name }
-      binding.pry
+      # binding.pry
     end
+      binding.pry
     # {"name:" name, "location:" location, "profile_url:" profile_url}
     # {:name => "Abby Smith", :location => "Brooklyn, NY", :profile_url => "students/abby-smith.html"}
     # hash = {}
@@ -26,7 +28,7 @@ class Scraper
     # a3 = [ ['apple', 1], ['banana', 2], [['orange','seedless'], 3] ]
     # h3 = Hash[*a3.flatten]
 
-  # binding.pry
+
     end
 
   # end
