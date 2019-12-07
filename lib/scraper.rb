@@ -20,9 +20,9 @@ class Scraper
       hash
       # Hash.new { |hash, key| hash[key] =  }
       # { hash[name] => name }
-      binding.pry
-    end
       # binding.pry
+    end
+      binding.pry
     # {"name:" name, "location:" location, "profile_url:" profile_url}
     # {:name => "Abby Smith", :location => "Brooklyn, NY", :profile_url => "students/abby-smith.html"}
     # hash = {}
