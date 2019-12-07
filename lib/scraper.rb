@@ -11,10 +11,9 @@ class Scraper
     # profile_url = doc.css(".roster-cards-container").css("div.student-card a").map { |link| link['href']}
     profile_url = doc.css(".roster-cards-container").css(".student-card a").map { |link| link['href']}
 
-    doc.collect do |a|
-      # hash = {}
+    doc.collect do |hash|
+      hash = { :name => name, :location => location, :profile_url => profile_url }
       # { hash[name] => name }
-      a
       binding.pry
     end
     # {"name:" name, "location:" location, "profile_url:" profile_url}
