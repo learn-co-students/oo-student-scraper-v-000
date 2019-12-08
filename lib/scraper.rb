@@ -12,9 +12,10 @@ class Scraper
     # profile = doc.css(".roster-cards-container").css(".student-card a").map { |link| link['href']}
 
     doc.collect do |name, location, profile|
-      name = doc.css(".roster-cards-container").css(".student-name").text
-      location = doc.css(".roster-cards-container").css(".student-location")
-      profile = doc.css(".roster-cards-container").css(".student-card a").map { |link| link['href']}
+      name = doc.css(".roster-cards-container").css(".student-name").first.text
+      location = doc.css(".roster-cards-container").css(".student-location").first.text
+      # profile = doc.css(".roster-cards-container").css(".student-card a").map { |link| link['href'] }
+      profile = doc.css(".roster-cards-container").css(".student-card a").map { |link| link['href'] }
 
       hash = { :name => name, :location => location, :profile => profile }
       hash
