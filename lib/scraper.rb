@@ -17,13 +17,13 @@ class Scraper
       # profile = doc.css(".roster-cards-container").css(".student-card a").map { |link| link['href'] }
       profile = doc.css(".roster-cards-container").css(".student-card a").map { |link| link['href'] }
 
-      hash = { :name => name, :location => location, :profile => profile.first }
+      array = [ { :name => name, :location => location, :profile => profile.first } ]
 
       # Hash.new { |hash, key| hash[key] =  }
       # { hash[name] => name }
       # binding.pry
     end
-      binding.pry
+      # binding.pry
     # {"name:" name, "location:" location, "profile_url:" profile_url}
     # {:name => "Abby Smith", :location => "Brooklyn, NY", :profile_url => "students/abby-smith.html"}
     # hash = {}
