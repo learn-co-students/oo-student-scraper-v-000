@@ -12,10 +12,10 @@ class Scraper
     array = []
 
     index_url.collect do |name, location, profile_url|
-      hash = { :name => name[0], :location => location[0], :profile_url => profile_url[0] }
+      hash = { :name => name.first, :location => location.first, :profile_url => profile_url[0] }
       array << hash
     end
-        # binding.pry
+        binding.pry
   end
 
 
