@@ -5,16 +5,28 @@ require 'pry'
 class Scraper
 
   def self.scrape_index_page(index_url)
-    index_url = Nokogiri::HTML(open("https://learn-co-curriculum.github.io/student-scraper-test-page/index.html"))
-    name = index_url.css(".roster-cards-container").css(".student-name")
-    location = index_url.css(".roster-cards-container").css(".student-location")
-    profile_url = index_url.css(".roster-cards-container").css(".student-card a").map { |link| link['href'] }
+
+    doc = Nokogiri::HTML(open(index_url))
+    # binding.pry
     array = []
+    students = doc.css(".roster-cards-container")
+
+    students.each do |student|
+      binding.pry
+      hash = { :name => name.text }
+      array << hash
+
+    end
+      # binding.pry
+
+    location = doc.css(".roster-cards-container").css(".student-location")
+    profile_url = doc.css(".roster-cards-container").css(".student-card a").map { |link| link['href'] }
+    # array = []
 
     index_url.collect do |name, location, profile_url|
       hash = { :name => name[0].text, :location => location[0].text, :profile_url => profile_url[0] }
       array << hash
-      binding.pry
+      # binding.pry
     end
     array
         # binding.pry
