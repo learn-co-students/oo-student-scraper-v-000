@@ -6,38 +6,21 @@ class Scraper
 
   def self.scrape_index_page(index_url)
     doc = Nokogiri::HTML(open("https://learn-co-curriculum.github.io/student-scraper-test-page/index.html"))
-    # name = doc.css(".roster-cards-container").css(".student-name")
-    # location = doc.css(".roster-cards-container").css(".student-location")
-    # profile_url = doc.css(".roster-cards-container").css("div.student-card a").map { |link| link['href']}
-    # profile = doc.css(".roster-cards-container").css(".student-card a").map { |link| link['href']}
-
-    doc.collect do |name, location, profile|
+    array = []
+    doc.collect do |name, location, profile_url|
       name = doc.css(".roster-cards-container").css(".student-name").first.text
       location = doc.css(".roster-cards-container").css(".student-location").first.text
-      # profile = doc.css(".roster-cards-container").css(".student-card a").map { |link| link['href'] }
-      profile = doc.css(".roster-cards-container").css(".student-card a").map { |link| link['href'] }
-
-      array = [ { :name => name, :location => location, :profile => profile.first } ]
-
-      # Hash.new { |hash, key| hash[key] =  }
-      # { hash[name] => name }
+      profile_url = doc.css(".roster-cards-container").css(".student-card a").map { |link| link['href'] }
+      hash = { :name => name, :location => location, :profile_url => profile_url.first }
+      array << hash
+      end
+        array
+  end
       # binding.pry
-    end
-      # binding.pry
-    # {"name:" name, "location:" location, "profile_url:" profile_url}
-    # {:name => "Abby Smith", :location => "Brooklyn, NY", :profile_url => "students/abby-smith.html"}
-    # hash = {}
 
-    # hash = Hash[array.collect { |key, value| [name, name.css(".student-name")] }
-    # hash = Hash[*array.flatten]
-    # hash = Hash[array.map {|key, value| [name, name.css(".student-name")]}]
-    # a3 = [ ['apple', 1], ['banana', 2], [['orange','seedless'], 3] ]
-    # h3 = Hash[*a3.flatten]
-
-
-    end
-
-  # end
+    # :student_index_array) {[{:name=>"Joe Burgess", :location=>"New York, NY", :profile_url=>"students/joe-burgess.html"},
+    #                              {:name=>"Mathieu Balez", :location=>"New York, NY", :profile_url=>"students/mathieu-balez.html"},
+    #                              {:name=>"Diane Vu", :location=>"New York, NY", :profile_url=>"students/diane-vu.html"}]}
 
   def self.scrape_profile_page(profile_url)
 
