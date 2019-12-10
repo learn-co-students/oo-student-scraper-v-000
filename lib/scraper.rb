@@ -15,25 +15,24 @@ class Scraper
       hash = {}
       student.css(".student-name").each do |name|
       name = name.text
+      hash[:name] = name
 
-      binding.pry
       # hash = { :name => student.css(".student-name").each { |name| name.text }, :location => student.css(".student-location").each { |location| location.text } }
       end
 
       student.css(".student-location").each do |location|
-      location.text
-      location
+      location = location.text
+      hash[:location] = location
       end
 
       student.css(".student-card a").map do |link|
-      link['href']
-      link
+      link = link['href']
+      hash[:link] = link
       end
 
-      # hash = { :name => name.text, :location => location.text, :profile_url => link['href'] }
-      # binding.pry
-      end
+      array << hash
 
+      end
       # profile_url = doc.css(".roster-cards-container").css(".student-card a").map { |link| link['href'] }
 
       # index_url.collect do |name, location, profile_url|
@@ -41,6 +40,8 @@ class Scraper
       #   array << hash
         # binding.pry
       # end
+      array
+      binding.pry
     end
 
 
