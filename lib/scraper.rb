@@ -7,11 +7,11 @@ class Scraper
   def self.scrape_index_page(index_url)
     doc = Nokogiri::HTML(open(index_url))
     array = []
-    hash = {}
+
     students = doc.css(".roster-cards-container")
 
     students.each do |student|
-
+      hash = {}
       student.css(".student-name").each do |name|
       name = name.text
       hash[:name] = name
@@ -27,9 +27,9 @@ class Scraper
       hash[:profile_url] = link
       end
        array << hash
-       binding.pry
       end
       array
+      binding.pry
     end
 
 
