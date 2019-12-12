@@ -5,34 +5,21 @@ require 'pry'
 class Scraper
 
   def self.scrape_index_page(index_url)
-    doc = Nokogiri::HTML(open(index_url))
+    scraped_students = []
 
+    doc = Nokogiri::HTML(open(index_url))
     students = doc.css(".roster-cards-container")
 
     students.each do |student|
-      @array = []
-      student.css(".student-name").each do |name|
-      @name = name.text
-      # hash[:name] = name
-      end
 
-      student.css(".student-location").each do |location|
-      @location = location.text
-      # hash[:location] = location
-      end
+      hash = { :name => student.css(".student-name")[0].text,
+        :location => student.css(".student-location")[0].text,
+        :profile_url => student.css(".student-card a.href")[0] }
 
-      student.css(".student-card a").map do |link|
-      @link = link['href']
-      # hash[:profile_url] = link
-      end
-
-      hash = { :name => @name, :location => @location, :profile_url => @link }
+      scraped_students << hash
       binding.pry
-       array << hash
-      #  binding.pry
       end
-       array
-      # binding.pry
+       scraped_students
     end
 
 
