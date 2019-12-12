@@ -11,13 +11,15 @@ class Scraper
     students = doc.css(".roster-cards-container")
 
     students.each do |student|
+      student.css(".student-card").css("a.href")
+      binding.pry
 
       hash = { :name => student.css(".student-name")[0].text,
         :location => student.css(".student-location")[0].text,
-        :profile_url => student.css(".student-card a.href")[0] }
+        :profile_url => student.css(".student-card")['a.href'] }
 
       scraped_students << hash
-      binding.pry
+      # binding.pry
       end
        scraped_students
     end
