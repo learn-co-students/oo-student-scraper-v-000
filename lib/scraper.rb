@@ -3,7 +3,7 @@ require 'nokogiri'
 require 'pry'
 
 class Scraper
-  scraped_students = []
+@@scraped_students = []
 
   def self.scrape_index_page(index_url)
 
@@ -11,15 +11,15 @@ class Scraper
     students = doc.css(".roster-cards-container")
 
     students.each do |student|
-      
+
       hash = { :name => student.css(".student-name")[0].text,
         :location => student.css(".student-location")[0].text,
         :profile_url => student.css(".student-card a")[0]['href'] }
 
-      scraped_students << hash
+      @@scraped_students << hash
       # binding.pry
       end
-       scraped_students
+      #  @@scraped_students
     end
 
 
