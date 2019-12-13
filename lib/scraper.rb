@@ -7,21 +7,15 @@ class Scraper
 # a single student.
   def self.scrape_index_page(index_url)
     doc = Nokogiri::HTML(open(index_url))
-    # students = doc.css(".roster-cards-container")
-    students = doc.css(".student-card")
-    # binding.pry
+    students = doc.css(".roster-cards-container")
+  
     scraped_students = []
 
     students.each do |student|
-      # hash = { :name => student.css(".student-name")[0].text,
-      #   :location => student.css(".student-location")[0].text,
-      #   :profile_url => student.css(".student-card a")[0]['href']}
-
-        hash = { :name => student.css(".student-name")[0].text,
-          :location => student.css(".student-location")[0].text,
-          :profile_url => student.css(".student-card").first}
-
-        binding.pry
+      hash = { :name => student.css(".student-name")[0].text,
+        :location => student.css(".student-location")[0].text,
+        :profile_url => student.css(".student-card a")[0]['href']}
+        # binding.pry
       scraped_students << hash
 
       end
