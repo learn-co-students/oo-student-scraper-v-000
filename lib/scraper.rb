@@ -38,7 +38,7 @@ class Scraper
         linkedin: student.css("a")[1]['href'],
         github: student.css("a")[2]['href'],
         blog: student.css("a")[3]['href'],
-        profile_quote: student.css(".profile-quote") }
+        profile_quote: student.css(".profile-quote").text }
     binding.pry
 
     # bio: student.css("a")[5]['href']
