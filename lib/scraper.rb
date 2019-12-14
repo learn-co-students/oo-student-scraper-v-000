@@ -31,7 +31,8 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     # binding.pry
     doc = Nokogiri::HTML(open(profile_url))
-    students = doc.css(".vitals-container")
+    # students = doc.css(".vitals-container")
+    students = doc.css(".main-wrapper profile")
     # binding.pry
     students.each do |student|
       social_urls = { twitter: student.css("a")[0]['href'],
