@@ -29,11 +29,17 @@ class Scraper
     # of this method should be a hash in which the key/value pairs describe an
     # individual student
   def self.scrape_profile_page(profile_url)
+    # binding.pry
     doc = Nokogiri::HTML(open(profile_url))
     students = doc.css(".social-icon-container")
-
+    # binding.pry
     students.each do |student|
-      social_url = { :twitter => student.css("a")[0]['href'] }
+      social_url = { twitter: student.css("a")[0]['href']
+        linkedin: student.css("a")[1]['href'],
+        github: student.css("a")[2]['href'],
+        blog: student.css("a")[3]['href'],
+        profile_quote: student.css("a")[4]['href'],
+        bio: student.css("a")[5]['href'] }
 
     # binding.pry
     end
