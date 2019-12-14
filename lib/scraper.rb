@@ -34,15 +34,15 @@ class Scraper
     students = doc.css(".social-icon-container")
     # binding.pry
     students.each do |student|
-      social_url = { twitter: student.css("a")[0]['href']
+      social_urls = { twitter: student.css("a")[0]['href']
         linkedin: student.css("a")[1]['href'],
         github: student.css("a")[2]['href'],
         blog: student.css("a")[3]['href'],
-        profile_quote: student.css("a")[4]['href'],
+        profile_quote: student.css("div").css(".profile-quote"),
         bio: student.css("a")[5]['href'] }
-
-    # binding.pry
+    binding.pry
     end
+    social_urls
   end
 
   # {
