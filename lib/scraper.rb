@@ -15,9 +15,9 @@ class Scraper
 
     students.each do |student|
 
-      hash = { :name => student.css(".student-name")[0].text,
-        :location => student.css(".student-location")[0].text,
-        :profile_url => student.css("a")[0]['href'] }
+      hash = { name: student.css(".student-name")[0].text,
+        location: student.css(".student-location")[0].text,
+        profile_url: student.css("a")[0]['href'] }
         # binding.pry
       scraped_students << hash
       end
@@ -33,10 +33,9 @@ class Scraper
     students = doc.css(".social-icon-container")
 
     students.each do |student|
-      social_url = { :twitter => student.css("a")[0]['href'],
-        :linkedin => }
+      social_url = { :twitter => student.css("a")[0]['href'] }
 
-    binding.pry
+    # binding.pry
     end
   end
 
