@@ -34,7 +34,7 @@ class Scraper
 
     students.each do |student|
       social_url = { :twitter => student.css("a")[0]['href'],
-        :LinkedIn => }
+        :linkedin => }
 
     binding.pry
     end
