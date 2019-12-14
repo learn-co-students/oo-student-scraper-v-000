@@ -31,7 +31,7 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     # binding.pry
     doc = Nokogiri::HTML(open(profile_url))
-    students = doc.css(".social-icon-container")
+    students = doc.css(".vitals-container")
     # binding.pry
     students.each do |student|
       social_urls = { twitter: student.css("a")[0]['href'],
