@@ -32,8 +32,10 @@ class Scraper
 
     doc = Nokogiri::HTML(open(profile_url))
     # binding.pry
+    students = doc.css(".vitals-container") || doc.css(".details-container")
     # students = doc.css(".vitals-container")
-    students = doc.css(".main-wrapper profile")
+    # students = doc.css(".student-card")
+    # students = doc.css(".main-wrapper profile")
     # students = doc.css(".profile-banner")
     # binding.pry
     students.each do |student|
@@ -42,9 +44,9 @@ class Scraper
         github: student.css("a")[2]['href'],
         blog: student.css("a")[3]['href'],
         profile_quote: student.css(".profile-quote").text,
-         }
-    # binding.pry
-    # bio: student.css("p").text
+        bio: student.css("p").text }
+    binding.pry
+
     end
     social_urls
   end
