@@ -32,7 +32,7 @@ class Scraper
 
     doc = Nokogiri::HTML(open(profile_url))
     # binding.pry
-    students = doc.css(".vitals-container") && students = doc.css(".details-container")
+    students = doc.css(".vitals-container") || students = doc.css(".details-container")
     # students = doc.css(".vitals-container")
     # students = doc.css(".student-card")
     # students = doc.css(".main-wrapper profile")
