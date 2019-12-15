@@ -32,23 +32,23 @@ class Scraper
 
     doc = Nokogiri::HTML(open(profile_url))
     # binding.pry
-    students = doc.css(".vitals-container") || students = doc.css(".details-container")
+    # students = doc.css(".vitals-container") || students = doc.css(".details-container")
     # students = doc.css(".vitals-container")
     # students = doc.css(".student-card")
     # students = doc.css(".main-wrapper profile")
     # students = doc.css(".profile-banner")
     # binding.pry
-    students.each do |student|
-      social_urls = { twitter: student.css("a")[0]['href'],
-        linkedin: student.css("a")[1]['href'],
-        github: student.css("a")[2]['href'],
-        blog: student.css("a")[3]['href'],
-        profile_quote: student.css(".profile-quote").text,
-        bio: student.css("p").text }
+    # students.each do |student|
+      social_urls = { twitter: doc.css(".vitals-container").css("a")[0]['href'],
+        linkedin: doc.css(".vitals-container").css("a")[1]['href'],
+        github: doc.css(".vitals-container").css("a")[2]['href'],
+        blog: doc.css(".vitals-container").css("a")[3]['href'],
+        profile_quote: doc.css(".vitals-container").css(".profile-quote").text,
+        bio: doc.css(".details-container").css("p").text }
     binding.pry
 
-    end
-    social_urls
+    # end
+    # social_urls
   end
 
   # {
