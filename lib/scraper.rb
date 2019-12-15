@@ -33,5 +33,6 @@ class Scraper
         blog: doc.css(".vitals-container").css("a")[3]['href'],
         profile_quote: doc.css(".vitals-container").css(".profile-quote").text,
         bio: doc.css(".details-container").css("p").text }
+      social_urls.default = "Not available"
   end
 end
