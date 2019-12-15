@@ -21,43 +21,17 @@ class Scraper
         # binding.pry
       scraped_students << hash
       end
-      scraped_students
+      scraped_students 
       # binding.pry
     end
 
-    # The return value
-    # of this method should be a hash in which the key/value pairs describe an
-    # individual student
   def self.scrape_profile_page(profile_url)
-
     doc = Nokogiri::HTML(open(profile_url))
-    # binding.pry
-    # students = doc.css(".vitals-container") || students = doc.css(".details-container")
-    # students = doc.css(".vitals-container")
-    # students = doc.css(".student-card")
-    # students = doc.css(".main-wrapper profile")
-    # students = doc.css(".profile-banner")
-    # binding.pry
-    # students.each do |student|
       social_urls = { twitter: doc.css(".vitals-container").css("a")[0]['href'],
         linkedin: doc.css(".vitals-container").css("a")[1]['href'],
         github: doc.css(".vitals-container").css("a")[2]['href'],
         blog: doc.css(".vitals-container").css("a")[3]['href'],
         profile_quote: doc.css(".vitals-container").css(".profile-quote").text,
         bio: doc.css(".details-container").css("p").text }
-    binding.pry
-
-    # end
-    # social_urls
   end
-
-  # {
-  #   :twitter=>"http://twitter.com/flatironschool",
-  #   :linkedin=>"https://www.linkedin.com/in/flatironschool",
-  #   :github=>"https://github.com/learn-co",
-  #   :blog=>"http://flatironschool.com",
-  #   :profile_quote=>"\"Forget safety. Live where you fear to live. Destroy your reputation. Be notorious.\" - Rumi",
-  #   :bio=> "I'm a school"
-  # }
-
 end
