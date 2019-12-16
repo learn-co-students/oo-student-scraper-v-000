@@ -27,12 +27,18 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
-      social_urls = { twitter: doc.css(".vitals-container").css("a")[0]['href'],
-        linkedin: doc.css(".vitals-container").css("a")[1]['href'],
-        github: doc.css(".vitals-container").css("a")[2]['href'],
-        blog: doc.css(".vitals-container").css("a")[3]['href'],
-        profile_quote: doc.css(".vitals-container").css(".profile-quote").text,
+
+      # moons = Hash.new { |hash, key| hash[key] = [] }
+      social_urls = Hash.new { |hash, key| hash[key] = nil }
+
+      social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'],
+        linkedin: doc.css(".social-icon-container").css("a")[1]['href'],
+        github: doc.css(".social-icon-container").css("a")[2]['href'],
+        blog: doc.css(".social-icon-container").css("a")[3]['href'],
+        profile_quote: doc.css(".social-icon-container").css(".profile-quote").text,
         bio: doc.css(".details-container").css("p").text }
-      social_urls.default = "Not available"
+
+      # social_urls.default = "Not available"
   end
+
 end
