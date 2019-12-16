@@ -35,9 +35,9 @@ class Scraper
         linkedin: doc.css(".social-icon-container").css("a")[1]['href'],
         github: doc.css(".social-icon-container").css("a")[2]['href'],
         blog: doc.css(".social-icon-container").css("a")[3]['href'],
-        profile_quote: doc.css(".social-icon-container").css(".profile-quote").text,
+        profile_quote: doc.css(".vitals-text-container").css(".profile-quote").text,
         bio: doc.css(".details-container").css("p").text }
-
+        binding.pry
       # social_urls.default = "Not available"
   end
 
