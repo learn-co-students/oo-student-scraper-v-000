@@ -30,7 +30,7 @@ class Scraper
 
       # moons = Hash.new { |hash, key| hash[key] = [] }
       # social_urls = Hash.new { |hash, key| key = nil }
-      # social_urls = Hash.new{ |key, value| [key] = nil }
+      social_urls = Hash.new{ |key, value| :key value }
 
       social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'],
         linkedin: doc.css(".social-icon-container").css("a")[1]['href'],
