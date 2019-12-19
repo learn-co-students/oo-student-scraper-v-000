@@ -28,9 +28,16 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
 
-      # moons = Hash.new { |hash, key| hash[key] = [] }
-      # social_urls = Hash.new { |hash, key| key = nil }
-      social_urls = Hash.new{ |key, value| :key value }
+      # scraped_student = Hash.new{}
+      # scraped_student = Hash.new { |hash, key| hash[key] = nil }
+      # binding.pry
+      # scraped_student[:twitter] = doc.css(".social-icon-container").css("a")[0]['href']
+      # scraped_student[:linkedin] = doc.css(".social-icon-container").css("a")[1]['href']
+      # scraped_student[:github] = doc.css(".social-icon-container").css("a")[2]['href']
+      # scraped_student[:blog] = doc.css(".social-icon-container").css("a")[3]['href']
+      # scraped_student[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
+      # scraped_student[:bio] = doc.css(".details-container").css("p").text
+      # binding.pry
 
       social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'],
         linkedin: doc.css(".social-icon-container").css("a")[1]['href'],
@@ -38,8 +45,9 @@ class Scraper
         blog: doc.css(".social-icon-container").css("a")[3]['href'],
         profile_quote: doc.css(".vitals-text-container").css(".profile-quote").text,
         bio: doc.css(".details-container").css("p").text }
+        # social_urls = Hash.new(0)
         # binding.pry
-      # social_urls.default = "Not available"
+        # social_urls.default = 0
   end
 
 end
