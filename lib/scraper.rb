@@ -40,14 +40,26 @@ class Scraper
       # scraped_student[:bio] = doc.css(".details-container").css("p").text
       # binding.pry
 
-      social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'],
-        linkedin: doc.css(".social-icon-container").css("a")[1]['href'],
-        github: doc.css(".social-icon-container").css("a")[2]['href'],
-        blog: doc.css(".social-icon-container").css("a")[3]['href'],
-        profile_quote: doc.css(".vitals-text-container").css(".profile-quote").text,
-        bio: doc.css(".details-container").css("p").text }
+      social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'] || "Not available",
+        linkedin: doc.css(".social-icon-container").css("a")[1]['href'] || "Not available",
+        github: doc.css(".social-icon-container").css("a")[2]['href'] || "Not available",
+        blog: doc.css(".social-icon-container").css("a")[3]['href'] || "Not available",
+        profile_quote: doc.css(".vitals-text-container").css(".profile-quote").text || "Not available",
+        bio: doc.css(".details-container").css("p").text || "Not available" }
+
+      # social_urls.fetch(:twitter, "Not available")
+      # social_urls.fetch(:linkedin, "Not available")
+      # social_urls.fetch(:github, "Not available")
+      # social_urls.fetch(:blog, "Not available")
+      # social_urls.fetch(:profile_url, "Not available")
+      # social_urls.fetch(:bio, "Not available")
         # social_urls = Hash.new(0)
-        binding.pry
+        # binding.pry
+
+        # pets = { cat: "Jess" }
+        # pets.fetch(:dinosaur, "They all died :(")
+# => "They all died :("
+
         # social_urls.default = 0
         # return nil if @social_urls != @social_urls[:twitter] || @social_urls[:linkedin] || @social_urls[:github] || @social_urls[:blog] ||
         #   @social_urls[:profile_url] || @social_urls[:bio]
