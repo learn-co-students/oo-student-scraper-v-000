@@ -28,6 +28,7 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
 
+      # binding.pry
       # scraped_student = Hash.new{}
       # scraped_student = Hash.new { |hash, key| hash[key] = nil }
       # binding.pry
@@ -48,6 +49,8 @@ class Scraper
         # social_urls = Hash.new(0)
         # binding.pry
         # social_urls.default = 0
+        # return nil if @social_urls != @social_urls[:twitter] || @social_urls[:linkedin] || @social_urls[:github] || @social_urls[:blog] ||
+        #   @social_urls[:profile_url] || @social_urls[:bio]
   end
 
 end
