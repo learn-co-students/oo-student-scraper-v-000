@@ -47,7 +47,7 @@ class Scraper
         profile_quote: doc.css(".vitals-text-container").css(".profile-quote").text,
         bio: doc.css(".details-container").css("p").text }
         # social_urls = Hash.new(0)
-        # binding.pry
+        binding.pry
         # social_urls.default = 0
         # return nil if @social_urls != @social_urls[:twitter] || @social_urls[:linkedin] || @social_urls[:github] || @social_urls[:blog] ||
         #   @social_urls[:profile_url] || @social_urls[:bio]
