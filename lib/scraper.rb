@@ -27,14 +27,22 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
+      social_urls = Hash.new("Not available")
+      # binding.pry
+      social_urls[:twitter] = doc.css(".social-icon-container").css("a")[0]['href']
+      social_urls[:linkedin] = doc.css(".social-icon-container").css("a")[1]['href']
+      social_urls[:github] = doc.css(".social-icon-container").css("a")[2]['href']
+      social_urls[:blog] = doc.css(".social-icon-container").css("a")[3]['href']
+      social_urls[:profile_url] = doc.css(".vitals-text-container").css(".profile-quote").text
+      social_urls[:bio] = doc.css(".details-container").css("p").text
 
-      social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'],
-        linkedin: doc.css(".social-icon-container").css("a")[1]['href'],
-        github: doc.css(".social-icon-container").css("a")[2]['href'],
-        blog: doc.css(".social-icon-container").css("a")[3]['href'],
-        profile_quote: doc.css(".vitals-text-container").css(".profile-quote").text,
-        bio: doc.css(".details-container").css("p").text }
-
+      # social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'],
+      #   linkedin: doc.css(".social-icon-container").css("a")[1]['href'],
+      #   github: doc.css(".social-icon-container").css("a")[2]['href'],
+      #   blog: doc.css(".social-icon-container").css("a")[3]['href'],
+      #   profile_quote: doc.css(".vitals-text-container").css(".profile-quote").text,
+      #   bio: doc.css(".details-container").css("p").text }
+        binding.pry
         # fetch(key_name) { |key| "default" }
 
         # contact_info.each { |key, value| print key + ' = ' + value + "\n" }
@@ -42,14 +50,14 @@ class Scraper
         # social_urls.fetch(social_urls[:key]) { |key| "Not available" }
         # h.include?(key)
 
-        social_urls.each do |key, value|
-          # binding.pry
-          if social_urls.include?(key) == false
-            # value = "Not available"
-            return { :key => "Not available"}
-          end
-        #   social_urls.fetch(key) { |social_urls[:key]| "Not available" }
-        end
+        # social_urls.each do |key, value|
+        #   # binding.pry
+        #   if social_urls.include?(key) == false
+        #     # value = "Not available"
+        #     return { :key => "Not available"}
+        #   end
+        # #   social_urls.fetch(key) { |social_urls[:key]| "Not available" }
+        # end
 
         # social_urls.fetch(:twitter, "Not available")
         # social_urls.fetch(:linkedin, "Not available")
