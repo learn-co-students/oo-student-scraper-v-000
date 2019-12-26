@@ -42,7 +42,7 @@ class Scraper
       #   blog: doc.css(".social-icon-container").css("a")[3]['href'],
       #   profile_quote: doc.css(".vitals-text-container").css(".profile-quote").text,
       #   bio: doc.css(".details-container").css("p").text }
-        binding.pry
+        # binding.pry
         # fetch(key_name) { |key| "default" }
 
         # contact_info.each { |key, value| print key + ' = ' + value + "\n" }
