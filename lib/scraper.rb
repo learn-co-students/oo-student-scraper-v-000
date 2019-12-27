@@ -27,20 +27,26 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
-      # social_urls = Hash.new("Not available")
-      social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'],
-        linkedin: doc.css(".social-icon-container").css("a")[1]['href'],
-        github: doc.css(".social-icon-container").css("a")[2]['href'],
-        blog: doc.css(".social-icon-container").css("a")[3]['href'],
-        profile_quote: doc.css(".vitals-text-container").css(".profile-quote").text,
-        bio: doc.css(".details-container").css("p").text }
+      social_urls = Hash.new
+      # social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'],
+      #   linkedin: doc.css(".social-icon-container").css("a")[1]['href'],
+      #   github: doc.css(".social-icon-container").css("a")[2]['href'],
+      #   blog: doc.css(".social-icon-container").css("a")[3]['href'],
+      #   profile_quote: doc.css(".vitals-text-container").css(".profile-quote").text,
+      #   bio: doc.css(".details-container").css("p").text }
 
       if doc.css(".social-icon-container").css("a") != nil ||
         doc.css(".vitals-text-container").css(".profile-quote") != nil ||
         doc.css(".details-container").css("p") != nil
-        social_urls
+        social_urls[:twitter] = doc.css(".social-icon-container").css("a")[0]['href']
+        social_urls[:linkedin] = doc.css(".social-icon-container").css("a")[1]['href']
+        social_urls[:github] = doc.css(".social-icon-container").css("a")[2]['href']
+        social_urls[:blog] = doc.css(".social-icon-container").css("a")[3]['href']
+        social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
+        social_urls[:bio] = doc.css(".details-container").css("p").text
       end
-      # binding.pry
+      social_urls
+      binding.pry
 
       # social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'],
       #   linkedin: doc.css(".social-icon-container").css("a")[1]['href'],
@@ -50,7 +56,7 @@ class Scraper
       #   bio: doc.css(".details-container").css("p").text }
         # binding.pry
         # Coach said to try this concept for each link:
-        # use if on this section  of "doc.css(".social-icon-container").css("a")" and check that it is not nil.
+        # use it on this section  of "doc.css(".social-icon-container").css("a")" and check that it is not nil.
         # if not nil you can then take the whole link above and add it to the key.
         # if doc.css(".social-icon-container").css("a") != nil
         #   then social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'] }
