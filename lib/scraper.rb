@@ -46,7 +46,7 @@ class Scraper
         social_urls[:bio] = doc.css(".details-container").css("p").text
       end
       social_urls
-      binding.pry
+      # binding.pry
 
       # social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'],
       #   linkedin: doc.css(".social-icon-container").css("a")[1]['href'],
