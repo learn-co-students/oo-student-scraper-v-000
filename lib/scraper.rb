@@ -35,19 +35,26 @@ class Scraper
       #   profile_quote: doc.css(".vitals-text-container").css(".profile-quote").text,
       #   bio: doc.css(".details-container").css("p").text }
 
-      if doc.css(".social-icon-container").css("a") != nil ||
-        doc.css(".vitals-text-container").css(".profile-quote") != nil ||
-        doc.css(".details-container").css("p") != nil
-        social_urls[:twitter] = doc.css(".social-icon-container").css("a")[0]['href']
-        social_urls[:linkedin] = doc.css(".social-icon-container").css("a")[1]['href']
-        social_urls[:github] = doc.css(".social-icon-container").css("a")[2]['href']
-        social_urls[:blog] = doc.css(".social-icon-container").css("a")[3]['href']
-        social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
-        social_urls[:bio] = doc.css(".details-container").css("p").text
-      end
-      social_urls
+        social_urls = { twitter: doc.css(".vitals-container").css("a")[0]['href'],
+          linkedin: doc.css(".vitals-container").css("a")[1]['href'],
+          github: doc.css(".vitals-container").css("a")[2]['href'],
+          blog: doc.css(".vitals-container").css("a")[3]['href'],
+          profile_quote: doc.css(".vitals-container").css(".profile-quote").text,
+          bio: doc.css(".details-container").css("p").text }
 
-      
+      # if doc.css(".social-icon-container").css("a") != nil ||
+      #   doc.css(".vitals-text-container").css(".profile-quote") != nil ||
+      #   doc.css(".details-container").css("p") != nil
+      #   social_urls[:twitter] = doc.css(".social-icon-container").css("a")[0]['href']
+      #   social_urls[:linkedin] = doc.css(".social-icon-container").css("a")[1]['href']
+      #   social_urls[:github] = doc.css(".social-icon-container").css("a")[2]['href']
+      #   social_urls[:blog] = doc.css(".social-icon-container").css("a")[3]['href']
+      #   social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
+      #   social_urls[:bio] = doc.css(".details-container").css("p").text
+      # end
+      # social_urls
+
+
       binding.pry
 
       # social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'],
