@@ -27,20 +27,34 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
-      social_urls = Hash.new
-      # social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'],
-      #   linkedin: doc.css(".social-icon-container").css("a")[1]['href'],
-      #   github: doc.css(".social-icon-container").css("a")[2]['href'],
-      #   blog: doc.css(".social-icon-container").css("a")[3]['href'],
-      #   profile_quote: doc.css(".vitals-text-container").css(".profile-quote").text,
-      #   bio: doc.css(".details-container").css("p").text }
+    # binding.pry
+    # courses = doc.css("#2a778efd-1685-5ec6-9e5a-0843d6a88b7b .inlineMobileLeft-2Yo002.imageTextBlockGrid3-2XAK6G")
+    #
+    # courses.each do |course|
+    #   puts course.text.strip
+    # end
 
-        social_urls = { twitter: doc.css(".vitals-container").css("a")[0]['href'],
-          linkedin: doc.css(".vitals-container").css("a")[1]['href'],
-          github: doc.css(".vitals-container").css("a")[2]['href'],
-          blog: doc.css(".vitals-container").css("a")[3]['href'],
-          profile_quote: doc.css(".vitals-container").css(".profile-quote").text,
-          bio: doc.css(".details-container").css("p").text }
+    social_urls = doc.css(".social-icon-container a")
+    # binding.pry
+      social_urls.each do |social_url|
+        social_url
+        binding.pry
+      end
+
+      # social_urls = Hash.new
+      # # social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'],
+      # #   linkedin: doc.css(".social-icon-container").css("a")[1]['href'],
+      # #   github: doc.css(".social-icon-container").css("a")[2]['href'],
+      # #   blog: doc.css(".social-icon-container").css("a")[3]['href'],
+      # #   profile_quote: doc.css(".vitals-text-container").css(".profile-quote").text,
+      # #   bio: doc.css(".details-container").css("p").text }
+      #
+      #   social_urls = { twitter: doc.css(".vitals-container").css("a")[0]['href'],
+      #     linkedin: doc.css(".vitals-container").css("a")[1]['href'],
+      #     github: doc.css(".vitals-container").css("a")[2]['href'],
+      #     blog: doc.css(".vitals-container").css("a")[3]['href'],
+      #     profile_quote: doc.css(".vitals-container").css(".profile-quote").text,
+      #     bio: doc.css(".details-container").css("p").text }
 
       # if doc.css(".social-icon-container").css("a") != nil ||
       #   doc.css(".vitals-text-container").css(".profile-quote") != nil ||
@@ -54,8 +68,7 @@ class Scraper
       # end
       # social_urls
 
-
-      binding.pry
+      # binding.pry
 
       # social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'],
       #   linkedin: doc.css(".social-icon-container").css("a")[1]['href'],
