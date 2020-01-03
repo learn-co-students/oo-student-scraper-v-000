@@ -50,11 +50,12 @@ class Scraper
        temp_profile_quote = ""
        temp_bio = ""
 
+      #  doc.css(".social-icon-container").css("a")
+      #  binding.pry
 
-      if doc.css(".social-icon-container").include?("twitter.com")
-        binding.pry
-      end
+      doc.css(".social-icon-container").css("a").include?("twitter.com")
 
+      binding.pry
 
       social_urls = { twitter: temp_twitter, linkedin: temp_linkedin, github: temp_github, blog: temp_blog, profile_quote: temp_profile_quote,
         bio: temp_bio }
