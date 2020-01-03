@@ -34,21 +34,40 @@ class Scraper
     #   puts course.text.strip
     # end
 
-    social_urls = doc.css(".social-icon-container a")
-    # binding.pry
-      social_urls.each do |social_url|
-        social_url
+    # social_urls = doc.css(".social-icon-container a")
+    # # binding.pry
+    #   social_urls.each do |social_url|
+    #     social_url
+    #     binding.pry
+    #   end
+
+      social_urls = Hash.new
+
+       temp_twitter = ""
+       temp_linkedin = ""
+       temp_github = ""
+       temp_blog =  ""
+       temp_profile_quote = ""
+       temp_bio = ""
+
+
+      if doc.css(".social-icon-container").include?("twitter.com")
         binding.pry
       end
 
-      # social_urls = Hash.new
-      # # social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'],
-      # #   linkedin: doc.css(".social-icon-container").css("a")[1]['href'],
-      # #   github: doc.css(".social-icon-container").css("a")[2]['href'],
-      # #   blog: doc.css(".social-icon-container").css("a")[3]['href'],
-      # #   profile_quote: doc.css(".vitals-text-container").css(".profile-quote").text,
-      # #   bio: doc.css(".details-container").css("p").text }
+
+      social_urls = { twitter: temp_twitter, linkedin: temp_linkedin, github: temp_github, blog: temp_blog, profile_quote: temp_profile_quote,
+        bio: temp_bio }
+
+      # social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'],
+      #   linkedin: doc.css(".social-icon-container").css("a")[1]['href'],
+      #   github: doc.css(".social-icon-container").css("a")[2]['href'],
+      #   blog: doc.css(".social-icon-container").css("a")[3]['href'],
+      #   profile_quote: doc.css(".vitals-text-container").css(".profile-quote").text,
+      #   bio: doc.css(".details-container").css("p").text }
+        # binding.pry
       #
+
       #   social_urls = { twitter: doc.css(".vitals-container").css("a")[0]['href'],
       #     linkedin: doc.css(".vitals-container").css("a")[1]['href'],
       #     github: doc.css(".vitals-container").css("a")[2]['href'],
