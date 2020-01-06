@@ -54,23 +54,36 @@ class Scraper
       #  binding.pry
 
       if doc.css(".social-icon-container").css("a")[0]['href'].include?("twitter.com")
-        doc.css(".social-icon-container").css("a")[0]['href']
+        social_urls[:twitter] = doc.css(".social-icon-container").css("a")[0]['href']
       end
 
       if doc.css(".social-icon-container").css("a")[1]['href'].include?("linkedin.com")
-        doc.css(".social-icon-container").css("a")[1]['href']
+        social_urls[:linkedin] = doc.css(".social-icon-container").css("a")[1]['href']
       end
 
       if doc.css(".social-icon-container").css("a")[2]['href'].include?("github.com")
-        doc.css(".social-icon-container").css("a")[2]['href']
+        social_urls[:github] = doc.css(".social-icon-container").css("a")[2]['href']
       end
 
-      doc.css(".social-icon-container").css("a")
-      doc.css(".social-icon-container").css("a")[0]['href']
+      if doc.css(".social-icon-container").css("a")[3]['href'].include?(".com")
+        social_urls[:blog] = doc.css(".social-icon-container").css("a")[3]['href']
+      end
+
+      if doc.css(".vitals-text-container").css(".profile-quote").text.include?(".com")
+        social_urls[:blog] = doc.css(".vitals-text-container").css(".profile-quote").text
+      end
+
+      if doc.css(".details-container").css("p").text.include?(".com")
+        social_urls[:bio] = doc.css(".details-container").css("p").text
+      end
       binding.pry
 
-      social_urls = { twitter: temp_twitter, linkedin: temp_linkedin, github: temp_github, blog: temp_blog, profile_quote: temp_profile_quote,
-        bio: temp_bio }
+      # doc.css(".social-icon-container").css("a")
+      # doc.css(".social-icon-container").css("a")[0]['href']
+      # binding.pry
+      #
+      # social_urls = { twitter: temp_twitter, linkedin: temp_linkedin, github: temp_github, blog: temp_blog, profile_quote: temp_profile_quote,
+      #   bio: temp_bio }
 
       # social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'],
       #   linkedin: doc.css(".social-icon-container").css("a")[1]['href'],
