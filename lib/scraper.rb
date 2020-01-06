@@ -64,10 +64,10 @@ class Scraper
 
       if doc.css(".vitals-text-container").css(".profile-quote").text.include?("")
         profile_quote = doc.css(".vitals-text-container").css(".profile-quote").text
-        social_urls = { profile_quote: profile_quote }
-        # social_urls[:blog] = profile_quote
-      # else social_urls[:blog] = temp_profile_quote
-      else social_urls = { profile_quote: temp_profile_quote }
+        # social_urls = { profile_quote: profile_quote }
+        social_urls[:profile_quote] = profile_quote
+      else social_urls[:profile_quote] = temp_profile_quote
+      # else social_urls = { profile_quote: temp_profile_quote }
       end
 
       if doc.css(".details-container").css("p").text.include?("")
