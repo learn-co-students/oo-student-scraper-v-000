@@ -61,6 +61,9 @@ class Scraper
         doc.css(".social-icon-container").css("a")[1]['href']
       end
 
+      if doc.css(".social-icon-container").css("a")[2]['href'].include?("linkedin.com")
+        doc.css(".social-icon-container").css("a")[2]['href']
+      end
 
       doc.css(".social-icon-container").css("a")
       doc.css(".social-icon-container").css("a")[0]['href']
