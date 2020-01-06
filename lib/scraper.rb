@@ -69,11 +69,11 @@ class Scraper
         social_urls[:blog] = doc.css(".social-icon-container").css("a")[3]['href']
       end
 
-      if doc.css(".vitals-text-container").css(".profile-quote").text.include?(".com")
+      if doc.css(".vitals-text-container").css(".profile-quote").text.include?("")
         social_urls[:blog] = doc.css(".vitals-text-container").css(".profile-quote").text
       end
 
-      if doc.css(".details-container").css("p").text.include?(".com")
+      if doc.css(".details-container").css("p").text.include?("")
         social_urls[:bio] = doc.css(".details-container").css("p").text
       end
       binding.pry
