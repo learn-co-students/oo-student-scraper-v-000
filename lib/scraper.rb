@@ -28,7 +28,7 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
 
-      social_urls = Hash.new
+      social_urls = {}
 
        temp_twitter = ""
        temp_linkedin = ""
@@ -64,10 +64,10 @@ class Scraper
 
       if doc.css(".vitals-text-container").css(".profile-quote").text.include?("")
         profile_quote = doc.css(".vitals-text-container").css(".profile-quote").text
-        # social_urls = { profile_quote: profile_quote }
-        social_urls[:profile_quote] = profile_quote
-      else social_urls[:profile_quote] = temp_profile_quote
-      # else social_urls = { profile_quote: temp_profile_quote }
+        social_urls = { profile_quote: profile_quote }
+      #   social_urls[:profile_quote] = profile_quote
+      # else social_urls[:profile_quote] = temp_profile_quote
+      else social_urls = { profile_quote: temp_profile_quote }
       end
 
       if doc.css(".details-container").css("p").text.include?("")
@@ -75,7 +75,7 @@ class Scraper
         social_urls[:bio] = bio
       else social_urls[:bio] = temp_bio
       end
-
+      social_urls
       # social_urls = { twitter: temp_twitter, linkedin: temp_linkedin, github: temp_github, blog: temp_blog, profile_quote: temp_profile_quote,
       #   bio: temp_bio }
       # binding.pry
