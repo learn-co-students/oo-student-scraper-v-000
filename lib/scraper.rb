@@ -53,8 +53,17 @@ class Scraper
       #  doc.css(".social-icon-container").css("a")
       #  binding.pry
 
-      doc.css(".social-icon-container").css("a").include?("twitter.com")
+      if doc.css(".social-icon-container").css("a")[0]['href'].include?("twitter.com")
+        doc.css(".social-icon-container").css("a")[0]['href']
+      end
 
+      if doc.css(".social-icon-container").css("a")[1]['href'].include?("linkedin.com")
+        doc.css(".social-icon-container").css("a")[1]['href']
+      end
+
+
+      doc.css(".social-icon-container").css("a")
+      doc.css(".social-icon-container").css("a")[0]['href']
       binding.pry
 
       social_urls = { twitter: temp_twitter, linkedin: temp_linkedin, github: temp_github, blog: temp_blog, profile_quote: temp_profile_quote,
