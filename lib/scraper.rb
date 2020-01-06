@@ -28,54 +28,84 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
 
-       temp_twitter = ""
-       temp_linkedin = ""
-       temp_github = ""
-       temp_blog =  ""
-       temp_profile_quote = ""
-       temp_bio = ""
+      #  temp_twitter = "Not available"
+      #  temp_linkedin = "Not available"
+      #  temp_github = "Not available"
+      #  temp_blog =  "Not available"
+      #  temp_profile_quote = "Not available"
+      #  temp_bio = "Not available"
+        social_urls = Hash.new
 
-       social_urls = { twitter: temp_twitter, linkedin: temp_linkedin, github: temp_github, blog: temp_blog, profile_quote: temp_profile_quote,
-         bio: temp_bio }
+        # doc.css(".social-icon-container").css("a").each do |social|
+        #   social['href']
+        #   binding.pry
+        # end
 
-      if doc.css(".social-icon-container").css("a")[0]['href'].include?("twitter.com")
-        temp_twitter = doc.css(".social-icon-container").css("a")[0]['href']
-        social_urls[:twitter] = temp_twitter
-      # else social_urls[:twitter] = temp_twitter
-      end
+        # profile-quote = doc.css(".vitals-text-container").css(".profile-quote").text
+        # binding.pry
 
-      if doc.css(".social-icon-container").css("a")[1]['href'].include?("linkedin.com")
-        temp_linkedin = doc.css(".social-icon-container").css("a")[1]['href']
-        social_urls[:linkedin] = temp_linkedin
-      # else social_urls[:linkedin] = temp_linkedin
-      end
+        # bio = doc.css(".details-container").css("p").text
 
-      if doc.css(".social-icon-container").css("a")[2]['href'].include?("github.com")
-        temp_github = doc.css(".social-icon-container").css("a")[2]['href']
-        social_urls[:github] = temp_github
-      # else social_urls[:github] = temp_github
-      end
+      #  twitter = doc.css(".social-icon-container").css("a")[0]['href']
+      #  linkedin = doc.css(".social-icon-container").css("a")[1]['href']
+      #  github = doc.css(".social-icon-container").css("a")[2]['href']
+      #  blog = doc.css(".social-icon-container").css("a")[3]['href']
+      #  profile_quote = doc.css(".vitals-text-container").css(".profile-quote").text
+      #  bio = doc.css(".details-container").css("p").text
 
-      if doc.css(".social-icon-container").css("a")[3]['href'].include?(".com")
-        temp_blog = doc.css(".social-icon-container").css("a")[3]['href']
-        social_urls[:blog] = temp_blog
-      # else social_urls[:blog] = temp_blog
-      end
+      #  social_urls = { twitter: temp_twitter, linkedin: temp_linkedin, github: temp_github, blog: temp_blog, profile_quote: temp_profile_quote,
+      #    bio: temp_bio }
 
-      if doc.css(".vitals-text-container").css(".profile-quote").text.include?("")
-        temp_profile_quote = doc.css(".vitals-text-container").css(".profile-quote").text
-        # social_urls = { profile_quote: profile_quote }
-        social_urls[:profile_quote] = temp_profile_quote
-      # else social_urls[:profile_quote] = temp_profile_quote
-      # else social_urls = { profile_quote: temp_profile_quote }
-      end
-
-      if doc.css(".details-container").css("p").text.include?("")
-        temp_bio = doc.css(".details-container").css("p").text
-        social_urls[:bio] = temp_bio
-      # else social_urls[:bio] = temp_bio
-      end
-      social_urls
+      # if doc.css(".social-icon-container").css("a")[0]['href'].eql?(nil)
+      #   social_urls[:twitter] = ""
+      #
+      # # if doc.css(".social-icon-container").css("a")[0]['href'].include?("twitter.com")
+      # #   twitter = doc.css(".social-icon-container").css("a")[0]['href']
+      # #   social_urls[:twitter] = twitter
+      # else social_urls[:twitter] = doc.css(".social-icon-container").css("a")[0]['href']
+      #   # binding.pry
+      # end
+      #
+      # if doc.css(".social-icon-container").css("a")[1]['href'].eql?(nil)
+      #   social_urls[:linkedin] = ""
+      # # if doc.css(".social-icon-container").css("a")[1]['href'].include?("linkedin.com")
+      #   # linkedin = doc.css(".social-icon-container").css("a")[1]['href']
+      #   # social_urls[:linkedin] = linkedin
+      # else social_urls[:linkedin] = doc.css(".social-icon-container").css("a")[1]['href']
+      # end
+      #
+      # if doc.css(".social-icon-container").css("a")[2]['href'].eql?(nil)
+      #   social_urls[:github] = ""
+      # # if doc.css(".social-icon-container").css("a")[2]['href'].include?("github.com")
+      #   # github = doc.css(".social-icon-container").css("a")[2]['href']
+      #   # social_urls[:github] = github
+      # else social_urls[:github] = doc.css(".social-icon-container").css("a")[2]['href']
+      # end
+      #
+      # if doc.css(".social-icon-container").css("a")[3]['href'].eql?(nil)
+      #   social_urls[:blog] = ""
+      # # if doc.css(".social-icon-container").css("a")[3]['href'].include?(".com")
+      #   # blog = doc.css(".social-icon-container").css("a")[3]['href']
+      #   # social_urls[:blog] = blog
+      # else social_urls[:blog] = doc.css(".social-icon-container").css("a")[3]['href']
+      # end
+      #
+      # if doc.css(".vitals-text-container").css(".profile-quote").text.eql?(nil)
+      #   social_urls[:profile_quote] = ""
+      # # if doc.css(".vitals-text-container").css(".profile-quote").text.include?("")
+      #   # profile_quote = doc.css(".vitals-text-container").css(".profile-quote").text
+      #   # social_urls[:profile_quote] = profile_quote
+      # else social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
+      # end
+      #
+      # if doc.css(".details-container").css("p").text.eql?(nil)
+      #   social_urls[:bio] = ""
+      # # if doc.css(".details-container").css("p").text.include?("")
+      #   # bio = doc.css(".details-container").css("p").text
+      #   # social_urls[:bio] = bio
+      # else social_urls[:bio] = doc.css(".details-container").css("p").text
+      # end
+      # social_urls
 
       # binding.pry
 
