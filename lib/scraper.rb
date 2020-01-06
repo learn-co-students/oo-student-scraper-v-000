@@ -41,7 +41,7 @@ class Scraper
       if doc.css(".social-icon-container").css("a")[0]['href'].include?("twitter.com")
         twitter = doc.css(".social-icon-container").css("a")[0]['href']
         social_urls[:twitter] = twitter
-      else social_urls[:twitter] = temp_twitter 
+      else social_urls[:twitter] = temp_twitter
       end
 
       if doc.css(".social-icon-container").css("a")[1]['href'].include?("linkedin.com")
@@ -64,8 +64,10 @@ class Scraper
 
       if doc.css(".vitals-text-container").css(".profile-quote").text.include?("")
         profile_quote = doc.css(".vitals-text-container").css(".profile-quote").text
-        social_urls[:blog] = profile_quote
-      else social_urls[:blog] = temp_profile_quote
+        social_urls = { profile_quote: profile_quote }
+        # social_urls[:blog] = profile_quote
+      # else social_urls[:blog] = temp_profile_quote
+      else social_urls = { profile_quote: temp_profile_quote }
       end
 
       if doc.css(".details-container").css("p").text.include?("")
@@ -76,7 +78,7 @@ class Scraper
 
       # social_urls = { twitter: temp_twitter, linkedin: temp_linkedin, github: temp_github, blog: temp_blog, profile_quote: temp_profile_quote,
       #   bio: temp_bio }
-      binding.pry
+      # binding.pry
 
       # social_urls = { twitter: temp_twitter, linkedin: temp_linkedin, github: temp_github, blog: temp_blog, profile_quote: temp_profile_quote,
       #   bio: temp_bio }
