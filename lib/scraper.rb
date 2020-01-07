@@ -113,7 +113,7 @@ class Scraper
       # # else social_urls[:blog] = doc.css(".social-icon-container").css("a")[3]['href']
       # end
 
-      if doc.css(".vitals-text-container").css(".profile-quote").text.eql?(nil)
+      if doc.css(".vitals-text-container").css(".profile-quote").text.include?("")
         social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
       # if doc.css(".vitals-text-container").css(".profile-quote").text.include?("")
       #   profile_quote = doc.css(".vitals-text-container").css(".profile-quote").text
@@ -122,7 +122,7 @@ class Scraper
       # else social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
       end
 
-      if doc.css(".details-container").css("p").text.eql?(nil)
+      if doc.css(".details-container").css("p").text.include?("")
         social_urls[:bio] = doc.css(".details-container").css("p").text
       # if doc.css(".details-container").css("p").text.include?("")
       #   bio = doc.css(".details-container").css("p").text
