@@ -43,12 +43,15 @@ class Scraper
           if social['href'].include?("twitter.com")
             social_urls[:twitter] = social
             else social_urls[:twitter] = ""
+            end
           elsif social['href'].include?("linkedin.com")
             social_urls[:linkedin] = social
             else social_urls[:linkedin] = ""
+            end
           elsif social['href'].include?("github.com")
             social_urls[:github] = social
             else social_urls[:github] = ""
+            end
             # social_urls[:] = ""
           binding.pry
           end
