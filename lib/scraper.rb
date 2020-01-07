@@ -58,9 +58,13 @@ class Scraper
 
             # social_urls[:] = ""
           end
-            binding.pry
+            # binding.pry
         end
 
+        doc.css(".main-wrapper profile").css("a").each do |social|
+          social['href']
+          binding.pry
+        end
         # profile-quote = doc.css(".vitals-text-container").css(".profile-quote").text
         # binding.pry
 
