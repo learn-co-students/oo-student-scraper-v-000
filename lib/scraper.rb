@@ -18,27 +18,16 @@ class Scraper
       hash = { name: student.css(".student-name")[0].text,
         location: student.css(".student-location")[0].text,
         profile_url: student.css("a")[0]['href'] }
-        # binding.pry
       scraped_students << hash
       end
       scraped_students
-      # binding.pry
     end
 
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
 
-      #  twitter = ""
-      #  linkedin = ""
-      #  github = ""
-      #  blog =  ""
-      #  profile_quote = ""
-      #  bio = ""
-       #
-      #  social_urls = { twitter: twitter, linkedin: linkedin, github: github, blog: blog, profile_quote: profile_quote,
-      #    bio: bio }
-
-       social_urls = Hash.new
+       social_urls = {}
+      #  social_urls = Hash.new
 
         doc.css(".social-icon-container").css("a").each do |social|
           if social['href'].include?("twitter.com")
