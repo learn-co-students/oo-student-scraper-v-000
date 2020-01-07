@@ -121,11 +121,11 @@ class Scraper
       # # else social_urls[:blog] = doc.css(".social-icon-container").css("a")[3]['href']
       # end
 
-      # if doc.css(".vitals-text-container").css(".profile-quote").text.include?("")
-      #   social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
+      if doc.css(".vitals-text-container").css(".profile-quote").text.include?("")
+        social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
 
-      if doc.css(".vitals-text-container").css(".profile-quote").text != ("")
-         social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
+      # if doc.css(".vitals-text-container").css(".profile-quote").text != ("")
+      #    social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
       # #   social_urls[:profile_quote] = ""
       # # if doc.css(".vitals-text-container").css(".profile-quote").text.include?("")
       # #   profile_quote = doc.css(".vitals-text-container").css(".profile-quote").text
@@ -136,40 +136,10 @@ class Scraper
 
       if doc.css(".details-container").css("p").text != ("")
         social_urls[:bio] = doc.css(".details-container").css("p").text
-      # # if doc.css(".details-container").css("p").text.include?("")
-      # #   social_urls[:bio] = doc.css(".details-container").css("p").text
-      # # if doc.css(".details-container").css("p").text.include?("")
-      # #   bio = doc.css(".details-container").css("p").text
-      # #   social_urls[:bio] = bio
-      # # else social_urls[:bio] = ""
-      # else social_urls[:bio] = doc.css(".details-container").css("p").text
+      # if doc.css(".details-container").css("p").text.include?("")
+      #   social_urls[:bio] = doc.css(".details-container").css("p").text
       end
       social_urls
-
-      # binding.pry
-
-      # social_urls = { twitter: temp_twitter, linkedin: temp_linkedin, github: temp_github, blog: temp_blog, profile_quote: temp_profile_quote,
-      #   bio: temp_bio }
-
-      # social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'],
-      #   linkedin: doc.css(".social-icon-container").css("a")[1]['href'],
-      #   github: doc.css(".social-icon-container").css("a")[2]['href'],
-      #   blog: doc.css(".social-icon-container").css("a")[3]['href'],
-      #   profile_quote: doc.css(".vitals-text-container").css(".profile-quote").text,
-      #   bio: doc.css(".details-container").css("p").text }
-        # binding.pry
-
-
-        # Coach said to try this concept for each link:
-        # use it on this section  of "doc.css(".social-icon-container").css("a")" and check that it is not nil.
-        # if not nil you can then take the whole link above and add it to the key.
-        # if doc.css(".social-icon-container").css("a") != nil
-        #   then social_urls = { twitter: doc.css(".social-icon-container").css("a")[0]['href'] }
-        # social_urls.each do |key, value|
-        # social_urls.reject { |k,v| v.nil? }
-        # binding.pry
-        # end
-        # binding.pry
   end
 
 end
