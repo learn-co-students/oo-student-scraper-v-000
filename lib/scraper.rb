@@ -28,35 +28,33 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
 
-       twitter = ""
-       linkedin = ""
-       github = ""
-       blog =  ""
-       profile_quote = ""
-       bio = ""
+      #  twitter = ""
+      #  linkedin = ""
+      #  github = ""
+      #  blog =  ""
+      #  profile_quote = ""
+      #  bio = ""
        #
-       social_urls = { twitter: twitter, linkedin: linkedin, github: github, blog: blog, profile_quote: profile_quote,
-         bio: bio }
-      #  binding.pry
+      #  social_urls = { twitter: twitter, linkedin: linkedin, github: github, blog: blog, profile_quote: profile_quote,
+      #    bio: bio }
+
+       social_urls = Hash.new
+
         doc.css(".social-icon-container").css("a").each do |social|
           # if social['href'].eql?(nil)
           if social['href'].include?("twitter.com")
             social_urls[:twitter] = social['href']
-            # else social_urls[:twitter] = ""
 
           elsif social['href'].include?("linkedin")
             social_urls[:linkedin] = social['href']
-            # else social_urls[:linkedin] = ""
 
           elsif social['href'].include?("github")
             social_urls[:github] = social['href']
-            # else social_urls[:github] = ""
 
           elsif social['href'].include?(".com")
+          # elsif social['href'] != ("")
             social_urls[:blog] = social['href']
-            # else social_urls[:blog] = ""
-
-            # social_urls[:] = ""
+            # binding.pry
           end
 
           if doc.css(".vitals-text-container").css(".profile-quote").text != ("")
