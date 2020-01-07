@@ -29,7 +29,7 @@ class Scraper
        social_urls = {}
       #  social_urls = Hash.new
 
-        doc.css(".social-icon-container").css("a").each do |social|
+        doc.css(".social-icon-container").css("a").each do |social|  
           if social['href'].include?("twitter.com")
             social_urls[:twitter] = social['href']
 
