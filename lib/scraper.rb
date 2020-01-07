@@ -57,13 +57,13 @@ class Scraper
             # binding.pry
           end
 
-          if doc.css(".vitals-text-container").css(".profile-quote").text != ("")
-             social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
-          end
-
-          if doc.css(".details-container").css("p").text != ("")
-            social_urls[:bio] = doc.css(".details-container").css("p").text
-          end
+          # if doc.css(".vitals-text-container").css(".profile-quote").text != ("")
+          #    social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
+          # end
+          #
+          # if doc.css(".details-container").css("p").text != ("")
+          #   social_urls[:bio] = doc.css(".details-container").css("p").text
+          # end
             # binding.pry
         end
 
@@ -123,19 +123,19 @@ class Scraper
 
       # if doc.css(".vitals-text-container").css(".profile-quote").text.include?("")
       #   social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
-      #
-      # if doc.css(".vitals-text-container").css(".profile-quote").text != ("")
-      #    social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
-      # # #   social_urls[:profile_quote] = ""
-      # # # if doc.css(".vitals-text-container").css(".profile-quote").text.include?("")
-      # # #   profile_quote = doc.css(".vitals-text-container").css(".profile-quote").text
-      # # #   social_urls[:profile_quote] = profile_quote
-      # # # else social_urls[:profile_quote] = ""
-      # # # else social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
-      # end
 
-      # if doc.css(".details-container").css("p").text != ("")
-      #   social_urls[:bio] = doc.css(".details-container").css("p").text
+      if doc.css(".vitals-text-container").css(".profile-quote").text != ("")
+         social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
+      # #   social_urls[:profile_quote] = ""
+      # # if doc.css(".vitals-text-container").css(".profile-quote").text.include?("")
+      # #   profile_quote = doc.css(".vitals-text-container").css(".profile-quote").text
+      # #   social_urls[:profile_quote] = profile_quote
+      # # else social_urls[:profile_quote] = ""
+      # # else social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
+      end
+
+      if doc.css(".details-container").css("p").text != ("")
+        social_urls[:bio] = doc.css(".details-container").css("p").text
       # # if doc.css(".details-container").css("p").text.include?("")
       # #   social_urls[:bio] = doc.css(".details-container").css("p").text
       # # if doc.css(".details-container").css("p").text.include?("")
@@ -143,7 +143,7 @@ class Scraper
       # #   social_urls[:bio] = bio
       # # else social_urls[:bio] = ""
       # else social_urls[:bio] = doc.css(".details-container").css("p").text
-      # end
+      end
       social_urls
 
       # binding.pry
