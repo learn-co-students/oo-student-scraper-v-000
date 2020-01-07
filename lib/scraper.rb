@@ -40,7 +40,7 @@ class Scraper
       #  binding.pry
         doc.css(".social-icon-container").css("a").each do |social|
           # if social['href'].eql?(nil)
-          if social['href'].include?("twitter")
+          if social['href'].include?("twitter.com")
             social_urls[:twitter] = social['href']
             # else social_urls[:twitter] = ""
 
@@ -58,7 +58,7 @@ class Scraper
 
             # social_urls[:] = ""
           end
-            # binding.pry
+            binding.pry
         end
 
         # profile-quote = doc.css(".vitals-text-container").css(".profile-quote").text
