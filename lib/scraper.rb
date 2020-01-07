@@ -117,7 +117,7 @@ class Scraper
       # if doc.css(".vitals-text-container").css(".profile-quote").text.include?("")
       #   social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
       #
-      if doc.css(".vitals-text-container").css(".profile-quote").text.eql?("")
+      if doc.css(".vitals-text-container").css(".profile-quote").text != ("")
          social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
       # #   social_urls[:profile_quote] = ""
       # # if doc.css(".vitals-text-container").css(".profile-quote").text.include?("")
@@ -127,7 +127,7 @@ class Scraper
       # # else social_urls[:profile_quote] = doc.css(".vitals-text-container").css(".profile-quote").text
       end
 
-      if doc.css(".details-container").css("p").text.eql?!("")
+      if doc.css(".details-container").css("p").text != ("")
       #   social_urls[:bio] = ""
         social_urls[:bio] = doc.css(".details-container").css("p").text
       # # if doc.css(".details-container").css("p").text.include?("")
