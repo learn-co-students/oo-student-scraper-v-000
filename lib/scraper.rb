@@ -58,4 +58,7 @@ class Scraper
       end
       social_urls
   end
+
+  
+
 end
