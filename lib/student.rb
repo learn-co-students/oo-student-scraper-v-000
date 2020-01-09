@@ -6,7 +6,7 @@ class Student
 
   def initialize(student_hash)
     @student_hash = student_hash
-    @student_hash.send(:name @name, :location @location)
+    @student_hash.send(:name)
     # binding.pry
   end
 
@@ -17,7 +17,7 @@ class Student
 
   def self.create_from_collection(students_array)
     students_array.each do |student|
-      student = Student.new()
+      student = Student.new(student_hash)
     end
   end
 
