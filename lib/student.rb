@@ -4,7 +4,7 @@ class Student
 
   @@all = []
 
-  # def name
+  # def name=(name)
   #   @name = name
   #   # binding.pry
   # end
@@ -15,10 +15,15 @@ class Student
 
   # use meta-programming(#send) to assign the newly created student attributes and values per
   # the key/value pairs of the hash
+  # Student #new takes in an argument of a hash and sets that new student's attributes
+  # using the key/value pairs of that hash.
   def initialize(student_hash)
     @student_hash = student_hash
-    @student_hash.send(:name)
-    binding.pry
+    @name = @student_hash[:name]
+    @location = @student_hash[:location]
+
+    # @student_hash.send(:name)
+    # binding.pry
     @@all << self
   end
 
