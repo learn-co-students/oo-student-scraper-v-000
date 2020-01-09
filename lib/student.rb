@@ -4,11 +4,11 @@ class Student
 
   @@all = []
 
-  # def name=(name)
-  #   # @name = name
-  #   @name = @student_hash[:name]
-  #   # binding.pry
-  # end
+  def name=(name)
+    # @name = name
+    @name = @student_hash[:name]
+    # binding.pry
+  end
 
   # def name
   #   @name
@@ -22,7 +22,7 @@ class Student
     @student_hash = student_hash
     @name = @student_hash[:name]
     @location = @student_hash[:location]
-
+    # @student_hash.send(:name)
     # @student_hash.send(:name)
     # binding.pry
     @@all << self
@@ -34,9 +34,9 @@ class Student
   # `#initialize` method on our `Student` class.
 
   def self.create_from_collection(students_array)
-    students_array.each do |student|
-      student = Student.new(@student_hash)
-    end
+    # students_array.each do |student|
+    #   student.send(new(@student_hash))
+    # end
   end
 
   def add_student_attributes(attributes_hash)
