@@ -6,7 +6,7 @@ class Student
 
   def initialize(student_hash)
     @student_hash = student_hash
-    @student_hash.send(:name name, :location location)
+    @student_hash.send(:name @name, :location @location)
     # binding.pry
   end
 
