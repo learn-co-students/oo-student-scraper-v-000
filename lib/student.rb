@@ -5,7 +5,8 @@ class Student
   @@all = []
 
   # def name=(name)
-  #   @name = name
+  #   # @name = name
+  #   @name = @student_hash[:name]
   #   # binding.pry
   # end
 
