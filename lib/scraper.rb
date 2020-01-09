@@ -21,7 +21,7 @@ class Scraper
       scraped_students << hash
       end
       scraped_students
-    end
+  end
 
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
@@ -58,7 +58,5 @@ class Scraper
       end
       social_urls
   end
-
-  
 
 end
