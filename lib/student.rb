@@ -37,7 +37,6 @@ class Student
     students_array.each do |student|
       # binding.pry
       Student.new(student)
-      # student.send(:new, @student_hash)
     end
   end
 
