@@ -46,7 +46,7 @@ class Student
   def add_student_attributes(attributes_hash)
     # binding.pry
     attributes_hash.each do |attribute|
-      # binding.pry
+      binding.pry
       attributes_hash[:attribute]
       self
     end
