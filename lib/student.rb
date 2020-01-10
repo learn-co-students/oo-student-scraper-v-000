@@ -40,8 +40,16 @@ class Student
     end
   end
 
-  def add_student_attributes(attributes_hash)
+  # Student #add_student_attributes uses the Scraper class to get a hash of a given
+  # students attributes and uses that hash to set additional attributes
 
+  def add_student_attributes(attributes_hash)
+    # binding.pry
+    attributes_hash.each do |attribute|
+      # binding.pry
+      attributes_hash[:attribute]
+      self
+    end
   end
 
   def self.all
