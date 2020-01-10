@@ -3,7 +3,7 @@ class Student
   attr_accessor :name, :location, :twitter, :linkedin, :github, :blog, :profile_quote, :bio, :profile_url
 
   @@all = []
-
+  
   def name=(name)
     @name = @student_hash[:name]
   end
@@ -25,6 +25,7 @@ class Student
     # @student_hash.send(:name=, name)    "This didn't work with @student_hash in the beginning of the send method"
     # @student_hash.send(:location=, location)    "This didn't work with @student_hash in the beginning of the send method"
     @@all.push(self)
+    # binding.pry
   end
 
   # The `#create_from_collection` method should iterate over the array of hashes and
