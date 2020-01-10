@@ -3,7 +3,7 @@ class Student
   attr_accessor :name, :location, :twitter, :linkedin, :github, :blog, :profile_quote, :bio, :profile_url
 
   @@all = []
-  
+
   def name=(name)
     @name = @student_hash[:name]
   end
@@ -34,7 +34,7 @@ class Student
 
   def self.create_from_collection(students_array)
     students_array.each do |student|
-      student = Student.new(@student_hash)
+      student = Student.new()
       # student.send(:new, @student_hash)
     end
   end
