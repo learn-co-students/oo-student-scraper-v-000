@@ -18,8 +18,8 @@ class Student
   # using the key/value pairs of that hash.
   def initialize(student_hash)
     @student_hash = student_hash
-    # @name = @student_hash[:name]
-    # @location = @student_hash[:location]
+    # @name = @student_hash[:name]    "This works but doesn't use send as required by lab"
+    # @location = @student_hash[:location]    "This works but doesn't use send as required by lab"
     send(:name=, name)
     send(:location=, location)
     # @student_hash.send(:name=, name)    "This didn't work with @student_hash in the beginning of the send method"
