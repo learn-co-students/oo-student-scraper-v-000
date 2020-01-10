@@ -33,8 +33,10 @@ class Student
   # `#initialize` method on our `Student` class.
 
   def self.create_from_collection(students_array)
+    # binding.pry
     students_array.each do |student|
-      student = Student.new()
+      # binding.pry
+      Student.new(student)
       # student.send(:new, @student_hash)
     end
   end

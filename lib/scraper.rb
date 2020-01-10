@@ -21,6 +21,7 @@ class Scraper
       scraped_students << hash
       end
       scraped_students
+      # binding.pry
   end
 
   def self.scrape_profile_page(profile_url)
