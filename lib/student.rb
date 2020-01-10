@@ -24,7 +24,7 @@ class Student
     send(:location=, location)
     # @student_hash.send(:name=, name)    "This didn't work with @student_hash in the beginning of the send method"
     # @student_hash.send(:location=, location)    "This didn't work with @student_hash in the beginning of the send method"
-    @@all << self
+    @@all.push(self)
   end
 
   # The `#create_from_collection` method should iterate over the array of hashes and
@@ -45,5 +45,5 @@ class Student
   def self.all
     @@all
   end
-  
+
 end
