@@ -58,6 +58,7 @@ class Scraper
       #   social_urls[:bio] = doc.css(".details-container").css("p").text
       end
       social_urls
+      # binding.pry
   end
 
 end
