@@ -46,14 +46,15 @@ class Student
   def add_student_attributes(attributes_hash)
     # binding.pry
     attributes_hash.each do |attribute|
-      # binding.pry
-      if attribute.include?("someone@twitter.com")
-        binding.pry
-      # attributes_hash[:attribute]
-      social_urls
+      if attribute != ("")
+    #     attribute =
+    #   # if [attribute].include?("someone@twitter.com")
+    # #   if attributes_hash[attribute].include?("someone")
+    #     binding.pry
+    #   # attributes_hash[:attribute]
       end
       # binding.pry
-      self
+    #   self
     end
   end
 
