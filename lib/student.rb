@@ -44,7 +44,7 @@ class Student
   # students attributes and uses that hash to set additional attributes
 
   def add_student_attributes(attributes_hash)
-    # binding.pry
+    binding.pry
     attributes_hash.each do |attribute|
       if attribute != ("")
     #     attribute =
