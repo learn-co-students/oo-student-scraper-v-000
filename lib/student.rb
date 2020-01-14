@@ -28,7 +28,8 @@ class Student
     send(:location=, location)
     # @student_hash.send(:name=, name)    "This didn't work with @student_hash in the beginning of the send method"
     # @student_hash.send(:location=, location)    "This didn't work with @student_hash in the beginning of the send method"
-    @@all.push(self)
+    # @@all.push(self)
+    @@all << self
     # binding.pry
   end
 
