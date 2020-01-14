@@ -69,8 +69,8 @@ class Student
     # #     binding.pry
     # #   # attributes_hash[:attribute]
     #   end
-      binding.pry
-    #   self
+      # binding.pry
+      self
     # end
   end
 
