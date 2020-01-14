@@ -12,6 +12,10 @@ class Student
     @location = @student_hash[:location]
   end
 
+  def twitter=(twitter)
+    @twitter = @attributes_hash[:twitter]
+  end
+  binding.pry
   # use meta-programming(#send) to assign the newly created student attributes and values per
   # the key/value pairs of the hash
   # Student #new takes in an argument of a hash and sets that new student's attributes
@@ -44,15 +48,19 @@ class Student
   # students attributes and uses that hash to set additional attributes
 
   def add_student_attributes(attributes_hash)
-    binding.pry
+    # binding.pry
     attributes_hash.each do |attribute|
-      if attribute != ("")
-    #     attribute =
-    #   # if [attribute].include?("someone@twitter.com")
-    # #   if attributes_hash[attribute].include?("someone")
-    #     binding.pry
-    #   # attributes_hash[:attribute]
-      end
+      attribute
+      # send(:attribute=, attribute)
+      # @@all.push(self)
+      # send(:linkedin=, linkedin)
+    #   if attribute != ("")
+    # #     attribute =
+    # #   # if [attribute].include?("someone@twitter.com")
+    # # #   if attributes_hash[attribute].include?("someone")
+    # #     binding.pry
+    # #   # attributes_hash[:attribute]
+    #   end
       # binding.pry
     #   self
     end
