@@ -48,30 +48,13 @@ class Student
   # students attributes and uses that hash to set additional attributes
 
   def add_student_attributes(attributes_hash)
-    # binding.pry
     @twitter = attributes_hash[:twitter]
     @linkedin = attributes_hash[:linkedin]
     @github = attributes_hash[:github]
     @blog = attributes_hash[:blog]
     @profile_quote = attributes_hash[:profile_quote]
     @bio = attributes_hash[:bio]
-    # @name = @student_hash[:name]    "This works but doesn't use send as required by lab"
-    # @location = @student_hash[:location]
-    # attributes_hash.each do |attribute|
-    #   attribute
-      # send(:attribute=, attribute)
-      # @@all.push(self)
-      # send(:linkedin=, linkedin)
-    #   if attribute != ("")
-    # #     attribute =
-    # #   # if [attribute].include?("someone@twitter.com")
-    # # #   if attributes_hash[attribute].include?("someone")
-    # #     binding.pry
-    # #   # attributes_hash[:attribute]
-    #   end
-      # binding.pry
-      self
-    # end
+    self
   end
 
   def self.all
