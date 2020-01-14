@@ -12,9 +12,9 @@ class Student
     @location = @student_hash[:location]
   end
 
-  def twitter=(twitter)
-    @twitter = @attributes_hash[:twitter]
-  end
+  # def twitter=(twitter)
+  #   @twitter = @attributes_hash[:twitter]
+  # end
 
   # use meta-programming(#send) to assign the newly created student attributes and values per
   # the key/value pairs of the hash
@@ -26,6 +26,7 @@ class Student
     # @location = @student_hash[:location]    "This works but doesn't use send as required by lab"
     send(:name=, name)
     send(:location=, location)
+
     # @student_hash.send(:name=, name)    "This didn't work with @student_hash in the beginning of the send method"
     # @student_hash.send(:location=, location)    "This didn't work with @student_hash in the beginning of the send method"
     # @@all.push(self)
