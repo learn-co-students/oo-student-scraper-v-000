@@ -29,7 +29,7 @@ class Student
     # @student_hash.send(:name=, name)    "This didn't work with @student_hash in the beginning of the send method"
     # @student_hash.send(:location=, location)    "This didn't work with @student_hash in the beginning of the send method"
     @@all.push(self)
-    binding.pry
+    # binding.pry
   end
 
   # The `#create_from_collection` method should iterate over the array of hashes and
@@ -49,8 +49,16 @@ class Student
 
   def add_student_attributes(attributes_hash)
     # binding.pry
-    attributes_hash.each do |attribute|
-      attribute
+    @twitter = attributes_hash[:twitter]
+    @linkedin = attributes_hash[:linkedin]
+    @github = attributes_hash[:github]
+    @blog = attributes_hash[:blog]
+    @profile_quote = attributes_hash[:profile_quote]
+    @bio = attributes_hash[:bio]
+    # @name = @student_hash[:name]    "This works but doesn't use send as required by lab"
+    # @location = @student_hash[:location]
+    # attributes_hash.each do |attribute|
+    #   attribute
       # send(:attribute=, attribute)
       # @@all.push(self)
       # send(:linkedin=, linkedin)
@@ -61,9 +69,9 @@ class Student
     # #     binding.pry
     # #   # attributes_hash[:attribute]
     #   end
-      # binding.pry
+      binding.pry
     #   self
-    end
+    # end
   end
 
   def self.all
