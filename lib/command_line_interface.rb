@@ -17,15 +17,21 @@ class CommandLineInterface
     Student.create_from_collection(students_array)
   end
 
-  def add_attributes_to_students
-      # binding.pry
+  # def add_attributes_to_students
+  #     # binding.pry
+  #   Student.all.each do |student|
+  #       # binding.pry
+  #     student.add_student_attributes(attributes)
+  #   end
+  # end
+
+    def add_attributes_to_students
     Student.all.each do |student|
-        # binding.pry
-
-
+      attributes = Scraper.scrape_profile_page(BASE_PATH + student.student_hash[:profile_url])
       student.add_student_attributes(attributes)
     end
   end
+
 
   def display_students
     Student.all.each do |student|
