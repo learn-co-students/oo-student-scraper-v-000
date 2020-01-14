@@ -27,11 +27,11 @@ class CommandLineInterface
 
     def add_attributes_to_students
     Student.all.each do |student|
-      attributes = Scraper.scrape_profile_page(BASE_PATH + student.student_hash[:profile_url])
+      # attributes = Scraper.scrape_profile_page(BASE_PATH + student.student_hash[:profile_url])
+      attributes = Scraper.scrape_profile_page(BASE_PATH + student.profile_url)
       student.add_student_attributes(attributes)
     end
   end
-
 
   def display_students
     Student.all.each do |student|

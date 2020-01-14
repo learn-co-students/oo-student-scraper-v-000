@@ -1,6 +1,6 @@
 class Student
 
-  attr_accessor :name, :location, :twitter, :linkedin, :github, :blog, :profile_quote, :bio, :profile_url, :student_hash
+  attr_accessor :name, :location, :twitter, :linkedin, :github, :blog, :profile_quote, :bio, :profile_url
 
   @@all = []
 
@@ -10,6 +10,10 @@ class Student
 
   def location=(location)
     @location = @student_hash[:location]
+  end
+
+  def profile_url=(profile_url)
+    @profile_url = @student_hash[:profile_url]
   end
 
   # def twitter=(twitter)
@@ -26,6 +30,7 @@ class Student
     # @location = @student_hash[:location]    "This works but doesn't use send as required by lab"
     send(:name=, name)
     send(:location=, location)
+    send(:profile_url=, profile_url)
 
     # @student_hash.send(:name=, name)    "This didn't work with @student_hash in the beginning of the send method"
     # @student_hash.send(:location=, location)    "This didn't work with @student_hash in the beginning of the send method"
