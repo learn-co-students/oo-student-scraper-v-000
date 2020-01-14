@@ -15,7 +15,7 @@ class Student
   def twitter=(twitter)
     @twitter = @attributes_hash[:twitter]
   end
-  binding.pry
+
   # use meta-programming(#send) to assign the newly created student attributes and values per
   # the key/value pairs of the hash
   # Student #new takes in an argument of a hash and sets that new student's attributes
@@ -29,7 +29,7 @@ class Student
     # @student_hash.send(:name=, name)    "This didn't work with @student_hash in the beginning of the send method"
     # @student_hash.send(:location=, location)    "This didn't work with @student_hash in the beginning of the send method"
     @@all.push(self)
-    # binding.pry
+    binding.pry
   end
 
   # The `#create_from_collection` method should iterate over the array of hashes and
