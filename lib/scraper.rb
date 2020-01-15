@@ -11,7 +11,7 @@ class Scraper
     doc = Nokogiri::HTML(open(index_url))
     # students = doc.css(".roster-cards-container")   "This was not the right selector."
     students = doc.css(".student-card")
-    
+
     scraped_students = []
 
     students.each do |student|
@@ -22,7 +22,7 @@ class Scraper
       scraped_students << hash
       end
       scraped_students
-      # binding.pry
+      binding.pry
   end
 
   def self.scrape_profile_page(profile_url)

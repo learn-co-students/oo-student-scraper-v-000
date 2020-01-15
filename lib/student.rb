@@ -16,10 +16,6 @@ class Student
     @profile_url = @student_hash[:profile_url]
   end
 
-  # def twitter=(twitter)
-  #   @twitter = @attributes_hash[:twitter]
-  # end
-
   # use meta-programming(#send) to assign the newly created student attributes and values per
   # the key/value pairs of the hash
   # Student #new takes in an argument of a hash and sets that new student's attributes
