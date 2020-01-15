@@ -7,6 +7,7 @@ class Scraper
 # the return value of this method should be an array of hashes in which each hash represents
 # a single student.
   def self.scrape_index_page(index_url)
+    # binding.pry
     doc = Nokogiri::HTML(open(index_url))
     # students = doc.css(".roster-cards-container")   "This was not the right selector."
     students = doc.css(".student-card")
