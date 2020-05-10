@@ -9,16 +9,12 @@ class Student
      @@all << self
   end
 
-# !will call Student.create_from_collection with return value of Scraper.scrape_index_page
   def self.create_from_collection(students_array)
-    students_array.each {|s| Student.new(s)} 
+    students_array.each {|s| Student.new(s)}
   end
 
   def add_student_attributes(attributes_hash)
-  # iterate over the given hash
-  # and use meta-programming to dynamically assign student attributes and values per the k/v pairs of the hash
-  # use #send method to achieve
-  # !Return value of this method should be the student itself. Use the `self` keyword
+    attributes_hash.each {|key, value| self.send("#{key}=", value)}
   end
 
   def self.all
