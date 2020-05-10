@@ -10,10 +10,8 @@ class Student
   end
 
 # !will call Student.create_from_collection with return value of Scraper.scrape_index_page
-  def self.create_from_collection(students_array) # take in array of hashes
-    students_array.each do |s|  # iterate over given hash and create a new individual student using each hash
-      Student.new(s)  # this will bring me to Student.initialize method
-    end
+  def self.create_from_collection(students_array)
+    students_array.each {|s| Student.new(s)} 
   end
 
   def add_student_attributes(attributes_hash)
