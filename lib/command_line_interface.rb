@@ -5,7 +5,7 @@ require 'colorize'
 
 class CommandLineInterface
   BASE_PATH = "https://learn-co-curriculum.github.io/student-scraper-test-page/"
-
+  # binding.pry
   def run
     make_students
     add_attributes_to_students
@@ -15,10 +15,14 @@ class CommandLineInterface
   def make_students
     students_array = Scraper.scrape_index_page(BASE_PATH + 'index.html')
     Student.create_from_collection(students_array)
+    # binding.pry
   end
 
-  def add_attributes_to_students
+    def add_attributes_to_students
+      # binding.pry
     Student.all.each do |student|
+      # binding.pry
+      # attributes = Scraper.scrape_profile_page(BASE_PATH + student.student_hash[:profile_url])
       attributes = Scraper.scrape_profile_page(BASE_PATH + student.profile_url)
       student.add_student_attributes(attributes)
     end
@@ -26,6 +30,7 @@ class CommandLineInterface
 
   def display_students
     Student.all.each do |student|
+      # binding.pry
       puts "#{student.name.upcase}".colorize(:blue)
       puts "  location:".colorize(:light_blue) + " #{student.location}"
       puts "  profile quote:".colorize(:light_blue) + " #{student.profile_quote}"
@@ -37,5 +42,4 @@ class CommandLineInterface
       puts "----------------------".colorize(:green)
     end
   end
-
 end
