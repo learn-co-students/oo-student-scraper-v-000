@@ -22,7 +22,7 @@ class Scraper
       students << {
         :name => student.css("div.card-text-container h4").text,
         :location => student.css("div.card-text-container p").text,
-        :profile_url => student.css("div.student-card a")[student].attribute("href")
+        # :profile_url => student.css("div.student-card a").attribute("href")
         # binding.pry
       }
 
