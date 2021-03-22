@@ -21,10 +21,104 @@ class Scraper
 #location: page.css("div.card-text-container p").first.text
 #ryan-johnson-card > a
 #project.css("div.project-thumbnail a img").attribute("src").value
-#page.css("div.student-card a img").attribute("href").value
+#page.css("div.student-card a img").first.attribute("href").value
+children attribbute value= ""
 
   def self.scrape_profile_page(profile_url)
 
   end
 
 end
+
+
+42:   student_social_media = {}
+43:   # puts page = Nokogiri::HTML(open(profile_url)).css(".social-icon-container")
+44:   links = page.css(".social-icon-container")
+45:   # social_link = page.css(".social-icon-container").css('a').collect {|e| e.attributes["href"].va
+lue}
+46:   # page.css(".social-icon-container").each do |media|
+47:   #   media.include?("linkedin")
+=> 48:   binding.pry
+49:   #social media = page.css(".social-icon-container")
+50:   #search array find
+51: # twitter
+52: # linkedin
+53: # github
+54: # blog
+55: # profile_quote
+56: # bio
+57: end
+[1] pry(Scraper)>
+lib/scraper0.rb1:1
+LFUTF-8Ruby Learn
+
+                        Second section
+
+
+
+student_media = {}
+# puts page = Nokogiri::HTML(open(profile_url)).css(".social-icon-container")
+# links = page.css(".social-icon-container").css('a').collect {|e| e.attributes["href"].value}
+# page.css("div.roster-cards-container").each do |card|
+
+#   #card.css("div.student-card a").each do |student|
+  page.css(".vitals-container").each  do |info|
+    # page.css(".social-icon-container").css('a').collect |media|
+
+#   links.detect do |e|
+#     student_media[:linkedin]= e if e.include?("linkedin")
+#     student_media[:twitter]= e if e.include?("twitter")
+#     student_media[:github]= e if e.include?("github")
+#   end
+#   student_media[:blog] = student_media[3] if student_media[3] != nil
+#   student_media[:profile-quote] = page.css(".profile-quote").text
+#   student_media[:bio] = page.css("div.description-holder p")
+# # social_link = page.css(".social-icon-container").css('a').collect {|e| e.attributes["href"].value}
+# # page.css(".social-icon-container").each do |media|
+# #   media.include?("linkedin")
+binding.pry
+# profile_quote = page.css(".profile-quote").text
+# bio = page.css("div.description-holder p")
+
+
+
+                  opppsss
+                  def self.scrape_profile_page(profile_url)
+                    page = Nokogiri::HTML(open(profile_url))
+
+                    student_media = {}
+                    page.css(".vitals-text-container div").each do |info|
+                      page.css("div.social-icon-container a").collect do |links|
+
+                        student_twitter = "#{links.attr("href")}"
+                        student_linkedin = "#{links.attr("href")}"
+                        student_github = "#{links.attr("href")}"
+                        student_quote = "#{info.attr("href")}"
+                        # student_blog = "#{info.attr("href")}"
+                      end
+                    # puts page = Nokogiri::HTML(open(profile_url)).css(".social-icon-container")
+                    # links = page.css(".social-icon-container").css('a').collect {|e| e.attributes["href"].value}
+                    # page.css("div.roster-cards-container").each do |card|
+
+                    #   #card.css("div.student-card a").each do |student|
+                      # page.css(".vitals-container").each  do |info|
+                        # page.css(".social-icon-container").css('a').collect |media|
+
+                    #   links.detect do |e|
+                    #     student_media[:linkedin]= e if e.include?("linkedin")
+                    #     student_media[:twitter]= e if e.include?("twitter")
+                    #     student_media[:github]= e if e.include?("github")
+                    #   end
+                    #   student_media[:blog] = student_media[3] if student_media[3] != nil
+                    #   student_media[:profile-quote] = page.css(".profile-quote").text
+                    #   student_media[:bio] = page.css("div.description-holder p")
+                    # # social_link = page.css(".social-icon-container").css('a').collect {|e| e.attributes["href"].value}
+                    # # page.css(".social-icon-container").each do |media|
+                    # #   media.include?("linkedin")
+                    binding.pry
+                    end
+                  # profile_quote = page.css(".profile-quote").text
+                  # bio = page.css("div.description-holder p")
+                  end
+
+                end
