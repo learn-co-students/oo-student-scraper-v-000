@@ -28,7 +28,6 @@ class Student
     @bio = attributes_hash[:bio]
   end
 
-
   def self.all
     @@all
   end
