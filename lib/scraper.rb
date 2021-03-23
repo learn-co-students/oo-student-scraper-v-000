@@ -3,7 +3,8 @@ require 'nokogiri'
 require 'pry'
 
 class Scraper
-  attr_accessor :Student
+  attr_accessor :student
+  @@all = []
 
   def self.scrape_index_page(index_url)
     html = open(index_url)
@@ -37,29 +38,63 @@ class Scraper
 
 
   def self.scrape_profile_page(profile_url)
-    profile_page = Nokogiri::HTML(open(profile_url))
-    student = {}
+     page = Nokogiri::HTML(open(profile_url))
 
-    links = profile_page.css("social-icon-container").children.css("a").map{ |e| e.atrribute("href").value}
-    links.each do |link|
+     student_page = {}
 
-      if link.include?("twitter")
-        student[:twitter] = link
-      if link.include?("linkedin")
-        student[:linkedin] = link
-      if link.include?("github")
-        student[:github] = link
-      else
-        student[:blog] = link
-        binding.pry
-      end
-  end
-    student[:profile-quote] = profile_page.css(".profile-quote").text if page.css(".profile-quote")
-    student[:bio] = profile_page.css("div.description-holder p").text if page.css("div.description-holder p")
-    sbinding.pry
-    student
-    end
-  end
+     social_links = page.css(".social-icon-container").css('a').collect {|e| e.attributes["href"].value}
 
-  end
-end
+     social_links.detect do |e|
+
+       student_page[:twitter] = e if e.include?("twitter")
+       student_page[:linkedin] = e if e.include?("linkedin")
+       student_page[:github] = e if e.include?("github")
+
+     end
+
+     student_page[:blog] = social_links[3] if social_links[3] != nil
+     student_page[:profile_quote] = page.css(".profile-quote")[0].text
+     student_page[:bio] = page.css(".description-holder").css('p')[0].text
+     student_page
+   end
+ end
+
+  # def self.scrape_profile_page(profile_url)
+  #   profile_page = Nokogiri::HTML(open(profile_url))
+  #   student = {}
+  #   # binding.pry
+  #   links = profile_page.css(".social-icon-container").children.css("a").collect { |e| e.attributes["href"].value}
+  #   # links.detect do |link|
+  #   # binding.pry
+  #
+  #     student[:twitter] = links[0]
+  #     student[:linkedin] = links[1]
+  #     student[:github] = links[2]
+  #     student[:blog] = links[3]
+  #     student[:profile_quote] = profile_page.css(".profile-quote").text if profile_page.css(".profile-quote")
+  #     student[:bio] = profile_page.css("div.description-holder p").text if profile_page.css("div.description-holder p")
+  #     binding.pry
+  #
+  #
+  #
+  #
+  #
+  #
+  #   # student[:profile_quote] = profile_page.css(".profile-quote").text if profile_page.css(".profile-quote")
+  #   # student[:bio] = profile_page.css("div.description-holder p").text if profile_page.css("div.description-holder p")
+  #   student
+  #   # binding.pry
+  #   # student << {
+  #   #   student[:twitter]
+  #   #   student[:linkedin
+  #   #   student[:github]
+  #   #   student[:blog]
+  #   #   student[:profile_quote]
+  #   #   student[:bio]
+  #   # }
+  #   # end
+  #
+  # end
+  #
+  # end
+# end

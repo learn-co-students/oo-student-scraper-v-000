@@ -122,3 +122,19 @@ binding.pry
                   end
 
                 end
+
+                # binding.pry
+                # if link[3] != "" || nil
+                #   return student[:blog]= links[3]
+                # end
+                # if link[0]
+                #   student[:twitter] = link
+                # if link[1]
+                #   student[:linkedin] = link
+                # if link[2]
+                #   student[:github] = link
+                # else
+                #   student[:blog] = link
+                # end
+                # binding.pry
+              # end
