@@ -1,0 +1,27 @@
+
+[1mFrom:[0m /home/BenitolSantos/oo-student-scraper-v-000/lib/scraper.rb @ line 28 Scraper.scrape_profile_page:
+
+    [1;34m24[0m: [32mdef[0m [1;36mself[0m.[1;34mscrape_profile_page[0m(profile_url)
+    [1;34m25[0m:   html = [1;34;4mFile[0m.read(profile_url)
+    [1;34m26[0m:   profile_page = [1;34;4mNokogiri[0m::HTML(html)
+    [1;34m27[0m:   links = []
+ => [1;34m28[0m:   binding.pry
+    [1;34m29[0m:   profile_page.css([31m[1;31m"[0m[31mdiv.social-icon-container a[1;31m"[0m[31m[0m).attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).values.each [32mdo[0m |link|
+    [1;34m30[0m:     links << link
+    [1;34m31[0m:   [32mend[0m
+    [1;34m32[0m: 
+    [1;34m33[0m:   profile = {
+    [1;34m34[0m:     [33m:linkedin[0m => profile_page.css([31m[1;31m"[0m[31mdiv.social-icon-container a[1;31m"[0m[31m[0m).attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value
+    [1;34m35[0m: 
+    [1;34m36[0m:     [1;34m#examples:[0m
+    [1;34m37[0m:     [1;34m# :linkedin=>"https://www.linkedin.com/in/flatironschool",[0m
+    [1;34m38[0m:     [1;34m# :github=>"https://github.com/learn-co,[0m
+    [1;34m39[0m:     [1;34m# :blog=>"http://flatironschool.com",[0m
+    [1;34m40[0m:     [1;34m# :profile_quote=>"\"Forget safety. Live where you fear to live. Destroy your reputation. Be notorious.\" - Rumi",[0m
+    [1;34m41[0m:     [1;34m# :bio=> "I'm a school"[0m
+    [1;34m42[0m:   }
+    [1;34m43[0m: 
+    [1;34m44[0m: 
+    [1;34m45[0m: 
+    [1;34m46[0m: [32mend[0m
+
