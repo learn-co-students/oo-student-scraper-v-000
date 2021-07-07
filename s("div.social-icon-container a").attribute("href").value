@@ -1,0 +1,23 @@
+
+[1mFrom:[0m /home/rcho100/oo-student-scraper-v-000/lib/scraper.rb @ line 32 Scraper.scrape_profile_page:
+
+    [1;34m23[0m: [32mdef[0m [1;36mself[0m.[1;34mscrape_profile_page[0m(profile_url)
+    [1;34m24[0m:   [1;34m# ex. :twitter=>  *real: profile_page.css("div.social-icon-container a").attribute("href").value[0m
+    [1;34m25[0m:   [1;34m# ex. :linkedin=>"https://www.linkedin.com/in/flatironschool",  *real: profile_page.css("div.social-icon-container a")[1].attribute("href").value[0m
+    [1;34m26[0m:   [1;34m# ex. :github=>"https://github.com/learn-co,  *real: profile_page.css("div.social-icon-container a")[2].attribute("href").value[0m
+    [1;34m27[0m:   [1;34m# ex. :blog=>"http://flatironschool.com",  *real: profile_page.css("div.social-icon-container a")[3].attribute("href").value[0m
+    [1;34m28[0m:   [1;34m# ex. :profile_quote=>"\"Forget safety. Live where you fear to live. Destroy your reputation. Be notorious.\" - Rumi", *real: profile_page.css("div.profile-quote").text[0m
+    [1;34m29[0m:   [1;34m# ex. :bio=> "I'm a school"  *real: profile_page.css("div.bio-content.content-holder div.description-holder p").text[0m
+    [1;34m30[0m:   profile_page = [1;34;4mNokogiri[0m::HTML(open(profile_url))
+    [1;34m31[0m:   student_info = {}
+ => [1;34m32[0m:   binding.pry
+    [1;34m33[0m:   [1;34m# student_info[:twitter] = profile_page.css("div.social-icon-container a").attribute("href").value[0m
+    [1;34m34[0m:   profile_page.css([31m[1;31m"[0m[31mdiv.social-icon-container[1;31m"[0m[31m[0m).each {|profile| student_info[[33m:twitter[0m] = profile.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m).attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value}
+    [1;34m35[0m:   profile_page.css([31m[1;31m"[0m[31mdiv.social-icon-container[1;31m"[0m[31m[0m).each {|profile| student_info[[33m:linkedin[0m] = profile.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m)[[1;34m1[0m].attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value}
+    [1;34m36[0m:   profile_page.css([31m[1;31m"[0m[31mdiv.social-icon-container[1;31m"[0m[31m[0m).each {|profile| student_info[[33m:github[0m] = profile.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m)[[1;34m2[0m].attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value}
+    [1;34m37[0m:   profile_page.css([31m[1;31m"[0m[31mdiv.social-icon-container[1;31m"[0m[31m[0m).each {|profile| student_info[[33m:blog[0m] = profile.css([31m[1;31m"[0m[31ma[1;31m"[0m[31m[0m)[[1;34m3[0m].attribute([31m[1;31m"[0m[31mhref[1;31m"[0m[31m[0m).value}
+    [1;34m38[0m:   student_info[[33m:profile_quote[0m] = profile_page.css([31m[1;31m"[0m[31mdiv.profile-quote[1;31m"[0m[31m[0m).text
+    [1;34m39[0m:   student_info[[33m:profile_quote[0m] = profile_page.css([31m[1;31m"[0m[31mdiv.bio-content.content-holder div.description-holder p[1;31m"[0m[31m[0m).text
+    [1;34m40[0m:   student_info
+    [1;34m41[0m: [32mend[0m
+
